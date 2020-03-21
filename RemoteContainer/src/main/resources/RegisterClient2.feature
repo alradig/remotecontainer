@@ -15,20 +15,3 @@ Feature: Register a client
   	And I submit the form
   	Then the form should be redisplayed
   	And I should see a message advising me that the clients name is required
-  	
-
-  @Test
-  Scenario Outline: All of the fields should display an error 
-  									when not populated on form submission
-  									
-  	When   I enter "test@test.com" into fields on the page						
-    And    I leave the "<field>" field on the register page empty
-    And    I click on "submit" on the "Create Account" page
-    Then   the "<error>" on the "Create Account" page should be "visible"
-
-    Examples: 
-      | field            |  error                          |
-      | name             |  missing_name_error             |
-      | email            |  missing_email_error            |
-      | password         |  missing_password_error         |
-      | confirm_password |  missing_confirm_password_error |
