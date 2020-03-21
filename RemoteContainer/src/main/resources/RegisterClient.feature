@@ -1,10 +1,17 @@
 @tag
+<<<<<<< HEAD
 Feature: Register a client
   
+=======
+Feature: Register a client 
+
+  logostic company register page should have verification on all fields.
+>>>>>>> branch 'M1' of https://github.com/alradig/remotecontainer.git
 	The system should allow logistic companies to register new clients.
 	Basic information should be entered: (e.g., client name, address, reference person and email)
 	and some other should be automatically generated (e.g., client id).
 
+<<<<<<< HEAD
 	Background:
 		Given I have chosen to register a client
 		And I am about to enter the client information
@@ -16,14 +23,17 @@ Feature: Register a client
   	Then the form should be redisplayed
   	And I should see a message advising me that the clients name is required
   	
+=======
+	Background: We are on the homepage
+		Given company tries to "Register" a client
+>>>>>>> branch 'M1' of https://github.com/alradig/remotecontainer.git
 
   @Test
   Scenario Outline: All of the fields should display an error 
   									when not populated on form submission
   									
-  	When   I enter "test@test.com" into fields on the page						
-    And    I leave the "<field>" field on the register page empty
-    And    I click on "submit" on the "Create Account" page
+  						
+    When   a "<field>" field on the register page is left empty 
     Then   the "<error>" on the "Create Account" page should be "visible"
 
     Examples: 
