@@ -28,7 +28,7 @@ Feature: Register Client
 	(e.g., name, email).
 
   @tag1
-  Scenario: Title of your scenario
+  Scenario: Missing Pw
     Given I want to write a step with precondition
     And some other precondition
     When I complete action
