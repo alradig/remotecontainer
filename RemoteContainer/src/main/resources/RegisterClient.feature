@@ -8,7 +8,7 @@ Feature: Register a client
 	Background:
 		Given I have chosen to register a client
 		And I am about to enter the client information
-		
+		 
   @Test
   Scenario: Client name is not provided
   	When I do not enter the clients name
