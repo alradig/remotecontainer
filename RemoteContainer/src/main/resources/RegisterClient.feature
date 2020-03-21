@@ -29,7 +29,7 @@ Feature: Register Client
 
   @tag1
   Scenario: Missing Pw
-    Given I want to write a step with precondition
+    Given That is so true tata steel
     And some other precondition
     When I complete action
     And some other action
