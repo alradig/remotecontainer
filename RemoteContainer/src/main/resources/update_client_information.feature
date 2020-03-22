@@ -10,7 +10,7 @@ Feature: Update Client Information
 
   @tag1
   Scenario: Update client name
-    Given the client name is 'Brothers Farm'
+    Given the client name is 'Brothers Farm' 
     When I enter the new name 'Family Farm'
     And I submit the form
     Then the client name should be 'Family farm'
