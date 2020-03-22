@@ -42,8 +42,7 @@ public class StepsDefinition {
 
 	@When("I submit the form")
 	public void I_submit_the_form() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+
 	}
 
 	@Then("the form should be redisplayed")
