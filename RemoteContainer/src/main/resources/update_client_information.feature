@@ -13,5 +13,7 @@ Feature: Update Client Information
     Given the client name is 'Brothers Farm'
     When I enter the new name 'Family Farm'
     And I submit the form
-    Then the client name should be 'Family farm'
-    And I should see a message telling me that the clients name was successfully updated!
+    Then the client name should be 'Family Farm'
+    And I should see a message telling me 'the client name was successfully updated!'
+    
+
