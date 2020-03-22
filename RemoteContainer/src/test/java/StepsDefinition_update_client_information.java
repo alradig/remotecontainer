@@ -32,9 +32,19 @@ public class StepsDefinition_update_client_information {
 	public void the_client_name_should_be(String correct_name) {
 	    assertEquals(client.name,correct_name);
 	}
+	
+	@Given("the client email is {string}")
+	public void the_client_email_is(String old_email) {
+	    client.email = old_email;
+	}
 
-	@Then("I should see a message telling me {string}")
-	public void i_should_see_a_message_telling_me_that_the_clients_name_was_successfully_updated(String message) {
-		System.out.println(message);
+	@When("I enter the new email {string}")
+	public void i_enter_the_new_email(String new_email) {
+	    client.email = new_email;
+	}
+
+	@Then("the client email should be {string}")
+	public void the_client_email_should_be(String new_email) {
+		assertEquals(client.email,new_email);
 	}
 }
