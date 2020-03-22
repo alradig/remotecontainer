@@ -38,3 +38,9 @@ Feature: Register client
   	Then the form should be redisplayed
   	And I should see a message advising me that the clients reference person is missing
   	And I should be asked if I want to submit it anyway
+  	
+  @Test
+  Scenario: Client id is automatically generated
+  	When I submit the form
+  	And all the other details are correct
+  	Then I should see a message telling me that the clients was successfully registered
