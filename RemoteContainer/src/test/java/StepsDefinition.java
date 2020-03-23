@@ -4,7 +4,6 @@ import io.cucumber.java.en.When;
 
 public class StepsDefinition {
 	
-	
 //------------------------------------------------------------------------------------------//
 // Following steps are for M2 Journey Management	
 
@@ -86,7 +85,31 @@ public class StepsDefinition {
 		throw new io.cucumber.java.PendingException();
 	}
 
+	
+	@Given("End destination is not provided")
+	public void end_destination_is_not_provided() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
 
+	@Given("trip origin is not provided")
+	public void trip_origin_is_not_provided() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Given("Client information not provided")
+	public void client_information_not_provided() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Given("a content is not provided")
+	public void a_content_is_not_provided() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+	
 	@Then("unable to register container")
 	public void unable_to_register_container() {
 	// Write code here that turns the phrase above into concrete actions
