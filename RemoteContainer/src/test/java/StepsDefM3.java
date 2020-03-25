@@ -61,12 +61,6 @@ public class StepsDefM3 {
 	    // Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
 	}
-	
-	@Given("Container has arrived in {string}")
-	public void container_has_arrived_in(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
 
 	@Given("Container end-destination is true")
 	public void container_end_destination_is_true() {
