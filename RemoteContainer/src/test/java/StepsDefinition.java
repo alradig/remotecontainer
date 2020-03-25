@@ -79,6 +79,10 @@ public class StepsDefinition {
 
 	@Given("I am about to enter the client information")
 	public void I_am_about_to_enter_the_client_information() {   
+		client.setAddress("bla");
+		client.setEmail("sjssjj@sjsj");
+		client.setName("Peter");
+		client.setRefPerson("Mama");
 	}
 
 	@When("I do not enter the clients name")
