@@ -1,10 +1,9 @@
-
-@tag
+	@tag
 Feature: Register container for Journey
 
   Scenario: Successfull registration 
     Given client name "BananaExpress"
-    And star destination "Denmark"
+    And start destination "Denmark"
     And end destination "Australia"
     And cargo "Banana"
     When register
@@ -41,7 +40,4 @@ Scenario: No Content provided
     And cargo is empty
     When register
     Then registration is false
-    
-
-    
     

@@ -4,6 +4,7 @@ public class Journey {
 	String startDestination;
 	String endDestination;
 	boolean isRegistered;
+	String cargo;
 	
 	
 	public void setStartDestination(String startDestination) {
@@ -30,4 +31,15 @@ public class Journey {
 		return isRegistered;
 	}
 
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
+
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void registerJourney(Journey journey) {
+		journey.get
+	}
 }
