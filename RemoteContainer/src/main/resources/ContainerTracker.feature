@@ -22,6 +22,4 @@ Feature: A Tracker for containers
 	Scenario: Journey is done
 		Given Container end-destination is true
 		And Register
-		Then Internal temp is reset
-		And Air humidity is reset
-		And atmosph pressure is reset
+		Then Data reset
