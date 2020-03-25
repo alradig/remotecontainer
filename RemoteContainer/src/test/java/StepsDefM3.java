@@ -17,12 +17,6 @@ public class StepsDefM3 {
 	    throw new io.cucumber.java.PendingException();
 	}
 
-	@Given("Register")
-	public void register() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
 	@When("New internal temp of {string}")
 	public void new_internal_temp_of(String string) {
 	    // Write code here that turns the phrase above into concrete actions
