@@ -3,44 +3,44 @@
 Feature: Register container for Journey
 
   Scenario: Successfull registration 
-    Given client "BananaExpress"
-    And a trip origin "Denmark"
-    And a trip desitnation "Australia"
-    And a content "Banana"
-    When Register
-    Then Client gets assigned an empty container
+    Given client name "BananaExpress"
+    And star destination "Denmark"
+    And end destination "Australia"
+    And cargo "Banana"
+    When register
+    Then registration is true
 
 	Scenario: No end-destionation provided
-    Given client "BananaExpress"
-    And a trip origin "Denmark"
-    And a content "Banana"
-    And End destination is not provided
-    When Register
-    Then unable to register container 
+    Given client name "BananaExpress"
+    And start destination "Denmark"
+    And cargo "Banana"
+    And end destination is empty
+    When register
+    Then registration is false
     
 Scenario: No original-destionation provided
-    Given client "BananaExpress"
-    And a trip desitnation "Australia"
-    And a company name "Banana"
-    And trip origin is not provided
-    When Register
-    Then unable to register container 
+    Given client name "BananaExpress"
+    And trip desitnation "Australia"
+    And company name "Banana"
+    And trip origin is empty
+    When register
+    Then registration is false
     
 Scenario: No Company provided
-    Given a trip origin "Denmark"
-    And a trip desitnation "Australia"
-    And a conent "Banana"
-    And Client information not provided
-    When Register
-    Then unable to register container 
+    Given trip origin "Denmark"
+    And end destination "Australia"
+    And cargo "Banana"
+    And client name is empty
+    When register
+    Then registration is false
     
 Scenario: No Content provided
-    Given client "BananaExpress"
-    And a trip origin "Denmark"
-    And a trip desitnation "Australia"
-    And a content is not provided
-    When Register
-    Then unable to register container 
+    Given client name "BananaExpress"
+    And start destination "Denmark"
+    And end destination "Australia"
+    And cargo is empty
+    When register
+    Then registration is false
     
 
     

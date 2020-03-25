@@ -7,169 +7,153 @@ public class StepsDefinition {
 //------------------------------------------------------------------------------------------//
 // Following steps are for M2 Journey Management	
 
-	@Given("Client with journey of {string}")
-	public void client_with_journey_of(String string) {
-	// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+	Client client = new Client();
+	Journey journey = new Journey();
+	
+	@Given("client with the cargo {string}")
+	public void client_with_the_cargo(String cargo) {
+	    client.setCargo(cargo);
 	}
 
-	@Given("A start destination {string}")
-	public void a_start_destination(String string) {
-	// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+	@Given("start destination {string}")
+	public void start_destination(String startDestination) {
+	    journey.setStartDestination(startDestination);
 	}
 
-	@Given("A end destination {string}")
-	public void a_end_destination(String string) {
-	// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+	@Given("end destination {string}")
+	public void end_destination(String endDestination) {
+	    journey.setEndDestination(endDestination);
 	}
 
-	@Given("the journey registered as true")
-	public void the_journey_registered_as_true() {
-	// Write code here that turns the phrase above into concrete actions
-		   throw new io.cucumber.java.PendingException();
+	@Given("journey registered as (true|false)$")
+	public void journey_registered_as_true(boolean isRegistered) {
+	    journey.setRegistrationStatus(isRegistered);
 	}
 
-	@When("Searching for journey")
-	public void searching_for_journey() {
-	// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+	@When("searching for the journey")
+	public void searching_for_the_journey() {
+	    
 	}
 
-	@Then("Journey is displayed")
+	@Then("journey is displayed")
 	public void journey_is_displayed() {
-	// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
 	}
 
-	@Given("the journey registered as false")
-	public void the_journey_registered_as_false() {
-	// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+	@Given("journey registered as false")
+	public void journey_registered_as_false() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
 	}
 
-	@Then("system displays that journey is not registered")
-	public void system_displays_that_journey_is_not_registered() {
-	// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+	@Given("client name {string}")
+	public void client_name(String string) {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
 	}
 
-	@Given("client {string}")
-	public void client(String string) {
-	// Write code here that turns the phrase above into concrete actions
-	throw new io.cucumber.java.PendingException();
+	@Given("star destination {string}")
+	public void star_destination(String string) {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
 	}
 
-	@Given("a trip origin {string}")
-	public void a_trip_origin(String string) {
-	// Write code here that turns the phrase above into concrete actions
-	throw new io.cucumber.java.PendingException();
+	@Given("cargo {string}")
+	public void cargo(String string) {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
 	}
 
-	@When("Register")
+	@When("register")
 	public void register() {
-	// Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
 	}
 
-	@Then("Client gets assigned an empty container")
+	@Then("client gets assigned an empty container")
 	public void client_gets_assigned_an_empty_container() {
-	// Write code here that turns the phrase above into concrete actions
-	throw new io.cucumber.java.PendingException();
-	}
-
-	@Given("a content {string}")
-	public void a_content(String string) {
-	// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
-	}
-
-	
-	@Given("End destination is not provided")
-	public void end_destination_is_not_provided() {
 	    // Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
 	}
 
-	@Given("trip origin is not provided")
-	public void trip_origin_is_not_provided() {
+	@Given("end destination is empty")
+	public void end_destination_is_empty() {
 	    // Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
 	}
 
-	@Given("Client information not provided")
-	public void client_information_not_provided() {
+	@Given("trip desitnation {string}")
+	public void trip_desitnation(String string) {
 	    // Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
 	}
 
-	@Given("a content is not provided")
-	public void a_content_is_not_provided() {
+	@Given("company name {string}")
+	public void company_name(String string) {
 	    // Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
 	}
-	
-	@Then("unable to register container")
-	public void unable_to_register_container() {
-	// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+
+	@Given("trip origin is empty")
+	public void trip_origin_is_empty() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
 	}
 
-
-	@Given("a company name {string}")
-	public void a_company_name(String string) {
-	// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+	@Given("trip origin {string}")
+	public void trip_origin(String string) {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
 	}
 
-	@Given("a conent {string}")
-	public void a_conent(String string) {
-	// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+	@Given("client name is empty")
+	public void client_name_is_empty() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
 	}
 
-	@Given("a trip desitnation {string}")
-	public void a_trip_desitnation(String string) {
-	// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+	@Given("cargo is empty")
+	public void cargo_is_empty() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
 	}
 
-	@Given("Container has arrived in {string}")
-	public void container_has_arrived_in(String string) {
-		 // Write code here that turns the phrase above into concrete actions
-		 throw new io.cucumber.java.PendingException();
-	}
-
-	@Given("Container end-destination is false")
+	@Given("container end-destination is false")
 	public void container_end_destination_is_false() {
-	// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
 	}
 
-	@When("Update")
-	public void update() {
-	// Write code here that turns the phrase above into concrete actions
-	throw new io.cucumber.java.PendingException();
-	}
-
-	@Then("Current position is added to journey")
+	@Then("current position is added to journey")
 	public void current_position_is_added_to_journey() {
-	// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
 	}
 
-	@Given("Container end-destination is true")
+	@Given("container has arrived in {string}")
+	public void container_has_arrived_in(String string) {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Given("container end-destination is true")
 	public void container_end_destination_is_true() {
-	// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
 	}
 
-	@Then("Journey is done")
+	@When("update")
+	public void update() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("journey is done")
 	public void journey_is_done() {
-	// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
 	}
 
-		
+			
 }

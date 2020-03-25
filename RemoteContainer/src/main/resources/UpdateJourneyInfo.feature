@@ -3,17 +3,17 @@
 Feature: Logistic company updates journey information
 
   Scenario: Successful update of container journey
-    Given Container has arrived in "Sweden"
-    And Container end-destination is false
-    When Update
-    Then Current position is added to journey
+    Given container has arrived in "Sweden"
+    And container end-destination is false
+    When update
+    Then current position is added to journey
 
  	Scenario: Container has successfully arrived at end destination
-    Given Container has arrived in "Australia"
-    And Container end-destination is true
-    When Update
-    Then Current position is added to journey
-    And Journey is done
+    Given container has arrived in "Australia"
+    And container end-destination is true
+    When update
+    Then current position is added to journey
+    And journey is done
     
     
     
