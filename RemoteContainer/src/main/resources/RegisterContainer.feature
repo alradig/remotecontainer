@@ -19,17 +19,9 @@ Feature: Register container for Journey
     
 Scenario: No original-destionation provided
     Given client name "BananaExpress"
-    And trip desitnation "Australia"
-    And company name "Banana"
-    And trip origin is empty
-    When register
-    Then registration is false
-    
-Scenario: No Company provided
-    Given trip origin "Denmark"
     And end destination "Australia"
     And cargo "Banana"
-    And client name is empty
+    And start destination is empty
     When register
     Then registration is false
     

@@ -40,6 +40,37 @@ public class Journey {
 	}
 
 	public void registerJourney(Journey journey) {
-		journey.get
+		if (journeyInformationNotComplete(journey))
+		{
+			this.isRegistered = false; 
+		}
+		else {
+			this.isRegistered = true; 
+		}
+		
 	}
+
+	public boolean journeyInformationNotComplete(Journey journey) {
+		return cargoIsEmpty(journey) || endDestinationIsEmpty(journey) || startDestinationIsEmpty(journey);
+	}
+
+	 public boolean startDestinationIsEmpty(Journey journey) {
+		return journey.getStartDestination() == null;
+	}
+
+	public boolean endDestinationIsEmpty(Journey journey) {
+		return journey.getEndDestination() == null;
+	}
+	
+	public boolean cargoIsEmpty(Journey journey) {
+		return journey.getCargo() == null;
+		
+	}
+	
+//	public static void main(String [] args) {
+//		Journey journey = new Journey();
+//		journey.setStartDestination("DK");
+//		journey.setEndDestination("AUS");
+//		
+//	}
 }

@@ -1,6 +1,10 @@
 import io.cucumber.java.en.Given;
+
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 public class StepsDefinition {
 	
@@ -14,6 +18,7 @@ public class StepsDefinition {
 	public void client_name(String name) {
 	    client.setClientName(name);
 	}
+	
 
 	@Given("start destination {string}")
 	public void start_destination(String startDestination) {
@@ -37,57 +42,29 @@ public class StepsDefinition {
 
 	@Then("registration is true")
 	public void registration_is_true() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		assertTrue(journey.getRegistrationStatus());
 	}
 
 	@Given("end destination is empty")
 	public void end_destination_is_empty() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		assertTrue(journey.endDestinationIsEmpty(journey));
 	}
 
 	@Then("registration is false")
 	public void registration_is_false() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@Given("trip desitnation {string}")
-	public void trip_desitnation(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@Given("company name {string}")
-	public void company_name(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@Given("trip origin is empty")
-	public void trip_origin_is_empty() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@Given("trip origin {string}")
-	public void trip_origin(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@Given("client name is empty")
-	public void client_name_is_empty() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		assertFalse(journey.getRegistrationStatus());
 	}
 
 
 	@Given("cargo is empty")
 	public void cargo_is_empty() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	   assertTrue(journey.cargoIsEmpty(journey));
 	}
-				
+	
+	@Given("start destination is empty")
+	public void start_destination_is_empty() {
+	   assertTrue(journey.startDestinationIsEmpty(journey));
+	}
+
+
 }
