@@ -1,7 +1,6 @@
 import io.cucumber.java.en.Given;
 
 
-
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import static org.junit.Assert.*;
@@ -12,11 +11,17 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
 public class StepsDefinition {
+
 	
 //------------------------------------------------------------------------------------------//
 // Following steps are for M2 Journey Management	
 
 	Client client = new Client();
+	@Given("I have chosen to register a client")
+	public void I_have_chosen_to_register_a_client(){
+	   client.setRegister(true);
+	}
+
 	Journey journey = new Journey();
 	
 	@Given("client name {string}")
@@ -70,11 +75,7 @@ public class StepsDefinition {
 	}
 //------------------------------------------------------------------------------------------------------------------------------//
 	// Following steps are for M1	
-	@Given("I have chosen to register a client")
-	public void I_have_chosen_to_register_a_client(){
-	   client.setRegister(true);
-	   
-	}
+
 
 	@Given("I am about to enter the client information")
 	public void I_am_about_to_enter_the_client_information() {

@@ -1,11 +1,13 @@
 
-public class Client {
 
+public class Client {
+	
+	private int id;
 	String name;
 	String email;
 	String pw;
 	String refPerson;
-	String adress;
+	String address;
 	boolean Register;
 	String cargo;
 	
@@ -40,11 +42,17 @@ public class Client {
 	public void setRefPerson(String refPerson) {
 		this.refPerson = refPerson;
 	}
-	public String getAdress() {
-		return adress;
+	public String getAddress() {
+		return address;
 	}
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }
