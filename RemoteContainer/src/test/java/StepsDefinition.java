@@ -7,7 +7,6 @@ public class StepsDefinition {
 	@Given("I have chosen to register a client")
 	public void I_have_chosen_to_register_a_client(){
 	   client.setRegister(true);
-	   
 	}
 
 	@Given("I am about to enter the client information")
