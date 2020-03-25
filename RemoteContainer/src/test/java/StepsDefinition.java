@@ -70,8 +70,8 @@ public class StepsDefinition {
 	public void start_destination_is_empty() {
 	   assertTrue(journey.startDestinationIsEmpty(journey));
 	}
-//--------------//
-	Client client = new Client();
+//------------------------------------------------------------------------------------------------------------------------------//
+	// Following steps are for M1	
 	@Given("I have chosen to register a client")
 	public void I_have_chosen_to_register_a_client(){
 	   client.setRegister(true);

@@ -6,8 +6,8 @@ public class Client {
  String refPerson;
  String adress;
  boolean Register;
-	String cargo;
-	String name;
+String cargo;
+
 	
 	public void setCargo(String cargo) {
 		this.cargo = cargo;		
