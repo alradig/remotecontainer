@@ -177,7 +177,9 @@ public class StepsDefinition {
 	// Write code here that turns the phrase above into concrete actions
 		throw new io.cucumber.java.PendingException();
 	}
-
+	
+//------------------------------------------------------------------------------------------//
+// Following steps are for M1 
 	@Given("I am about to enter the client information")
 	public void I_am_about_to_enter_the_client_information() {
 	    // Write code here that turns the phrase above into concrete actions
