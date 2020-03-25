@@ -21,10 +21,9 @@ public class StepsDefinition {
 	
 	@Given("client name {string}")
 	public void client_name(String name) {
-	    client.setClientName(name);
+	    client.setName(name);
 	}
 	
-
 	@Given("start destination {string}")
 	public void start_destination(String startDestination) {
 	    journey.setStartDestination(startDestination);
@@ -59,7 +58,6 @@ public class StepsDefinition {
 	public void registration_is_false() {
 		assertFalse(journey.getRegistrationStatus());
 	}
-
 
 	@Given("cargo is empty")
 	public void cargo_is_empty() {
