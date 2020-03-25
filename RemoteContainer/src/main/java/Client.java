@@ -6,6 +6,27 @@ public class Client {
  String refPerson;
  String adress;
  boolean Register;
+	String cargo;
+	String name;
+	
+	public void setCargo(String cargo) {
+		this.cargo = cargo;		
+	}
+	
+	public String getCargo() {
+		return cargo;		
+	}
+
+	public void setClientName(String name) {
+		this.name = name;
+	}
+	
+	public String getClientName() {
+		return name;
+	}
+
+
+
 public String getName() {
 	return name;
 }
@@ -42,4 +63,5 @@ public String getAdress() {
 public void setAdress(String adress) {
 	this.adress = adress;
 }
+
 }
