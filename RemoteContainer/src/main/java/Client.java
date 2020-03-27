@@ -20,14 +20,36 @@ public class Client {
 	public void setRegister(boolean register) {
 		Register = register;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public ResponseObject setName(String name) {
+		int code = 100;
+		String message = "Invalid client information! Please try again!";
+		
+		if (!name.isEmpty()) {
+			this.name = name;
+			code = 200;
+			message = "Client information successfully updated!";		
+		}
+		
+		ResponseObject response = new ResponseObject(code, message);
+			
+		return response;
 	}
 	public String getEmail() {
 		return email;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public ResponseObject setEmail(String email) {
+		int code = 100;
+		String message = "Invalid client information! Please try again!";
+		
+		if (!email.isEmpty()) {
+			this.email = email;
+			code = 200;
+			message = "Client information successfully updated!";		
+		}
+		
+		ResponseObject response = new ResponseObject(code, message);
+			
+		return response;
 	}
 	public String getPw() {
 		return pw;
@@ -38,14 +60,36 @@ public class Client {
 	public String getRefPerson() {
 		return refPerson;
 	}
-	public void setRefPerson(String refPerson) {
-		this.refPerson = refPerson;
+	public ResponseObject setRefPerson(String refPerson) {
+		int code = 100;
+		String message = "Invalid client information! Please try again!";
+		
+		if (!refPerson.isEmpty()) {
+			this.refPerson = refPerson;
+			code = 200;
+			message = "Client information successfully updated!";		
+		}
+		
+		ResponseObject response = new ResponseObject(code, message);
+			
+		return response;
 	}
 	public String getAddress() {
 		return address;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public ResponseObject setAddress(String address) {
+		int code = 100;
+		String message = "Invalid client information! Please try again!";
+		
+		if (!address.isEmpty()) {
+			this.address = address;
+			code = 200;
+			message = "Client information successfully updated!";		
+		}
+		
+		ResponseObject response = new ResponseObject(code, message);
+			
+		return response;
 	}
 	public int getId() {
 		return id;

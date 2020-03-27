@@ -14,7 +14,7 @@ public class StepsDefinition {
 // Following steps are for M2 Journey Management	
 
 	Client client = new Client();
-	ResponseObject response = new ResponseObject("There is a problem");
+	ResponseObject response = new ResponseObject(100, "There is a problem");
 	@Given("I have chosen to register a client")
 	public void I_have_chosen_to_register_a_client(){
 

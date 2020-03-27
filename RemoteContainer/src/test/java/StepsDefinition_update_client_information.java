@@ -1,8 +1,5 @@
 import static org.junit.Assert.assertEquals;
-
-import java.util.ArrayList;
 import java.util.List;
-
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -11,7 +8,7 @@ import io.cucumber.java.en.When;
 public class StepsDefinition_update_client_information {
 	
 	Client client = new Client();
-	List<List<String>> clientInfo;
+	ResponseObject response = new ResponseObject(0, "");
 	
 	@Given("the client:")
 	public void a_client_with_the_following_information(DataTable dataTable) {
@@ -40,25 +37,24 @@ public class StepsDefinition_update_client_information {
 		
 	}
 
-	@When("I enter the new name as {string}")
+	@When("I enter the new client name as {string}")
 	public void i_enter_the_new_name(String new_name) {
-	    client.name = new_name;
+	    response = client.setName(new_name);
 	}
 
-	@When("I enter the new email as {string}")
+	@When("I enter the new client email as {string}")
 	public void i_enter_the_new_email(String new_email) {
-	    client.email = new_email;
-	    this.client.setEmail(new_email);
+		response = this.client.setEmail(new_email);
 	}
 	
-	@Given("I enter the new address as {string}")
+	@Given("I enter the new client address as {string}")
 	public void i_enter_the_new_address_as(String new_address) {
-	    this.client.setAddress(new_address);
+	    response = this.client.setAddress(new_address);
 	}
 		
-	@Given("I enter the new Reference person as {string}")
+	@Given("I enter the new client Reference person as {string}")
 	public void i_enter_the_new_Reference_person_as(String new_ref_person) {
-	    this.client.setRefPerson(new_ref_person);
+		response = this.client.setRefPerson(new_ref_person);
 	}
 
 	@Then("the client name should be {string}")
@@ -81,4 +77,13 @@ public class StepsDefinition_update_client_information {
 		assertEquals(this.client.getRefPerson(),new_ref_person);
 	}
 	
+	@Then("I should see a success message")
+	public void i_should_see_a_success_message() {
+		assertEquals(this.response.getErrorCode(),200);
+	}
+	
+	@Then("I should see an error message")
+	public void i_should_see_an_error_message() {
+		assertEquals(this.response.getErrorCode(),100);
+	}
 }
