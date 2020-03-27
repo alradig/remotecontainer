@@ -8,7 +8,29 @@ Feature: Register client
 	Background:
 		Given I have chosen to register a client
 		And I am about to enter the client information
-		 
+	
+	Scenario Outline: Enter new client information
+    Given I enter the new client <Information> as <Value>
+    And I submit the form
+    Then the client <Information> should be <Value>
+    And I should see <Outcome>
+    
+	Examples: Success: correct information input
+		|	Information				|	Value 													|	Outcome						|
+		|	name							|	'Family Farm'										|	a success message	|
+		|	email							|	'new@email.com'									|	a success message	|
+		|	address						|	'Tuborg Havnepark 28, Hellerup'	|	a success message	|
+		| Reference person	| 'Alfred'												| a success message	|
+		
+	Examples: Error: empty information input
+		In this cases the client is not registered.
+	
+		|	Information				|	New Value	|	Outcome						|
+		|	name							|	''				|	an error message	|
+		|	email							|	''				|	an error message	|
+		|	address						|	''				|	an error message	|
+		| Reference person	| ''				| an error message	|
+	
  	@Test
   Scenario: Client name is not provided
   	When I do not enter the clients name
@@ -42,5 +64,5 @@ Feature: Register client
   @Test
   Scenario: Client id is automatically generated
   	When I submit the form
-  	And all the other details are correct
+  	And all the client details are valid
   	Then I should see a message telling me that the clients was successfully registered

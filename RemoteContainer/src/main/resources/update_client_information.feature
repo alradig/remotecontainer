@@ -1,4 +1,3 @@
-@tag
 Feature: Update Client Information
 
 A logistic company needs to be able to update their clients information
@@ -10,7 +9,6 @@ Background:
 			|	1					| Brothers Farm	| current@email.com	| Kollegiebakken 9, Lyngby	| Jason						|	ghwq		|
 		And I am about to enter the client new information
 
-@tag1
 Scenario Outline: Update client information successful
     Given I enter the new client <Information> as <New Value>
     And I submit the form
