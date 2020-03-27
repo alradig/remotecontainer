@@ -2,7 +2,7 @@
 public class ClientForm {
 	
 	private Client client;	
-	private ResponseObject response;;
+	private ResponseObject response;
 	
 	private String nameField;
 	private String emailField;
