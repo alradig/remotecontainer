@@ -4,10 +4,10 @@ A logistic company needs to be able to update their clients information
 such as address, phone number, email etc.
 
 Background:
-		Given the client:
+		Given I am about to enter the client new information
+		And the client:
 			| Client id | Name 					| Email 						| Address 									| Reference person|	Password	|
-			|	1					| Brothers Farm	| current@email.com	| Kollegiebakken 9, Lyngby	| Jason						|	ghwq		|
-		And I am about to enter the client new information
+			|	1					| Brothers Farm	| current@email.com	| Kollegiebakken 9, Lyngby	| Jason						|	ghwq		| 
 
 Scenario Outline: Update client information successful
     Given I enter the new client <Information> as <New Value>

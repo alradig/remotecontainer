@@ -2,14 +2,13 @@
 public class Client {
 	
 	private int id;
-	String name;
-	String email;
-	String pw;
-	String refPerson;
-	String address;
-	boolean Register;
-	String cargo;
-	
+	private String name;
+	private String email;
+	private String pw;
+	private String refPerson;
+	private String address;
+	private boolean Register;
+	private String cargo;
 	
 	public String getName() {
 		return name;
@@ -20,36 +19,14 @@ public class Client {
 	public void setRegister(boolean register) {
 		Register = register;
 	}
-	public ResponseObject setName(String name) {
-		int code = 100;
-		String message = "Invalid client information! Please try again!";
-		
-		if (!name.isEmpty()) {
-			this.name = name;
-			code = 200;
-			message = "Client information successfully updated!";		
-		}
-		
-		ResponseObject response = new ResponseObject(code, message);
-			
-		return response;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getEmail() {
 		return email;
 	}
-	public ResponseObject setEmail(String email) {
-		int code = 100;
-		String message = "Invalid client information! Please try again!";
-		
-		if (!email.isEmpty()) {
-			this.email = email;
-			code = 200;
-			message = "Client information successfully updated!";		
-		}
-		
-		ResponseObject response = new ResponseObject(code, message);
-			
-		return response;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public String getPw() {
 		return pw;
@@ -60,36 +37,14 @@ public class Client {
 	public String getRefPerson() {
 		return refPerson;
 	}
-	public ResponseObject setRefPerson(String refPerson) {
-		int code = 100;
-		String message = "Invalid client information! Please try again!";
-		
-		if (!refPerson.isEmpty()) {
-			this.refPerson = refPerson;
-			code = 200;
-			message = "Client information successfully updated!";		
-		}
-		
-		ResponseObject response = new ResponseObject(code, message);
-			
-		return response;
+	public void setRefPerson(String refPerson) {
+		this.refPerson = refPerson;
 	}
 	public String getAddress() {
 		return address;
 	}
-	public ResponseObject setAddress(String address) {
-		int code = 100;
-		String message = "Invalid client information! Please try again!";
-		
-		if (!address.isEmpty()) {
-			this.address = address;
-			code = 200;
-			message = "Client information successfully updated!";		
-		}
-		
-		ResponseObject response = new ResponseObject(code, message);
-			
-		return response;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	public int getId() {
 		return id;
