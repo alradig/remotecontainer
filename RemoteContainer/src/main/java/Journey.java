@@ -1,3 +1,6 @@
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class Journey {
 	
@@ -5,8 +8,10 @@ public class Journey {
 	String endDestination;
 	boolean isRegistered;
 	String cargo;
-	
-	
+	String dateTime;
+	String currentLocation;
+	boolean endDestinationReached;
+	ArrayList<String> list = new ArrayList<String>(); 
 	public void setStartDestination(String startDestination) {
 		this.startDestination = startDestination;
 	}
@@ -66,6 +71,45 @@ public class Journey {
 		return journey.getCargo() == null;
 		
 	}
+	
+	public void setCurrentDate() {
+		
+		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+		Date date = new Date(System.currentTimeMillis());
+		String  dateTime= formatter.format(date);
+		this.dateTime = dateTime; 
+	}
+
+	public String getCurrentDate() {
+		return dateTime; 
+	}
+	
+	public void setCurrentLocation(String currentLocation) {
+		this.currentLocation = currentLocation;
+		
+	}
+	public String getCurrentLocation(){
+		return currentLocation;
+		
+	}
+
+	public void updateJourneyInfo() {
+		String currentInfo = this.currentLocation+ " " + this.dateTime ;
+		list.add(currentInfo); 
+		
+		isJourneyDone();
+
+	}
+
+	private void isJourneyDone() {
+		if (this.currentLocation == this.endDestination)
+		{
+			endDestinationReached = true; 
+		}
+		else { endDestinationReached = false; }
+	}
+	
+	
 	
 //	public static void main(String [] args) {
 //		Journey journey = new Journey();

@@ -80,6 +80,26 @@ public class StepsDefinition {
 	public void start_destination_is_empty() {
 	   assertTrue(journey.startDestinationIsEmpty(journey));
 	}
+	
+//------------------------------------------------------------------------------------------//
+// M2 Update journey feature
+
+	@Given("date and local time")
+	public void date_and_local_time() {
+		journey.setCurrentDate();
+	}
+
+	@When("container has arrived in {string}")
+	public void container_has_arrived_in(String currentLocation) {
+	    journey.setCurrentLocation(currentLocation);
+	}
+	
+	@Then("current position is added to journey")
+	public void current_position_is_added_to_journey() {
+	    journey.updateJourneyInfo();
+	}
+
+	
 //------------------------------------------------------------------------------------------------------------------------------//
 	// Following steps are for M1	
 
