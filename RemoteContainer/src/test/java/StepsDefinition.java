@@ -20,7 +20,7 @@ public class StepsDefinition {
 	Client client = new Client();
 	ResponseObject response = new ResponseObject(100, "There is a problem");
 	ClientForm clientForm = new ClientForm(this.client);
-	
+	Journey journey = new Journey();
 	
 	@Given("I have chosen to register a client")
 	public void I_have_chosen_to_register_a_client(){
@@ -28,8 +28,6 @@ public class StepsDefinition {
 	   client.setRegister(true);
 
 	}
-
-	Journey journey = new Journey();
 	
 	@Given("client name {string}")
 	public void client_name(String name) {
