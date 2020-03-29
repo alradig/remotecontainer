@@ -7,7 +7,7 @@ Background:
 		Given I am about to enter the client new information
 		And the client:
 			| Client id | Name 					| Email 						| Address 									| Reference person|	Password	|
-			|	1					| Brothers Farm	| current@email.com	| Kollegiebakken 9, Lyngby	| Jason						|	ghwq		| 
+			|	1					| Brothers Farm	| old@email.com	| Kollegiebakken 9, Lyngby	| Jason						|	ghwq		| 
 
 Scenario Outline: Update client information successful
     Given I enter the new client <Information> as <New Value>
@@ -27,6 +27,6 @@ Examples: Error: empty information input
 
 	|	Information				|	New Value	|	Updated Value							|	Outcome						|
 	|	name							|	''				| 'Brothers Farm'						|	an error message	|
-	|	email							|	''				|	'current@email.com'				|	an error message	|
+	|	email							|	''				|	'old@email.com'				|	an error message	|
 	|	address						|	''				|	'Kollegiebakken 9, Lyngby'|	an error message	|
 	| Reference person	| ''				|	'Jason'										| an error message	|

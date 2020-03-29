@@ -232,6 +232,7 @@ public class StepsDefinition {
 
 	@Then("the client email should be {string}")
 	public void the_client_email_should_be(String new_email) {
+		System.out.println("Client registered email: " + this.client.getEmail());
 		assertEquals(this.client.getEmail(),new_email);
 	}
 	

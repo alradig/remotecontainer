@@ -54,12 +54,7 @@ public class ClientForm {
 	private boolean validFields() {
 		Boolean result = true;		
 		
-		if (this.nameField.isEmpty() || this.addressField.isEmpty()) {
-			System.out.println("Entered empty");
-		}else {
-			System.out.println("Entered filled");
-		}
-		if (this.nameField.isEmpty() || this.addressField.isEmpty() || this.pwField.isEmpty() || this.refPersonField.isEmpty() || this.addressField.isEmpty()) {
+		if (this.nameField.isEmpty() || this.emailField.isEmpty() || this.pwField.isEmpty() || this.refPersonField.isEmpty() || this.addressField.isEmpty()) {
 			result = false;
 		}
 		return result;
