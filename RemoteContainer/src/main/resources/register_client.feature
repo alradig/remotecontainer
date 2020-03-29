@@ -17,3 +17,4 @@ Feature: Register client
 		And the client address should be 'Kollegiebakken 9, Lyngby'
 		And the client reference person should be 'Jason'
 		And the client password should be 'ghwq'
+		And an unique client ID should be assigned to the client
