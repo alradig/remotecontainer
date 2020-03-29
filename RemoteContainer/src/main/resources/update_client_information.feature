@@ -4,10 +4,10 @@ A logistic company needs to be able to update their clients information
 such as address, phone number, email etc.
 
 Background:
-		Given I am about to enter the client new information
-		And the client:
+		Given the client:
 			| Client id | Name 					| Email 						| Address 									| Reference person|	Password	|
-			|	1					| Brothers Farm	| old@email.com	| Kollegiebakken 9, Lyngby	| Jason						|	ghwq		| 
+			|	1					| Brothers Farm	| old@email.com			| Kollegiebakken 9, Lyngby	| Jason						|	ghwq			|
+		And I have chosen to update the client information
 
 Scenario Outline: Update client information successful
     Given I enter the new client <Information> as <New Value>
@@ -20,7 +20,7 @@ Examples: Success: correct information input
 	|	name							|	'Family Farm'										| 'Family Farm'										|	a success message	|
 	|	email							|	'new@email.com'									|	'new@email.com'									|	a success message	|
 	|	address						|	'Tuborg Havnepark 28, Hellerup'	|	'Tuborg Havnepark 28, Hellerup'	|	a success message	|
-	| Reference person	| 'Alfred'												|	'Alfred'												| a success message	|
+	| reference person	| 'Alfred'												|	'Alfred'												| a success message	|
 	
 Examples: Error: empty information input
 	In this cases the client information is not update and remains as the old one.
@@ -29,4 +29,4 @@ Examples: Error: empty information input
 	|	name							|	''				| 'Brothers Farm'						|	an error message	|
 	|	email							|	''				|	'old@email.com'				|	an error message	|
 	|	address						|	''				|	'Kollegiebakken 9, Lyngby'|	an error message	|
-	| Reference person	| ''				|	'Jason'										| an error message	|
+	| reference person	| ''				|	'Jason'										| an error message	|

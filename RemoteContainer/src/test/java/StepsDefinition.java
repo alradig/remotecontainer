@@ -19,13 +19,15 @@ public class StepsDefinition {
 
 	Client client = new Client();
 	ResponseObject response = new ResponseObject(100, "There is a problem");
-	ClientForm clientForm = new ClientForm(this.client);
+	ClientForm clientForm;
 	Journey journey = new Journey();
 	
 	@Given("I have chosen to register a client")
 	public void I_have_chosen_to_register_a_client(){
 
 	   client.setRegister(true);
+	   
+	   clientForm = new ClientForm(this.client);
 
 	}
 	
@@ -101,16 +103,17 @@ public class StepsDefinition {
 //------------------------------------------------------------------------------------------------------------------------------//
 	// Following steps are for M1	
 
-
-	@Given("I am about to enter the client information")
-	public void I_am_about_to_enter_the_client_information() {   
-		
-		client.setAddress("bla");
-		client.setEmail("sjssjj@sjsj");
-		client.setName("Peter");
-		client.setRefPerson("Mama");
+	@When("I enter the following client information:")
+	public void i_enter_the_following_client_information(io.cucumber.datatable.DataTable dataTable) {
+	    List<List<String>> clientInfo = dataTable.asLists(String.class);
+	    
+	    this.clientForm.setNameField(clientInfo.get(1).get(1));
+	    this.clientForm.setEmailField(clientInfo.get(1).get(2));
+	    this.clientForm.setAddressField(clientInfo.get(1).get(3));
+	    this.clientForm.setRefPersonField(clientInfo.get(1).get(4));
+	    this.clientForm.setPwField(clientInfo.get(1).get(5)); 	
 	}
-
+	
 	@When("I do not enter the clients name")
 	public void i_do_not_enter_the_clients_name() {
 	    if ((client.getName()).isEmpty()) {
@@ -180,29 +183,21 @@ public class StepsDefinition {
 	public void a_client_with_the_following_information(DataTable dataTable) {
 	    List<List<String>> clientInfo = dataTable.asLists(String.class);
 	    
-	    System.out.println(Integer.parseInt(clientInfo.get(1).get(0)));
-	    
 	    // Use the for loop for multiple clients
 	    //for(int i=1; i<clientInfo.size(); i++) { //i=0 is the header
 	    	this.client.setId(Integer.parseInt(clientInfo.get(1).get(0)));
-	    	this.clientForm.setNameField(clientInfo.get(1).get(1));
-	        this.clientForm.setEmailField(clientInfo.get(1).get(2));
-	        this.clientForm.setAddressField(clientInfo.get(1).get(3));
-	        this.clientForm.setRefPersonField(clientInfo.get(1).get(4));
-	        this.clientForm.setPw(clientInfo.get(1).get(5)); 	
-	        
-	        this.clientForm.submit();
+	    	this.client.setName(clientInfo.get(1).get(1));
+	        this.client.setEmail(clientInfo.get(1).get(2));
+	        this.client.setAddress(clientInfo.get(1).get(3));
+	        this.client.setRefPerson(clientInfo.get(1).get(4));
+	        this.client.setPw(clientInfo.get(1).get(5)); 	
+
 		//}
 	}
 	
-	@Given("I have chosen to update a client information")
+	@Given("I have chosen to update the client information")
 	public void i_have_chosen_to_update_a_client_information() {
-		
-	}
-
-	@Given("I am about to enter the client new information")
-	public void i_am_about_to_enter_the_client_new_information() {
-		
+		clientForm = new ClientForm(this.client);
 	}
 
 	@When("I enter the new client name as {string}")
@@ -220,7 +215,7 @@ public class StepsDefinition {
 	    this.clientForm.setAddressField(new_address);
 	}
 		
-	@Given("I enter the new client Reference person as {string}")
+	@Given("I enter the new client reference person as {string}")
 	public void i_enter_the_new_Reference_person_as(String new_ref_person) {
 		this.clientForm.setRefPersonField(new_ref_person);
 	}
@@ -232,7 +227,6 @@ public class StepsDefinition {
 
 	@Then("the client email should be {string}")
 	public void the_client_email_should_be(String new_email) {
-		System.out.println("Client registered email: " + this.client.getEmail());
 		assertEquals(this.client.getEmail(),new_email);
 	}
 	
@@ -241,20 +235,23 @@ public class StepsDefinition {
 		assertEquals(this.client.getAddress(),new_address);
 	}
 
-	@Then("the client Reference person should be {string}")
+	@Then("the client reference person should be {string}")
 	public void the_client_Reference_person_should_be(String new_ref_person) {
 		assertEquals(this.client.getRefPerson(),new_ref_person);
 	}
 	
+	@Then("the client password should be {string}")
+	public void the_client_password_should_be(String new_pw) {
+		assertEquals(this.client.getPw(),new_pw);
+	}
+	
 	@Then("I should see a success message")
 	public void i_should_see_a_success_message() {
-		System.out.println("Entered here 1!");
 		assertEquals(this.response.getErrorCode(),200);
 	}
 	
 	@Then("I should see an error message")
 	public void i_should_see_an_error_message() {
-		System.out.println("Entered here 2!");
 		assertEquals(this.response.getErrorCode(),100);
 	}
 	

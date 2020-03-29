@@ -10,6 +10,15 @@ public class Client {
 	private boolean Register;
 	private String cargo;
 	
+	public Client() {
+		this.id = 0;
+		this.name = "";
+		this.email = "";
+		this.pw = "";
+		this.refPerson = "";
+		this.address = "";
+	}
+	
 	public String getName() {
 		return name;
 	}
