@@ -100,15 +100,14 @@ public class StepsDefinition {
 	
 //------------------------------------------------------------------------------------------------------------------------------//
 	// Following steps are for M1	
-
+/*
+ * Register a new client
+ */
 
 	@Given("I am about to enter the client information")
 	public void I_am_about_to_enter_the_client_information() {   
 		
-		client.setAddress("bla");
-		client.setEmail("sjssjj@sjsj");
-		client.setName("Peter");
-		client.setRefPerson("Mama");
+		
 	}
 
 	@When("I do not enter the clients name")
@@ -175,7 +174,9 @@ public class StepsDefinition {
 	public void i_should_see_a_message_advising_me_that_the_clients_reference_person_is_missing() {
 		assertEquals(response.getErrorMessage(),"You haven't set a ref person");
 	}
-	
+	/*
+	 * Step Definitions for Update a clients information
+	 */
 	@Given("the client:")
 	public void a_client_with_the_following_information(DataTable dataTable) {
 	    List<List<String>> clientInfo = dataTable.asLists(String.class);
