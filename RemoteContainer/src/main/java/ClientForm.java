@@ -12,6 +12,12 @@ public class ClientForm {
 	
 	public ClientForm(Client client) {
 		this.client = client;
+		
+		this.setNameField(client.getName());
+		this.setEmailField(client.getEmail());
+		this.setPwField(client.getPw());
+		this.setRefPersonField(client.getRefPerson());
+		this.setAddressField(client.getAddress());
 	}
 
 	public void setNameField(String name) {
@@ -60,7 +66,7 @@ public class ClientForm {
 		return result;
 	}
 
-	public void setPw(String string) {
+	public void setPwField(String string) {
 		this.pwField = string;
 		
 	}
