@@ -5,9 +5,7 @@ import io.cucumber.java.en.When;
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
 import java.util.List;
-
 import static org.junit.Assert.assertFalse;
 
 public class StepsDefinition {
@@ -195,6 +193,41 @@ public class StepsDefinition {
 	@Then("I should see an error message")
 	public void i_should_see_an_error_message() {
 		assertEquals(this.response.getErrorCode(),100);
+	}
+	
+	//------------------------------------------------------------------------------------------------------------------------------//
+		// Following steps are for M3	
+	
+	ContainerValues container = new ContainerValues();
+
+	@Given("New internal temp of {string}")
+	public void new_internal_temp_of(String string) {
+	    container.addInTemp(string);
+	}
+
+	@Given("New air humidity of {string}")
+	public void new_air_humidity_of(String string) {
+	    container.addAirHum(string);
+	}
+
+	@Given("New atmosphere pressure of {string}")
+	public void new_atmosph_pressure_of(String string) {
+	    container.addAtmPre(string);
+	}
+
+	@Then("Values saved")
+	public void values_saved() {
+		container.isSaved();
+	}	
+
+	@Given("Container end-destination is true")
+	public void container_end_destination_is_true() {
+	    journey.isJourneyDone();
+	}
+	
+	@Then("Data reset")
+	public void data_reset() {
+	    container.ValsReset();
 	}
 	
 }
