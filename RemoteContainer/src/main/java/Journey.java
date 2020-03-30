@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Journey implements ArchivableObject{
 	
-	private int id = 0;
+	private int id;
 	
 	String startDestination;
 	String endDestination;
@@ -15,7 +15,10 @@ public class Journey implements ArchivableObject{
 	boolean endDestinationReached;
 	ArrayList<String> list = new ArrayList<String>();
 	
-	private String JSONPath = "/Users/alradig/Desktop/Database/Journeys/";
+	public Journey() {
+		this.id = 0;
+		this.endDestinationReached = false;
+	}
 	
 	public void setStartDestination(String startDestination) {
 		this.startDestination = startDestination;
@@ -47,6 +50,13 @@ public class Journey implements ArchivableObject{
 
 	public String getCargo() {
 		return cargo;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public void registerJourney(Journey journey) {
@@ -115,12 +125,41 @@ public class Journey implements ArchivableObject{
 	}
 	
 	public void archive() {
-//		String fileName = "Journey_" + this.id + ".json";
-//		String path = this.JSONPath + fileName;
-//		
-//		JSONDocument JSONfile = new JSONDocument();
-//		JSONfile.createDocument(this,path);
+		String fileName = "Journey_" + this.id + ".json";
+		String folderName = "Journeys";
+		
+		Database JSONfile = new Database();
+		JSONfile.createFile(this,folderName,fileName);
 	}
+	
+	@Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        
+        Journey journey = (Journey) o;
+        return 	this.id == journey.getId() &&
+        		this.startDestination.equals(journey.getStartDestination()) &&
+        		this.endDestination.equals(journey.getEndDestination()) &&
+        		this.cargo.equals(journey.getCargo()) &&
+        		this.dateTime.equals(journey.getCurrentDate()) &&
+        		this.currentLocation.equals(journey.getCurrentLocation()) &&
+        		this.endDestinationReached == journey.endDestinationReached;
+    }
+	
+//	String startDestination;
+//	String endDestination;
+//	boolean isRegistered;
+//	String cargo;
+//	String dateTime;
+//	String currentLocation;
+//	boolean endDestinationReached;
+//	ArrayList<String> list = new ArrayList<String>();
 	
 //	public static void main(String [] args) {
 //		Journey journey = new Journey();

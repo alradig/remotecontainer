@@ -235,6 +235,8 @@ public class StepsDefinition {
 	
 	Database databaseHandler = new Database();
 	ArchivableObject storedClient = new Client();
+	ArchivableObject storedContainer = new Client();
+	ArchivableObject storedJourney = new Client();
 	
 	@Given("I register the client")
 	public void i_register_the_client(io.cucumber.datatable.DataTable dataTable) {
@@ -254,6 +256,8 @@ public class StepsDefinition {
 	    response = clientForm.submit();
 	    if (this.response.getErrorCode() == 200) {
 	    	this.client.archive();
+	    	this.journey.archive();
+	    	this.container.archive();
 	    }
 	    
 	    assertEquals(this.response.getErrorCode(),200);

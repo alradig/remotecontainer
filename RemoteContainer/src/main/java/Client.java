@@ -74,12 +74,10 @@ public class Client implements ArchivableObject{
 	@Override
     public boolean equals(Object o) {
         if (this == o) {
-        	System.out.println("Entered here 1!");
             return true;
         }
         
         if (o == null || getClass() != o.getClass()) {
-        	System.out.println("Entered here 2!");
             return false;
         }
         
@@ -88,7 +86,7 @@ public class Client implements ArchivableObject{
         		this.name.equals(client.getName()) &&
         		this.email.equals(client.getEmail()) &&
         		this.pw.equals(client.getPw()) &&
-        		this.refPerson.contentEquals(client.getRefPerson()) &&
-        		this.address.contentEquals(client.getAddress());
+        		this.refPerson.equals(client.getRefPerson()) &&
+        		this.address.equals(client.getAddress());
     }
 }
