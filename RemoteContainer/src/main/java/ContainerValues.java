@@ -1,10 +1,11 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class ContainerValues {
 	
-	public static List<String> InTemp;
-	public static List<String> AirHum;
-	public static List<String> AtmPre;
+	public static List<String> InTemp = new ArrayList<String>();
+	public static List<String> AirHum = new ArrayList<String>();
+	public static List<String> AtmPre = new ArrayList<String>();
 	public int a = 0;
 	
 	public void addInTemp(String value) {
