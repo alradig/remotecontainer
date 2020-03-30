@@ -1,5 +1,6 @@
+import java.util.List;
 
-public class Client {
+public class Client implements ArchivableObject{
 	
 	private int id;
 	private String name;
@@ -60,6 +61,11 @@ public class Client {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public void archive() {
+		JSONDocument ClientDocument = new JSONDocument();
+		ClientDocument.createDocument(this);
 	}
 
 }

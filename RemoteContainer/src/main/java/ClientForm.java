@@ -49,6 +49,7 @@ public class ClientForm {
 			this.client.setAddress(addressField);
 			
 			response = new ResponseObject(200,"Client information successfully updated!");
+			client.archive();
 			
 		}else {
 			response = new ResponseObject(100,"Invalid client information! Please try again!");

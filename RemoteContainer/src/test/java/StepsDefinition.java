@@ -20,15 +20,6 @@ public class StepsDefinition {
 	ClientForm clientForm;
 	Journey journey = new Journey();
 	
-	@Given("I have chosen to register a client")
-	public void I_have_chosen_to_register_a_client(){
-
-	   client.setRegister(true);
-	   
-	   clientForm = new ClientForm(this.client);
-
-	}
-	
 	@Given("client name {string}")
 	public void client_name(String name) {
 	    client.setName(name);
@@ -104,6 +95,12 @@ public class StepsDefinition {
 /*
  * Register a new client
  */
+	
+	@Given("I have chosen to register a client")
+	public void I_have_chosen_to_register_a_client(){
+	   client.setRegister(true);
+	   clientForm = new ClientForm(this.client);
+	}
 
 	@When("I enter the following client information:")
 	public void i_enter_the_following_client_information(io.cucumber.datatable.DataTable dataTable) {
