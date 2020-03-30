@@ -101,7 +101,7 @@ public class Journey {
 
 	}
 
-	private void isJourneyDone() {
+	public void isJourneyDone() {
 		if (this.currentLocation == this.endDestination)
 		{
 			endDestinationReached = true; 
