@@ -205,36 +205,31 @@ public class StepsDefinition {
 
 	@Given("New internal temp of {string}")
 	public void new_internal_temp_of(String string) {
-	    // Write code here that turns the phrase above into concrete actions
 	    container.addInTemp(string);
 	}
 
 	@Given("New air humidity of {string}")
 	public void new_air_humidity_of(String string) {
-	    // Write code here that turns the phrase above into concrete actions
 	    container.addAirHum(string);
 	}
 
 	@Given("New atmosphere pressure of {string}")
 	public void new_atmosph_pressure_of(String string) {
-	    // Write code here that turns the phrase above into concrete actions
 	    container.addAtmPre(string);
 	}
 
 	@Then("Values saved")
 	public void values_saved() {
-	    // Write code here that turns the phrase above into concrete actions
+		container.isSaved();
 	}	
 
 	@Given("Container end-destination is true")
 	public void container_end_destination_is_true() {
-	    // Write code here that turns the phrase above into concrete actions
 	    journey.isJourneyDone();
 	}
 	
 	@Then("Data reset")
 	public void data_reset() {
-	    // Write code here that turns the phrase above into concrete actions
 	    container.ValsReset();
 	}
 	
