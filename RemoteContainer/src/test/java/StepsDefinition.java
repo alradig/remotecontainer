@@ -229,5 +229,43 @@ public class StepsDefinition {
 	public void data_reset() {
 	    container.ValsReset();
 	}
+
+	//------------------------------------------------------------------------------------------------------------------------------//
+		// Following steps are for External Database feature	
+	
+	Database databaseHandler = new Database();
+	ArchivableObject storedClient = new Client();
+	
+	@Given("I register the client")
+	public void i_register_the_client(io.cucumber.datatable.DataTable dataTable) {
+	    List<List<String>> clientInfo = dataTable.asLists(String.class);
+	    
+	    // creates the database structure if it doesn't yet exists
+	    databaseHandler.createDatabaseStructure();
+	    
+	    clientForm = new ClientForm(this.client);
+	    this.client.setId(Integer.parseInt(clientInfo.get(1).get(0)));
+	    this.clientForm.setNameField(clientInfo.get(1).get(1));
+	    this.clientForm.setEmailField(clientInfo.get(1).get(2));
+	    this.clientForm.setAddressField(clientInfo.get(1).get(3));
+	    this.clientForm.setRefPersonField(clientInfo.get(1).get(4));
+	    this.clientForm.setPwField(clientInfo.get(1).get(5));
+	    
+	    response = clientForm.submit();
+	    if (this.response.getErrorCode() == 200) {
+	    	this.client.archive();
+	    }
+	    
+	    assertEquals(this.response.getErrorCode(),200);
+	}
+
+	@Then("the client information should be in the external database")
+	public void the_client_information_should_be_in_the_external_database() { 
+		String filePath = "Clients/" + "Client_" + this.client.getId() + ".json";
+
+		this.storedClient = databaseHandler.readFile(this.storedClient, filePath);
+
+		assertEquals(true,this.client.equals(storedClient));
+	}
 	
 }

@@ -2,7 +2,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Journey {
+public class Journey implements ArchivableObject{
+	
+	private int id = 0;
 	
 	String startDestination;
 	String endDestination;
@@ -11,7 +13,10 @@ public class Journey {
 	String dateTime;
 	String currentLocation;
 	boolean endDestinationReached;
-	ArrayList<String> list = new ArrayList<String>(); 
+	ArrayList<String> list = new ArrayList<String>();
+	
+	private String JSONPath = "/Users/alradig/Desktop/Database/Journeys/";
+	
 	public void setStartDestination(String startDestination) {
 		this.startDestination = startDestination;
 	}
@@ -109,7 +114,13 @@ public class Journey {
 		else { endDestinationReached = false; }
 	}
 	
-	
+	public void archive() {
+//		String fileName = "Journey_" + this.id + ".json";
+//		String path = this.JSONPath + fileName;
+//		
+//		JSONDocument JSONfile = new JSONDocument();
+//		JSONfile.createDocument(this,path);
+	}
 	
 //	public static void main(String [] args) {
 //		Journey journey = new Journey();
