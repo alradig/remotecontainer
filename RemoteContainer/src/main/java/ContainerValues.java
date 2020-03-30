@@ -8,7 +8,9 @@ public class ContainerValues {
 	public int a = 0;
 	
 	public void addInTemp(String value) {
+		System.out.println("temp: " + value);
 		InTemp.add(value);
+		System.out.println("temp: " + value);
 		a = a + 1;
 	}
 	
