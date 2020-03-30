@@ -256,8 +256,6 @@ public class StepsDefinition {
 	    response = clientForm.submit();
 	    if (this.response.getErrorCode() == 200) {
 	    	this.client.archive();
-	    	this.journey.archive();
-	    	this.container.archive();
 	    }
 	    
 	    assertEquals(this.response.getErrorCode(),200);
