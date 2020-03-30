@@ -52,17 +52,7 @@ public class Database {
 	}
 	
 	public void updateFile(ArchivableObject object) {
-		String objectClass = object.getClass().getName();
-		
-		
-		try {
-	         FileWriter file = new FileWriter("/Users/alradig/Desktop/"+objectClass+".json");
-	         gson.toJson(object, file);
-	         file.close();
-	      } catch (IOException e) {
-	         // TODO Auto-generated catch block
-	         e.printStackTrace();
-	      }
+		// To be implemented
 	}
 	
 }
