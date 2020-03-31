@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 public class ContainerValues implements ArchivableObject{
 	
 	private int id;
@@ -97,6 +99,17 @@ public class ContainerValues implements ArchivableObject{
         		this.getAtmPre().equals(container.getAtmPre()) &&
         		this.a == container.a;
     }
+	
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder(19, 53)
+				.append(id)
+				.append(InTemp)
+				.append(AtmPre)
+				.append(AirHum)
+				.append(a)
+				.toHashCode();
+	}
 
 
 }

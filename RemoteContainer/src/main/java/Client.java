@@ -1,5 +1,7 @@
 import java.util.List;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 public class Client implements ArchivableObject{
 	
 	private int id;
@@ -89,4 +91,16 @@ public class Client implements ArchivableObject{
         		this.refPerson.equals(client.getRefPerson()) &&
         		this.address.equals(client.getAddress());
     }
+	
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder(19, 53)
+				.append(id)
+				.append(name)
+				.append(email)
+				.append(pw)
+				.append(refPerson)
+				.append(address)
+				.toHashCode();
+	}
 }

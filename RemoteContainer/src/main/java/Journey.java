@@ -2,6 +2,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 public class Journey implements ArchivableObject{
 	
 	private int id;
@@ -152,14 +154,18 @@ public class Journey implements ArchivableObject{
         		this.endDestinationReached == journey.endDestinationReached;
     }
 	
-//	String startDestination;
-//	String endDestination;
-//	boolean isRegistered;
-//	String cargo;
-//	String dateTime;
-//	String currentLocation;
-//	boolean endDestinationReached;
-//	ArrayList<String> list = new ArrayList<String>();
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder(19, 53)
+				.append(id)
+				.append(startDestination)
+				.append(endDestination)
+				.append(cargo)
+				.append(dateTime)
+				.append(currentLocation)
+				.append(endDestinationReached)
+				.toHashCode();
+	}
 	
 //	public static void main(String [] args) {
 //		Journey journey = new Journey();
