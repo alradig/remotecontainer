@@ -1,4 +1,3 @@
-@tag
 Feature: Logistic company updates journey information
 
   Scenario: Successful update of container journey
