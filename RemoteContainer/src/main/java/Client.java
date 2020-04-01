@@ -11,7 +11,6 @@ public class Client implements ArchivableObject{
 	private String refPerson;
 	private String address;
 	private boolean Register;
-	private String cargo;
 	
 	public Client() {
 		this.id = 0;
