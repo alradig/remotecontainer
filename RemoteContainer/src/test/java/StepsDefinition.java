@@ -198,7 +198,7 @@ public class StepsDefinition {
 	//------------------------------------------------------------------------------------------------------------------------------//
 		// Following steps are for M3	
 	
-	ContainerValues container = new ContainerValues();
+	Container container = new Container();
 	
 	@Given("New internal temp of {string}")
 	public void new_internal_temp_of(String string) {

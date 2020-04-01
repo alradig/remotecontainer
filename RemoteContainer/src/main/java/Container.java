@@ -3,7 +3,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-public class ContainerValues implements ArchivableObject{
+public class Container implements ArchivableObject{
 	
 	private int id;
 	private static List<String> InTemp = new ArrayList<String>();
@@ -11,7 +11,7 @@ public class ContainerValues implements ArchivableObject{
 	private static List<String> AtmPre = new ArrayList<String>();
 	public int a;
 	
-	public ContainerValues() {
+	public Container() {
 		this.id = 0;
 		this.a = 0;
 	}
@@ -92,7 +92,7 @@ public class ContainerValues implements ArchivableObject{
             return false;
         }
         
-        ContainerValues container = (ContainerValues) o;
+        Container container = (Container) o;
         return 	this.id == container.getId() &&
         		this.getInTemp().equals(container.getInTemp()) &&
         		this.getAirHum().equals(container.getAirHum()) &&
