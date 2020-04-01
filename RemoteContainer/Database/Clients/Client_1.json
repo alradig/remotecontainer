@@ -1,0 +1,9 @@
+{
+  "id": 1,
+  "name": "Brothers Farm",
+  "email": "old@email.com",
+  "pw": "ghwq",
+  "refPerson": "Alfred",
+  "address": "Kollegiebakken 9, Lyngby",
+  "Register": false
+}
