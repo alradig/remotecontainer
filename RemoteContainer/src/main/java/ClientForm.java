@@ -67,8 +67,8 @@ public class ClientForm {
 		return result;
 	}
 
-	public void setPwField(String string) {
-		this.pwField = string;
+	public void setPwField(String password) {
+		this.pwField = password;
 		
 	}
 }
