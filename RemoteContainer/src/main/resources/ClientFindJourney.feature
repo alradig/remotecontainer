@@ -1,4 +1,3 @@
-@tag
 Feature: Client can view container journey
 
 	 Scenario: Successful finding journey
