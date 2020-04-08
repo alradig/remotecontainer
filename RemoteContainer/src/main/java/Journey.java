@@ -15,7 +15,7 @@ public class Journey implements ArchivableObject{
 	String dateTime;
 	String currentLocation;
 	boolean endDestinationReached;
-	ArrayList<String> list = new ArrayList<String>();
+	ArrayList<String> journeyLog = new ArrayList<String>();
 	
 	public Journey() {
 		this.id = 0;
@@ -112,14 +112,13 @@ public class Journey implements ArchivableObject{
 
 	public void updateJourneyInfo() {
 		String currentInfo = this.currentLocation+ " " + this.dateTime ;
-		list.add(currentInfo); 
-		
+		journeyLog.add(currentInfo); 
 		isJourneyDone();
 
 	}
 
 	public void isJourneyDone() {
-		if (this.currentLocation == this.endDestination)
+		if (currentLocation.equals(endDestination))
 		{
 			endDestinationReached = true; 
 		}
@@ -167,10 +166,13 @@ public class Journey implements ArchivableObject{
 				.toHashCode();
 	}
 	
-//	public static void main(String [] args) {
-//		Journey journey = new Journey();
-//		journey.setStartDestination("DK");
-//		journey.setEndDestination("AUS");
-//		
-//	}
+	public static void main(String [] args) {
+		Journey journey = new Journey();
+		journey.setStartDestination("DK");
+		journey.setEndDestination("AUS");
+		journey.setCurrentLocation("AUS");
+		journey.isJourneyDone();
+		System.out.println(journey.endDestinationReached);
+		
+	}
 }

@@ -1,4 +1,3 @@
-@tag
 Feature: Client can view container journey
 
 	 Scenario: Successful finding journey
@@ -17,5 +16,3 @@ Feature: Client can view container journey
     And journey registered as false
     When searching for the journey
     Then system displays that journey is not registered
-    
-	
