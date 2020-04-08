@@ -68,6 +68,11 @@ public class StepsDefinition {
 	   assertTrue(journey.startDestinationIsEmpty(journey));
 	}
 	
+	@Then("the journey is saved")
+	public void the_journey_is_saved() {
+	    journey.archive();
+	}
+	
 //------------------------------------------------------------------------------------------//
 // M2 Update journey feature
 
@@ -79,11 +84,12 @@ public class StepsDefinition {
 	@When("container has arrived in {string}")
 	public void container_has_arrived_in(String currentLocation) {
 	    journey.setCurrentLocation(currentLocation);
+	    journey.updateJourneyInfo();
 	}
 	
 	@Then("current position is added to journey")
 	public void current_position_is_added_to_journey() {
-	    journey.updateJourneyInfo();
+	    
 	}
 
 	
@@ -222,8 +228,15 @@ public class StepsDefinition {
 
 	@Given("Container end-destination is true")
 	public void container_end_destination_is_true() {
-	    journey.isJourneyDone();
+	    assertTrue(journey.endDestinationReached);
 	}
+	
+	@When("Container end-destination is false")
+	public void container_end_destination_is_false() {
+		assertFalse(journey.endDestinationReached);
+	   
+	}
+	
 	
 	@Then("Data reset")
 	public void data_reset() {
