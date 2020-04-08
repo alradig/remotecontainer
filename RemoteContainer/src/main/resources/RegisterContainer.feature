@@ -1,4 +1,3 @@
-	@tag
 Feature: Register container for Journey
 
   Scenario: Successfull registration 

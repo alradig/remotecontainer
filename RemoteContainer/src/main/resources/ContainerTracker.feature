@@ -1,4 +1,3 @@
-@tag
 Feature: A Tracker for containers
 
 	Scenario: New values
