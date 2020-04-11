@@ -46,10 +46,15 @@ public class Container implements ArchivableObject{
 	public int getId() {
 		return id;
 	}
+	
 	public void setId(int id) {
 		this.id = id;
 	}
 	
+	public static boolean containerRegistered(Container container) {
+		return container.getId() == 0;
+	}
+
 	public List<String> getInTemp() {
 		return InTemp;
 	}

@@ -57,12 +57,13 @@ public class Journey implements ArchivableObject{
 	public int getId() {
 		return id;
 	}
+	
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	public void registerJourney(Journey journey) {
-		if (journeyInformationNotComplete(journey))
+	public void registerJourney(Journey journey, Container container) {
+		if (journeyInformationNotComplete(journey) & Container.containerRegistered(container))
 		{
 			this.isRegistered = false; 
 		}
