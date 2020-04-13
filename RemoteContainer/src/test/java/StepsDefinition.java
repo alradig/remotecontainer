@@ -36,11 +36,12 @@ public class StepsDefinition {
 	@Given("cargo {string}")
 	public void cargo(String cargo) {
 	    journey.setCargo(cargo);
+	    container.setId(journey.getId());
 	}
 
 	@When("register")
 	public void register() {
-	    journey.registerJourney(journey);
+	    journey.registerJourney(journey, container);
 	}
 
 	@Then("registration is true")
