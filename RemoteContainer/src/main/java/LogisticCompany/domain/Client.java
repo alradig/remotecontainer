@@ -1,6 +1,10 @@
+package LogisticCompany.domain;
 import java.util.List;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+
+import LogisticCompany.App.ArchivableObject;
+import LogisticCompany.App.Database;
 
 public class Client implements ArchivableObject{
 	

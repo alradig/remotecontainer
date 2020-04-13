@@ -1,8 +1,12 @@
+package LogisticCompany.domain;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+
+import LogisticCompany.App.ArchivableObject;
+import LogisticCompany.App.Database;
 
 public class Journey implements ArchivableObject{
 	

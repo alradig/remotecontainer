@@ -6,6 +6,14 @@ import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import java.util.List;
+
+import LogisticCompany.App.ArchivableObject;
+import LogisticCompany.App.Database;
+import LogisticCompany.App.ResponseObject;
+import LogisticCompany.domain.Client;
+import LogisticCompany.domain.Container;
+import LogisticCompany.domain.Journey;
+
 import static org.junit.Assert.assertFalse;
 
 public class StepsDefinition {
