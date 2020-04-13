@@ -3,6 +3,9 @@ import LogisticCompany.domain.Client;
 import LogisticCompany.domain.Container;
 import LogisticCompany.domain.Journey;
 
+import LogisticCompany.info.ContainerInfo;
+import LogisticCompany.info.ClientInfo;
+import LogisticCompany.info.JourneyInfo;
 
 public class LogisticCompanyApp {
 
@@ -47,18 +50,32 @@ public class LogisticCompanyApp {
 		return Journey;
 	}
 	
-	public void registerClient() {
+	public void registerClient(ClientInfo cc) throws OperationNotAllowedException {
+		checkLogisticCompanyLoggedIn();
+		// register group ....
+		
+		//repository done
+		clientRepository.addClient(cc.asClient());
 		
 	}
 	
-	public void registerContainer() throws OperationNotAllowedException {
-		checklogisticCompanyLoggedIn();
-		containerRepository.addContainer(container.asContainer());
+	public void registerContainer(ContainerInfo c) throws OperationNotAllowedException {
+		checkLogisticCompanyLoggedIn();
+		// register group ....
+		// 
+		
+		//repository done
+		containerRepository.addContainer(c.asContainer());
 		
 	}
 	
-	public void registerJourney() {
-		
+	public void registerJourney(JourneyInfo j) throws OperationNotAllowedException {
+		checkLogisticCompanyLoggedIn();
+		// register group ....
+		// 
+				
+		//repository done
+		journeyRepository.addJourney(j.asJourney());
 	}
 	
 	public void removeClient() {
@@ -87,13 +104,15 @@ public class LogisticCompanyApp {
 		loggedIn = false;
 	}
 	
-	private void checklogisticCompanyLoggedIn() throws OperationNotAllowedException {
+	private void checkLogisticCompanyLoggedIn() throws OperationNotAllowedException {
 		if (!logisticCompanyLoggedIn()) {
 			throw new OperationNotAllowedException("logisticCompany login required");
 		}}
-	public void setRepositories(MediumRepository mediumRepo, UserRepository userRepo) {
-		this.mediumRepository = mediumRepo;
-		this.userRepository = userRepo;		
+	public void setRepositories(ClientRepository clientRepo, JourneyRepository journeyRepo, ContainerRepository containerRepo ) {
+		this.clientRepository = clientRepo;
+		this.journeyRepository = journeyRepo;	
+		this.containerRepository = containerRepo;
+		
 	}
 
 }
