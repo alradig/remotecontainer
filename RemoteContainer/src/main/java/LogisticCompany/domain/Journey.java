@@ -16,7 +16,7 @@ public class Journey implements ArchivableObject{
 	private String endDestination;
 	private boolean isRegistered;
 	private String cargo;
-	private String dateTime;
+//	private String dateTime;
 	private String currentLocation;
 	private boolean endDestinationReached;
 	private ArrayList<String> journeyLog = new ArrayList<String>();
@@ -76,7 +76,7 @@ public class Journey implements ArchivableObject{
 	public void setId(int id) {
 		this.id = id;
 	}
-
+// !! 
 	public void registerJourney(Journey journey, Container container) {
 		if (journeyInformationNotComplete(journey) & Container.containerRegistered(container))
 		{
@@ -87,35 +87,35 @@ public class Journey implements ArchivableObject{
 		}
 		
 	}
-
+// !! 
 	public boolean journeyInformationNotComplete(Journey journey) {
 		return cargoIsEmpty(journey) || endDestinationIsEmpty(journey) || startDestinationIsEmpty(journey);
 	}
-
+// !! 
 	 public boolean startDestinationIsEmpty(Journey journey) {
 		return journey.getStartDestination() == null;
 	}
-
+// !! 
 	public boolean endDestinationIsEmpty(Journey journey) {
 		return journey.getEndDestination() == null;
 	}
-	
+// !! 	
 	public boolean cargoIsEmpty(Journey journey) {
 		return journey.getCargo() == null;
 		
 	}
 	
-	public void setCurrentDate() {
-		
-		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
-		Date date = new Date(System.currentTimeMillis());
-		String  dateTime= formatter.format(date);
-		this.dateTime = dateTime; 
-	}
+//	public void setCurrentDate() {
+//		
+//		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+//		Date date = new Date(System.currentTimeMillis());
+//		String  dateTime= formatter.format(date);
+//		this.dateTime = dateTime; 
+//	}
 
-	public String getCurrentDate() {
-		return dateTime; 
-	}
+//	public String getCurrentDate() {
+//		return dateTime; 
+//	}
 	
 	public void setCurrentLocation(String currentLocation) {
 		this.currentLocation = currentLocation;
@@ -125,7 +125,7 @@ public class Journey implements ArchivableObject{
 		return currentLocation;
 		
 	}
-
+// !!! 
 	public void updateJourneyInfo() {
 		String currentInfo = this.currentLocation+ " " + this.dateTime ;
 		journeyLog.add(currentInfo); 
@@ -140,7 +140,7 @@ public class Journey implements ArchivableObject{
 		}
 		else { endDestinationReached = false; }
 	}
-	
+// .............................................................................................................................//	
 	public void archive() {
 		String fileName = "Journey_" + this.id + ".json";
 		String folderName = "Journeys";

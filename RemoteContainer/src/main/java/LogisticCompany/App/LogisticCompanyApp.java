@@ -74,10 +74,12 @@ public class LogisticCompanyApp {
 		
 	}
 	
-	public void registerJourney(JourneyInfo j) throws OperationNotAllowedException {
-		checkLogisticCompanyLoggedIn();
+	public void registerJourney(JourneyInfo j) {
+		
 		// register group ....
 		// 
+		
+		
 				
 		//repository done
 		journeyRepository.addJourney(j.asJourney());
@@ -94,6 +96,7 @@ public class LogisticCompanyApp {
 	}
 	
 	public void updateJourney() {
+		
 		
 	}
 	
