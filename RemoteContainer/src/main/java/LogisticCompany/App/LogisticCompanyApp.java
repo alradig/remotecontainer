@@ -6,7 +6,7 @@ import LogisticCompany.domain.Journey;
 import LogisticCompany.info.ContainerInfo;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.info.JourneyInfo;
-import dtu.library.dto.UserInfo;
+
 
 public class LogisticCompanyApp {
 
