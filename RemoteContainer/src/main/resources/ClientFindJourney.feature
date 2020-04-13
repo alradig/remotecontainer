@@ -1,5 +1,5 @@
 Feature: Client can view container journey
-
+	
 	 Scenario: Successful finding journey
     Given client with the cargo "Banana"
     And start destination "Denmark"
