@@ -13,7 +13,7 @@ Feature: External database
 		|	765342		| Paper Inc.		| paperinc@email.com	| Street name 139, Copenhagen	| Jason						|	ghwq			|
     Then the client information should be in the external database
 
-    ## Next Scenarions to be implemented:
-    ## Scenario: Save new journey objects in the external database
-    ## Scenario: Save new container objects in the external database
-    ## Scenario: Update database files
+    # Next Scenarions to be implemented:
+    # Scenario: Save new journey objects in the external database
+    # Scenario: Save new container objects in the external database
+    # Scenario: Update database files
