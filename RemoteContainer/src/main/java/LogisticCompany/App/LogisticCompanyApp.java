@@ -7,19 +7,23 @@ import LogisticCompany.domain.Journey;
 public class LogisticCompanyApp {
 
 	private boolean loggedIn = false;
-	private MediumRepository mediumRepository;
-	private UserRepository userRepository;
+	private ClientRepository clientRepository;
+	private JourneyRepository journeyRepository;
+	private ContainerRepository containerRepository;
 	
-	public LogisticCompanyApp(MediumRepository mediumRepository, UserRepository userRepository) {
-		this.userRepository = userRepository;
-		this.mediumRepository = mediumRepository;}
+	public LogisticCompanyApp(ClientRepository clientRepository, JourneyRepository journeyRepository, ContainerRepository containerRepository ) {
+		this.containerRepository = containerRepository;
+		this.journeyRepository = journeyRepository;
+		this.clientRepository = clientRepository;
+	}
 	
 	public LogisticCompanyApp() {
 	}
 
 	public void clearDatabase() {
-		userRepository.clearUserDatabase();
-		mediumRepository.clearMediumDatabase();
+		clientRepository.clearClientDatabase();
+		journeyRepository.clearJourneyDatabase();
+		containerRepository.clearContainerDatabase();
 	}
 	
 	public void registerUser(UserInfo u) throws Exception {
@@ -28,7 +32,7 @@ public class LogisticCompanyApp {
 			if (user != null) {
 				throw new Exception("User is already registered");
 			}
-			userRepository.registerUser(u.asUser());
+			clientRepository.addClient(u.asUser());
 	}
 	
 	
@@ -49,7 +53,7 @@ public class LogisticCompanyApp {
 	
 	public void registerContainer() throws OperationNotAllowedException {
 		checklogisticCompanyLoggedIn();
-		mediumRepository.addMedium(medium.asMedium());
+		containerRepository.addContainer(container.asContainer());
 		
 	}
 	

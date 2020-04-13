@@ -16,7 +16,7 @@ public interface ClientRepository {
 
 	void removeClient(Client client);
 
-	void clearUserDatabase();
+	void clearClientDatabase();
 
 	Client getClient(int id);
 }

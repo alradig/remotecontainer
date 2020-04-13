@@ -10,7 +10,7 @@ import dtu.library.app.UserRepository;
 import dtu.library.domain.Medium;
 import dtu.library.domain.User;
 
-public class InMemoryRepository implements MediumRepository, UserRepository {
+public class InMemoryRepository implements ClientRepository, ContainerRepository , JourneyRepository{
 
 	List<Medium> media = new ArrayList<>();
 	List<User> users = new ArrayList<>();

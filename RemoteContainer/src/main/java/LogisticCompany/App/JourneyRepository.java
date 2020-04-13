@@ -1,6 +1,8 @@
 package LogisticCompany.App;
 import LogisticCompany.domain.Journey;
 
-public class JourneyRepository {
+public interface JourneyRepository {
+	
+	void clearJourneyDatabase();
 
 }
