@@ -1,3 +1,4 @@
+package LogisticCompany.App;
 
 public class ResponseObject {
 	String errorMessage;

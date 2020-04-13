@@ -1,9 +1,10 @@
+import LogisticCompany.App.ResponseObject;
+import LogisticCompany.domain.Client;
 
 public class ClientForm {
 	
 	private Client client;	
 	private ResponseObject response;
-	
 	private String nameField;
 	private String emailField;
 	private String pwField;
