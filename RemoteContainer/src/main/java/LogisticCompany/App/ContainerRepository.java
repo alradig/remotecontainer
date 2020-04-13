@@ -4,7 +4,6 @@ import java.util.stream.Stream;
 import LogisticCompany.domain.Container;
 
 
-
 public interface ContainerRepository {
 	
 	
