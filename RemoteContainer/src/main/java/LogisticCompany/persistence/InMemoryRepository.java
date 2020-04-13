@@ -5,76 +5,138 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-import dtu.library.app.MediumRepository;
-import dtu.library.app.UserRepository;
-import dtu.library.domain.Medium;
-import dtu.library.domain.User;
+
+import LogisticCompany.App.ClientRepository;
+import LogisticCompany.App.ContainerRepository;
+import LogisticCompany.App.JourneyRepository;
+import LogisticCompany.domain.Client;
+import LogisticCompany.domain.Journey;
+import LogisticCompany.domain.Container;
+
+
 
 public class InMemoryRepository implements ClientRepository, ContainerRepository , JourneyRepository{
 
-	List<Medium> media = new ArrayList<>();
-	List<User> users = new ArrayList<>();
+	List<Client> clients = new ArrayList<>();
+	List<Container> containers = new ArrayList<>();
+	List<Journey> journeys = new ArrayList<>();
 
 	@Override
-	public void addMedium(Medium medium) {
-		media.add(medium);
+	public void addClient(Client client) {
+		clients.add(client);
 	}
 
 	@Override
-	public Stream<Medium> getAllMediaStream() {
-		return media.stream();
+	public Stream<Client> getAllClientsStream() {
+		return clients.stream();
 	}
 
 	@Override
-	public void updateMedium(Medium m) {
+	public void updateClient(Client client) {
 		
 	}
 
 	@Override
-	public boolean contains(User user) {
-		return users.contains(user);
+	public boolean contains(Client client) {
+		return clients.contains(client);
+	}
+	
+	@Override
+	public void clearClientDatabase() {
+		clients.clear();
+		
+	}
+	
+	@Override
+	public boolean contains(Container container) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	@Override
-	public void addUser(User user) {
-		users.add(user);
+	public void removeClient(Client client) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void addContainer(Container container) {
+		containers.add(container);
 	}
 
 	@Override
-	public Stream<User> getAllUsersStream() {
-		return users.stream();
+	public Stream<Container> getAllContainersStream() {
+		return containers.stream();
 	}
 
 	@Override
-	public void removeUser(User user) {
-		users.remove(user);
+	public void removeContainer(Container container) {
+		containers.remove(container);
 	}
 
 	@Override
-	public void updateUser(User user) {
-		user.getBorrowedMedia().stream().forEach(m -> this.updateMedium(m));
-	}
-
-	@Override
-	public void clearMediumDatabase() {
-		media.clear();
+	public void updateContainer(Container container) {
 		
 	}
 
 	@Override
-	public void clearUserDatabase() {
-		users.clear();
+	public void clearContainerDatabase() {
+		containers.clear();
+		
+	}
+	
+	
+	@Override
+	public void addJourney(Journey journey) {
+		journeys.add(journey);
+	}
+
+	@Override
+	public Stream<Journey> getAllJourneysStream() {
+		return journeys.stream();
+	}
+
+	@Override
+	public void removeJourney(Journey journey) {
+		journeys.remove(journey);
+	}
+	
+	@Override
+	public boolean contains(Journey journey) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	@Override
+	public void updateJourney(Journey journey) {
 		
 	}
 
 	@Override
-	public User getUser(String cpr) {
-		return users.stream().filter(u -> u.getCpr().equals(cpr)).findFirst().orElse(null);
+	public void clearJourneyDatabase() {
+		journeys.clear();
+		
 	}
 
 	@Override
-	public Medium getMedium(String signature) {
-		return media.stream().filter(m -> m.getSignature().equals(signature)).findFirst().orElse(null);
+	public Container getContainer(int id) {
+		return null;
+//		return users.stream().filter(u -> u.getCpr().equals(cpr)).findFirst().orElse(null);
 	}
 
+	@Override
+	public Client getClient(int id) {
+		return null;
+//		return media.stream().filter(m -> m.getSignature().equals(signature)).findFirst().orElse(null);
+	}
+	
+	@Override
+	public Journey getJourney(int id) {
+		return null;
+//		return media.stream().filter(m -> m.getSignature().equals(signature)).findFirst().orElse(null);
+	}
+
+	
+
+	
 }
