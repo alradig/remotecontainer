@@ -18,5 +18,5 @@ public interface JourneyRepository {
 
 	void clearJourneyDatabase();
 	
-	Journey getJourney(int id);
+	Journey getJourney(String cargo);
 }

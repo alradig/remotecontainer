@@ -12,19 +12,30 @@ public class Journey implements ArchivableObject{
 	
 	private int id;
 	
-	String startDestination;
-	String endDestination;
-	boolean isRegistered;
-	String cargo;
-	String dateTime;
-	String currentLocation;
-	boolean endDestinationReached;
-	ArrayList<String> journeyLog = new ArrayList<String>();
+	private String startDestination;
+	private String endDestination;
+	private boolean isRegistered;
+	private String cargo;
+	private String dateTime;
+	private String currentLocation;
+	private boolean endDestinationReached;
+	private ArrayList<String> journeyLog = new ArrayList<String>();
 	
-	public Journey() {
-		this.id = 0;
-		this.endDestinationReached = false;
+	
+	
+	public Journey(int id, String startDestination, String endDestination, String cargo) {
+		this.id = id;
+		this.startDestination = startDestination;
+		this.endDestination = endDestination;
+		this.cargo = cargo; 
 	}
+	
+	public Journey() {}; 
+	
+//	public Journey() {
+//		this.id = 0;
+//		this.endDestinationReached = false;
+//	}
 	
 	public void setStartDestination(String startDestination) {
 		this.startDestination = startDestination;

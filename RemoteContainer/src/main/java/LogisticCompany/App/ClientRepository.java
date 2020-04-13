@@ -18,5 +18,5 @@ public interface ClientRepository {
 
 	void clearClientDatabase();
 
-	Client getClient(int id);
+	Client getClient(String email);
 }

@@ -6,6 +6,7 @@ import LogisticCompany.domain.Journey;
 import LogisticCompany.info.ContainerInfo;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.info.JourneyInfo;
+import dtu.library.dto.UserInfo;
 
 public class LogisticCompanyApp {
 
@@ -29,30 +30,30 @@ public class LogisticCompanyApp {
 		containerRepository.clearContainerDatabase();
 	}
 	
-	public void registerUser(UserInfo u) throws Exception {
-			checkLogisticCompanyLoggedIn();
-			User user = findUser(u);
-			if (user != null) {
-				throw new Exception("User is already registered");
-			}
-			clientRepository.addClient(u.asUser());
-	}
 	
-	
-	private Client searchClient() {
+	private Client searchClient(ClientInfo cc) {
+		return clientRepository.getClient(cc.getEmail());
 		
 	}
 	
-	
-	private Container searchContainer() {
+//	private Container searchContainer() {
+//		
+//	}
+
+	private Journey searchJourney(JourneyInfo j) {
 		
+		return journeyRepository.getJourney(j.getCargo());
 	}
 	
-	private Journey searchJourney() {
-		
-		
-		return Journey;
-	}
+//	public void registerUser(UserInfo u) throws Exception {
+//			checkLogisticCompanyLoggedIn();
+//			User user = findUser(u);
+//			if (user != null) {
+//				throw new Exception("User is already registered");
+//			}
+//			clientRepository.addClient(u.asUser());
+//	}
+	
 	
 	public void registerClient(ClientInfo cc) throws OperationNotAllowedException {
 		checkLogisticCompanyLoggedIn();

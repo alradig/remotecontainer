@@ -16,14 +16,23 @@ public class Client implements ArchivableObject{
 	private String address;
 	private boolean Register;
 	
-	public Client() {
-		this.id = 0;
-		this.name = "";
-		this.email = "";
-		this.pw = "";
-		this.refPerson = "";
-		this.address = "";
+	public Client(int id, String name, String email) {
+		this.id = id;
+		this.name = name;
+		this.email = email;
 	}
+
+	public Client() {}; // Needed by Java Persistence Layer
+	
+
+//	public Client() {
+//		this.id = 0;
+//		this.name = "";
+//		this.email = "";
+//		this.pw = "";
+//		this.refPerson = "";
+//		this.address = "";
+//	}
 	
 	public String getName() {
 		return name;
