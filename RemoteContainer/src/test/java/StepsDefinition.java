@@ -2,9 +2,11 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+
 import java.util.List;
 
 import LogisticCompany.App.ArchivableObject;
@@ -13,18 +15,19 @@ import LogisticCompany.App.ResponseObject;
 import LogisticCompany.domain.Client;
 import LogisticCompany.domain.Container;
 import LogisticCompany.domain.Journey;
-
-import static org.junit.Assert.assertFalse;
+import dtu.library.domain.Address;
 
 public class StepsDefinition {
 
 //------------------------------------------------------------------------------------------//
 // Following steps are for M2 Journey Management	
 
-	Client client = new Client();
-	ResponseObject response = new ResponseObject(100, "There is a problem");
-	ClientForm clientForm;
-	Journey journey = new Journey();
+	private Client client = new Client();
+	private ResponseObject response = new ResponseObject(100, "There is a problem");
+	private ClientForm clientForm;
+	private Journey journey = new Journey();
+	private LogisticCompany.domain.Address address;
+	private LogisticCompanyApp logisticCompanyApp;
 	
 	@Given("client name {string}")
 	public void client_name(String name) {
@@ -108,6 +111,38 @@ public class StepsDefinition {
 /*
  * Register a new client
  */
+	
+	@Given("There is a client with name {string}, email {string}, reference person {string}, password {string}")
+	public void there_is_a_client_with_name_email_reference_person_password(String name, String email, String ref_person, String pw) {
+	    this.client.setName(name);
+	    this.client.setEmail(email);
+	    this.client.setRefPerson(ref_person);
+	    this.client.setPw(pw);
+	    
+	    assertEquals(client.getName(),name);
+	    assertEquals(client.getEmail(),email);
+	    assertEquals(client.getRefPerson(),ref_person);
+	    assertEquals(client.getPw(),pw);
+	}
+
+	@Given("the client address is {string}, {int}, {string}")
+	public void the_client_address_is(String street, Integer postcode, String city) {
+		this.address = new Address(street,postcode,city);
+		this.client.setAddress(address);
+		
+		assertEquals(client.getAddress().getStreet(),street);
+		assertEquals(client.getAddress().getPostCode(),postcode);
+		assertEquals(client.getAddress().getCity(),city);	
+	}
+	
+	@When("the administrator registers the client")
+	public void the_administrator_registers_the_client() {
+		try {
+			this.logisticCompanyApp.registerClient(client);
+		} catch (Exception e) {
+			errorMessage.setErrorMessage(e.getMessage());
+		}
+	}
 	
 	@Given("I have chosen to register a client")
 	public void I_have_chosen_to_register_a_client(){

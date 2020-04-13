@@ -13,7 +13,7 @@ public class Client implements ArchivableObject{
 	private String email;
 	private String pw;
 	private String refPerson;
-	private String address;
+	private Address address;
 	private boolean Register;
 	
 	public Client(int id, String name, String email) {
@@ -64,11 +64,11 @@ public class Client implements ArchivableObject{
 	public void setRefPerson(String refPerson) {
 		this.refPerson = refPerson;
 	}
-	public String getAddress() {
+	public Address getAddress() {
 		return address;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setAddress(Address address2) {
+		this.address = address2;
 	}
 	public int getId() {
 		return id;

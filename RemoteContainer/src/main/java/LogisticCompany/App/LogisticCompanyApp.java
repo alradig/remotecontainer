@@ -14,6 +14,7 @@ public class LogisticCompanyApp {
 	private ClientRepository clientRepository;
 	private JourneyRepository journeyRepository;
 	private ContainerRepository containerRepository;
+	private Database database;
 	
 	public LogisticCompanyApp(ClientRepository clientRepository, JourneyRepository journeyRepository, ContainerRepository containerRepository ) {
 		this.containerRepository = containerRepository;
@@ -55,12 +56,12 @@ public class LogisticCompanyApp {
 //	}
 	
 	
-	public void registerClient(ClientInfo cc) throws OperationNotAllowedException {
+	public void registerClient(Client client) throws OperationNotAllowedException {
 		checkLogisticCompanyLoggedIn();
 		// register group ....
 		
 		//repository done
-		clientRepository.addClient(cc.asClient());
+		clientRepository.addClient(client);
 		
 	}
 	

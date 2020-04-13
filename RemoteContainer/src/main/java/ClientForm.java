@@ -1,4 +1,5 @@
 import LogisticCompany.App.ResponseObject;
+import LogisticCompany.domain.Address;
 import LogisticCompany.domain.Client;
 
 public class ClientForm {
@@ -36,8 +37,8 @@ public class ClientForm {
 
 	}
 
-	public void setAddressField(String addressField) {
-		this.addressField = addressField;
+	public void setAddressField(Address address) {
+		this.addressField = address;
 
 	}
 	
