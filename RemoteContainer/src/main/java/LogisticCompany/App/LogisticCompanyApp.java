@@ -30,7 +30,7 @@ public class LogisticCompanyApp {
 	}
 	
 	public void registerUser(UserInfo u) throws Exception {
-			checklogisticCompanyLoggedIn();
+			checkLogisticCompanyLoggedIn();
 			User user = findUser(u);
 			if (user != null) {
 				throw new Exception("User is already registered");
@@ -40,13 +40,17 @@ public class LogisticCompanyApp {
 	
 	
 	private Client searchClient() {
+		
 	}
 	
 	
 	private Container searchContainer() {
+		
 	}
 	
 	private Journey searchJourney() {
+		
+		
 		return Journey;
 	}
 	

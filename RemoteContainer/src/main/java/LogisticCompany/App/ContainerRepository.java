@@ -1,13 +1,26 @@
 package LogisticCompany.App;
 
-import LogisticCompany.domain.Client;
+import java.util.stream.Stream;
 import LogisticCompany.domain.Container;
 
 
-public interface ContainerRepository {
-	void clearContainerDatabase();
-	void addContainer(Container container );
 
+public interface ContainerRepository {
+	
+	
+	boolean contains(Container container );
+	
+	void addContainer(Container container );
+	
+	Stream<Container> getAllContainersStream();
+	
+	void updateContainer(Container container );
+
+	void removeContainer(Container container );
+
+	void clearContainerDatabase();
+	
+	Container getContainer(int id);
 	
 
 }
