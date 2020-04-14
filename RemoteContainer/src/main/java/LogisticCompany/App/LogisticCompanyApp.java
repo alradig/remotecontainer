@@ -1,5 +1,7 @@
 package LogisticCompany.App;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import LogisticCompany.domain.Client;
 import LogisticCompany.domain.Container;
@@ -8,7 +10,6 @@ import LogisticCompany.domain.Journey;
 import LogisticCompany.info.ContainerInfo;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.info.JourneyInfo;
-
 
 
 public class LogisticCompanyApp {
@@ -36,18 +37,23 @@ public class LogisticCompanyApp {
 	}
 	
 	
-	private Client searchClient(ClientInfo cc) {
-		return clientRepository.getClient(cc.getEmail());
-		
+	private Client findClient(ClientInfo cc) {
+		return clientRepository.getClient(cc.getEmail());	
 	}
 	
 //	private Container searchContainer() {
 //		
 //	}
 
-	private Journey searchJourney(JourneyInfo j) {
-		
+	private Journey findJourney(JourneyInfo j) {
 		return journeyRepository.getJourney(j.getCargo());
+	}
+	
+	public List<Object> searchClient(String searchEmail) {
+		return clientRepository.getAllClientsStream()
+				.filter(b -> b.matchClient(searchEmail))
+				.map(b -> b.getEmail())
+				.collect(Collectors.toList());
 	}
 	
 //	public void registerUser(UserInfo u) throws Exception {
@@ -58,7 +64,6 @@ public class LogisticCompanyApp {
 //			}
 //			clientRepository.addClient(u.asUser());
 //	}
-	
 	
 	public void registerClient(ClientInfo cc) throws OperationNotAllowedException {
 		checkLogisticCompanyLoggedIn();
@@ -91,7 +96,7 @@ public class LogisticCompanyApp {
 	}
 	
 	public void unregisterClient(ClientInfo cc, JourneyInfo j)throws Exception {
-		Client client = searchClient(cc);
+		Client client = findClient(cc);
 		logisticCompanyLoggedIn();
 		if (!isJourneyDone(j) )
 		{
@@ -114,7 +119,7 @@ public class LogisticCompanyApp {
 
 	public void updateJourneyInfo(JourneyInfo j) {
 		logisticCompanyLoggedIn();
-		Journey journey = searchJourney(j);
+		Journey journey = findJourney(j);
 //		Client client = searchClient(cc);
 		journey.addLocationToLog(journey , calenderDate.getCurrentDate());
 		journeyRepository.updateJourney(journey); 		

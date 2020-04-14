@@ -1,19 +1,13 @@
 package LogisticCompany.domain;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 import LogisticCompany.App.ArchivableObject;
-import LogisticCompany.App.CalenderDate;
-import LogisticCompany.App.Database;
 import LogisticCompany.App.Database;
 
 
 public class Client implements ArchivableObject{
 	
-	private int id;
+	private String id;
 	private String name;
 	private String email;
 	private String pw;
@@ -23,7 +17,7 @@ public class Client implements ArchivableObject{
 
 
 	
-	public Client(int id, String name, String email) {
+	public Client(String id, String name, String email) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
@@ -77,13 +71,16 @@ public class Client implements ArchivableObject{
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	
+	public boolean matchClient(String searchText) {
+		return email.contains(searchText);
+	}
 	
 	public void archive() {
 		String fileName = "Client_" + this.id + ".json";
