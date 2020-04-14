@@ -16,6 +16,8 @@ import LogisticCompany.App.ResponseObject;
 import LogisticCompany.domain.Client;
 import LogisticCompany.domain.Container;
 import LogisticCompany.domain.Journey;
+import LogisticCompany.info.ClientInfo;
+import dtu.library.acceptance_tests.helper.ErrorMessageHolder;
 import LogisticCompany.domain.Address;
 
 public class StepsDefinition {
@@ -23,12 +25,17 @@ public class StepsDefinition {
 //------------------------------------------------------------------------------------------//
 // Following steps are for M2 Journey Management	
 
-	private Client client = new Client();
+	private ClientInfo client;
 	private ResponseObject response = new ResponseObject(100, "There is a problem");
 	private ClientForm clientForm;
 	private Journey journey = new Journey();
 	private LogisticCompany.domain.Address address;
-	private LogisticCompanyApp logisticCompanyApp;
+//	private LogisticCompanyApp logisticCompanyApp;
+	private String errorMessage;
+	
+	private LogisticCompanyApp logisticCompanyApp = new LogisticCompanyApp();
+
+
 	
 	@Given("client name {string}")
 	public void client_name(String name) {
@@ -112,22 +119,32 @@ public class StepsDefinition {
 /*
  * Register a new client
  */
+	@Given("the administrator is logged in")
+	public void the_administrator_is_logged_in()  throws Exception {
+		assertTrue(logisticCompanyApp.logisticCompanyLogin("logisticCompany123"));
+	}
 	
+
+	@Then("the client is registered in the system")
+	public void the_client_is_registered_in_the_system() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+
 	@Given("There is a client with name {string}, email {string}, reference person {string}, password {string}")
-	public void there_is_a_client_with_name_email_reference_person_password(String name, String email, String ref_person, String pw) {
-	    this.client.setName(name);
-	    this.client.setEmail(email);
-	    this.client.setRefPerson(ref_person);
-	    this.client.setPw(pw);
+	public void there_is_a_client_with_name_email_reference_person_password(String name, String email, String ref_person, String password) {
+	   client = new ClientInfo(name, email, ref_person, password);
+	   
 	    
 	    assertEquals(client.getName(),name);
 	    assertEquals(client.getEmail(),email);
-	    assertEquals(client.getRefPerson(),ref_person);
-	    assertEquals(client.getPw(),pw);
+	    assertEquals(client.getReference_person(),ref_person);
+	    assertEquals(client.getPassword(),password);
 	}
 
 	@Given("the client address is {string}, {int}, {string}")
-	public void the_client_address_is(String street, Integer postcode, String city) {
+	public void the_client_address_is(String street, int postcode, String city) {
 		this.address = new Address(street,postcode,city);
 		this.client.setAddress(address);
 		
@@ -141,7 +158,8 @@ public class StepsDefinition {
 		try {
 			this.logisticCompanyApp.registerClient(client);
 		} catch (Exception e) {
-			errorMessage.setErrorMessage(e.getMessage());
+//			errorMessage.setErrorMessage(e.getMessage());
+			errorMessage = e.getMessage();
 		}
 	}
 	

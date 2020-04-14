@@ -71,9 +71,11 @@ public class LogisticCompanyApp {
 	
 	public void registerClient(ClientInfo cc) throws OperationNotAllowedException {
 		checkLogisticCompanyLoggedIn();
-		// register group ....
-		
-		//repository done
+//		Client client = findUser(u);
+//		if (user != null) {
+//			throw new Exception("User is already registered");
+//		}
+//	
 		clientRepository.addClient(cc);
 		
 	}
@@ -146,8 +148,10 @@ public class LogisticCompanyApp {
 	
 	private void checkLogisticCompanyLoggedIn() throws OperationNotAllowedException {
 		if (!logisticCompanyLoggedIn()) {
-			throw new OperationNotAllowedException("logisticCompany login required");
+			throw new OperationNotAllowedException("Logistic Company login required");
 		}}
+	
+	
 	public void setRepositories(ClientRepository clientRepo, JourneyRepository journeyRepo, ContainerRepository containerRepo ) {
 		this.clientRepository = clientRepo;
 		this.journeyRepository = journeyRepo;	

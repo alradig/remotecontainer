@@ -7,20 +7,21 @@ import LogisticCompany.App.Database;
 
 public class Client implements ArchivableObject{
 	
-	private String id;
+	private int id;
 	private String name;
 	private String email;
-	private String pw;
+	private String password;
 	private String refPerson;
 	private Address address;
 	private boolean Register;
 
 
 	
-	public Client(String id, String name, String email) {
-		this.id = id;
+	public Client(String name, String email, String reference_person, String password) {
 		this.name = name;
 		this.email = email;
+		this.refPerson = reference_person;
+		this.password = password;
 	}
 
 	public Client() {}; // Needed by Java Persistence Layer
@@ -54,10 +55,10 @@ public class Client implements ArchivableObject{
 		this.email = email;
 	}
 	public String getPw() {
-		return pw;
+		return password;
 	}
 	public void setPw(String pw) {
-		this.pw = pw;
+		this.password = pw;
 	}
 	public String getRefPerson() {
 		return refPerson;
@@ -71,10 +72,10 @@ public class Client implements ArchivableObject{
 	public void setAddress(Address address2) {
 		this.address = address2;
 	}
-	public String getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	
@@ -104,7 +105,7 @@ public class Client implements ArchivableObject{
         return 	this.id == client.getId() &&
         		this.name.equals(client.getName()) &&
         		this.email.equals(client.getEmail()) &&
-        		this.pw.equals(client.getPw()) &&
+        		this.password.equals(client.getPw()) &&
         		this.refPerson.equals(client.getRefPerson()) &&
         		this.address.equals(client.getAddress());
     }
@@ -115,7 +116,7 @@ public class Client implements ArchivableObject{
 				.append(id)
 				.append(name)
 				.append(email)
-				.append(pw)
+				.append(password)
 				.append(refPerson)
 				.append(address)
 				.toHashCode();

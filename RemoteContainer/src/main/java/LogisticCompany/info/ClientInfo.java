@@ -1,24 +1,57 @@
 package LogisticCompany.info;
 
+import LogisticCompany.domain.Address;
 import LogisticCompany.domain.Client;
 
 
 public class ClientInfo {
-	private String id;
 	private String name;
 	private String email;
+	private String reference_person;
+	private String password;
+	private Address address;
 	
-	public ClientInfo(String id, String name, String email) {
-		this.id = id;
+	public ClientInfo(String name, String email, String reference_person, String password) {
 		this.name = name;
 		this.email = email;
+		this.reference_person = reference_person;
+		this.password = password;
+		
 	}
 	
 	public ClientInfo(Client client) {
-		this.id = client.getId();
 		this.name = client.getName();
 		this.email = client.getEmail();
+		this.reference_person = client.getRefPerson();
+		this.password = client.getPw();
+		this.address = client.getAddress();
 	}
+	
+	public String getReference_person() {
+		return reference_person;
+	}
+
+	public void setReference_person(String reference_person) {
+		this.reference_person = reference_person;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	
 	
 	public String getName() {
 		return name;
@@ -28,13 +61,9 @@ public class ClientInfo {
 		return email;
 	}
 	
-	public String getId() {
-		return id;
-	}
-	
 	public Client asClient() {
 	
-		return new Client(id,name,email);
+		return new Client(name, email, reference_person, password);
 	}
 	
 	
