@@ -3,6 +3,7 @@ package LogisticCompany.App;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import LogisticCompany.domain.Client;
 import LogisticCompany.domain.Container;
@@ -11,6 +12,7 @@ import LogisticCompany.domain.Journey;
 import LogisticCompany.info.ContainerInfo;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.info.JourneyInfo;
+import dtu.library.dto.UserInfo;
 
 
 public class LogisticCompanyApp {
@@ -56,8 +58,8 @@ public class LogisticCompanyApp {
 	
 	public List<Object> searchClient(String searchEmail) {
 		return clientRepository.getAllClientsStream()
-				.filter(b -> b.matchClient(searchEmail))
-				.map(b -> b.getEmail())
+				.filter(c -> c.match(searchEmail))
+				.map(c -> c.asClientInfo())
 				.collect(Collectors.toList());
 	}
 	
@@ -158,6 +160,10 @@ public class LogisticCompanyApp {
 		this.journeyRepository = journeyRepo;	
 		this.containerRepository = containerRepo;
 		
+	}
+
+	public Stream<ClientInfo> getClientsStream() {
+		return this.clientRepository.getAllClientsStream().map(u -> new UserInfo(u));
 	}
 
 }

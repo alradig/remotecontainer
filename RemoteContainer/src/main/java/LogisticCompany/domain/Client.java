@@ -3,6 +3,9 @@ package LogisticCompany.domain;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import LogisticCompany.App.ArchivableObject;
 import LogisticCompany.App.Database;
+import LogisticCompany.info.ClientInfo;
+import dtu.library.dto.BookInfo;
+import dtu.library.dto.MediumInfo;
 
 
 public class Client implements ArchivableObject{
@@ -91,34 +94,8 @@ public class Client implements ArchivableObject{
 		JSONfile.createFile(this,folderName, fileName);
 	}
 	
-	@Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        
-        Client client = (Client) o;
-        return 	this.id == client.getId() &&
-        		this.name.equals(client.getName()) &&
-        		this.email.equals(client.getEmail()) &&
-        		this.password.equals(client.getPw()) &&
-        		this.refPerson.equals(client.getRefPerson()) &&
-        		this.address.equals(client.getAddress());
-    }
-	
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder(19, 53)
-				.append(id)
-				.append(name)
-				.append(email)
-				.append(password)
-				.append(refPerson)
-				.append(address)
-				.toHashCode();
+	public ClientInfo asClientInfo() {
+		return new ClientInfo(this.getName(), this.getEmail(), this.getRefPerson(), this.getPw());
 	}
+	
 }

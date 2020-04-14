@@ -8,6 +8,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 import java.util.List;
+import java.util.Optional;
 
 import LogisticCompany.App.ArchivableObject;
 import LogisticCompany.App.Database;
@@ -18,6 +19,7 @@ import LogisticCompany.domain.Container;
 import LogisticCompany.domain.Journey;
 import LogisticCompany.info.ClientInfo;
 import dtu.library.acceptance_tests.helper.ErrorMessageHolder;
+import dtu.library.dto.UserInfo;
 import LogisticCompany.domain.Address;
 
 public class StepsDefinition {
@@ -127,8 +129,11 @@ public class StepsDefinition {
 
 	@Then("the client is registered in the system")
 	public void the_client_is_registered_in_the_system() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    Optional<ClientInfo> usr = logisticCompanyApp.getClientsStream().findFirst();
+	    assertTrue(usr.isPresent());
+	    ClientInfo c = usr.get();
+	    assertEquals(client.getName(), user.getName());
+	    assertEquals(client.getEmail(), user.getEmail());
 	}
 
 
