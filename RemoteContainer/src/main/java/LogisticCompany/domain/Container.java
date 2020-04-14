@@ -10,6 +10,7 @@ import LogisticCompany.App.Database;
 public class Container implements ArchivableObject{
 	
 	private int id;
+	private String cargo;
 	private static List<String> InTemp = new ArrayList<String>();
 	private static List<String> AirHum = new ArrayList<String>();
 	private static List<String> AtmPre = new ArrayList<String>();
@@ -118,6 +119,14 @@ public class Container implements ArchivableObject{
 				.append(AirHum)
 				.append(a)
 				.toHashCode();
+	}
+
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
 	}
 
 

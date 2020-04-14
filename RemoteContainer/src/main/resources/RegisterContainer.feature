@@ -1,11 +1,11 @@
 Feature: Register container for Journey
 
 Scenario: Register a container for a journey
-	Given that the client "Hi" with ID "int" is logged in
-	And there is a journey with port of origin country "Denmark", harbor "Copenhagen" and destination country "Australia" and "harbour" 
-	And there is a container with content "Apples", of company "SuperFruit" 
+	Given a client is logged in
+	And there is a journey with port of origin harbor "Copenhagen" and destination  "harbour" 
+	And there is a container with content "Apples"
 	When the client registers the container for the journey 
-	Then the container should be added to the journey
+	Then the container is a registered container for the journey
 
   #Scenario: Successfull registration 
     #Given client name "BananaExpress"
