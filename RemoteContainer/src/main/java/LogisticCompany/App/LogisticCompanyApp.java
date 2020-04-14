@@ -1,4 +1,8 @@
 package LogisticCompany.App;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import LogisticCompany.domain.Client;
 import LogisticCompany.domain.Container;
 import LogisticCompany.domain.Journey;
@@ -14,6 +18,12 @@ public class LogisticCompanyApp {
 	private ClientRepository clientRepository;
 	private JourneyRepository journeyRepository;
 	private ContainerRepository containerRepository;
+
+	private Database database;
+
+	private CalenderDate calenderDate = new CalenderDate();
+	
+
 	
 	public LogisticCompanyApp(ClientRepository clientRepository, JourneyRepository journeyRepository, ContainerRepository containerRepository ) {
 		this.containerRepository = containerRepository;
@@ -31,18 +41,23 @@ public class LogisticCompanyApp {
 	}
 	
 	
-	private Client searchClient(ClientInfo cc) {
-		return clientRepository.getClient(cc.getEmail());
-		
+	private Client findClient(ClientInfo cc) {
+		return clientRepository.getClient(cc.getEmail());	
 	}
 	
 //	private Container searchContainer() {
 //		
 //	}
 
-	private Journey searchJourney(JourneyInfo j) {
-		
+	private Journey findJourney(JourneyInfo j) {
 		return journeyRepository.getJourney(j.getCargo());
+	}
+	
+	public List<Object> searchClient(String searchEmail) {
+		return clientRepository.getAllClientsStream()
+				.filter(b -> b.matchClient(searchEmail))
+				.map(b -> b.getEmail())
+				.collect(Collectors.toList());
 	}
 	
 //	public void registerUser(UserInfo u) throws Exception {
@@ -54,13 +69,12 @@ public class LogisticCompanyApp {
 //			clientRepository.addClient(u.asUser());
 //	}
 	
-	
 	public void registerClient(ClientInfo cc) throws OperationNotAllowedException {
 		checkLogisticCompanyLoggedIn();
 		// register group ....
 		
 		//repository done
-		clientRepository.addClient(cc.asClient());
+		clientRepository.addClient(cc);
 		
 	}
 	
@@ -85,20 +99,38 @@ public class LogisticCompanyApp {
 		journeyRepository.addJourney(j.asJourney());
 	}
 	
-	public void removeClient() {
-		
-	}
-	public void removeContainer() {
-		
-	}
-	public void removeJourney() {
-		
+	public void unregisterClient(ClientInfo cc, JourneyInfo j)throws Exception {
+		Client client = findClient(cc);
+		logisticCompanyLoggedIn();
+		if (!isJourneyDone(j) )
+		{
+			throw new Exception("Can not unregister a client when a journey is on going");
+		}
+		clientRepository.removeClient(client);
 	}
 	
-	public void updateJourney() {
-		
+	public boolean isJourneyDone(JourneyInfo j) {
+		if (j.getCurrentLocation().equals(j.getEndDestination()))
+		{
+			return true; 
+		}
+		else { return false; }
+	}
+	
+	public void setNewLocation() {
 		
 	}
+
+	public void updateJourneyInfo(JourneyInfo j) {
+		logisticCompanyLoggedIn();
+		Journey journey = findJourney(j);
+//		Client client = searchClient(cc);
+		journey.addLocationToLog(journey , calenderDate.getCurrentDate());
+		journeyRepository.updateJourney(journey); 		
+		// need more
+		// if journey done automatically terminates and give info
+	}
+	
 	
 	public boolean logisticCompanyLogin(String password) {
 		loggedIn = password.equals("logisticCompany123");

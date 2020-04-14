@@ -16,7 +16,7 @@ public class Journey implements ArchivableObject{
 	private String endDestination;
 	private boolean isRegistered;
 	private String cargo;
-//	private String dateTime;
+	private String dateTime;
 	private String currentLocation;
 	private boolean endDestinationReached;
 	private ArrayList<String> journeyLog = new ArrayList<String>();
@@ -105,17 +105,17 @@ public class Journey implements ArchivableObject{
 		
 	}
 	
-//	public void setCurrentDate() {
-//		
-//		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
-//		Date date = new Date(System.currentTimeMillis());
-//		String  dateTime= formatter.format(date);
-//		this.dateTime = dateTime; 
-//	}
+	public void setCurrentDate() {
+		
+		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+		Date date = new Date(System.currentTimeMillis());
+		String  dateTime= formatter.format(date);
+		this.dateTime = dateTime; 
+	}
 
-//	public String getCurrentDate() {
-//		return dateTime; 
-//	}
+	public String getCurrentDate() {
+		return dateTime; 
+	}
 	
 	public void setCurrentLocation(String currentLocation) {
 		this.currentLocation = currentLocation;
@@ -125,21 +125,27 @@ public class Journey implements ArchivableObject{
 		return currentLocation;
 		
 	}
-// !!! 
-	public void updateJourneyInfo() {
-		String currentInfo = this.currentLocation+ " " + this.dateTime ;
-		journeyLog.add(currentInfo); 
-		isJourneyDone();
-
+	
+	public void addLocationToLog(Journey journey , String currentDateTime) {	
+		String currentInfo = journey.getCurrentLocation() + " " +currentDateTime;
+		journeyLog.add(currentInfo);
 	}
+	
+//// !!! 
+//	public void updateJourneyInfo() {
+//		String currentInfo = this.currentLocation+ " " + this.dateTime ;
+//		journeyLog.add(currentInfo); 
+//		isJourneyDone();
+//
+//	}
 
-	public void isJourneyDone() {
-		if (currentLocation.equals(endDestination))
-		{
-			endDestinationReached = true; 
-		}
-		else { endDestinationReached = false; }
-	}
+//	public void isJourneyDone() {
+//		if (currentLocation.equals(endDestination))
+//		{
+//			endDestinationReached = true; 
+//		}
+//		else { endDestinationReached = false; }
+//	}
 // .............................................................................................................................//	
 	public void archive() {
 		String fileName = "Journey_" + this.id + ".json";
@@ -187,7 +193,7 @@ public class Journey implements ArchivableObject{
 		journey.setStartDestination("DK");
 		journey.setEndDestination("AUS");
 		journey.setCurrentLocation("AUS");
-		journey.isJourneyDone();
+//		journey.isJourneyDone();
 		System.out.println(journey.endDestinationReached);
 		
 	}

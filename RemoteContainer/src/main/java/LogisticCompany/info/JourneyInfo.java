@@ -1,12 +1,13 @@
 package LogisticCompany.info;
 
-import LogisticCompany.domain.Client;
+
 import LogisticCompany.domain.Journey;
 
 public class JourneyInfo {
 	private String startDestination;
 	private String endDestination;
 	private String cargo;
+	private String currentLocation;
 	private int id;
 	
 	public JourneyInfo(int id, String startDestination, String endDestination, String cargo) {
@@ -30,7 +31,11 @@ public class JourneyInfo {
 	public String getStartDestination() {
 		return startDestination;
 	}
-
+	
+	public String getCurrentLocation(){
+		return currentLocation;
+		
+	}
 	public String getEndDestination() {
 		return endDestination;
 	}

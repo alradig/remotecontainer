@@ -1,4 +1,3 @@
-
 Feature: Register client
   
 	The system should allow logistic companies to register new clients.
@@ -9,6 +8,6 @@ Feature: Register client
 	Scenario: Successful register a client
 		Given the administrator is logged in
 		And There is a client with name "Brothers FarmBrothers Farm", email "old@email.comold@email.com", reference person "Jason", password "gwr" 
-		And the client address is "Kollegiebakken" 9, "Lyngby"
+		And the client address is "Kollegiebakken 9", 2800, "Lyngby"
 		When the administrator registers the client 
 		Then the client is registered in the system
