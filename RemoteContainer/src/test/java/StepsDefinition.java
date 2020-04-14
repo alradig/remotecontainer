@@ -11,11 +11,12 @@ import java.util.List;
 
 import LogisticCompany.App.ArchivableObject;
 import LogisticCompany.App.Database;
+import LogisticCompany.App.LogisticCompanyApp;
 import LogisticCompany.App.ResponseObject;
 import LogisticCompany.domain.Client;
 import LogisticCompany.domain.Container;
 import LogisticCompany.domain.Journey;
-import dtu.library.domain.Address;
+import LogisticCompany.domain.Address;
 
 public class StepsDefinition {
 
@@ -31,7 +32,7 @@ public class StepsDefinition {
 	
 	@Given("client name {string}")
 	public void client_name(String name) {
-	    client.setName(name);
+	    this.client.setName(name);
 	}
 	
 	@Given("start destination {string}")
