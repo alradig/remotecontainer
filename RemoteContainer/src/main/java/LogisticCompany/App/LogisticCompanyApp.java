@@ -1,4 +1,6 @@
 package LogisticCompany.App;
+import java.util.ArrayList;
+
 import LogisticCompany.domain.Client;
 import LogisticCompany.domain.Container;
 import LogisticCompany.domain.Journey;
@@ -8,12 +10,15 @@ import LogisticCompany.info.ClientInfo;
 import LogisticCompany.info.JourneyInfo;
 
 
+
 public class LogisticCompanyApp {
 
 	private boolean loggedIn = false;
 	private ClientRepository clientRepository;
 	private JourneyRepository journeyRepository;
 	private ContainerRepository containerRepository;
+	private CalenderDate calenderDate = new CalenderDate();
+	
 	
 	public LogisticCompanyApp(ClientRepository clientRepository, JourneyRepository journeyRepository, ContainerRepository containerRepository ) {
 		this.containerRepository = containerRepository;
@@ -85,20 +90,38 @@ public class LogisticCompanyApp {
 		journeyRepository.addJourney(j.asJourney());
 	}
 	
-	public void removeClient() {
-		
-	}
-	public void removeContainer() {
-		
-	}
-	public void removeJourney() {
-		
+	public void unregisterClient(ClientInfo cc, JourneyInfo j)throws Exception {
+		Client client = searchClient(cc);
+		logisticCompanyLoggedIn();
+		if (!isJourneyDone(j) )
+		{
+			throw new Exception("Can not unregister a client when a journey is on going");
+		}
+		clientRepository.removeClient(client);
 	}
 	
-	public void updateJourney() {
-		
+	public boolean isJourneyDone(JourneyInfo j) {
+		if (j.getCurrentLocation().equals(j.getEndDestination()))
+		{
+			return true; 
+		}
+		else { return false; }
+	}
+	
+	public void setNewLocation() {
 		
 	}
+
+	public void updateJourneyInfo(JourneyInfo j) {
+		logisticCompanyLoggedIn();
+		Journey journey = searchJourney(j);
+//		Client client = searchClient(cc);
+		journey.addLocationToLog(journey , calenderDate.getCurrentDate());
+		journeyRepository.updateJourney(journey); 		
+		// need more
+		// if journey done automatically terminates and give info
+	}
+	
 	
 	public boolean logisticCompanyLogin(String password) {
 		loggedIn = password.equals("logisticCompany123");

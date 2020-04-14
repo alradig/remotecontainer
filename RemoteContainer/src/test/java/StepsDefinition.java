@@ -246,7 +246,6 @@ public class StepsDefinition {
 	   
 	}
 	
-	
 	@Then("Data reset")
 	public void data_reset() {
 	    container.ValsReset();

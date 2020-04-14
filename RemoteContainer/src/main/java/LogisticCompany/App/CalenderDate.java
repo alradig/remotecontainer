@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class CalenderDate {
 
-	public String setCurrentDate() {
+	public String getCurrentDate() {
 		
 		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
 		Date date = new Date(System.currentTimeMillis());
