@@ -11,13 +11,17 @@ import java.util.List;
 import java.util.Optional;
 
 import LogisticCompany.App.ArchivableObject;
+import LogisticCompany.App.ClientRepository;
+import LogisticCompany.App.ContainerRepository;
 import LogisticCompany.App.Database;
+import LogisticCompany.App.JourneyRepository;
 import LogisticCompany.App.LogisticCompanyApp;
 import LogisticCompany.App.ResponseObject;
 import LogisticCompany.domain.Client;
 import LogisticCompany.domain.Container;
 import LogisticCompany.domain.Journey;
 import LogisticCompany.info.ClientInfo;
+import LogisticCompany.persistence.InMemoryRepository;
 import dtu.library.acceptance_tests.helper.ErrorMessageHolder;
 import dtu.library.dto.UserInfo;
 import LogisticCompany.domain.Address;
@@ -32,12 +36,13 @@ public class StepsDefinition {
 	private ClientForm clientForm;
 	private Journey journey = new Journey();
 	private LogisticCompany.domain.Address address;
-//	private LogisticCompanyApp logisticCompanyApp;
+	private ClientRepository clientRepository;
+	private InMemoryRepository repository = new InMemoryRepository();
+	
+//	LogisticCompanyApp(ClientRepository clientRepository, JourneyRepository journeyRepository, ContainerRepository containerRepository )
 	private String errorMessage;
 	
-	private LogisticCompanyApp logisticCompanyApp = new LogisticCompanyApp();
-
-
+	private LogisticCompanyApp logisticCompanyApp = new LogisticCompanyApp(repository,repository,repository);
 	
 	@Given("client name {string}")
 	public void client_name(String name) {
@@ -132,8 +137,9 @@ public class StepsDefinition {
 	    Optional<ClientInfo> usr = logisticCompanyApp.getClientsStream().findFirst();
 	    assertTrue(usr.isPresent());
 	    ClientInfo c = usr.get();
-	    assertEquals(client.getName(), user.getName());
-	    assertEquals(client.getEmail(), user.getEmail());
+	    assertEquals(client.getName(), c.getName());
+	    assertEquals(client.getEmail(), c.getEmail());
+	    assertEquals(client.getReference_person(), c.getReference_person());
 	}
 
 
@@ -165,6 +171,7 @@ public class StepsDefinition {
 		} catch (Exception e) {
 //			errorMessage.setErrorMessage(e.getMessage());
 			errorMessage = e.getMessage();
+			System.out.println(errorMessage);
 		}
 	}
 	

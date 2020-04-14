@@ -1,11 +1,8 @@
 package LogisticCompany.domain;
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import LogisticCompany.App.ArchivableObject;
 import LogisticCompany.App.Database;
 import LogisticCompany.info.ClientInfo;
-import dtu.library.dto.BookInfo;
-import dtu.library.dto.MediumInfo;
 
 
 public class Client implements ArchivableObject{

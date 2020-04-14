@@ -9,7 +9,7 @@ public interface ClientRepository {
 	
 	boolean contains(Client client);
 	
-	void addClient(ClientInfo cc);
+	void addClient(Client cc);
 
 	Stream<Client> getAllClientsStream();
 

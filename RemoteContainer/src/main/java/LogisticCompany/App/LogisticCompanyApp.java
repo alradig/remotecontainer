@@ -12,7 +12,6 @@ import LogisticCompany.domain.Journey;
 import LogisticCompany.info.ContainerInfo;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.info.JourneyInfo;
-import dtu.library.dto.UserInfo;
 
 
 public class LogisticCompanyApp {
@@ -56,12 +55,12 @@ public class LogisticCompanyApp {
 		return journeyRepository.getJourney(j.getCargo());
 	}
 	
-	public List<Object> searchClient(String searchEmail) {
-		return clientRepository.getAllClientsStream()
-				.filter(c -> c.match(searchEmail))
-				.map(c -> c.asClientInfo())
-				.collect(Collectors.toList());
-	}
+//	public List<Object> searchClient(String searchEmail) {
+//		return clientRepository.getAllClientsStream()
+//				.filter(c -> c.match(searchEmail))
+//				.map(c -> c.asClientInfo())
+//				.collect(Collectors.toList());
+//	}
 	
 //	public void registerUser(UserInfo u) throws Exception {
 //			checkLogisticCompanyLoggedIn();
@@ -74,13 +73,13 @@ public class LogisticCompanyApp {
 	
 	public void registerClient(ClientInfo cc) throws OperationNotAllowedException {
 		checkLogisticCompanyLoggedIn();
+		
 //		Client client = findUser(u);
 //		if (user != null) {
 //			throw new Exception("User is already registered");
 //		}
-//	
-		clientRepository.addClient(cc);
 		
+		clientRepository.addClient(cc.asClient());
 	}
 	
 	public void registerContainer(ContainerInfo c) throws OperationNotAllowedException {
@@ -163,7 +162,7 @@ public class LogisticCompanyApp {
 	}
 
 	public Stream<ClientInfo> getClientsStream() {
-		return this.clientRepository.getAllClientsStream().map(u -> new UserInfo(u));
+		return this.clientRepository.getAllClientsStream().map(c -> new ClientInfo(c));
 	}
 
 }

@@ -62,7 +62,6 @@ public class ClientInfo {
 	}
 	
 	public Client asClient() {
-	
 		return new Client(name, email, reference_person, password);
 	}
 	
