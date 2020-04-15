@@ -31,9 +31,9 @@ public class StepsDefinition {
 
 //------------------------------------------------------------------------------------------//
 // Following steps are for M2 Journey Management
-	private ContainerInfo ContainerInfo;
-	private JourneyInfo JourneyInfo;
-	private ClientInfo client;
+	private ContainerInfo containerInfo;
+	private JourneyInfo journeyInfo;
+	private ClientInfo clientInfo;
 	private ResponseObject response = new ResponseObject(100, "There is a problem");
 	private ClientForm clientForm;
 	private Journey journey = new Journey();
@@ -58,19 +58,22 @@ public class StepsDefinition {
 
 	@Given("there is a journey with port of origin harbor {string} and destination  {string}")
 	public void there_is_a_journey_with_port_of_origin_harbor_and_destination(String Port_of_origin, String destination) throws Exception {
-	   JourneyInfo = new JourneyInfo(Port_of_origin,destination);
+	   journeyInfo = new JourneyInfo(Port_of_origin,destination);
+	   assertEquals(journeyInfo.getStartDestination(),Port_of_origin);
+	   assertEquals(journeyInfo.getEndDestination(),destination);
 	   
 	}
 
 	@Given("there is a container with content {string}")
 	public void there_is_a_container_with_content(String content) throws Exception {
-	ContainerInfo = new ContainerInfo(content);
+	containerInfo = new ContainerInfo(content);
+	assertEquals(containerInfo.getCargo(),content);
 	}
+	
 
 	@When("the client registers the container for the journey")
 	public void the_client_registers_the_container_for_the_journey() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	   
 	}
 
 	@Then("the container is a registered container for the journey")
@@ -81,22 +84,16 @@ public class StepsDefinition {
 /*
  * OLD
  */
-	
-	
-	
-	
-	
-	
-	
-	
 	@Given("client name {string}")
 	public void client_name(String name) {
-	    this.client.setName(name);
+	    this.clientInfo.setName(name);
 	}
 	
 	@Given("start destination {string}")
 	public void start_destination(String startDestination) {
-	    journey.setStartDestination(startDestination);
+	   
+		
+		journey.setStartDestination(startDestination);
 	}
 
 	@Given("end destination {string}")
@@ -186,12 +183,12 @@ public class StepsDefinition {
 
 	 public void there_is_a_client_with_name_email_reference_person_password(String name, String email, String ref_person, String password) {
 
-	   client = new ClientInfo(name, email, ref_person, password);
+	   clientInfo = new ClientInfo(name, email, ref_person, password);
 
-	     assertEquals(client.getName(),name);
-	     assertEquals(client.getEmail(),email);
-	     assertEquals(client.getReference_person(),ref_person);
-	     assertEquals(client.getPassword(),password);
+	     assertEquals(clientInfo.getName(),name);
+	     assertEquals(clientInfo.getEmail(),email);
+	     assertEquals(clientInfo.getReference_person(),ref_person);
+	     assertEquals(clientInfo.getPassword(),password);
 
 	}
 
@@ -200,132 +197,31 @@ public class StepsDefinition {
 	    Optional<ClientInfo> usr = logisticCompanyApp.getClientsStream().findFirst();
 	    assertTrue(usr.isPresent());
 	    ClientInfo c = usr.get();
-	    assertEquals(client.getName(), c.getName());
-	    assertEquals(client.getEmail(), c.getEmail());
-	    assertEquals(client.getReference_person(), c.getReference_person());
+	    assertEquals(clientInfo.getName(), c.getName());
+	    assertEquals(clientInfo.getEmail(), c.getEmail());
+	    assertEquals(clientInfo.getReference_person(), c.getReference_person());
 	}
 
 	@Given("the client address is {string}, {int}, {string}")
 	public void the_client_address_is(String street, int postcode, String city) {
 		this.address = new Address(street,postcode,city);
-		this.client.setAddress(address);
+		this.clientInfo.setAddress(address);
 		
-		assertEquals(client.getAddress().getStreet(),street);
-		assertEquals(client.getAddress().getPostCode(),postcode);
-		assertEquals(client.getAddress().getCity(),city);	
+		assertEquals(clientInfo.getAddress().getStreet(),street);
+		assertEquals(clientInfo.getAddress().getPostCode(),postcode);
+		assertEquals(clientInfo.getAddress().getCity(),city);	
 	}
 	
 	@When("the administrator registers the client")
 	public void the_administrator_registers_the_client() {
 		try {
-			this.logisticCompanyApp.registerClient(client);
+			this.logisticCompanyApp.registerClient(clientInfo);
 		} catch (Exception e) {
 //			errorMessage.setErrorMessage(e.getMessage());
 			errorMessage = e.getMessage();
 		}
 	}
-	
-	@Given("I have chosen to register a client")
-	public void I_have_chosen_to_register_a_client(){
-	   client.setRegister(true);
-	   clientForm = new ClientForm(this.client);
-	}
 
-	@When("I enter the following client information:")
-	public void i_enter_the_following_client_information(io.cucumber.datatable.DataTable dataTable) {
-	    List<List<String>> clientInfo = dataTable.asLists(String.class);
-	    
-	    this.clientForm.setNameField(clientInfo.get(1).get(1));
-	    this.clientForm.setEmailField(clientInfo.get(1).get(2));
-	    this.clientForm.setAddressField(clientInfo.get(1).get(3));
-	    this.clientForm.setRefPersonField(clientInfo.get(1).get(4));
-	    this.clientForm.setPwField(clientInfo.get(1).get(5)); 	
-
-	}
-	@When("I submit the form")
-	public void I_submit_the_form() {
-		response = clientForm.submit();
-	}
-
-	/*
-	 * Step Definitions for Update a clients information
-	 */
-	@Given("the client:")
-	public void a_client_with_the_following_information(DataTable dataTable) {
-	    List<List<String>> clientInfo = dataTable.asLists(String.class);
-	    
-	    // Use the for loop for multiple clients
-	    //for(int i=1; i<clientInfo.size(); i++) { //i=0 is the header
-	    	this.client.setId(Integer.parseInt(clientInfo.get(1).get(0)));
-	    	this.client.setName(clientInfo.get(1).get(1));
-	        this.client.setEmail(clientInfo.get(1).get(2));
-	        this.client.setAddress(clientInfo.get(1).get(3));
-	        this.client.setRefPerson(clientInfo.get(1).get(4));
-	        this.client.setPw(clientInfo.get(1).get(5)); 	
-
-		//}
-	}
-	
-	@Given("I have chosen to update the client information")
-	public void i_have_chosen_to_update_a_client_information() {
-		clientForm = new ClientForm(this.client);
-	}
-
-	@When("I enter the new client name as {string}")
-	public void i_enter_the_new_name(String new_name) {
-		this.clientForm.setNameField(new_name);
-	}
-
-	@When("I enter the new client email as {string}")
-	public void i_enter_the_new_email(String new_email) {
-		this.clientForm.setEmailField(new_email);
-	}
-	
-	@Given("I enter the new client address as {string}")
-	public void i_enter_the_new_address_as(String new_address) {
-	    this.clientForm.setAddressField(new_address);
-	}
-		
-	@Given("I enter the new client reference person as {string}")
-	public void i_enter_the_new_Reference_person_as(String new_ref_person) {
-		this.clientForm.setRefPersonField(new_ref_person);
-	}
-
-	@Then("the client name should be {string}")
-	public void the_client_name_should_be(String correct_name) {
-	    assertEquals(this.client.getName(),correct_name);
-	}
-
-	@Then("the client email should be {string}")
-	public void the_client_email_should_be(String new_email) {
-		assertEquals(this.client.getEmail(),new_email);
-	}
-	
-	@Then("the client address should be {string}")
-	public void the_client_address_should_be(String new_address) {
-		assertEquals(this.client.getAddress(),new_address);
-	}
-
-	@Then("the client reference person should be {string}")
-	public void the_client_Reference_person_should_be(String new_ref_person) {
-		assertEquals(this.client.getRefPerson(),new_ref_person);
-	}
-	
-	@Then("the client password should be {string}")
-	public void the_client_password_should_be(String new_pw) {
-		assertEquals(this.client.getPw(),new_pw);
-	}
-	
-	@Then("I should see a success message")
-	public void i_should_see_a_success_message() {
-		assertEquals(this.response.getErrorCode(),200);
-	}
-	
-	@Then("I should see an error message")
-	public void i_should_see_an_error_message() {
-		assertEquals(this.response.getErrorCode(),100);
-	}
-	
 	//------------------------------------------------------------------------------------------------------------------------------//
 		// Following steps are for M3	
 	
@@ -382,8 +278,8 @@ public class StepsDefinition {
 	    // creates the database structure if it doesn't yet exists
 	    databaseHandler.createDatabaseStructure();
 	    
-	    clientForm = new ClientForm(this.client);
-	    this.client.setId(Integer.parseInt(clientInfo.get(1).get(0)));
+	    clientForm = new ClientForm(this.clientInfo);
+	    this.clientInfo.setId(Integer.parseInt(clientInfo.get(1).get(0)));
 	    this.clientForm.setNameField(clientInfo.get(1).get(1));
 	    this.clientForm.setEmailField(clientInfo.get(1).get(2));
 	    this.clientForm.setAddressField(clientInfo.get(1).get(3));
@@ -392,7 +288,7 @@ public class StepsDefinition {
 	    
 	    response = clientForm.submit();
 	    if (this.response.getErrorCode() == 200) {
-	    	this.client.archive();
+	    	this.clientInfo.archive();
 	    }
 	    
 	    assertEquals(this.response.getErrorCode(),200);
@@ -400,11 +296,11 @@ public class StepsDefinition {
 
 	@Then("the client information should be in the external database")
 	public void the_client_information_should_be_in_the_external_database() { 
-		String filePath = "Clients/" + "Client_" + this.client.getId() + ".json";
+		String filePath = "Clients/" + "Client_" + this.clientInfo.getId() + ".json";
 
 		this.storedClient = databaseHandler.readFile(this.storedClient, filePath);
 
-		assertEquals(true,this.client.equals(storedClient));
+		assertEquals(true,this.clientInfo.equals(storedClient));
 	}
 	
 }
