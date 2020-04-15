@@ -51,7 +51,7 @@ public class JourneyInfo {
 	}
 	
 	public Journey asJourney() {
-		return new Journey(id,startDestination,endDestination,cargo);
+		return new Journey(startDestination,endDestination,cargo);
 	}
 	
 	

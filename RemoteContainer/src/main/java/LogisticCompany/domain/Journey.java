@@ -42,6 +42,12 @@ public class Journey implements ArchivableObject{
 	
 	public Journey() {}; 
 	
+	public Journey(String startDestination, String endDestination, String cargo) {
+		this.id = 3; //automatic generation method to be implemented
+		this.startDestination = startDestination;
+		this.endDestination = endDestination;
+		this.cargo = cargo;
+	}
 //	public Journey() {
 //		this.id = 0;
 //		this.endDestinationReached = false;
@@ -83,9 +89,9 @@ public class Journey implements ArchivableObject{
 		return id;
 	}
 	
-	public void setId(int id) {
-		this.id = id;
-	}
+////	public void setId(int id) {
+////		this.id = id;
+//	}
 // !! 
 	public void registerJourney(Journey journey, Container container) {
 		if (journeyInformationNotComplete(journey) & Container.containerRegistered(container))

@@ -51,9 +51,13 @@ public class LogisticCompanyApp {
 //	private Container searchContainer() {
 //		
 //	}
+	
+	private Container findContainer(ContainerInfo container) {
+		return containerRepository.getContainer(container.getId());
+	}
 
 	private Journey findJourney(JourneyInfo j) {
-		return journeyRepository.getJourney(j.getCargo());
+		return journeyRepository.getJourney(j.getId());
 	}
 	
 	public List<ClientInfo> searchClient(String searchEmail) {
@@ -182,12 +186,15 @@ public class LogisticCompanyApp {
 		clientLoggedIn = false;
 	}
 
-	public void registerContainerToJourney(Container container, Journey journey) {
-		journey.setContainer(container);
-		
-		// registers the container and journey in the database here!
-		
+	public void registerContainerToJourney(ContainerInfo container, JourneyInfo journey) throws OperationNotAllowedException{
+		registerContainer(container);
+		registerJourney(journey);
+		Journey journeyObj = findJourney(journey);
+		Container containerObj = findContainer(container);
+		journeyObj.setContainer(containerObj);
 		
 	}
+
+	
 
 }

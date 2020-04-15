@@ -60,6 +60,7 @@ public class StepsDefinition {
 	@Given("there is a journey with port of origin harbor {string} and destination  {string}")
 	public void there_is_a_journey_with_port_of_origin_harbor_and_destination(String Port_of_origin, String destination) throws Exception {
 	   journeyInfo = new JourneyInfo(Port_of_origin,destination);
+	   
 	   assertEquals(journeyInfo.getStartDestination(),Port_of_origin);
 	   assertEquals(journeyInfo.getEndDestination(),destination);
 	   
@@ -74,8 +75,16 @@ public class StepsDefinition {
 
 	@When("the client registers the container for the journey")
 	public void the_client_registers_the_container_for_the_journey() {
-		logisticCompanyApp.registerContainerToJourney(containerInfo.asContainer(), journeyInfo.asJourney());
+		try {
+			logisticCompanyApp.registerContainerToJourney(containerInfo, journeyInfo);
+		} catch (Exception e) {
+//			errorMessage.setErrorMessage(e.getMessage());
+			this.errorMessage = e.getMessage();
+		}
 	}
+		
+		
+		
 
 /*
  * OLD

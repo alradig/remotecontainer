@@ -19,7 +19,7 @@ public interface ContainerRepository {
 
 	void clearContainerDatabase();
 	
-	Container getContainer(int id);
+	Container getContainer(String cargo);
 	
 
 }

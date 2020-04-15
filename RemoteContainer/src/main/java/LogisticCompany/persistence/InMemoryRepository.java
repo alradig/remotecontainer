@@ -119,16 +119,16 @@ public class InMemoryRepository implements ClientRepository, ContainerRepository
 	}
 
 	@Override
-	public Container getContainer(int id) {
-		return null;
-//		return users.stream().filter(u -> u.getCpr().equals(cpr)).findFirst().orElse(null);
+	public Container getContainer(String cargo) {
+	
+	return containers.stream().filter(c -> c.getCargo().equals(cargo)).findFirst().orElse(null);
 	}
 
 
 	@Override
 	public Journey getJourney(String cargo) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return journeys.stream().filter(j -> j.getCargo().equals(cargo)).findFirst().orElse(null);
 	}
 
 	@Override

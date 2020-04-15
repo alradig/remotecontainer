@@ -25,6 +25,10 @@ public class Container implements ArchivableObject{
 	public Container() {
 		
 	}
+
+	public Container(String cargo) {
+		this.cargo = cargo;
+	}
 	
 	public void addTemp(String currentTemp) {
 		Temp.add(currentTemp);
