@@ -28,7 +28,7 @@ public class Container implements ArchivableObject{
 	
 	public void addTemp(String currentTemp) {
 		Temp.add(currentTemp);
-
+	}
 	
 	public void addAirHum(String currentAirHum) {
 		AirHum.add(currentAirHum);
