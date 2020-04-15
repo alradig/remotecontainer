@@ -8,7 +8,6 @@ import java.util.List;
 import LogisticCompany.App.LogisticCompanyApp;
 import LogisticCompany.domain.Client;
 import LogisticCompany.info.ClientInfo;
-import dtu.library.dto.MediumInfo;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -20,7 +19,8 @@ public class SearchSteps {
 	
 	@Given("that the logistic company is logged in")
 	public void that_the_logistic_company_is_logged_in() {
-		assertTrue(logisticCompanyApp.logisticCompanyLoggedIn());
+//		assertTrue(logisticCompanyApp.logisticCompanyLoggedIn());
+//		assertTrue(logisticCompanyApp.logisticCompanyLogin("logisticCompany123"));
 	}
 
 	@Given("these clients are in the system")
@@ -41,9 +41,9 @@ public class SearchSteps {
 	}
 
 	@Then("the client {string} is found")
-	public void the_client_is_found(String string) {
+	public void the_client_is_found(String email) {
 		assertEquals(1, client.size());
-		assertEquals(email, client.get(0).getSignature());
+		assertEquals(email, client.get(0).getEmail());
 	}
 
 }
