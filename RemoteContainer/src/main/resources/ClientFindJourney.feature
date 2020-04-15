@@ -1,18 +1,18 @@
-Feature: Client can view container journey
-	
-	 Scenario: Successful finding journey
-    Given client with the cargo "Banana"
-    And start destination "Denmark"
-    And end destination "Australia"
-    And journey registered as true
-    And information is saved
-    When retrieve journey information
-    Then all related journeys are displayed
+[10.51] Ida Engholm Villumsen
+    
+Feature: Client can search for a journey
 
- 	 Scenario: No journey registered
-    Given client with the cargo "Banana"
-    And start destination "Denmark"
-    And end destination "Australia"
-    And journey registered as false
-    When searching for the journey
-    Then system displays that journey is not registered
+
+Background: The client has a set of journeys
+    Given that the logistic company is not logged in 
+    And these journeys are in the system
+        | Banana | Copenhagen | Sydney |
+        | Tables | Beijing | New York |
+        | Chairs | Moscow | Oslo | 
+    And the logistic company logs out 
+    
+Scenario: Searching for journey
+    Given that the logistic company is logged in 
+    When the client search for "Chairs"
+    Then the journey with start destination "Moscow" and end destination "Oslo" is found
+

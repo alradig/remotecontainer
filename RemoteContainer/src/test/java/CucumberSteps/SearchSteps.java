@@ -1,5 +1,6 @@
 package CucumberSteps;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -41,7 +42,8 @@ public class SearchSteps {
 
 	@Then("the client {string} is found")
 	public void the_client_is_found(String string) {
-	   
+		assertEquals(1, client.size());
+		assertEquals(email, client.get(0).getSignature());
 	}
 
 }
