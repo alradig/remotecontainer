@@ -88,7 +88,9 @@ public class StepsDefinition {
 	
 	@Given("start destination {string}")
 	public void start_destination(String startDestination) {
-	    journey.setStartDestination(startDestination);
+	   
+		
+		journey.setStartDestination(startDestination);
 	}
 
 	@Given("end destination {string}")
