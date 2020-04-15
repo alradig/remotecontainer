@@ -6,6 +6,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import LogisticCompany.App.ArchivableObject;
 import LogisticCompany.App.Database;
+import LogisticCompany.info.ContainerInfo;
 
 public class Container implements ArchivableObject{
 	
@@ -27,7 +28,7 @@ public class Container implements ArchivableObject{
 	
 	public void addTemp(String currentTemp) {
 		Temp.add(currentTemp);
-	}
+
 	
 	public void addAirHum(String currentAirHum) {
 		AirHum.add(currentAirHum);

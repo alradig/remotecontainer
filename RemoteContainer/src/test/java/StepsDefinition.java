@@ -71,6 +71,12 @@ public class StepsDefinition {
 	assertEquals(containerInfo.getCargo(),content);
 	}
 	
+
+	@When("the client registers the container for the journey")
+	public void the_client_registers_the_container_for_the_journey() {
+		logisticCompanyApp.registerContainerToJourney(containerInfo.asContainer(), journeyInfo.asJourney());
+	}
+
 /*
  * OLD
  */
