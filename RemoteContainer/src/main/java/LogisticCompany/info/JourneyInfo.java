@@ -10,11 +10,11 @@ public class JourneyInfo {
 	private String currentLocation;
 	private int id;
 	
-	public JourneyInfo(int id, String startDestination, String endDestination, String cargo) {
+	public JourneyInfo(String startDestination, String endDestination) {
 		this.id = id;
 		this.startDestination = startDestination;
 		this.endDestination = endDestination;
-		this.cargo = cargo; 
+		
 	}
 	
 	public JourneyInfo(Journey journey) {

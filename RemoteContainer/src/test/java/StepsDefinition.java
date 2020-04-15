@@ -21,16 +21,19 @@ import LogisticCompany.domain.Client;
 import LogisticCompany.domain.Container;
 import LogisticCompany.domain.Journey;
 import LogisticCompany.info.ClientInfo;
+import LogisticCompany.info.JourneyInfo;
 import LogisticCompany.persistence.InMemoryRepository;
 import dtu.library.acceptance_tests.helper.ErrorMessageHolder;
 import dtu.library.dto.UserInfo;
 import LogisticCompany.domain.Address;
-
+import LogisticCompany.domain.Container;
+import LogisticCompany.info.ContainerInfo;
 public class StepsDefinition {
 
 //------------------------------------------------------------------------------------------//
-// Following steps are for M2 Journey Management	
-
+// Following steps are for M2 Journey Management
+	private ContainerInfo ContainerInfo;
+	private JourneyInfo JourneyInfo;
 	private ClientInfo client;
 	private ResponseObject response = new ResponseObject(100, "There is a problem");
 	private ClientForm clientForm;
@@ -43,6 +46,49 @@ public class StepsDefinition {
 	private String errorMessage;
 	
 	private LogisticCompanyApp logisticCompanyApp = new LogisticCompanyApp(repository,repository,repository);
+	
+	/*
+	 * NEW REGISTER CONTAINER
+	 */
+	
+	@Given("a client is logged in")
+	public void a_client_is_logged_in() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Given("there is a journey with port of origin harbor {string} and destination  {string}")
+	public void there_is_a_journey_with_port_of_origin_harbor_and_destination(String Port_of_origin, String destination) throws Exception {
+	   JourneyInfo = new JourneyInfo(Port_of_origin,destination);
+	   
+	}
+
+	@Given("there is a container with content {string}")
+	public void there_is_a_container_with_content(String content) throws Exception {
+	ContainerInfo = new ContainerInfo(content);
+	}
+
+	@When("the client registers the container for the journey")
+	public void the_client_registers_the_container_for_the_journey() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("the container is a registered container for the journey")
+	public void the_container_is_a_registered_container_for_the_journey() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+/*
+ * OLD
+ */
+	
+	
+	
+	
+	
+	
+	
 	
 	@Given("client name {string}")
 	public void client_name(String name) {
