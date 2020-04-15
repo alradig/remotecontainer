@@ -1,6 +1,5 @@
 package LogisticCompany.info;
 
-import LogisticCompany.domain.Client;
 import LogisticCompany.domain.Container;
 
 public class ContainerInfo {

@@ -55,12 +55,13 @@ public class LogisticCompanyApp {
 		return journeyRepository.getJourney(j.getCargo());
 	}
 	
-//	public List<Object> searchClient(String searchEmail) {
-//		return clientRepository.getAllClientsStream()
-//				.filter(c -> c.match(searchEmail))
-//				.map(c -> c.asClientInfo())
-//				.collect(Collectors.toList());
-//	}
+	public List<ClientInfo> searchClient(String searchEmail) {
+		return clientRepository.getAllClientsStream()
+				.filter(c -> c.matchClient(searchEmail))
+				.map(c -> c.asClientInfo())
+				.collect(Collectors.toList());
+	}
+
 	
 //	public void registerUser(UserInfo u) throws Exception {
 //			checkLogisticCompanyLoggedIn();

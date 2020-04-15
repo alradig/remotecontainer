@@ -23,8 +23,7 @@ import LogisticCompany.domain.Journey;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.info.JourneyInfo;
 import LogisticCompany.persistence.InMemoryRepository;
-import dtu.library.acceptance_tests.helper.ErrorMessageHolder;
-import dtu.library.dto.UserInfo;
+
 import LogisticCompany.domain.Address;
 import LogisticCompany.domain.Container;
 import LogisticCompany.info.ContainerInfo;

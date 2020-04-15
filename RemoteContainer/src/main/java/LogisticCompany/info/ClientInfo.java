@@ -11,12 +11,10 @@ public class ClientInfo {
 	private String password;
 	private Address address;
 	
-	public ClientInfo(String name, String email, String reference_person, String password) {
+	public ClientInfo(String name, String email, String reference_person) {
 		this.name = name;
 		this.email = email;
 		this.reference_person = reference_person;
-		this.password = password;
-		
 	}
 	
 	public ClientInfo(Client client) {

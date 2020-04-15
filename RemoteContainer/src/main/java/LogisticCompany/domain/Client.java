@@ -1,6 +1,7 @@
 package LogisticCompany.domain;
 
 import LogisticCompany.App.ArchivableObject;
+import LogisticCompany.App.ClientRepository;
 import LogisticCompany.App.Database;
 import LogisticCompany.info.ClientInfo;
 
@@ -17,11 +18,10 @@ public class Client implements ArchivableObject{
 
 
 	
-	public Client(String name, String email, String reference_person, String password) {
+	public Client(String name, String email, String reference_person) {
 		this.name = name;
 		this.email = email;
 		this.refPerson = reference_person;
-		this.password = password;
 	}
 
 	public Client() {}; // Needed by Java Persistence Layer
@@ -79,8 +79,8 @@ public class Client implements ArchivableObject{
 		this.id = id;
 	}
 	
-	public boolean matchClient(String searchText) {
-		return email.contains(searchText);
+	public boolean matchClient(String searchEmail) {
+		return email.contains(searchEmail);
 	}
 	
 	public void archive() {
@@ -92,7 +92,8 @@ public class Client implements ArchivableObject{
 	}
 	
 	public ClientInfo asClientInfo() {
-		return new ClientInfo(this.getName(), this.getEmail(), this.getRefPerson(), this.getPw());
+		return new ClientInfo(this.getName(), this.getEmail(), this.getRefPerson());
 	}
+
 	
 }
