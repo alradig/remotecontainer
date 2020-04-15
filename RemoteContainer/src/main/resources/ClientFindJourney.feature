@@ -1,5 +1,3 @@
-[10.51] Ida Engholm Villumsen
-    
 Feature: Client can search for a journey
 
 
