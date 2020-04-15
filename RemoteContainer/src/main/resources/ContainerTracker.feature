@@ -1,15 +1,18 @@
 Feature: A Tracker for containers
 
-	Scenario: New values
-		Given New internal temp of "50"
-		And New air humidity of "40"
-		And New atmopshere pressure of "30"
-		When Container end-destination is false
-		Then Values saved
-		
-	Scenario: Journey is done
-		Given New internal temp of "50"
-		And New air humidity of "40"
-		And New atmopshere pressure of "30"
-		When Container end-destination is true
-		Then Data reset
+Background: A container registered
+	Given that the client "BananaExpress" is logged in
+	And there is a journey with port of origin harbor "Copenhagen" and destination "harbour" 
+	And there is a container with content "Apples"
+	And the client logs out 
+	
+Scenario: Temperatur, air humidity, and atmopshere pressure are added
+	Given that the logistic company is logged in 
+	When internal temperatur of "50" degrees, air humidity of "40" percent, and atmopshere pressure of "30" Pa
+	Then new measurements are saved
+	
+Scenario: One measurement not available
+	Given that the logistic company is logged in 
+	When internal temperatur of "50" degrees and air humidity of "40" percent
+	Then new values are saved
+	

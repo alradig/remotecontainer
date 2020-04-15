@@ -18,7 +18,6 @@ public class Journey implements ArchivableObject{
 	private String endDestination;
 	private boolean isRegistered;
 	private String cargo;
-	private String dateTime;
 	private String currentLocation;
 	private boolean endDestinationReached;
 	private ArrayList<String> journeyLog = new ArrayList<String>();
@@ -103,20 +102,7 @@ public class Journey implements ArchivableObject{
 	}
 // !! 	
 	public boolean cargoIsEmpty(Journey journey) {
-		return journey.getCargo() == null;
-		
-	}
-	
-	public void setCurrentDate() {
-		
-		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
-		Date date = new Date(System.currentTimeMillis());
-		String  dateTime= formatter.format(date);
-		this.dateTime = dateTime; 
-	}
-
-	public String getCurrentDate() {
-		return dateTime; 
+		return journey.getCargo() == null;	
 	}
 	
 	public void setCurrentLocation(String currentLocation) {
@@ -180,7 +166,6 @@ public class Journey implements ArchivableObject{
         		this.startDestination.equals(journey.getStartDestination()) &&
         		this.endDestination.equals(journey.getEndDestination()) &&
         		this.cargo.equals(journey.getCargo()) &&
-        		this.dateTime.equals(journey.getCurrentDate()) &&
         		this.currentLocation.equals(journey.getCurrentLocation()) &&
         		this.endDestinationReached == journey.endDestinationReached;
     }
@@ -192,7 +177,6 @@ public class Journey implements ArchivableObject{
 				.append(startDestination)
 				.append(endDestination)
 				.append(cargo)
-				.append(dateTime)
 				.append(currentLocation)
 				.append(endDestinationReached)
 				.toHashCode();
