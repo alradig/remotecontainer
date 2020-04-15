@@ -53,11 +53,11 @@ public class LogisticCompanyApp {
 //	}
 	
 	private Container findContainer(ContainerInfo container) {
-		return containerRepository.getContainer(container.getId());
+		return containerRepository.getContainer(container.getCargo());
 	}
 
 	private Journey findJourney(JourneyInfo j) {
-		return journeyRepository.getJourney(j.getId());
+		return journeyRepository.getJourney(j.getCargo());
 	}
 	
 	public List<ClientInfo> searchClient(String searchEmail) {
@@ -95,7 +95,7 @@ public class LogisticCompanyApp {
 	}
 	
 	public void registerContainer(ContainerInfo c) throws OperationNotAllowedException {
-		checkLogisticCompanyLoggedIn();
+		// checkLogisticCompanyLoggedIn();
 		// register group ....
 		// 
 		
@@ -176,6 +176,10 @@ public class LogisticCompanyApp {
 	public Stream<ClientInfo> getClientsStream() {
 		return this.clientRepository.getAllClientsStream().map(c -> new ClientInfo(c));
 	}
+	
+	public Stream<JourneyInfo> getJourneysStream() {
+		return this.journeyRepository.getAllJourneysStream().map(j -> new JourneyInfo(j));
+	}
 
 	public boolean clientLogin(String clientPassword) {
 		clientLoggedIn = clientPassword.equals("client123");
@@ -189,7 +193,13 @@ public class LogisticCompanyApp {
 	public void registerContainerToJourney(ContainerInfo container, JourneyInfo journey) throws OperationNotAllowedException{
 		registerContainer(container);
 		registerJourney(journey);
+		
+		// Journey does not has a cargo at this point. We need to change the journey to have a cargo in the very first place?
+		// and then the logistic company assigns a container to hold that cargo specified by the client.
 		Journey journeyObj = findJourney(journey);
+		
+		System.out.println(journeyObj.getCargo());
+	
 		Container containerObj = findContainer(container);
 		journeyObj.setContainer(containerObj);
 		

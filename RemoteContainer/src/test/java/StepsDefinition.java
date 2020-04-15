@@ -82,6 +82,14 @@ public class StepsDefinition {
 			this.errorMessage = e.getMessage();
 		}
 	}
+	
+	@Then("the container is a registered container for the journey")
+	public void the_container_is_a_registered_container_for_the_journey() {
+		Optional<JourneyInfo> jrn = logisticCompanyApp.getJourneysStream().findFirst();
+	    assertTrue(jrn.isPresent());
+	    JourneyInfo j = jrn.get();
+	    assertEquals(containerInfo.getCargo(), j.getCargo());
+	}
 		
 		
 		

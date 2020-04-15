@@ -31,23 +31,19 @@ public class Journey implements ArchivableObject{
 
 	public void setContainer(Container container) {
 		this.container = container;
+		cargo = container.getCargo();
 	}
 
 	public Journey(int id, String startDestination, String endDestination, String cargo) {
 		this.id = id;
 		this.startDestination = startDestination;
 		this.endDestination = endDestination;
-		this.cargo = cargo; 
+		this.cargo = cargo;
 	}
 	
 	public Journey() {}; 
 	
-	public Journey(String startDestination, String endDestination, String cargo) {
-		this.id = 3; //automatic generation method to be implemented
-		this.startDestination = startDestination;
-		this.endDestination = endDestination;
-		this.cargo = cargo;
-	}
+	
 //	public Journey() {
 //		this.id = 0;
 //		this.endDestinationReached = false;
