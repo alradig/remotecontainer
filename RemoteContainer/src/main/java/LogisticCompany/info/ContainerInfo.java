@@ -20,7 +20,8 @@ public class ContainerInfo {
 	
 	public Container asContainer() {
 		// missing things to register container with .. Ask group ! ? 
-		return new Container();
+		
+		return new Container(cargo);
 	}
 	
 

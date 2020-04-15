@@ -6,6 +6,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import LogisticCompany.App.ArchivableObject;
 import LogisticCompany.App.Database;
+import LogisticCompany.info.ContainerInfo;
 
 public class Container implements ArchivableObject{
 	
@@ -20,7 +21,11 @@ public class Container implements ArchivableObject{
 		this.id = 0;
 		this.a = 0;
 	}
-	
+	public Container(String cargo) {
+		this.id = 0;
+		this.a = 0;
+		this.cargo = cargo;
+	}
 	public void addInTemp(String value) {
 		getInTemp().add(value);
 		a = a + 1;

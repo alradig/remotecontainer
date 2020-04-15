@@ -74,7 +74,7 @@ public class StepsDefinition {
 
 	@When("the client registers the container for the journey")
 	public void the_client_registers_the_container_for_the_journey() {
-	   
+		logisticCompanyApp.registerContainerToJourney(containerInfo.asContainer(), journeyInfo.asJourney());
 	}
 
 	@Then("the container is a registered container for the journey")

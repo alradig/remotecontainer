@@ -182,4 +182,9 @@ public class LogisticCompanyApp {
 		clientLoggedIn = false;
 	}
 
+	public void registerContainerToJourney(Container container, Journey journey) {
+		
+		
+	}
+
 }
