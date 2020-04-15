@@ -8,7 +8,6 @@ public class ClientInfo {
 	private String name;
 	private String email;
 	private String reference_person;
-	private String password;
 	private Address address;
 	
 	public ClientInfo(String name, String email, String reference_person) {
@@ -21,7 +20,6 @@ public class ClientInfo {
 		this.name = client.getName();
 		this.email = client.getEmail();
 		this.reference_person = client.getRefPerson();
-//		this.password = client.getPw();
 		this.address = client.getAddress();
 	}
 	
@@ -33,9 +31,6 @@ public class ClientInfo {
 //		this.reference_person = reference_person;
 //	}
 
-	public String getPassword() {
-		return password;
-	}
 
 //	public void setPassword(String password) {
 //		this.password = password;
