@@ -70,8 +70,7 @@ public class StepsDefinition {
 
 	@When("the client registers the container for the journey")
 	public void the_client_registers_the_container_for_the_journey() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	   
 	}
 
 	@Then("the container is a registered container for the journey")
@@ -82,14 +81,6 @@ public class StepsDefinition {
 /*
  * OLD
  */
-	
-	
-	
-	
-	
-	
-	
-	
 	@Given("client name {string}")
 	public void client_name(String name) {
 	    this.client.setName(name);
@@ -225,108 +216,7 @@ public class StepsDefinition {
 			errorMessage = e.getMessage();
 		}
 	}
-	
-	@Given("I have chosen to register a client")
-	public void I_have_chosen_to_register_a_client(){
-	   client.setRegister(true);
-	   clientForm = new ClientForm(this.client);
-	}
 
-	@When("I enter the following client information:")
-	public void i_enter_the_following_client_information(io.cucumber.datatable.DataTable dataTable) {
-	    List<List<String>> clientInfo = dataTable.asLists(String.class);
-	    
-	    this.clientForm.setNameField(clientInfo.get(1).get(1));
-	    this.clientForm.setEmailField(clientInfo.get(1).get(2));
-	    this.clientForm.setAddressField(clientInfo.get(1).get(3));
-	    this.clientForm.setRefPersonField(clientInfo.get(1).get(4));
-	    this.clientForm.setPwField(clientInfo.get(1).get(5)); 	
-
-	}
-	@When("I submit the form")
-	public void I_submit_the_form() {
-		response = clientForm.submit();
-	}
-
-	/*
-	 * Step Definitions for Update a clients information
-	 */
-	@Given("the client:")
-	public void a_client_with_the_following_information(DataTable dataTable) {
-	    List<List<String>> clientInfo = dataTable.asLists(String.class);
-	    
-	    // Use the for loop for multiple clients
-	    //for(int i=1; i<clientInfo.size(); i++) { //i=0 is the header
-	    	this.client.setId(Integer.parseInt(clientInfo.get(1).get(0)));
-	    	this.client.setName(clientInfo.get(1).get(1));
-	        this.client.setEmail(clientInfo.get(1).get(2));
-	        this.client.setAddress(clientInfo.get(1).get(3));
-	        this.client.setRefPerson(clientInfo.get(1).get(4));
-	        this.client.setPw(clientInfo.get(1).get(5)); 	
-
-		//}
-	}
-	
-	@Given("I have chosen to update the client information")
-	public void i_have_chosen_to_update_a_client_information() {
-		clientForm = new ClientForm(this.client);
-	}
-
-	@When("I enter the new client name as {string}")
-	public void i_enter_the_new_name(String new_name) {
-		this.clientForm.setNameField(new_name);
-	}
-
-	@When("I enter the new client email as {string}")
-	public void i_enter_the_new_email(String new_email) {
-		this.clientForm.setEmailField(new_email);
-	}
-	
-	@Given("I enter the new client address as {string}")
-	public void i_enter_the_new_address_as(String new_address) {
-	    this.clientForm.setAddressField(new_address);
-	}
-		
-	@Given("I enter the new client reference person as {string}")
-	public void i_enter_the_new_Reference_person_as(String new_ref_person) {
-		this.clientForm.setRefPersonField(new_ref_person);
-	}
-
-	@Then("the client name should be {string}")
-	public void the_client_name_should_be(String correct_name) {
-	    assertEquals(this.client.getName(),correct_name);
-	}
-
-	@Then("the client email should be {string}")
-	public void the_client_email_should_be(String new_email) {
-		assertEquals(this.client.getEmail(),new_email);
-	}
-	
-	@Then("the client address should be {string}")
-	public void the_client_address_should_be(String new_address) {
-		assertEquals(this.client.getAddress(),new_address);
-	}
-
-	@Then("the client reference person should be {string}")
-	public void the_client_Reference_person_should_be(String new_ref_person) {
-		assertEquals(this.client.getRefPerson(),new_ref_person);
-	}
-	
-	@Then("the client password should be {string}")
-	public void the_client_password_should_be(String new_pw) {
-		assertEquals(this.client.getPw(),new_pw);
-	}
-	
-	@Then("I should see a success message")
-	public void i_should_see_a_success_message() {
-		assertEquals(this.response.getErrorCode(),200);
-	}
-	
-	@Then("I should see an error message")
-	public void i_should_see_an_error_message() {
-		assertEquals(this.response.getErrorCode(),100);
-	}
-	
 	//------------------------------------------------------------------------------------------------------------------------------//
 		// Following steps are for M3	
 	
