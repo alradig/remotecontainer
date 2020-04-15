@@ -158,13 +158,19 @@ public class StepsDefinition {
 	public void container_has_arrived_in(String currentLocation) {
 	    journey.setCurrentLocation(currentLocation);
 	    journey.updateJourneyInfo();
-	}
-	
+	}         
+	          
 	@Then("current position is added to journey")
 	public void current_position_is_added_to_journey() {
 	    
 	}
 
+	
+	
+	
+	
+	
+	
 	
 //------------------------------------------------------------------------------------------------------------------------------//
 	// Following steps are for M1	

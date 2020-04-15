@@ -17,6 +17,9 @@ public class JourneyInfo {
 		
 	}
 	
+	
+	
+	
 	public JourneyInfo(Journey journey) {
 		this.id = journey.getId();
 		this.startDestination = journey.getStartDestination();
