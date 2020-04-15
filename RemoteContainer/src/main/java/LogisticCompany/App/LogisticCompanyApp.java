@@ -183,6 +183,9 @@ public class LogisticCompanyApp {
 	}
 
 	public void registerContainerToJourney(Container container, Journey journey) {
+		journey.setContainer(container);
+		
+		// registers the container and journey in the database here!
 		
 		
 	}
