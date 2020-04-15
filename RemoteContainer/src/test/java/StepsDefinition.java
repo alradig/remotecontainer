@@ -37,14 +37,15 @@ public class StepsDefinition {
 	private ResponseObject response = new ResponseObject(100, "There is a problem");
 	private ClientForm clientForm;
 	private Journey journey = new Journey();
-	private LogisticCompany.domain.Address address;
-	private ClientRepository clientRepository;
-	private InMemoryRepository repository = new InMemoryRepository();
 	
 //	LogisticCompanyApp(ClientRepository clientRepository, JourneyRepository journeyRepository, ContainerRepository containerRepository )
 	private String errorMessage;
 	
-	private LogisticCompanyApp logisticCompanyApp = new LogisticCompanyApp(repository,repository,repository);
+	private LogisticCompanyApp logisticCompanyApp;
+	
+	public StepsDefinition(LogisticCompanyApp logisticCompanyApp) {
+		this.logisticCompanyApp = logisticCompanyApp;
+	}
 	
 	/*
 	 * NEW REGISTER CONTAINER
@@ -162,65 +163,12 @@ public class StepsDefinition {
 	}
 
 	
-	
-	
-	
-	
-	
-	
-//------------------------------------------------------------------------------------------------------------------------------//
-	// Following steps are for M1	
 
-/*
- * Register a new client
- */
 	@Given("the administrator is logged in")
 	public void the_administrator_is_logged_in()  throws Exception {
 		assertTrue(logisticCompanyApp.logisticCompanyLogin("logisticCompany123"));
 	}
 	
-	@Given("There is a client with name {string}, email {string}, reference person {string}, password {string}")
-
-	 public void there_is_a_client_with_name_email_reference_person_password(String name, String email, String ref_person, String password) {
-
-	   clientInfo = new ClientInfo(name, email, ref_person, password);
-
-	     assertEquals(clientInfo.getName(),name);
-	     assertEquals(clientInfo.getEmail(),email);
-	     assertEquals(clientInfo.getReference_person(),ref_person);
-	     assertEquals(clientInfo.getPassword(),password);
-
-	}
-
-	@Then("the client is registered in the system")
-	public void the_client_is_registered_in_the_system() {
-	    Optional<ClientInfo> usr = logisticCompanyApp.getClientsStream().findFirst();
-	    assertTrue(usr.isPresent());
-	    ClientInfo c = usr.get();
-	    assertEquals(clientInfo.getName(), c.getName());
-	    assertEquals(clientInfo.getEmail(), c.getEmail());
-	    assertEquals(clientInfo.getReference_person(), c.getReference_person());
-	}
-
-	@Given("the client address is {string}, {int}, {string}")
-	public void the_client_address_is(String street, int postcode, String city) {
-		this.address = new Address(street,postcode,city);
-		this.clientInfo.setAddress(address);
-		
-		assertEquals(clientInfo.getAddress().getStreet(),street);
-		assertEquals(clientInfo.getAddress().getPostCode(),postcode);
-		assertEquals(clientInfo.getAddress().getCity(),city);	
-	}
-	
-	@When("the administrator registers the client")
-	public void the_administrator_registers_the_client() {
-		try {
-			this.logisticCompanyApp.registerClient(clientInfo);
-		} catch (Exception e) {
-//			errorMessage.setErrorMessage(e.getMessage());
-			errorMessage = e.getMessage();
-		}
-	}
 
 	//------------------------------------------------------------------------------------------------------------------------------//
 		// Following steps are for M3	
