@@ -11,42 +11,57 @@ public class Container implements ArchivableObject{
 	
 	private int id;
 	private String cargo;
-	private static List<String> InTemp = new ArrayList<String>();
-	private static List<String> AirHum = new ArrayList<String>();
-	private static List<String> AtmPre = new ArrayList<String>();
-	public int a;
+	private String currentTemp;
+	private String currentAirHum;
+	private String currentAtmPre;
+	
+	private List<String> Temp = new ArrayList<String>();
+	private List<String> AirHum = new ArrayList<String>();
+	private List<String> AtmPre = new ArrayList<String>();
+	
+//	private ArrayList<String> journeyLog = new ArrayList<String>();
 	
 	public Container() {
-		this.id = 0;
-		this.a = 0;
+		
 	}
 	
-	public void addInTemp(String value) {
-		getInTemp().add(value);
-		a = a + 1;
+	public void addTemp(String currentTemp) {
+		Temp.add(currentTemp);
 	}
 	
-	public void addAirHum(String value) {
-		getAirHum().add(value);
+	public void addAirHum(String currentAirHum) {
+		AirHum.add(currentAirHum);
 	}
 	
-	public void addAtmPre(String value) {
-		getAtmPre().add(value);
+	public void addAtmPre(String currentAtmPre) {
+		AtmPre.add(currentAtmPre);
+	}
+	
+	public List<String> getTemp() {
+		 return Temp;
+	}
+	
+	public List<String> getAirHum() {
+		 return AirHum;
+	}
+	
+	public List<String> getAtmPre() {
+		 return AtmPre;
 	}
 
-	public void ValsReset() {
-		getInTemp().clear();
-		getAirHum().clear();
-		getAtmPre().clear();
+	public void clearMeasurements() {
+		Temp.clear();
+		AirHum.clear();
+		AtmPre.clear();
 	}
 	
-	public boolean isSaved() {
-		if(this.a == getInTemp().size() && this.a == getAirHum().size() && this.a== getAtmPre().size()) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+//	public boolean isSaved() {
+//		if(this.a == getInTemp().size() && this.a == getAirHum().size() && this.a== getAtmPre().size()) {
+//			return true;
+//		} else {
+//			return false;
+//		}
+//	}
 	
 	public int getId() {
 		return id;
@@ -60,28 +75,28 @@ public class Container implements ArchivableObject{
 		return container.getId() == 0;
 	}
 
-	public List<String> getInTemp() {
-		return InTemp;
-	}
-
-	public static void setInTemp(List<String> inTemp) {
-		InTemp = inTemp;
+	public void setCurrentTemp(String currentTemp) {
+		this.currentTemp = currentTemp;
 	}
 	
-	public List<String> getAirHum() {
-		return AirHum;
+	public String getCurrentTemp() {
+		return currentTemp;
+	}
+	
+	public String getCurrentAirHum() {
+		return currentAirHum;
 	}
 
-	public static void setAirHum(List<String> airHum) {
-		AirHum = airHum;
+	public void setCurrentAirHum(String currentAirHum) {
+		this.currentAirHum = currentAirHum;
 	}
-
-	public List<String> getAtmPre() {
-		return AtmPre;
+	
+	public void setAtmPre(String currentAtmPre) {
+		this.currentAtmPre = currentAtmPre;
 	}
-
-	public static void setAtmPre(List<String> atmPre) {
-		AtmPre = atmPre;
+	
+	public String getCurrentAtmPre() {
+		return currentAtmPre;
 	}
 	
 	public void archive() {
@@ -92,34 +107,35 @@ public class Container implements ArchivableObject{
 		JSONfile.createFile(this,folderName, fileName);
 	}
 	
-	@Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        
-        Container container = (Container) o;
-        return 	this.id == container.getId() &&
-        		this.getInTemp().equals(container.getInTemp()) &&
-        		this.getAirHum().equals(container.getAirHum()) &&
-        		this.getAtmPre().equals(container.getAtmPre()) &&
-        		this.a == container.a;
-    }
+//-----------------------------------------------------------------------
+//	@Override
+//    public boolean equals(Object o) {
+//        if (this == o) {
+//            return true;
+//        }
+//        
+//        if (o == null || getClass() != o.getClass()) {
+//            return false;
+//        }
+//        
+//        Container container = (Container) o;
+//        return 	this.id == container.getId() &&
+//        		this.getInTemp().equals(container.getInTemp()) &&
+//        		this.getAirHum().equals(container.getAirHum()) &&
+//        		this.getAtmPre().equals(container.getAtmPre()) &&
+//        		this.a == container.a;
+//    }
 	
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder(19, 53)
-				.append(id)
-				.append(InTemp)
-				.append(AtmPre)
-				.append(AirHum)
-				.append(a)
-				.toHashCode();
-	}
+//	@Override
+//	public int hashCode() {
+//		return new HashCodeBuilder(19, 53)
+//				.append(id)
+//				.append(InTemp)
+//				.append(AtmPre)
+//				.append(AirHum)
+//				.append(a)
+//				.toHashCode();
+//	}
 
 	public String getCargo() {
 		return cargo;

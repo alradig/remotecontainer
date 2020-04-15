@@ -71,17 +71,6 @@ public class StepsDefinition {
 	assertEquals(containerInfo.getCargo(),content);
 	}
 	
-
-	@When("the client registers the container for the journey")
-	public void the_client_registers_the_container_for_the_journey() {
-	   
-	}
-
-	@Then("the container is a registered container for the journey")
-	public void the_container_is_a_registered_container_for_the_journey() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
 /*
  * OLD
  */
