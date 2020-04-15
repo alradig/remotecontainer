@@ -11,20 +11,23 @@ public class JourneyInfo {
 	private int id;
 	
 	public JourneyInfo(String startDestination, String endDestination) {
-		this.id = id;
+		this.cargo = cargo;
 		this.startDestination = startDestination;
 		this.endDestination = endDestination;
-		
+		this.id = id;
 	}
-	
-	
-	
 	
 	public JourneyInfo(Journey journey) {
 		this.id = journey.getId();
 		this.startDestination = journey.getStartDestination();
 		this.endDestination = journey.getEndDestination();
 		this.cargo = journey.getCargo();
+	}
+	
+	public JourneyInfo(String cargo, String startDestination, String endDestination) {
+		this.cargo = cargo;
+		this.startDestination = startDestination;
+		this.endDestination = endDestination;
 	}
 	
 	public String getCargo() {

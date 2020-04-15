@@ -17,6 +17,7 @@ import LogisticCompany.info.JourneyInfo;
 public class LogisticCompanyApp {
 
 	private boolean loggedIn = false;
+	private boolean clientLoggedIn = false;
 	private ClientRepository clientRepository;
 	private JourneyRepository journeyRepository;
 	private ContainerRepository containerRepository;
@@ -62,6 +63,12 @@ public class LogisticCompanyApp {
 				.collect(Collectors.toList());
 	}
 
+	public List<JourneyInfo> searchJourney(String searchCargo) {
+		return journeyRepository.getAllJourneysStream()
+				.filter(j -> j.matchJourney(searchCargo))
+				.map(j -> j.asJourneyInfo())
+				.collect(Collectors.toList());
+	}
 	
 //	public void registerUser(UserInfo u) throws Exception {
 //			checkLogisticCompanyLoggedIn();
@@ -140,8 +147,8 @@ public class LogisticCompanyApp {
 	public boolean logisticCompanyLogin(String password) {
 		loggedIn = password.equals("logisticCompany123");
 		return loggedIn;
-		
-}
+	}
+	
 	public boolean logisticCompanyLoggedIn() {
 		return loggedIn;
 	}
@@ -164,6 +171,15 @@ public class LogisticCompanyApp {
 
 	public Stream<ClientInfo> getClientsStream() {
 		return this.clientRepository.getAllClientsStream().map(c -> new ClientInfo(c));
+	}
+
+	public boolean clientLogin(String clientPassword) {
+		clientLoggedIn = clientPassword.equals("client123");
+		return clientLoggedIn;
+	}
+
+	public void clientLogout() {
+		clientLoggedIn = false;
 	}
 
 }
