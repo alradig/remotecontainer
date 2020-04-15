@@ -49,8 +49,6 @@ public class ClientInfo {
 		this.address = address;
 	}
 
-	
-	
 	public String getName() {
 		return name;
 	}
