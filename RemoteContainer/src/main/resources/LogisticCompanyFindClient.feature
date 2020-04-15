@@ -13,5 +13,8 @@ Scenario: Searching for client
 	When the logistic company search for "bob@mail.com"
 	Then the client "BananaExpress" is found
 	
-	
+Scenario: No clients match the search
+	Given that the logistic company is logged in 
+	When the logistic company search for "hej@mail.com"
+	Then no client is found
 	

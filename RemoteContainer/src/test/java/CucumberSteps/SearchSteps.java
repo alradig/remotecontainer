@@ -55,6 +55,13 @@ public class SearchSteps {
 	public void that_the_client_is_logged_in(String string) {
 		assertTrue(logisticCompanyApp.clientLogin("client123"));
 	}
+	
+	@Then("no client is found")
+	public void no_client_is_found() {
+		assertTrue(clients.isEmpty());
+	}
+	
+	
 
 	@Given("these journeys are in the system")
 	public void these_journeys_are_in_the_system(List<List<String>> journeys) throws Exception {
@@ -80,7 +87,21 @@ public class SearchSteps {
 		assertEquals(startDestination, journeys.get(0).getStartDestination());
 		assertEquals(endDestination, journeys.get(0).getEndDestination());
 	}
-
+	
+	@Then("no journeys are found")
+	public void no_journeys_are_found() {
+		assertTrue(journeys.isEmpty());
+	}
+	
+	@Then("journeys with start destination {string} and {string} are found")
+	public void journeys_with_start_destination_and_are_found(String startDestination1, String startDestination2) {
+		assertEquals(2, journeys.size());
+		JourneyInfo journey1 = journeys.get(0);
+		JourneyInfo journey2 = journeys.get(1);
+		assertTrue((journey1.getStartDestination().equals(startDestination1) && journey2.getStartDestination().equals(startDestination2))
+				|| (journey1.getStartDestination().equals(startDestination2) && journey2.getStartDestination().equals(startDestination1)));
+	
+	}
 }
    
 
