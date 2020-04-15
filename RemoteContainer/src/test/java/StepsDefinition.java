@@ -32,9 +32,9 @@ public class StepsDefinition {
 
 //------------------------------------------------------------------------------------------//
 // Following steps are for M2 Journey Management
-	private ContainerInfo ContainerInfo;
-	private JourneyInfo JourneyInfo;
-	private ClientInfo client;
+	private ContainerInfo containerInfo;
+	private JourneyInfo journeyInfo;
+	private ClientInfo clientInfo;
 	private ResponseObject response = new ResponseObject(100, "There is a problem");
 	private ClientForm clientForm;
 	private Journey journey = new Journey();
@@ -59,13 +59,13 @@ public class StepsDefinition {
 
 	@Given("there is a journey with port of origin harbor {string} and destination  {string}")
 	public void there_is_a_journey_with_port_of_origin_harbor_and_destination(String Port_of_origin, String destination) throws Exception {
-	   JourneyInfo = new JourneyInfo(Port_of_origin,destination);
+	   journeyInfo = new JourneyInfo(Port_of_origin,destination);
 	   
 	}
 
 	@Given("there is a container with content {string}")
 	public void there_is_a_container_with_content(String content) throws Exception {
-	ContainerInfo = new ContainerInfo(content);
+	containerInfo = new ContainerInfo(content);
 	}
 
 	@When("the client registers the container for the journey")
@@ -83,7 +83,7 @@ public class StepsDefinition {
  */
 	@Given("client name {string}")
 	public void client_name(String name) {
-	    this.client.setName(name);
+	    this.clientInfo.setName(name);
 	}
 	
 	@Given("start destination {string}")
@@ -180,12 +180,12 @@ public class StepsDefinition {
 
 	 public void there_is_a_client_with_name_email_reference_person_password(String name, String email, String ref_person, String password) {
 
-	   client = new ClientInfo(name, email, ref_person, password);
+	   clientInfo = new ClientInfo(name, email, ref_person, password);
 
-	     assertEquals(client.getName(),name);
-	     assertEquals(client.getEmail(),email);
-	     assertEquals(client.getReference_person(),ref_person);
-	     assertEquals(client.getPassword(),password);
+	     assertEquals(clientInfo.getName(),name);
+	     assertEquals(clientInfo.getEmail(),email);
+	     assertEquals(clientInfo.getReference_person(),ref_person);
+	     assertEquals(clientInfo.getPassword(),password);
 
 	}
 
@@ -194,25 +194,25 @@ public class StepsDefinition {
 	    Optional<ClientInfo> usr = logisticCompanyApp.getClientsStream().findFirst();
 	    assertTrue(usr.isPresent());
 	    ClientInfo c = usr.get();
-	    assertEquals(client.getName(), c.getName());
-	    assertEquals(client.getEmail(), c.getEmail());
-	    assertEquals(client.getReference_person(), c.getReference_person());
+	    assertEquals(clientInfo.getName(), c.getName());
+	    assertEquals(clientInfo.getEmail(), c.getEmail());
+	    assertEquals(clientInfo.getReference_person(), c.getReference_person());
 	}
 
 	@Given("the client address is {string}, {int}, {string}")
 	public void the_client_address_is(String street, int postcode, String city) {
 		this.address = new Address(street,postcode,city);
-		this.client.setAddress(address);
+		this.clientInfo.setAddress(address);
 		
-		assertEquals(client.getAddress().getStreet(),street);
-		assertEquals(client.getAddress().getPostCode(),postcode);
-		assertEquals(client.getAddress().getCity(),city);	
+		assertEquals(clientInfo.getAddress().getStreet(),street);
+		assertEquals(clientInfo.getAddress().getPostCode(),postcode);
+		assertEquals(clientInfo.getAddress().getCity(),city);	
 	}
 	
 	@When("the administrator registers the client")
 	public void the_administrator_registers_the_client() {
 		try {
-			this.logisticCompanyApp.registerClient(client);
+			this.logisticCompanyApp.registerClient(clientInfo);
 		} catch (Exception e) {
 //			errorMessage.setErrorMessage(e.getMessage());
 			errorMessage = e.getMessage();
@@ -275,8 +275,8 @@ public class StepsDefinition {
 	    // creates the database structure if it doesn't yet exists
 	    databaseHandler.createDatabaseStructure();
 	    
-	    clientForm = new ClientForm(this.client);
-	    this.client.setId(Integer.parseInt(clientInfo.get(1).get(0)));
+	    clientForm = new ClientForm(this.clientInfo);
+	    this.clientInfo.setId(Integer.parseInt(clientInfo.get(1).get(0)));
 	    this.clientForm.setNameField(clientInfo.get(1).get(1));
 	    this.clientForm.setEmailField(clientInfo.get(1).get(2));
 	    this.clientForm.setAddressField(clientInfo.get(1).get(3));
@@ -285,7 +285,7 @@ public class StepsDefinition {
 	    
 	    response = clientForm.submit();
 	    if (this.response.getErrorCode() == 200) {
-	    	this.client.archive();
+	    	this.clientInfo.archive();
 	    }
 	    
 	    assertEquals(this.response.getErrorCode(),200);
@@ -293,11 +293,11 @@ public class StepsDefinition {
 
 	@Then("the client information should be in the external database")
 	public void the_client_information_should_be_in_the_external_database() { 
-		String filePath = "Clients/" + "Client_" + this.client.getId() + ".json";
+		String filePath = "Clients/" + "Client_" + this.clientInfo.getId() + ".json";
 
 		this.storedClient = databaseHandler.readFile(this.storedClient, filePath);
 
-		assertEquals(true,this.client.equals(storedClient));
+		assertEquals(true,this.clientInfo.equals(storedClient));
 	}
 	
 }
