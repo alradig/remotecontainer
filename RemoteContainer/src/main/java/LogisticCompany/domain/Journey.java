@@ -7,6 +7,8 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import LogisticCompany.App.ArchivableObject;
 import LogisticCompany.App.Database;
+import LogisticCompany.info.ClientInfo;
+import LogisticCompany.info.JourneyInfo;
 
 public class Journey implements ArchivableObject{
 	
@@ -129,6 +131,14 @@ public class Journey implements ArchivableObject{
 	public void addLocationToLog(Journey journey , String currentDateTime) {	
 		String currentInfo = journey.getCurrentLocation() + " " +currentDateTime;
 		journeyLog.add(currentInfo);
+	}
+	
+	public boolean matchJourney(String searchCargo) {
+		return cargo.contains(searchCargo);
+	}
+	
+	public JourneyInfo asJourneyInfo() {
+		return new JourneyInfo(this.getCargo(), this.getStartDestination(), this.getEndDestination());
 	}
 	
 //// !!! 
