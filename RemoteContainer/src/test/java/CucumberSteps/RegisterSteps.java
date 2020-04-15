@@ -1,6 +1,6 @@
 package CucumberSteps;
 
-public class ClientSteps {
+public class RegisterSteps {
 
 	
 	

@@ -4,6 +4,7 @@ Feature: Register client
 	Basic information should be entered: (e.g., client name, address, reference person and email)
 	and some other should be automatically generated (e.g., client id).
 		
+# Change "administrator" to "Logistic company"
 
 	Scenario: Successful register a client
 		Given the administrator is logged in

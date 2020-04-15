@@ -23,7 +23,7 @@ public class ClientInfo {
 		this.name = client.getName();
 		this.email = client.getEmail();
 		this.reference_person = client.getRefPerson();
-		this.password = client.getPw();
+//		this.password = client.getPw();
 		this.address = client.getAddress();
 	}
 	
@@ -31,17 +31,17 @@ public class ClientInfo {
 		return reference_person;
 	}
 
-	public void setReference_person(String reference_person) {
-		this.reference_person = reference_person;
-	}
+//	public void setReference_person(String reference_person) {
+//		this.reference_person = reference_person;
+//	}
 
 	public String getPassword() {
 		return password;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+//	public void setPassword(String password) {
+//		this.password = password;
+//	}
 	
 	public Address getAddress() {
 		return address;

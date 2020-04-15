@@ -183,6 +183,18 @@ public class StepsDefinition {
 		assertTrue(logisticCompanyApp.logisticCompanyLogin("logisticCompany123"));
 	}
 	
+	@Given("There is a client with name {string}, email {string}, reference person {string}, password {string}")
+
+	 public void there_is_a_client_with_name_email_reference_person_password(String name, String email, String ref_person, String password) {
+
+	   client = new ClientInfo(name, email, ref_person, password);
+
+	     assertEquals(client.getName(),name);
+	     assertEquals(client.getEmail(),email);
+	     assertEquals(client.getReference_person(),ref_person);
+	     assertEquals(client.getPassword(),password);
+
+	}
 
 	@Then("the client is registered in the system")
 	public void the_client_is_registered_in_the_system() {
@@ -192,18 +204,6 @@ public class StepsDefinition {
 	    assertEquals(client.getName(), c.getName());
 	    assertEquals(client.getEmail(), c.getEmail());
 	    assertEquals(client.getReference_person(), c.getReference_person());
-	}
-
-
-	@Given("There is a client with name {string}, email {string}, reference person {string}, password {string}")
-	public void there_is_a_client_with_name_email_reference_person_password(String name, String email, String ref_person, String password) {
-	   client = new ClientInfo(name, email, ref_person, password);
-	   
-	    
-	    assertEquals(client.getName(),name);
-	    assertEquals(client.getEmail(),email);
-	    assertEquals(client.getReference_person(),ref_person);
-	    assertEquals(client.getPassword(),password);
 	}
 
 	@Given("the client address is {string}, {int}, {string}")
@@ -223,7 +223,6 @@ public class StepsDefinition {
 		} catch (Exception e) {
 //			errorMessage.setErrorMessage(e.getMessage());
 			errorMessage = e.getMessage();
-			System.out.println(errorMessage);
 		}
 	}
 	
