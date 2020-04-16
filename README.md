@@ -1,4 +1,4 @@
 # Remote Container
 
 
-Agile-Object Project with stupid cucumber tests
+Agile-Object Project with cucumber tests
