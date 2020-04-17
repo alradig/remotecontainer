@@ -56,7 +56,7 @@ public class LogisticCompanyApp {
 		return containerRepository.getContainer(container.getCargo());
 	}
 
-	private Journey findJourney(JourneyInfo j) {
+	public Journey findJourney(JourneyInfo j) {
 		return journeyRepository.getJourney(j.getCargo());
 	}
 	
@@ -194,11 +194,7 @@ public class LogisticCompanyApp {
 		registerContainer(container);
 		registerJourney(journey);
 		
-		// Journey does not has a cargo at this point. We need to change the journey to have a cargo in the very first place?
-		// and then the logistic company assigns a container to hold that cargo specified by the client.
 		Journey journeyObj = findJourney(journey);
-		
-		System.out.println(journeyObj.getCargo());
 	
 		Container containerObj = findContainer(container);
 		journeyObj.setContainer(containerObj);

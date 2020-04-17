@@ -28,7 +28,6 @@ public class ClientSteps {
 	@Given("There is a client with name {string}, email {string}, reference person {string}")
 
 	 public void there_is_a_client_with_name_email_reference_person_password(String name, String email, String ref_person) {
-
 	   clientInfo = new ClientInfo(name, email, ref_person);
 
 	     assertEquals(clientInfo.getName(),name);

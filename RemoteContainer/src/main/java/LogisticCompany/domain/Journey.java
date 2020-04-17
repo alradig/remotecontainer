@@ -31,7 +31,7 @@ public class Journey implements ArchivableObject{
 
 	public void setContainer(Container container) {
 		this.container = container;
-		cargo = container.getCargo();
+		container.setCargo(cargo);;
 	}
 
 	public Journey(int id, String startDestination, String endDestination, String cargo) {

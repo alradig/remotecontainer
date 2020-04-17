@@ -57,13 +57,13 @@ public class StepsDefinition {
 	    throw new io.cucumber.java.PendingException();
 	}
 
-	@Given("there is a journey with port of origin harbor {string} and destination  {string}")
-	public void there_is_a_journey_with_port_of_origin_harbor_and_destination(String Port_of_origin, String destination) throws Exception {
-	   journeyInfo = new JourneyInfo(Port_of_origin,destination);
+	@Given("there is a journey with cargo {string}, port of origin harbor {string} and destination  {string}")
+	public void there_is_a_journey_with_port_of_origin_harbor_and_destination(String cargo, String Port_of_origin, String destination) throws Exception {
+	   journeyInfo = new JourneyInfo(cargo, Port_of_origin,destination);
 	   
 	   assertEquals(journeyInfo.getStartDestination(),Port_of_origin);
 	   assertEquals(journeyInfo.getEndDestination(),destination);
-	   
+	   assertEquals(journeyInfo.getCargo(),cargo);
 	}
 
 	@Given("there is a container with content {string}")
@@ -72,6 +72,10 @@ public class StepsDefinition {
 	assertEquals(containerInfo.getCargo(),content);
 	}
 	
+	@Given("there is an empty container")
+	public void there_is_an_empty_container() {
+		containerInfo = new ContainerInfo("");
+	}
 
 	@When("the client registers the container for the journey")
 	public void the_client_registers_the_container_for_the_journey() {
@@ -85,10 +89,8 @@ public class StepsDefinition {
 	
 	@Then("the container is a registered container for the journey")
 	public void the_container_is_a_registered_container_for_the_journey() {
-		Optional<JourneyInfo> jrn = logisticCompanyApp.getJourneysStream().findFirst();
-	    assertTrue(jrn.isPresent());
-	    JourneyInfo j = jrn.get();
-	    assertEquals(containerInfo.getCargo(), j.getCargo());
+		Journey journey = logisticCompanyApp.findJourney(journeyInfo);
+	    assertEquals(journey.getContainer().getCargo(), journey.getCargo());
 	}
 		
 		
