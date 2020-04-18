@@ -140,8 +140,8 @@ public class StepsDefinition {
 
 	
 
-	@Given("the administrator is logged in")
-	public void the_administrator_is_logged_in()  throws Exception {
+	@Given("the logictic company is logged in")
+	public void the_logictic_company_is_logged_in()  throws Exception {
 		assertTrue(logisticCompanyApp.logisticCompanyLogin("logisticCompany123"));
 	}
 	

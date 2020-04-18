@@ -9,6 +9,7 @@ import LogisticCompany.App.LogisticCompanyApp;
 import LogisticCompany.domain.Address;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.persistence.InMemoryRepository;
+import dtu.library.dto.UserInfo;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -25,7 +26,7 @@ public class ClientSteps {
 		
 	}
 
-	@Given("There is a client with name {string}, email {string}, reference person {string}")
+	@Given("there is a client with name {string}, email {string}, reference person {string}")
 
 	 public void there_is_a_client_with_name_email_reference_person_password(String name, String email, String ref_person) {
 	   clientInfo = new ClientInfo(name, email, ref_person);
@@ -36,17 +37,22 @@ public class ClientSteps {
 
 	}
 	
-	@When("the administrator registers the client")
-	public void the_administrator_registers_the_client() {
+	@Given("there is a client registered in the system")
+	public void there_is_a_client_registered_in_the_system() {
+		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
+		clientInfo = new ClientInfo("Expresso","expresso@exp.com","Nach Jicholson");
+		Address address = new Address("The street 3",1700,"Aarhus");
+		clientInfo.setAddress(address);
+		
 		try {
 			this.logisticCompanyApp.registerClient(clientInfo);
 		} catch (Exception e) {
 //			errorMessage.setErrorMessage(e.getMessage());
 			this.errorMessage = e.getMessage();
 		}
+		logisticCompanyApp.logisticCompanyLogout();
 	}
 	
-
 	@Given("the client address is {string}, {int}, {string}")
 	public void the_client_address_is(String street, int postcode, String city) {
 		this.address = new Address(street,postcode,city);
@@ -57,6 +63,20 @@ public class ClientSteps {
 		assertEquals(clientInfo.getAddress().getCity(),city);	
 	}
 	
+	@When("the logictic company registers the client")
+	public void the_logictic_company_registers_the_client() {
+		try {
+			this.logisticCompanyApp.registerClient(clientInfo);
+		} catch (Exception e) {
+			this.errorMessage = e.getMessage();
+		}
+	}
+	
+	@When("the logictic company registers the client again")
+	public void the_logictic_company_registers_the_client_again() {
+		the_logictic_company_registers_the_client();
+	}
+	
 	@Then("the client is registered in the system")
 	public void the_client_is_registered_in_the_system() {
 	    Optional<ClientInfo> usr = logisticCompanyApp.getClientsStream().findFirst();
@@ -65,6 +85,11 @@ public class ClientSteps {
 	    assertEquals(clientInfo.getName(), c.getName());
 	    assertEquals(clientInfo.getEmail(), c.getEmail());
 	    assertEquals(clientInfo.getReference_person(), c.getReference_person());
+	}
+	
+	@Then("the system gives the error message {string}")
+	public void the_system_gives_the_error_message(String message) {
+	    assertEquals(errorMessage, message);
 	}
 
 	

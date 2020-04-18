@@ -16,7 +16,7 @@ import LogisticCompany.info.JourneyInfo;
 
 public class LogisticCompanyApp {
 
-	private boolean loggedIn = false;
+	private boolean logicticCompanyloggedIn = false;
 	private boolean clientLoggedIn = false;
 	private ClientRepository clientRepository;
 	private JourneyRepository journeyRepository;
@@ -45,7 +45,7 @@ public class LogisticCompanyApp {
 	
 	
 	private Client findClient(ClientInfo cc) {
-		return clientRepository.getClient(cc.getEmail());	
+		return clientRepository.getClient(cc.getEmail());
 	}
 	
 //	private Container searchContainer() {
@@ -86,10 +86,10 @@ public class LogisticCompanyApp {
 	public void registerClient(ClientInfo cc) throws OperationNotAllowedException {
 		checkLogisticCompanyLoggedIn();
 		
-//		Client client = findUser(u);
-//		if (user != null) {
-//			throw new Exception("User is already registered");
-//		}
+		Client client = findClient(cc);
+		if (client != null) {
+			throw new OperationNotAllowedException("The client is already registered");
+		}
 		
 		clientRepository.addClient(cc.asClient());
 	}
@@ -149,15 +149,15 @@ public class LogisticCompanyApp {
 	
 	
 	public boolean logisticCompanyLogin(String password) {
-		loggedIn = password.equals("logisticCompany123");
-		return loggedIn;
+		logicticCompanyloggedIn = password.equals("logisticCompany123");
+		return logicticCompanyloggedIn;
 	}
 	
 	public boolean logisticCompanyLoggedIn() {
-		return loggedIn;
+		return logicticCompanyloggedIn;
 	}
 	public void logisticCompanyLogout() {
-		loggedIn = false;
+		logicticCompanyloggedIn = false;
 	}
 	
 	private void checkLogisticCompanyLoggedIn() throws OperationNotAllowedException {

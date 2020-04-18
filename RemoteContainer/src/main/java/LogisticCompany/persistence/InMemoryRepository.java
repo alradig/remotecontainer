@@ -133,8 +133,7 @@ public class InMemoryRepository implements ClientRepository, ContainerRepository
 
 	@Override
 	public Client getClient(String email) {
-		// TODO Auto-generated method stub
-		return null;
+		return clients.stream().filter(c -> c.getEmail().equals(email)).findFirst().orElse(null);
 	}
 
 	
