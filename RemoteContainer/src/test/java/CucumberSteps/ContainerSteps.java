@@ -29,7 +29,6 @@ public class ContainerSteps {
 	public ContainerSteps(LogisticCompanyApp logisticCompanyApp, ClientHelper helper) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.helper = helper;
-		
 	}
 
 	@Given("there is a journey with port of origin harbor {string} and destination {string}")
