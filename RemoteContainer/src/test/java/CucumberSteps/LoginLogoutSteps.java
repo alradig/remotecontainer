@@ -45,7 +45,7 @@ public class LoginLogoutSteps {
 	
 	@Given("the password is {string}")
 	public void the_password_is(String string) {
-		password = string;
+		this.password = string;
 	}
 
 	@Then("the company login succeeds")
