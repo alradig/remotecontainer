@@ -1,5 +1,6 @@
 package CucumberSteps;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import LogisticCompany.App.LogisticCompanyApp;
@@ -48,29 +49,29 @@ public class LoginLogoutSteps {
 		this.password = string;
 	}
 
-	@Then("the company login succeeds")
-	public void the_comapny_login_succeeds() {
+	@Then("the logistic company login succeeds")
+	public void the_logistic_comapny_login_succeeds() {
 		assertTrue(logisticCompanyApp.logisticCompanyLogin(password));
 	}
 
-	@Then("the company is logged in")
-	public void the_company_is_logged_in() {
+	@Then("the logistic company is logged in")
+	public void the_logistic_company_is_logged_in() {
 		assertTrue(logisticCompanyApp.logisticCompanyLoggedIn());
 	}
 
-	@Then("the company login fails")
-	public void the_company_login_fails() {
-		assertTrue(!logisticCompanyApp.logisticCompanyLogin(password));
+	@Then("the logistic company login fails")
+	public void the_logistic_company_login_fails() {
+		assertFalse(logisticCompanyApp.logisticCompanyLogin(password));
 	}
 
-	@When("the company logs out")
-	public void the_company_logs_out() {
+	@When("the logistic company logs out")
+	public void the_logistic_company_logs_out() {
 		logisticCompanyApp.logisticCompanyLogout();
 	}
 
-	@Then("the company is not logged in")
-	public void the_company_is_not_logged_in() {
-		assertTrue(!logisticCompanyApp.logisticCompanyLoggedIn());
+	@Then("the logistic company is not logged in")
+	public void the_logistic_company_is_not_logged_in() {
+		assertFalse(logisticCompanyApp.logisticCompanyLoggedIn());
 	}
 	
 }

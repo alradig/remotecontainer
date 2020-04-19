@@ -1,6 +1,6 @@
 Feature: Logistic Company logout
 	
-Scenario: Company logs out
-	Given that the company is logged in
-	When the company logs out
-	Then the company is not logged in
+Scenario: Logistic Company logs out
+	Given that the logistic company is logged in
+	When the logistic company logs out
+	Then the logistic company is not logged in
