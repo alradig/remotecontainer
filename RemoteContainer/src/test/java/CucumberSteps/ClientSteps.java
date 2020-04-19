@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.Optional;
 
 import LogisticCompany.App.LogisticCompanyApp;
+import LogisticCompany.App.OperationNotAllowedException;
 import LogisticCompany.domain.Address;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.persistence.InMemoryRepository;
@@ -25,7 +26,7 @@ public class ClientSteps {
 	
 	public ClientSteps(LogisticCompanyApp logisticCompanyApp, ClientHelper helper) {
 		this.logisticCompanyApp = logisticCompanyApp;
-		
+		this.helper = helper;
 	}
 	
 	@Given("there is a client with name {string}, email {string}, reference person {string}")
@@ -41,9 +42,13 @@ public class ClientSteps {
 	
 	@Given("there is a client registered in the system")
 	public void there_is_a_client_registered_in_the_system() {
-		
 		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
 		clientInfo = helper.getClient();
+		try {
+			logisticCompanyApp.registerClient(clientInfo);
+		} catch (OperationNotAllowedException e) {
+			this.errorMessage = e.getMessage();
+		}
 		logisticCompanyApp.logisticCompanyLogout();
 	}
 	

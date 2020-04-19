@@ -42,9 +42,9 @@ public class ClientHelper {
 	}
 	
 	private ClientInfo exampleClient() {
-		ClientInfo user = new ClientInfo("Expresso","expresso@exp.com","Nach Jicholson");
+		ClientInfo client = new ClientInfo("Expresso","expresso@exp.com","Nach Jicholson");
 		Address address = new Address("The street 3",1700,"Aarhus");
-		user.setAddress(address);
-		return user;
+		client.setAddress(address);
+		return client;
 	}
 }
