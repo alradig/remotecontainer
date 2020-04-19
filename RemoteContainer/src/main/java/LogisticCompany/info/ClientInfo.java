@@ -10,6 +10,10 @@ public class ClientInfo {
 	private String reference_person;
 	private Address address;
 	
+	public ClientInfo() {
+		
+	}
+	
 	public ClientInfo(String name, String email, String reference_person) {
 		this.name = name;
 		this.email = email;
