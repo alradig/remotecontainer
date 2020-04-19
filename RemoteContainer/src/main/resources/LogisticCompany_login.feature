@@ -1,13 +1,13 @@
 Feature: Logistic Company login
 	
-Scenario: Company can login
-	Given the company is not logged in
+Scenario: Logistic Company can login
+	Given the logistic company is not logged in
 	And the password is "logisticCompany123"
-	Then the company login succeeds
-	And the company is logged in
+	Then the logistic company login succeeds
+	And the logistic company is logged in
 	
-Scenario: Company has the wrong password
-	Given the company is not logged in
+Scenario: Logistic Company has the wrong password
+	Given the logistic company is not logged in
 	And the password is "wrong password"
-	Then the company login fails
-	And the company is not logged in
+	Then the logistic company login fails
+	And the logistic company is not logged in

@@ -8,7 +8,6 @@ import LogisticCompany.App.OperationNotAllowedException;
 import LogisticCompany.domain.Address;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.persistence.InMemoryRepository;
-import dtu.library.acceptance_tests.helper.UserHelper;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -48,31 +47,33 @@ public class LoginLogoutSteps {
 	@Given("the password is {string}")
 	public void the_password_is(String password) {
 		this.password = password;
+
 	}
 
-	@Then("the company login succeeds")
-	public void the_comapny_login_succeeds() {
+	@Then("the logistic company login succeeds")
+	public void the_logistic_company_login_succeeds() {
 		assertTrue(logisticCompanyApp.logisticCompanyLogin(password));
 	}
 
-	@Then("the company is logged in")
-	public void the_company_is_logged_in() {
+	@Then("the logistic company is logged in")
+	public void the_logistic_company_is_logged_in() {
 		assertTrue(logisticCompanyApp.logisticCompanyLoggedIn());
 	}
 
-	@Then("the company login fails")
-	public void the_company_login_fails() {
+
+	@Then("the logistic company login fails")
+	public void the_logistic_company_login_fails() {
 		assertFalse(logisticCompanyApp.logisticCompanyLogin(password));
 	}
 
-	@When("the company logs out")
-	public void the_company_logs_out() {
+	@When("the logistic company logs out")
+	public void the_logistic_company_logs_out() {
 		logisticCompanyApp.logisticCompanyLogout();
 	}
 
-	@Then("the company is not logged in")
-	public void the_company_is_not_logged_in() {
-		assertTrue(!logisticCompanyApp.logisticCompanyLoggedIn());
+	@Then("the logistic company is not logged in")
+	public void the_logistic_company_is_not_logged_in() {
+		assertFalse(logisticCompanyApp.logisticCompanyLoggedIn());
 	}
 	
 }
