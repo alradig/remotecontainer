@@ -6,7 +6,7 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(
 
 	
-		features = "src/main/resources/RegisterContainer.feature")
+		features = "src/main/resources")
 public class CucumberTest {
 
 }

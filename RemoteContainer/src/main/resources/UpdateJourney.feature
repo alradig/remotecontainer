@@ -1,22 +1,13 @@
 Feature: Logistic company updates journey information
 
-  Scenario: Successful update of container journey
-    Given date and local time
-    And client name "BananaExpress"
-    And end destination "Australia"
-    And start destination "Denmark"
-    When container has arrived in "Sweden"
-    Then current position is added to journey
-    And the journey is saved
+Background: A container registered
+	Given a client is logged in
+	And the client registers a journey with cargo "Apples", port of origin harbor "Copenhagen" and destination  "London"
+	And there is an empty container
+	And the logistic company registers the container for the journey
+	And the client logs out
 
-
- 	Scenario: Container has successfully arrived at end destination
-    Given date and local time
-    And client name "BananaExpress"
-    And end destination "Australia"
-    And start destination "Denmark"
-    When  container has arrived in "Sweden"
-    When  container has arrived in "Russia"
-    And  container has arrived in "Australia"
-    Then current position is added to journey
-  	And the journey is saved
+Scenario: 
+    Given 
+    And 
+    And 
