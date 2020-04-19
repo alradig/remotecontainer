@@ -45,12 +45,13 @@ public class LoginLogoutSteps {
 	}
 	
 	@Given("the password is {string}")
-	public void the_password_is(String string) {
-		this.password = string;
+	public void the_password_is(String password) {
+		this.password = password;
+
 	}
 
 	@Then("the logistic company login succeeds")
-	public void the_logistic_comapny_login_succeeds() {
+	public void the_logistic_company_login_succeeds() {
 		assertTrue(logisticCompanyApp.logisticCompanyLogin(password));
 	}
 
@@ -58,6 +59,7 @@ public class LoginLogoutSteps {
 	public void the_logistic_company_is_logged_in() {
 		assertTrue(logisticCompanyApp.logisticCompanyLoggedIn());
 	}
+
 
 	@Then("the logistic company login fails")
 	public void the_logistic_company_login_fails() {
