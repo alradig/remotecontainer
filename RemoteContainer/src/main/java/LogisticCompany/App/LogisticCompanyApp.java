@@ -195,8 +195,8 @@ public class LogisticCompanyApp {
 		registerJourney(journey);
 		
 		Journey journeyObj = findJourney(journey);
-	
 		Container containerObj = findContainer(container);
+		
 		journeyObj.setContainer(containerObj);
 		
 	}

@@ -87,6 +87,7 @@ public class ContainerSteps {
 			this.errorMessage = e.getMessage();
 		}
 	}
+	
 	@Then("the container is a registered container for the journey")
 	public void the_container_is_a_registered_container_for_the_journey() {
 		Journey journey = logisticCompanyApp.findJourney(journeyInfo);
