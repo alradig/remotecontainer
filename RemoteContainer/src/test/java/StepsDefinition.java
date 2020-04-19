@@ -50,12 +50,6 @@ public class StepsDefinition {
 	/*
 	 * NEW REGISTER CONTAINER
 	 */
-	
-	@Given("a client is logged in")
-	public void a_client_is_logged_in() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
 
 
 /*
@@ -138,7 +132,6 @@ public class StepsDefinition {
 	    
 	}
 
-	
 
 	@Given("the logictic company is logged in")
 	public void the_logictic_company_is_logged_in()  throws Exception {

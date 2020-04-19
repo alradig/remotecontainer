@@ -44,7 +44,7 @@ public class LogisticCompanyApp {
 	}
 	
 	
-	private Client findClient(ClientInfo cc) {
+	public Client findClient(ClientInfo cc) {
 		return clientRepository.getClient(cc.getEmail());
 	}
 	
@@ -52,7 +52,7 @@ public class LogisticCompanyApp {
 //		
 //	}
 	
-	private Container findContainer(ContainerInfo container) {
+	public Container findContainer(ContainerInfo container) {
 		return containerRepository.getContainer(container.getCargo());
 	}
 
@@ -156,13 +156,23 @@ public class LogisticCompanyApp {
 	public boolean logisticCompanyLoggedIn() {
 		return logicticCompanyloggedIn;
 	}
+	
 	public void logisticCompanyLogout() {
 		logicticCompanyloggedIn = false;
+	}
+	
+	public boolean clientLoggedIn() {
+		return clientLoggedIn;
 	}
 	
 	private void checkLogisticCompanyLoggedIn() throws OperationNotAllowedException {
 		if (!logisticCompanyLoggedIn()) {
 			throw new OperationNotAllowedException("Logistic Company login required");
+		}}
+	
+	private void checkClientLoggedIn() throws OperationNotAllowedException {
+		if (!clientLoggedIn()) {
+			throw new OperationNotAllowedException("Client login required");
 		}}
 	
 	
@@ -191,14 +201,19 @@ public class LogisticCompanyApp {
 	}
 
 	public void registerContainerToJourney(ContainerInfo container, JourneyInfo journey) throws OperationNotAllowedException{
-		registerContainer(container);
-		registerJourney(journey);
-		
+		checkLogisticCompanyLoggedIn();
 		Journey journeyObj = findJourney(journey);
 		Container containerObj = findContainer(container);
 		
 		journeyObj.setContainer(containerObj);
 		
+	}
+	
+	public void registerJourneyToClient(ClientInfo client, JourneyInfo journey) throws OperationNotAllowedException{
+		Journey journeyObj = findJourney(journey);
+		Client clientObj = findClient(client);
+		
+		clientObj.addJourney(journeyObj);
 	}
 
 	

@@ -1,5 +1,7 @@
 package LogisticCompany.domain;
 
+import java.util.ArrayList;
+
 import LogisticCompany.App.ArchivableObject;
 import LogisticCompany.App.ClientRepository;
 import LogisticCompany.App.Database;
@@ -15,6 +17,7 @@ public class Client implements ArchivableObject{
 	private String refPerson;
 	private Address address;
 	private boolean Register;
+	private ArrayList<Journey> journeys = new ArrayList<Journey>();
 
 
 	
@@ -35,6 +38,13 @@ public class Client implements ArchivableObject{
 //		this.refPerson = "";
 //		this.address = "";
 //	}
+	public ArrayList<Journey> getJourneyList(){
+		return journeys;
+	}
+	
+	public void addJourney(Journey journey){
+		journeys.add(journey);
+	}
 	
 	public String getName() {
 		return name;

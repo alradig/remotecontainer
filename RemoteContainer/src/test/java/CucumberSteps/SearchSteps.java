@@ -61,7 +61,6 @@ public class SearchSteps {
 		assertTrue(clients.isEmpty());
 	}
 	
-	
 
 	@Given("these journeys are in the system")
 	public void these_journeys_are_in_the_system(List<List<String>> journeys) throws Exception {

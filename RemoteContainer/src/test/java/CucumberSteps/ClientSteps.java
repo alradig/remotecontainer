@@ -9,7 +9,6 @@ import LogisticCompany.App.LogisticCompanyApp;
 import LogisticCompany.domain.Address;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.persistence.InMemoryRepository;
-import dtu.library.dto.UserInfo;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -21,19 +20,20 @@ public class ClientSteps {
 	private String errorMessage;
 	private Address address;
 	
-	public ClientSteps(LogisticCompanyApp logisticCompanyApp) {
+	public ClientSteps(LogisticCompanyApp logisticCompanyApp, ClientInfo clientInfo) {
 		this.logisticCompanyApp = logisticCompanyApp;
+		this.clientInfo = clientInfo;
 		
 	}
-
+	
 	@Given("there is a client with name {string}, email {string}, reference person {string}")
 
 	 public void there_is_a_client_with_name_email_reference_person_password(String name, String email, String ref_person) {
 	   clientInfo = new ClientInfo(name, email, ref_person);
-
-	     assertEquals(clientInfo.getName(),name);
-	     assertEquals(clientInfo.getEmail(),email);
-	     assertEquals(clientInfo.getReference_person(),ref_person);
+		
+	    assertEquals(clientInfo.getName(),name);
+	    assertEquals(clientInfo.getEmail(),email);
+	    assertEquals(clientInfo.getReference_person(),ref_person);
 
 	}
 	
@@ -47,7 +47,6 @@ public class ClientSteps {
 		try {
 			this.logisticCompanyApp.registerClient(clientInfo);
 		} catch (Exception e) {
-//			errorMessage.setErrorMessage(e.getMessage());
 			this.errorMessage = e.getMessage();
 		}
 		logisticCompanyApp.logisticCompanyLogout();
