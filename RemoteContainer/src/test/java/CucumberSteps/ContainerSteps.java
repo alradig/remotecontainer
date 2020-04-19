@@ -24,10 +24,12 @@ public class ContainerSteps {
 	private String errorMessage;
 	private Journey journey;
 	private ClientInfo clientInfo;
+	public ClientHelper helper;
 	
-	public ContainerSteps(LogisticCompanyApp logisticCompanyApp, ClientInfo clientInfo) {
+	public ContainerSteps(LogisticCompanyApp logisticCompanyApp, ClientHelper helper) {
 		this.logisticCompanyApp = logisticCompanyApp;
-		this.clientInfo = clientInfo;
+		this.helper = helper;
+		
 	}
 
 	@Given("there is a journey with port of origin harbor {string} and destination {string}")
