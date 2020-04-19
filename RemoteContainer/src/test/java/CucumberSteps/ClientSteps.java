@@ -9,6 +9,7 @@ import LogisticCompany.App.LogisticCompanyApp;
 import LogisticCompany.domain.Address;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.persistence.InMemoryRepository;
+import dtu.library.acceptance_tests.helper.UserHelper;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -17,12 +18,13 @@ public class ClientSteps {
 	
 	private LogisticCompanyApp logisticCompanyApp;
 	private ClientInfo clientInfo;
+	
 	private String errorMessage;
 	private Address address;
+	public ClientHelper helper;
 	
-	public ClientSteps(LogisticCompanyApp logisticCompanyApp, ClientInfo clientInfo) {
+	public ClientSteps(LogisticCompanyApp logisticCompanyApp) {
 		this.logisticCompanyApp = logisticCompanyApp;
-		this.clientInfo = clientInfo;
 		
 	}
 	
@@ -39,16 +41,9 @@ public class ClientSteps {
 	
 	@Given("there is a client registered in the system")
 	public void there_is_a_client_registered_in_the_system() {
-		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
-		clientInfo = new ClientInfo("Expresso","expresso@exp.com","Nach Jicholson");
-		Address address = new Address("The street 3",1700,"Aarhus");
-		clientInfo.setAddress(address);
 		
-		try {
-			this.logisticCompanyApp.registerClient(clientInfo);
-		} catch (Exception e) {
-			this.errorMessage = e.getMessage();
-		}
+		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
+		clientInfo = helper.getClient();
 		logisticCompanyApp.logisticCompanyLogout();
 	}
 	

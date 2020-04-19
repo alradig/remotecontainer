@@ -1,7 +1,7 @@
 Feature: A Tracker for containers
 
 Background: A container registered
-	Given that the client "BananaExpress" is logged in
+	Given a client is logged in
 	And there is a journey with port of origin harbor "Copenhagen" and destination "harbour" 
 	And there is a container with content "Apples"
 	And the client logs out 

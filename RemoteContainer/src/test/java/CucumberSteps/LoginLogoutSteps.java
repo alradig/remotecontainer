@@ -6,6 +6,7 @@ import LogisticCompany.App.LogisticCompanyApp;
 import LogisticCompany.domain.Address;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.persistence.InMemoryRepository;
+import dtu.library.acceptance_tests.helper.UserHelper;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -17,26 +18,22 @@ public class LoginLogoutSteps {
 	private String errorMessage;
 	private InMemoryRepository repository = new InMemoryRepository();
 	private LogisticCompanyApp logisticCompanyApp = new LogisticCompanyApp(repository,repository,repository);
-
-	public LoginLogoutSteps(LogisticCompanyApp logisticCompanyApp) {
+	public ClientHelper helper;
+	
+	public LoginLogoutSteps(LogisticCompanyApp logisticCompanyApp,ClientHelper helper) {
 		this.logisticCompanyApp = logisticCompanyApp;
+		this.helper = helper;
 	}
 	
 	@Given("a client is logged in")
 	public void a_client_is_logged_in() {
 		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
-		clientInfo = new ClientInfo("Expresso","expresso@exp.com","Nach Jicholson");
-		Address address = new Address("The street 3",1700,"Aarhus");
-		clientInfo.setAddress(address);
 		
-		try {
-			this.logisticCompanyApp.registerClient(clientInfo);
-		} catch (Exception e) {
-			this.errorMessage = e.getMessage();
-		}
+		clientInfo = helper.getClient();
+
 		logisticCompanyApp.logisticCompanyLogout();
 		
-		logisticCompanyApp.clientLogin("client123");		
+		logisticCompanyApp.clientLogin("client123");
 	}
 	
 	@Given("the password is {string}")
