@@ -7,7 +7,6 @@ import LogisticCompany.App.OperationNotAllowedException;
 import LogisticCompany.domain.Address;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.persistence.InMemoryRepository;
-import dtu.library.acceptance_tests.helper.UserHelper;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
