@@ -6,8 +6,3 @@ Background: A container registered
 	And there is an empty container
 	And the logistic company registers the container for the journey
 	And the client logs out
-
-Scenario: 
-    Given 
-    And 
-    And 

@@ -21,6 +21,7 @@ public class Journey implements ArchivableObject{
 	private String currentLocation;
 	private boolean endDestinationReached;
 	private ArrayList<String> journeyLog = new ArrayList<String>();
+	private ArrayList<Container> containers = new ArrayList<Container>();
 	private Container container;
 	
 	
@@ -32,6 +33,7 @@ public class Journey implements ArchivableObject{
 	public void setContainer(Container container) {
 		this.container = container;
 		container.setCargo(cargo);
+		containers.add(container);
 	}
 
 	public Journey(int id, String startDestination, String endDestination, String cargo) {
