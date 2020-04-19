@@ -23,7 +23,7 @@ public class ClientSteps {
 	private Address address;
 	public ClientHelper helper;
 	
-	public ClientSteps(LogisticCompanyApp logisticCompanyApp) {
+	public ClientSteps(LogisticCompanyApp logisticCompanyApp, ClientHelper helper) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		
 	}

@@ -3,6 +3,7 @@ package CucumberSteps;
 import static org.junit.Assert.assertTrue;
 
 import LogisticCompany.App.LogisticCompanyApp;
+import LogisticCompany.App.OperationNotAllowedException;
 import LogisticCompany.domain.Address;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.persistence.InMemoryRepository;
@@ -30,6 +31,12 @@ public class LoginLogoutSteps {
 		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
 		
 		clientInfo = helper.getClient();
+		
+		try {
+			logisticCompanyApp.registerClient(clientInfo);
+		} catch (OperationNotAllowedException e) {
+			this.errorMessage = e.getMessage();
+		}
 
 		logisticCompanyApp.logisticCompanyLogout();
 		

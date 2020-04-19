@@ -75,7 +75,7 @@ public class ContainerSteps {
 				this.errorMessage = e.getMessage();
 			}
 		   
-			logisticCompanyApp.registerJourneyToClient(clientInfo, journeyInfo);
+			logisticCompanyApp.registerJourneyToClient(helper.getClient(), journeyInfo);
 			
 		   assertEquals(journeyInfo.getStartDestination(),Port_of_origin);
 		   assertEquals(journeyInfo.getEndDestination(),destination);
@@ -115,7 +115,7 @@ public class ContainerSteps {
 	
 	@When("the journey is a registered journey for the client")
 	public void the_journey_is_a_registered_journey_for_the_client() {
-		Client clientObj = logisticCompanyApp.findClient(clientInfo);
+		Client clientObj = logisticCompanyApp.findClient(helper.getClient());
 		
 		ArrayList<Journey> journeys = clientObj.getJourneyList();
 		
