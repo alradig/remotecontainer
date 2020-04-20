@@ -41,6 +41,12 @@ public class LoginLogoutSteps {
 
 		logisticCompanyApp.logisticCompanyLogout();
 		logisticCompanyApp.clientLogin("client123");
+		
+		try {
+			logisticCompanyApp.checkClientLoggedIn();
+		} catch (OperationNotAllowedException e) {
+			this.errorMessage = e.getMessage();
+		}
 	}
 
 	@Then("a client is logged in")
@@ -66,6 +72,11 @@ public class LoginLogoutSteps {
 
 	@Given("that a client is not logged in")
 	public void that_a_client_is_not_logged_in() throws Exception {
+		try {
+			logisticCompanyApp.checkClientLoggedIn();
+		} catch (OperationNotAllowedException e) {
+			this.errorMessage = e.getMessage();
+		}
 		assertFalse(logisticCompanyApp.clientLoggedIn());
 	}
 
@@ -92,7 +103,6 @@ public class LoginLogoutSteps {
 	@Given("the password is {string}")
 	public void the_password_is(String password) throws Exception {
 		this.password = password;
-
 	}
 
 	@Then("the logistic company login succeeds")
@@ -107,9 +117,24 @@ public class LoginLogoutSteps {
 	
 	@Given("that the logistic company is logged in")
 	public void that_the_logistic_company_is_logged_in() throws Exception  {
+		try {
+			logisticCompanyApp.checkLogisticCompanyLoggedIn();
+		} catch (OperationNotAllowedException e) {
+			this.errorMessage = e.getMessage();
+		}
 		assertTrue(logisticCompanyApp.logisticCompanyLogin("logisticCompany123"));
 	}
 
+	@Given("that the logistic company is not logged in")
+	public void that_the_logistic_company_is_not_logged_in() throws Exception  {
+		try {
+			logisticCompanyApp.checkLogisticCompanyLoggedIn();
+		} catch (OperationNotAllowedException e) {
+			this.errorMessage = e.getMessage();
+		}
+		assertFalse(logisticCompanyApp.logisticCompanyLoggedIn());
+	}
+	
 	@Then("the logistic company login fails")
 	public void the_logistic_company_login_fails() throws Exception {
 		assertFalse(logisticCompanyApp.logisticCompanyLogin(password));

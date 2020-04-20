@@ -151,12 +151,12 @@ public class LogisticCompanyApp {
 		return clientLoggedIn;
 	}
 	
-	private void checkLogisticCompanyLoggedIn() throws OperationNotAllowedException {
+	public void checkLogisticCompanyLoggedIn() throws OperationNotAllowedException {
 		if (!logisticCompanyLoggedIn()) {
 			throw new OperationNotAllowedException("Logistic Company login required");
 		}}
 	
-	private void checkClientLoggedIn() throws OperationNotAllowedException {
+	public void checkClientLoggedIn() throws OperationNotAllowedException {
 		if (!clientLoggedIn()) {
 			throw new OperationNotAllowedException("Client login required");
 		}}
