@@ -40,8 +40,12 @@ public class LoginLogoutSteps {
 		}
 
 		logisticCompanyApp.logisticCompanyLogout();
-		
 		logisticCompanyApp.clientLogin("client123");
+	}
+	
+	@Given("the client logs out")
+	public void the_client_logs_out() {
+		logisticCompanyApp.clientLogout();
 	}
 	
 	@Given("the password is {string}")
@@ -59,15 +63,19 @@ public class LoginLogoutSteps {
 	public void the_logistic_company_is_logged_in() {
 		assertTrue(logisticCompanyApp.logisticCompanyLoggedIn());
 	}
-
+	
+	@Given("that the logistic company is logged in")
+	public void that_the_logistic_company_is_logged_in() throws Exception  {
+		assertTrue(logisticCompanyApp.logisticCompanyLogin("logisticCompany123"));
+	}
 
 	@Then("the logistic company login fails")
 	public void the_logistic_company_login_fails() {
 		assertFalse(logisticCompanyApp.logisticCompanyLogin(password));
 	}
-
-	@When("the logistic company logs out")
-	public void the_logistic_company_logs_out() {
+	
+	@Given("the logistic company logs out")
+	public void the_logistic_company_logs_out() throws Exception {
 		logisticCompanyApp.logisticCompanyLogout();
 	}
 
@@ -75,5 +83,6 @@ public class LoginLogoutSteps {
 	public void the_logistic_company_is_not_logged_in() {
 		assertFalse(logisticCompanyApp.logisticCompanyLoggedIn());
 	}
+
 	
 }

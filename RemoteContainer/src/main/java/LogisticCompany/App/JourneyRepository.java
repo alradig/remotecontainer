@@ -11,8 +11,6 @@ public interface JourneyRepository {
 	void addJourney(Journey journey); 
 	
 	Stream<Journey> getAllJourneysStream();
-	
-	void updateJourney(Journey journey);
 
 	void removeJourney(Journey journey);
 

@@ -21,7 +21,6 @@ public class LogisticCompanyApp {
 	private ClientRepository clientRepository;
 	private JourneyRepository journeyRepository;
 	private ContainerRepository containerRepository;
-
 	private Database database;
 
 	private CalenderDate calenderDate = new CalenderDate();
@@ -73,15 +72,6 @@ public class LogisticCompanyApp {
 				.map(j -> j.asJourneyInfo())
 				.collect(Collectors.toList());
 	}
-	
-//	public void registerUser(UserInfo u) throws Exception {
-//			checkLogisticCompanyLoggedIn();
-//			User user = findUser(u);
-//			if (user != null) {
-//				throw new Exception("User is already registered");
-//			}
-//			clientRepository.addClient(u.asUser());
-//	}
 	
 	public void registerClient(ClientInfo cc) throws OperationNotAllowedException {
 		checkLogisticCompanyLoggedIn();
@@ -137,14 +127,9 @@ public class LogisticCompanyApp {
 		
 	}
 
-	public void updateJourneyInfo(JourneyInfo j) {
+	public void updateJourneyInfo(JourneyInfo journeyInfo) {
 		logisticCompanyLoggedIn();
-		Journey journey = findJourney(j);
-//		Client client = searchClient(cc);
-		journey.addLocationToLog(journey , calenderDate.getCurrentDate());
-		journeyRepository.updateJourney(journey); 		
-		// need more
-		// if journey done automatically terminates and give info
+		journeyInfo.addLocationToLog(journeyInfo, calenderDate.getCurrentDate());		
 	}
 	
 	
@@ -206,7 +191,6 @@ public class LogisticCompanyApp {
 		Container containerObj = findContainer(container);
 		
 		journeyObj.setContainer(containerObj);
-		
 	}
 	
 	public void registerJourneyToClient(ClientInfo client, JourneyInfo journey) throws OperationNotAllowedException{
@@ -216,6 +200,10 @@ public class LogisticCompanyApp {
 		clientObj.addJourney(journeyObj);
 	}
 
-	
+	public void addMeasurements(ContainerInfo containerInfo) throws OperationNotAllowedException {
+		checkLogisticCompanyLoggedIn();
+		containerInfo.addToMeasurementList(containerInfo.getCurrentTemp(), containerInfo.getCurrentAirHum(), containerInfo.getCurrentAtmPre());
+	}
 
+	
 }

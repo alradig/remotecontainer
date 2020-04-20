@@ -1,6 +1,8 @@
 package LogisticCompany.info;
 
 
+import java.util.ArrayList;
+
 import LogisticCompany.domain.Journey;
 
 public class JourneyInfo {
@@ -9,6 +11,8 @@ public class JourneyInfo {
 	private String cargo;
 	private String currentLocation;
 	private int id;
+	private ArrayList<String> journeyLog = new ArrayList<String>();
+
 	
 	public JourneyInfo(String startDestination, String endDestination) {
 		this.cargo = cargo;
@@ -54,5 +58,9 @@ public class JourneyInfo {
 		return new Journey(id, startDestination,endDestination,cargo);
 	}
 	
+	public void addLocationToLog(JourneyInfo journeyInfo, String currentDateTime) {	
+		String currentInfo = journeyInfo.getCurrentLocation() + " " +currentDateTime;
+		journeyLog.add(currentInfo);
+	}
 	
 }

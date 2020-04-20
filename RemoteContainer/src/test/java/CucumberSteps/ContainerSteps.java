@@ -13,6 +13,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 
@@ -46,26 +47,25 @@ public class ContainerSteps {
 		assertEquals(containerInfo.getCurrentAtmPre(),currentAtmPre);
 	}
 
-	@Then("new measurements are saved")
-	public void new_measurements_are_saved() {
-		// Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	@Then("new measurements {string}, {string}, {string} are saved")
+	public void new_measurements_are_saved(String currentTemp, String currentAirHum, String currentAtmPre) throws Exception {
+		
+		try {
+			logisticCompanyApp.addMeasurements(containerInfo);
+		} catch (Exception e) {
+			this.errorMessage = e.getMessage();
+		}
+		
+		assertEquals(containerInfo.getTemp().size(),1);
+		assertEquals(containerInfo.getAirHum().size(),1);
+		assertEquals(containerInfo.getAtmPre().size(),1);
+		assertEquals(containerInfo.getTemp().get(0),currentTemp);
+		assertEquals(containerInfo.getAirHum().get(0),currentAirHum);
+		assertEquals(containerInfo.getAtmPre().get(0),currentAtmPre);
 	}
 
-	@When("internal temperatur of {string} degrees and air humidity of {string} percent")
-	public void internal_temperatur_of_degrees_and_air_humidity_of_percent(String string, String string2) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@Then("new values are saved")
-	public void new_values_are_saved() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-	
 	@Given("the client registers a journey with cargo {string}, port of origin harbor {string} and destination  {string}")
-	public void the_client_registers_a_journey_with_cargo_port_of_origin_harbor_and_destination(String cargo, String Port_of_origin, String destination) throws Exception  {
+	public void the_client_registers_a_journey_with_cargo_port_of_origin_harbor_and_destination(String cargo, String Port_of_origin, String destination) throws Exception {
 		   journeyInfo = new JourneyInfo(cargo, Port_of_origin,destination);   
 		   
 			try {
@@ -95,7 +95,6 @@ public class ContainerSteps {
 		} catch (Exception e) {
 			this.errorMessage = e.getMessage();
 		}
-		
 	}
 	
 	@When("the logistic company registers the container for the journey")

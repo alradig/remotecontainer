@@ -24,8 +24,6 @@ public class Journey implements ArchivableObject{
 	private ArrayList<Container> containers = new ArrayList<Container>();
 	private Container container;
 	
-	
-	
 	public Container getContainer() {
 		return container;
 	}
@@ -128,11 +126,6 @@ public class Journey implements ArchivableObject{
 		
 	}
 	
-	public void addLocationToLog(Journey journey , String currentDateTime) {	
-		String currentInfo = journey.getCurrentLocation() + " " +currentDateTime;
-		journeyLog.add(currentInfo);
-	}
-	
 	public boolean matchJourney(String searchCargo) {
 		return cargo.contains(searchCargo);
 	}
@@ -165,44 +158,4 @@ public class Journey implements ArchivableObject{
 		JSONfile.createFile(this,folderName,fileName);
 	}
 	
-	@Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        
-        Journey journey = (Journey) o;
-        return 	this.id == journey.getId() &&
-        		this.startDestination.equals(journey.getStartDestination()) &&
-        		this.endDestination.equals(journey.getEndDestination()) &&
-        		this.cargo.equals(journey.getCargo()) &&
-        		this.currentLocation.equals(journey.getCurrentLocation()) &&
-        		this.endDestinationReached == journey.endDestinationReached;
-    }
-	
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder(19, 53)
-				.append(id)
-				.append(startDestination)
-				.append(endDestination)
-				.append(cargo)
-				.append(currentLocation)
-				.append(endDestinationReached)
-				.toHashCode();
-	}
-	
-	public static void main(String [] args) {
-		Journey journey = new Journey();
-		journey.setStartDestination("DK");
-		journey.setEndDestination("AUS");
-		journey.setCurrentLocation("AUS");
-//		journey.isJourneyDone();
-		System.out.println(journey.endDestinationReached);
-		
-	}
 }

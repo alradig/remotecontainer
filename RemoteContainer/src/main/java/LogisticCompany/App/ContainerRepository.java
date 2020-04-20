@@ -12,8 +12,6 @@ public interface ContainerRepository {
 	void addContainer(Container container );
 	
 	Stream<Container> getAllContainersStream();
-	
-	void updateContainer(Container container );
 
 	void removeContainer(Container container );
 

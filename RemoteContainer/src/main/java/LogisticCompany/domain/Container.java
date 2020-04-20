@@ -9,7 +9,7 @@ import LogisticCompany.App.ArchivableObject;
 import LogisticCompany.App.Database;
 import LogisticCompany.info.ContainerInfo;
 
-public class Container implements ArchivableObject{
+public class Container {
 	private static final AtomicInteger count = new AtomicInteger(0); 
 	private final int id;
 	private String cargo;
@@ -17,11 +17,9 @@ public class Container implements ArchivableObject{
 	private String currentAirHum;
 	private String currentAtmPre;
 	
-	private List<String> Temp = new ArrayList<String>();
-	private List<String> AirHum = new ArrayList<String>();
-	private List<String> AtmPre = new ArrayList<String>();
-	
-//	private ArrayList<String> journeyLog = new ArrayList<String>();
+	private ArrayList<String> Temp = new ArrayList<String>();
+	private ArrayList<String> AirHum = new ArrayList<String>();
+	private ArrayList<String> AtmPre = new ArrayList<String>();
 	
 	public Container() {
 		this.id = count.incrementAndGet(); 
@@ -30,18 +28,6 @@ public class Container implements ArchivableObject{
 	public Container(String cargo) {
 		this.cargo = cargo;
 		this.id = count.incrementAndGet(); 
-	}
-	
-	public void addTemp(String currentTemp) {
-		Temp.add(currentTemp);
-	}
-
-	public void addAirHum(String currentAirHum) {
-		AirHum.add(currentAirHum);
-	}
-	
-	public void addAtmPre(String currentAtmPre) {
-		AtmPre.add(currentAtmPre);
 	}
 	
 	public List<String> getTemp() {
@@ -62,22 +48,10 @@ public class Container implements ArchivableObject{
 		AtmPre.clear();
 	}
 	
-//	public boolean isSaved() {
-//		if(this.a == getInTemp().size() && this.a == getAirHum().size() && this.a== getAtmPre().size()) {
-//			return true;
-//		} else {
-//			return false;
-//		}
-//	}
-	
 	public int getId() {
 		return id;
 	}
-	
-//	public void setId(int id) {
-//		this.id = id;
-//	} I needed to remove that for the automatic ID implementation: Does anyone need this setter? 
-	
+		
 	public static boolean containerRegistered(Container container) {
 		return container.getId() == 0;
 	}
@@ -106,42 +80,12 @@ public class Container implements ArchivableObject{
 		return currentAtmPre;
 	}
 	
-	public void archive() {
-		String fileName = "Container_" + this.id + ".json";
-		String folderName = "Containers";
-		
-		Database JSONfile = new Database();
-		JSONfile.createFile(this,folderName, fileName);
-	}
-	
-//-----------------------------------------------------------------------
-//	@Override
-//    public boolean equals(Object o) {
-//        if (this == o) {
-//            return true;
-//        }
-//        
-//        if (o == null || getClass() != o.getClass()) {
-//            return false;
-//        }
-//        
-//        Container container = (Container) o;
-//        return 	this.id == container.getId() &&
-//        		this.getInTemp().equals(container.getInTemp()) &&
-//        		this.getAirHum().equals(container.getAirHum()) &&
-//        		this.getAtmPre().equals(container.getAtmPre()) &&
-//        		this.a == container.a;
-//    }
-	
-//	@Override
-//	public int hashCode() {
-//		return new HashCodeBuilder(19, 53)
-//				.append(id)
-//				.append(InTemp)
-//				.append(AtmPre)
-//				.append(AirHum)
-//				.append(a)
-//				.toHashCode();
+//	public void archive() {
+//		String fileName = "Container_" + this.id + ".json";
+//		String folderName = "Containers";
+//		
+//		Database JSONfile = new Database();
+//		JSONfile.createFile(this,folderName, fileName);
 //	}
 
 	public String getCargo() {
@@ -152,5 +96,5 @@ public class Container implements ArchivableObject{
 		this.cargo = cargo;
 	}
 
-
+	
 }
