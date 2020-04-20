@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import LogisticCompany.App.LogisticCompanyApp;
 import LogisticCompany.domain.Client;
+import LogisticCompany.domain.Container;
+import LogisticCompany.domain.ContainerStatus;
 import LogisticCompany.domain.Journey;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.info.ContainerInfo;
@@ -26,42 +28,65 @@ public class ContainerSteps {
 	private Journey journey;
 	private ClientInfo clientInfo;
 	public ClientHelper helper;
-	
+	private ContainerStatus containerStatus;
+
 	public ContainerSteps(LogisticCompanyApp logisticCompanyApp, ClientHelper helper) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.helper = helper;
 	}
-
+	
 	@Given("there is a journey with port of origin harbor {string} and destination {string}")
 	public void there_is_a_journey_with_port_of_origin_harbor_and_destination(String Port_of_origin, String destination) {
 		journeyInfo = new JourneyInfo(Port_of_origin,destination);
 		assertEquals(journeyInfo.getStartDestination(),Port_of_origin);
 		assertEquals(journeyInfo.getEndDestination(),destination);
 	}
-
+	@Given("there is an existing journey with cargo {string}, port of origin harbor {string} and destination  {string}") 
+	public void there_is_an_existing_journey_with_cargo_port_of_origin_harbor_and_destination(String cargo, String Port_of_origin, String destination) throws Exception  {
+		
+		containerInfo = new ContainerInfo(cargo);
+		logisticCompanyApp.registerContainer(containerInfo);
+		journeyInfo = new JourneyInfo(cargo, Port_of_origin,destination); 
+		
+		try {
+			logisticCompanyApp.registerJourney(journeyInfo);
+			logisticCompanyApp.registerContainerToJourney(containerInfo, journeyInfo);
+			
+		}
+		catch(Exception e) {
+			 this.errorMessage = e.getMessage();
+		}
+		logisticCompanyApp.registerJourneyToClient(helper.getClient(), journeyInfo);
+	}
+	
 	@When("internal temperatur of {string} degrees, air humidity of {string} percent, and atmopshere pressure of {string} Pa")
 	public void internal_temperatur_of_degrees_air_humidity_of_percent_and_atmopshere_pressure_of_Pa(String currentTemp, String currentAirHum, String currentAtmPre) {
-		containerInfo = new ContainerInfo(currentTemp, currentAirHum, currentAtmPre);
-		assertEquals(containerInfo.getCurrentTemp(),currentTemp);
-		assertEquals(containerInfo.getCurrentAirHum(),currentAirHum);
-		assertEquals(containerInfo.getCurrentAtmPre(),currentAtmPre);
+		containerStatus = new ContainerStatus(currentTemp, currentAirHum, currentAtmPre);
+		
+		assertEquals(containerStatus.getCurrentTemp(),currentTemp);
+		assertEquals(containerStatus.getCurrentAirHum(),currentAirHum);
+		assertEquals(containerStatus.getCurrentAtmPre(),currentAtmPre);
 	}
 
 	@Then("new measurements {string}, {string}, {string} are saved")
 	public void new_measurements_are_saved(String currentTemp, String currentAirHum, String currentAtmPre) throws Exception {
 		
-		try {
-			logisticCompanyApp.addMeasurements(containerInfo);
-		} catch (Exception e) {
-			this.errorMessage = e.getMessage();
-		}
+		Container container = logisticCompanyApp.findContainer(containerInfo);
+		logisticCompanyApp.addMeasurements(container, containerStatus);
+		ContainerStatus containerStatus = container.getContainerStatus();
+
+
+		assertEquals(containerStatus.getTemp().size(),1);
+		assertEquals(containerStatus.getAirHum().size(),1);
+		assertEquals(containerStatus.getAtmPre().size(),1);
+		assertEquals(containerStatus.getTemp().get(0),currentTemp);
+		assertEquals(containerStatus.getAirHum().get(0),currentAirHum);
+		assertEquals(containerStatus.getAtmPre().get(0),currentAtmPre);
+		assertEquals(container.getContainerStatus().getAirHum().get(0) ,currentAirHum);
+		assertEquals(container.getContainerStatus().getAtmPre().get(0) ,currentAtmPre);
+		assertEquals(container.getContainerStatus().getTemp().get(0) ,currentTemp);
 		
-		assertEquals(containerInfo.getTemp().size(),1);
-		assertEquals(containerInfo.getAirHum().size(),1);
-		assertEquals(containerInfo.getAtmPre().size(),1);
-		assertEquals(containerInfo.getTemp().get(0),currentTemp);
-		assertEquals(containerInfo.getAirHum().get(0),currentAirHum);
-		assertEquals(containerInfo.getAtmPre().get(0),currentAtmPre);
+		
 	}
 
 	@Given("the client registers a journey with cargo {string}, port of origin harbor {string} and destination  {string}")

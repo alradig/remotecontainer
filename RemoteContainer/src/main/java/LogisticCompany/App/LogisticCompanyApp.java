@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 import LogisticCompany.domain.Client;
 import LogisticCompany.domain.Container;
 import LogisticCompany.domain.Journey;
-
+import LogisticCompany.domain.ContainerStatus;
 import LogisticCompany.info.ContainerInfo;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.info.JourneyInfo;
@@ -22,6 +22,7 @@ public class LogisticCompanyApp {
 	private JourneyRepository journeyRepository;
 	private ContainerRepository containerRepository;
 	private Database database;
+	private ContainerStatus containerStatus; 
 
 	private CalenderDate calenderDate = new CalenderDate();
 	
@@ -200,9 +201,11 @@ public class LogisticCompanyApp {
 		clientObj.addJourney(journeyObj);
 	}
 
-	public void addMeasurements(ContainerInfo containerInfo) throws OperationNotAllowedException {
+	public void addMeasurements(Container container, ContainerStatus containerStatus) throws OperationNotAllowedException {
 		checkLogisticCompanyLoggedIn();
-		containerInfo.addToMeasurementList(containerInfo.getCurrentTemp(), containerInfo.getCurrentAirHum(), containerInfo.getCurrentAtmPre());
+		containerStatus.addToMeasurementList(containerStatus.getCurrentTemp(), containerStatus.getCurrentAirHum(), containerStatus.getCurrentAtmPre());		
+		container.setContainerStatus(containerStatus); 
+	
 	}
 
 	
