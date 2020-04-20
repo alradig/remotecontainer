@@ -27,7 +27,23 @@ public class LoginLogoutSteps {
 		this.helper = helper;
 	}
 	
-	@Given("a client is logged in")
+	@Given("that a client is logged in")
+	public void that_a_client_is_logged_in() {
+		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
+		
+		clientInfo = helper.getClient();
+		
+		try {
+			logisticCompanyApp.registerClient(clientInfo);
+		} catch (OperationNotAllowedException e) {
+			this.errorMessage = e.getMessage();
+		}
+
+		logisticCompanyApp.logisticCompanyLogout();
+		logisticCompanyApp.clientLogin("client123");
+	}
+
+	@Then("a client is logged in")
 	public void a_client_is_logged_in() {
 		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
 		
@@ -43,8 +59,33 @@ public class LoginLogoutSteps {
 		logisticCompanyApp.clientLogin("client123");
 	}
 	
-	@Given("the client logs out")
-	public void the_client_logs_out() {
+	@Given("that a client logs out")
+	public void that_a_client_logs_out() {
+		logisticCompanyApp.clientLogout();
+	}
+
+	@Given("that a client is not logged in")
+	public void that_a_client_is_not_logged_in() {
+		assertFalse(logisticCompanyApp.clientLoggedIn());
+	}
+
+	@Then("a client login succeeds")
+	public void a_client_login_succeeds() {
+		assertTrue(logisticCompanyApp.clientLogin(password));
+	}
+
+	@Then("a client login fails")
+	public void a_client_login_fails() {
+		assertFalse(logisticCompanyApp.clientLogin(password));
+	}
+
+	@Then("a client is not logged in")
+	public void a_client_is_not_logged_in() {
+		assertFalse(logisticCompanyApp.clientLoggedIn());
+	}
+
+	@When("a client logs out")
+	public void a_client_logs_out() {
 		logisticCompanyApp.clientLogout();
 	}
 	

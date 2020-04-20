@@ -34,7 +34,7 @@ public class ContainerSteps {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.helper = helper;
 	}
-	
+
 	@Given("there is a journey with port of origin harbor {string} and destination {string}")
 	public void there_is_a_journey_with_port_of_origin_harbor_and_destination(String Port_of_origin, String destination) {
 		journeyInfo = new JourneyInfo(Port_of_origin,destination);
