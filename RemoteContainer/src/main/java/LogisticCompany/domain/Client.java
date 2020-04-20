@@ -1,7 +1,7 @@
 package LogisticCompany.domain;
 
 import java.util.ArrayList;
-
+import java.util.concurrent.atomic.AtomicInteger;
 import LogisticCompany.App.ArchivableObject;
 import LogisticCompany.App.ClientRepository;
 import LogisticCompany.App.Database;
@@ -9,8 +9,8 @@ import LogisticCompany.info.ClientInfo;
 
 
 public class Client implements ArchivableObject{
-	
-	private int id;
+	private static final AtomicInteger count = new AtomicInteger(0); 
+	private final int id;
 	private String name;
 	private String email;
 	private String password;
@@ -22,12 +22,15 @@ public class Client implements ArchivableObject{
 
 	
 	public Client(String name, String email, String reference_person) {
+		
 		this.name = name;
 		this.email = email;
 		this.refPerson = reference_person;
+		this.id = count.incrementAndGet(); 
 	}
 
-	public Client() {}; // Needed by Java Persistence Layer
+	public Client() {
+		this.id = 0;}; // Needed by Java Persistence Layer
 	
 
 //	public Client() {
@@ -85,9 +88,7 @@ public class Client implements ArchivableObject{
 	public int getId() {
 		return id;
 	}
-	public void setId(int id) {
-		this.id = id;
-	}
+	
 	
 	public boolean matchClient(String searchEmail) {
 		return email.contains(searchEmail);

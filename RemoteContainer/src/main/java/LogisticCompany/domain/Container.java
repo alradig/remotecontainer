@@ -1,6 +1,7 @@
 package LogisticCompany.domain;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -9,8 +10,8 @@ import LogisticCompany.App.Database;
 import LogisticCompany.info.ContainerInfo;
 
 public class Container implements ArchivableObject{
-	
-	private int id;
+	private static final AtomicInteger count = new AtomicInteger(0); 
+	private final int id;
 	private String cargo;
 	private String currentTemp;
 	private String currentAirHum;
@@ -23,11 +24,12 @@ public class Container implements ArchivableObject{
 //	private ArrayList<String> journeyLog = new ArrayList<String>();
 	
 	public Container() {
-		
+		this.id = count.incrementAndGet(); 
 	}
 
 	public Container(String cargo) {
 		this.cargo = cargo;
+		this.id = count.incrementAndGet(); 
 	}
 	
 	public void addTemp(String currentTemp) {
@@ -72,9 +74,9 @@ public class Container implements ArchivableObject{
 		return id;
 	}
 	
-	public void setId(int id) {
-		this.id = id;
-	}
+//	public void setId(int id) {
+//		this.id = id;
+//	} I needed to remove that for the automatic ID implementation: Does anyone need this setter? 
 	
 	public static boolean containerRegistered(Container container) {
 		return container.getId() == 0;

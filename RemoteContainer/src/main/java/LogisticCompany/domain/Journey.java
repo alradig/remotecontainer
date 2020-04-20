@@ -2,6 +2,7 @@ package LogisticCompany.domain;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -11,9 +12,8 @@ import LogisticCompany.info.ClientInfo;
 import LogisticCompany.info.JourneyInfo;
 
 public class Journey implements ArchivableObject{
-	
-	private int id;
-	
+	private static final AtomicInteger count = new AtomicInteger(0); 
+	private final int id;
 	private String startDestination;
 	private String endDestination;
 	private boolean isRegistered;
@@ -38,12 +38,13 @@ public class Journey implements ArchivableObject{
 
 	public Journey(int id, String startDestination, String endDestination, String cargo) {
 		this.id = id;
+//		this.id = count.incrementAndGet();  does not work yet since we pass ID to journey so far
 		this.startDestination = startDestination;
 		this.endDestination = endDestination;
 		this.cargo = cargo;
 	}
 	
-	public Journey() {}; 
+	public Journey() {this.id = count.incrementAndGet(); }; 
 	
 	
 //	public Journey() {
