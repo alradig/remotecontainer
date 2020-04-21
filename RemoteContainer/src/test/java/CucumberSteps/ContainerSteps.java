@@ -77,7 +77,6 @@ public class ContainerSteps {
 		logisticCompanyApp.addMeasurements(container, containerStatus);
 		ContainerStatus containerStatus = container.getContainerStatus();
 
-
 		assertEquals(containerStatus.getTemp().size(),1);
 		assertEquals(containerStatus.getAirHum().size(),1);
 		assertEquals(containerStatus.getAtmPre().size(),1);
@@ -88,24 +87,23 @@ public class ContainerSteps {
 		assertEquals(container.getContainerStatus().getAtmPre().get(0) ,currentAtmPre);
 		assertEquals(container.getContainerStatus().getTemp().get(0) ,currentTemp);
 		
-		
 	}
 
 	@Given("the client registers a journey with cargo {string}, port of origin harbor {string} and destination  {string}")
 	public void the_client_registers_a_journey_with_cargo_port_of_origin_harbor_and_destination(String cargo, String Port_of_origin, String destination) throws Exception {
-		   journeyInfo = new JourneyInfo(cargo, Port_of_origin,destination);   
+		journeyInfo = new JourneyInfo(cargo, Port_of_origin,destination);   
 		   
-			try {
-				logisticCompanyApp.registerJourney(journeyInfo);
-			} catch (Exception e) {
-				this.errorMessage = e.getMessage();
-			}
-		   
-			logisticCompanyApp.registerJourneyToClient(helper.getClient(), journeyInfo);
-			
-		   assertEquals(journeyInfo.getStartDestination(),Port_of_origin);
-		   assertEquals(journeyInfo.getEndDestination(),destination);
-		   assertEquals(journeyInfo.getCargo(),cargo);
+	   try {
+			logisticCompanyApp.registerJourney(journeyInfo);
+	   } catch (Exception e) {
+			this.errorMessage = e.getMessage();
+	   }
+	   
+	   logisticCompanyApp.registerJourneyToClient(helper.getClient(), journeyInfo);
+		
+	   assertEquals(journeyInfo.getStartDestination(),Port_of_origin);
+	   assertEquals(journeyInfo.getEndDestination(),destination);
+	   assertEquals(journeyInfo.getCargo(),cargo);
 	}
 
 	@Given("there is a container with content {string}")

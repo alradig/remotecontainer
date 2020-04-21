@@ -11,14 +11,10 @@ public class JourneyInfo {
 	private String cargo;
 	private String currentLocation;
 	private int id;
-	private ArrayList<String> journeyLog = new ArrayList<String>();
-
 	
 	public JourneyInfo(String startDestination, String endDestination) {
-		this.cargo = cargo;
 		this.startDestination = startDestination;
 		this.endDestination = endDestination;
-		this.id = id;
 	}
 	
 	public JourneyInfo(Journey journey) {

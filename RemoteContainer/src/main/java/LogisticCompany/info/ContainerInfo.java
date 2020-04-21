@@ -14,8 +14,6 @@ public class ContainerInfo {
 	private String currentAtmPre;
 	private ContainerStatus containerStatus;
 	
-
-
 	public ContainerInfo(String cargo) {
 		this.cargo = cargo;
 	}
