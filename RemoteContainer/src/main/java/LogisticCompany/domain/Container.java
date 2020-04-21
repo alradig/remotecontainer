@@ -4,32 +4,17 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import javax.persistence.*;
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
-import LogisticCompany.App.ArchivableObject;
-import LogisticCompany.App.Database;
 import LogisticCompany.info.ContainerInfo;
 
+
 @Entity
-//@DiscriminatorValue("T")
-//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-//@DiscriminatorColumn(name = "TYPE", discriminatorType = DiscriminatorType.STRING, length = 20)
-public class Container implements ArchivableObject{
+public class Container {
 	private static final AtomicInteger count = new AtomicInteger(0); 
 	@Id
 	private final int id;
 	private String cargo;
-	private String currentTemp;
-	private String currentAirHum;
-	private String currentAtmPre;
-	@ElementCollection
-	private List<String> Temp = new ArrayList<String>(); // Create a containerStatus object with the three information and having here a list of it instead! Pay attention to when we have primitive data type in the left side of the attribute!
-	@ElementCollection
-	private List<String> AirHum = new ArrayList<String>();
-	@ElementCollection
-	private List<String> AtmPre = new ArrayList<String>();
-	
-//	private ArrayList<String> journeyLog = new ArrayList<String>();
+	@OneToMany
+	private ArrayList<ContainerStatus> containerStatusList = new ArrayList<>();
 	
 	public Container() {
 		this.id = count.incrementAndGet(); 
@@ -37,120 +22,30 @@ public class Container implements ArchivableObject{
 
 	public Container(String cargo) {
 		this.cargo = cargo;
-		this.id = count.incrementAndGet(); 
+		this.id = count.incrementAndGet();
 	}
 	
-	public void addTemp(String currentTemp) {
-		Temp.add(currentTemp);
-	}
-
-	public void addAirHum(String currentAirHum) {
-		AirHum.add(currentAirHum);
+	public void addContainerStatus(ContainerStatus containerStatus) {
+		containerStatusList.add(containerStatus);
 	}
 	
-	public void addAtmPre(String currentAtmPre) {
-		AtmPre.add(currentAtmPre);
+	public void clearContainerStatusList() {
+		containerStatusList.clear();
 	}
 	
-	public List<String> getTemp() {
-		 return Temp;
+	public void addToMeasurementList(String currentTemp, String currentAirHum, String currentAtmPre) {
+		ContainerStatus containerStatus = new ContainerStatus(currentTemp,currentAirHum,currentAtmPre);
+		containerStatusList.add(containerStatus);
+		
 	}
-	
-	public List<String> getAirHum() {
-		 return AirHum;
-	}
-	
-	public List<String> getAtmPre() {
-		 return AtmPre;
-	}
-
-	public void clearMeasurements() {
-		Temp.clear();
-		AirHum.clear();
-		AtmPre.clear();
-	}
-	
-//	public boolean isSaved() {
-//		if(this.a == getInTemp().size() && this.a == getAirHum().size() && this.a== getAtmPre().size()) {
-//			return true;
-//		} else {
-//			return false;
-//		}
-//	}
 	
 	public int getId() {
 		return id;
 	}
-	
-//	public void setId(int id) {
-//		this.id = id;
-//	} I needed to remove that for the automatic ID implementation: Does anyone need this setter? 
-	
+		
 	public static boolean containerRegistered(Container container) {
 		return container.getId() == 0;
 	}
-
-	public void setCurrentTemp(String currentTemp) {
-		this.currentTemp = currentTemp;
-	}
-	
-	public String getCurrentTemp() {
-		return currentTemp;
-	}
-	
-	public String getCurrentAirHum() {
-		return currentAirHum;
-	}
-
-	public void setCurrentAirHum(String currentAirHum) {
-		this.currentAirHum = currentAirHum;
-	}
-	
-	public void setAtmPre(String currentAtmPre) {
-		this.currentAtmPre = currentAtmPre;
-	}
-	
-	public String getCurrentAtmPre() {
-		return currentAtmPre;
-	}
-	
-	public void archive() {
-		String fileName = "Container_" + this.id + ".json";
-		String folderName = "Containers";
-		
-		Database JSONfile = new Database();
-		JSONfile.createFile(this,folderName, fileName);
-	}
-	
-//-----------------------------------------------------------------------
-//	@Override
-//    public boolean equals(Object o) {
-//        if (this == o) {
-//            return true;
-//        }
-//        
-//        if (o == null || getClass() != o.getClass()) {
-//            return false;
-//        }
-//        
-//        Container container = (Container) o;
-//        return 	this.id == container.getId() &&
-//        		this.getInTemp().equals(container.getInTemp()) &&
-//        		this.getAirHum().equals(container.getAirHum()) &&
-//        		this.getAtmPre().equals(container.getAtmPre()) &&
-//        		this.a == container.a;
-//    }
-	
-//	@Override
-//	public int hashCode() {
-//		return new HashCodeBuilder(19, 53)
-//				.append(id)
-//				.append(InTemp)
-//				.append(AtmPre)
-//				.append(AirHum)
-//				.append(a)
-//				.toHashCode();
-//	}
 
 	public String getCargo() {
 		return cargo;
@@ -159,6 +54,18 @@ public class Container implements ArchivableObject{
 	public void setCargo(String cargo) {
 		this.cargo = cargo;
 	}
+	
+	public ContainerInfo asContainerIfo() {
+		return new ContainerInfo(this.getCargo());
+	}
+	
+//	public void archive() {
+//	String fileName = "Container_" + this.id + ".json";
+//	String folderName = "Containers";
+//	
+//	Database JSONfile = new Database();
+//	JSONfile.createFile(this,folderName, fileName);
+//}
 
-
+	
 }

@@ -13,8 +13,6 @@ public interface ClientRepository {
 
 	Stream<Client> getAllClientsStream();
 
-	void updateClient(Client client);
-
 	void removeClient(Client client);
 
 	void clearClientDatabase();

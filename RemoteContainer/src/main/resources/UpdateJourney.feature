@@ -1,8 +1,11 @@
 Feature: Logistic company updates journey information
 
-Background: A container registered
-	Given a client is logged in
-	And the client registers a journey with cargo "Apples", port of origin harbor "Copenhagen" and destination  "London"
-	And there is an empty container
-	And the logistic company registers the container for the journey
-	And the client logs out
+Background: A container and journey is registered
+	Given there is a client registered in the system
+	And there is an existing journey with cargo "Apples", port of origin harbor "Copenhagen" and destination  "London"
+
+	
+Scenario: Journey is updated
+	Given that the logistic company is logged in 
+	When the journey has arrived at "Oslo"
+	Then current position is updated	

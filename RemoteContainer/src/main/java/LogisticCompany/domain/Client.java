@@ -4,17 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import javax.persistence.*;
-
-import LogisticCompany.App.ArchivableObject;
 import LogisticCompany.App.ClientRepository;
-import LogisticCompany.App.Database;
 import LogisticCompany.info.ClientInfo;
 
 @Entity
 @DiscriminatorValue("C")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "TYPE", discriminatorType = DiscriminatorType.STRING, length = 20)
-public class Client implements ArchivableObject{
+public class Client{
 	private static final AtomicInteger count = new AtomicInteger(0); 
 	private final int id;
 	private String name;
@@ -26,10 +23,9 @@ public class Client implements ArchivableObject{
 	private Address address;
 	private boolean Register;
 	@OneToMany
-	private List<Journey> journeys = new ArrayList<Journey>();
+	private ArrayList<Journey> journeys = new ArrayList<Journey>();
 
 
-	
 	public Client(String name, String email, String reference_person) {
 		
 		this.name = name;
@@ -42,14 +38,6 @@ public class Client implements ArchivableObject{
 		this.id = 0;}; // Needed by Java Persistence Layer
 	
 
-//	public Client() {
-//		this.id = 0;
-//		this.name = "";
-//		this.email = "";
-//		this.pw = "";
-//		this.refPerson = "";
-//		this.address = "";
-//	}
 	public ArrayList<Journey> getJourneyList(){
 		return journeys;
 	}
@@ -101,14 +89,6 @@ public class Client implements ArchivableObject{
 	
 	public boolean matchClient(String searchEmail) {
 		return email.contains(searchEmail);
-	}
-	
-	public void archive() {
-		String fileName = "Client_" + this.id + ".json";
-		String folderName = "Clients";
-		
-		Database JSONfile = new Database();
-		JSONfile.createFile(this,folderName, fileName);
 	}
 	
 	public ClientInfo asClientInfo() {

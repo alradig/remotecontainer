@@ -27,8 +27,8 @@ public class LoginLogoutSteps {
 		this.helper = helper;
 	}
 	
-	@Given("a client is logged in")
-	public void a_client_is_logged_in() {
+	@Given("that a client is logged in")
+	public void that_a_client_is_logged_in() throws Exception {
 		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
 		
 		clientInfo = helper.getClient();
@@ -40,14 +40,69 @@ public class LoginLogoutSteps {
 		}
 
 		logisticCompanyApp.logisticCompanyLogout();
+		logisticCompanyApp.clientLogin("client123");
 		
+		try {
+			logisticCompanyApp.checkClientLoggedIn();
+		} catch (OperationNotAllowedException e) {
+			this.errorMessage = e.getMessage();
+		}
+	}
+
+	@Then("a client is logged in")
+	public void a_client_is_logged_in() throws Exception {
+		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
+		
+		clientInfo = helper.getClient();
+		
+		try {
+			logisticCompanyApp.registerClient(clientInfo);
+		} catch (OperationNotAllowedException e) {
+			this.errorMessage = e.getMessage();
+		}
+
+		logisticCompanyApp.logisticCompanyLogout();
 		logisticCompanyApp.clientLogin("client123");
 	}
 	
-	@Given("the password is {string}")
-	public void the_password_is(String password) {
-		this.password = password;
+	@Given("that a client logs out")
+	public void that_a_client_logs_out() throws Exception {
+		logisticCompanyApp.clientLogout();
+	}
 
+	@Given("that a client is not logged in")
+	public void that_a_client_is_not_logged_in() throws Exception {
+		try {
+			logisticCompanyApp.checkClientLoggedIn();
+		} catch (OperationNotAllowedException e) {
+			this.errorMessage = e.getMessage();
+		}
+		assertFalse(logisticCompanyApp.clientLoggedIn());
+	}
+
+	@Then("a client login succeeds")
+	public void a_client_login_succeeds() throws Exception {
+		assertTrue(logisticCompanyApp.clientLogin(password));
+	}
+
+	@Then("a client login fails")
+	public void a_client_login_fails() throws Exception {
+		assertFalse(logisticCompanyApp.clientLogin(password));
+	}
+
+	@Then("a client is not logged in")
+	public void a_client_is_not_logged_in() throws Exception {
+		assertFalse(logisticCompanyApp.clientLoggedIn());
+	}
+
+	@When("a client logs out")
+	public void a_client_logs_out() throws Exception {
+		logisticCompanyApp.clientLogout();
+	}
+
+	@Given("the password is {string}")
+	public void the_password_is(String password) throws Exception {
+		this.password = password;
 	}
 
 	@Then("the logistic company login succeeds")
@@ -56,24 +111,44 @@ public class LoginLogoutSteps {
 	}
 
 	@Then("the logistic company is logged in")
-	public void the_logistic_company_is_logged_in() {
+	public void the_logistic_company_is_logged_in() throws Exception {
 		assertTrue(logisticCompanyApp.logisticCompanyLoggedIn());
 	}
-
-
-	@Then("the logistic company login fails")
-	public void the_logistic_company_login_fails() {
-		assertFalse(logisticCompanyApp.logisticCompanyLogin(password));
+	
+	@Given("that the logistic company is logged in")
+	public void that_the_logistic_company_is_logged_in() throws Exception  {
+		try {
+			logisticCompanyApp.checkLogisticCompanyLoggedIn();
+		} catch (OperationNotAllowedException e) {
+			this.errorMessage = e.getMessage();
+		}
+		assertTrue(logisticCompanyApp.logisticCompanyLogin("logisticCompany123"));
 	}
 
-	@When("the logistic company logs out")
-	public void the_logistic_company_logs_out() {
+	@Given("that the logistic company is not logged in")
+	public void that_the_logistic_company_is_not_logged_in() throws Exception  {
+		try {
+			logisticCompanyApp.checkLogisticCompanyLoggedIn();
+		} catch (OperationNotAllowedException e) {
+			this.errorMessage = e.getMessage();
+		}
+		assertFalse(logisticCompanyApp.logisticCompanyLoggedIn());
+	}
+	
+	@Then("the logistic company login fails")
+	public void the_logistic_company_login_fails() throws Exception {
+		assertFalse(logisticCompanyApp.logisticCompanyLogin(password));
+	}
+	
+	@Given("the logistic company logs out")
+	public void the_logistic_company_logs_out() throws Exception {
 		logisticCompanyApp.logisticCompanyLogout();
 	}
 
 	@Then("the logistic company is not logged in")
-	public void the_logistic_company_is_not_logged_in() {
+	public void the_logistic_company_is_not_logged_in() throws Exception {
 		assertFalse(logisticCompanyApp.logisticCompanyLoggedIn());
 	}
+
 	
 }

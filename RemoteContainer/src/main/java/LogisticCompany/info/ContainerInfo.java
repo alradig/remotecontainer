@@ -1,6 +1,10 @@
 package LogisticCompany.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import LogisticCompany.domain.Container;
+import LogisticCompany.domain.ContainerStatus;
 
 public class ContainerInfo {
 	
@@ -8,15 +12,12 @@ public class ContainerInfo {
 	private String currentTemp;
 	private String currentAirHum;
 	private String currentAtmPre;
+	private ContainerStatus containerStatus;
+	
+
 
 	public ContainerInfo(String cargo) {
 		this.cargo = cargo;
-	}
-	
-	public ContainerInfo(String currentTemp, String currentAirHum, String currentAtmPre) {
-		this.currentTemp = currentTemp;
-		this.currentAirHum = currentAirHum;
-		this.currentAtmPre = currentAtmPre;
 	}
 	
 	public String getCargo() {
@@ -44,5 +45,11 @@ public class ContainerInfo {
 		
 		return new Container(cargo);
 	}
+	
+	public ContainerStatus getContainerStatus() {
+		return containerStatus;
+	}
+	
+
 	
 }

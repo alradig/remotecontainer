@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import LogisticCompany.App.LogisticCompanyApp;
 import LogisticCompany.domain.Client;
+import LogisticCompany.domain.Container;
+import LogisticCompany.domain.ContainerStatus;
 import LogisticCompany.domain.Journey;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.info.ContainerInfo;
@@ -13,6 +15,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 
@@ -25,7 +28,8 @@ public class ContainerSteps {
 	private Journey journey;
 	private ClientInfo clientInfo;
 	public ClientHelper helper;
-	
+	private ContainerStatus containerStatus;
+
 	public ContainerSteps(LogisticCompanyApp logisticCompanyApp, ClientHelper helper) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.helper = helper;
@@ -37,35 +41,58 @@ public class ContainerSteps {
 		assertEquals(journeyInfo.getStartDestination(),Port_of_origin);
 		assertEquals(journeyInfo.getEndDestination(),destination);
 	}
-
-	@When("internal temperatur of {string} degrees, air humidity of {string} percent, and atmopshere pressure of {string} Pa")
-	public void internal_temperatur_of_degrees_air_humidity_of_percent_and_atmopshere_pressure_of_Pa(String currentTemp, String currentAirHum, String currentAtmPre) {
-		containerInfo = new ContainerInfo(currentTemp, currentAirHum, currentAtmPre);
-		assertEquals(containerInfo.getCurrentTemp(),currentTemp);
-		assertEquals(containerInfo.getCurrentAirHum(),currentAirHum);
-		assertEquals(containerInfo.getCurrentAtmPre(),currentAtmPre);
-	}
-
-	@Then("new measurements are saved")
-	public void new_measurements_are_saved() {
-		// Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@When("internal temperatur of {string} degrees and air humidity of {string} percent")
-	public void internal_temperatur_of_degrees_and_air_humidity_of_percent(String string, String string2) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@Then("new values are saved")
-	public void new_values_are_saved() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	@Given("there is an existing journey with cargo {string}, port of origin harbor {string} and destination  {string}") 
+	public void there_is_an_existing_journey_with_cargo_port_of_origin_harbor_and_destination(String cargo, String Port_of_origin, String destination) throws Exception  {
+		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
+		containerInfo = new ContainerInfo(cargo);
+		logisticCompanyApp.registerContainer(containerInfo);
+		journeyInfo = new JourneyInfo(cargo, Port_of_origin,destination); 
+		
+		try {
+			logisticCompanyApp.registerJourney(journeyInfo);
+			logisticCompanyApp.registerContainerToJourney(containerInfo, journeyInfo);
+			
+		}
+		catch(Exception e) {
+			 this.errorMessage = e.getMessage();
+		}
+		logisticCompanyApp.registerJourneyToClient(helper.getClient(), journeyInfo);
 	}
 	
+	@When("internal temperatur of {string} degrees, air humidity of {string} percent, and atmopshere pressure of {string} Pa")
+	public void internal_temperatur_of_degrees_air_humidity_of_percent_and_atmopshere_pressure_of_Pa(String currentTemp, String currentAirHum, String currentAtmPre) {
+		containerStatus = new ContainerStatus(currentTemp, currentAirHum, currentAtmPre);
+		
+		assertEquals(containerStatus.getCurrentTemp(),currentTemp);
+		assertEquals(containerStatus.getCurrentAirHum(),currentAirHum);
+		assertEquals(containerStatus.getCurrentAtmPre(),currentAtmPre);
+		
+		
+	}
+
+	@Then("new measurements {string}, {string}, {string} are saved")
+	public void new_measurements_are_saved(String currentTemp, String currentAirHum, String currentAtmPre) throws Exception {
+		
+		Container container = logisticCompanyApp.findContainer(containerInfo);
+		logisticCompanyApp.addMeasurements(container, containerStatus);
+		ContainerStatus containerStatus = container.getContainerStatus();
+
+
+		assertEquals(containerStatus.getTemp().size(),1);
+		assertEquals(containerStatus.getAirHum().size(),1);
+		assertEquals(containerStatus.getAtmPre().size(),1);
+		assertEquals(containerStatus.getTemp().get(0),currentTemp);
+		assertEquals(containerStatus.getAirHum().get(0),currentAirHum);
+		assertEquals(containerStatus.getAtmPre().get(0),currentAtmPre);
+		assertEquals(container.getContainerStatus().getAirHum().get(0) ,currentAirHum);
+		assertEquals(container.getContainerStatus().getAtmPre().get(0) ,currentAtmPre);
+		assertEquals(container.getContainerStatus().getTemp().get(0) ,currentTemp);
+		
+		
+	}
+
 	@Given("the client registers a journey with cargo {string}, port of origin harbor {string} and destination  {string}")
-	public void the_client_registers_a_journey_with_cargo_port_of_origin_harbor_and_destination(String cargo, String Port_of_origin, String destination) throws Exception  {
+	public void the_client_registers_a_journey_with_cargo_port_of_origin_harbor_and_destination(String cargo, String Port_of_origin, String destination) throws Exception {
 		   journeyInfo = new JourneyInfo(cargo, Port_of_origin,destination);   
 		   
 			try {
@@ -95,7 +122,6 @@ public class ContainerSteps {
 		} catch (Exception e) {
 			this.errorMessage = e.getMessage();
 		}
-		
 	}
 	
 	@When("the logistic company registers the container for the journey")

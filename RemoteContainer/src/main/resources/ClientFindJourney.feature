@@ -7,7 +7,7 @@ Background: The client has a set of journeys
         | Banana | Sydney | Copenhagen |
         | Tables | Beijing | New York |
         | Chairs | Moscow | Oslo | 
-    And the client logs out 
+    And a client logs out 
     
 Scenario: Searching for journey with unique cargo
     Given a client is logged in

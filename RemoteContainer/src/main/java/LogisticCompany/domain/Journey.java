@@ -4,40 +4,39 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-
 import javax.persistence.*;
-
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-
-import LogisticCompany.App.ArchivableObject;
-import LogisticCompany.App.Database;
+import LogisticCompany.domain.JourneyStatus;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.info.JourneyInfo;
 
 @Entity
-@DiscriminatorValue("J")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "TYPE", discriminatorType = DiscriminatorType.STRING, length = 20)
-public class Journey implements ArchivableObject{
+public class Journey{
 	private static final AtomicInteger count = new AtomicInteger(0); 
 	@Id
 	private final int id;
 	private String startDestination;
 	private String endDestination;
 	private boolean isRegistered;
-	private String cargo;
 	private String currentLocation;
+	private String cargo;
 	private boolean endDestinationReached;
 	@ElementCollection
 	private List<String> journeyLog = new ArrayList<String>(); //Consider creating a logEntry object and having a list of it here!
 	@OneToMany
 	private List<Container> containers = new ArrayList<Container>();
 	private Container container;
-	
-	
-	
+	private JourneyStatus journeyStatus; 
 	public Container getContainer() {
 		return container;
+	}
+	
+	public Journey(int id, String startDestination, String endDestination, String cargo) {
+		this.id = id;
+//		this.id = count.incrementAndGet();  does not work yet since we pass ID to journey so far
+		this.startDestination = startDestination;
+		this.endDestination = endDestination;
+		this.cargo = cargo;
 	}
 
 	public void setContainer(Container container) {
@@ -45,13 +44,13 @@ public class Journey implements ArchivableObject{
 		container.setCargo(cargo);
 		containers.add(container);
 	}
+	
+	public void setJourneyStatus(JourneyStatus journeyStatus) {
+		this.journeyStatus=journeyStatus;
+	}
 
-	public Journey(int id, String startDestination, String endDestination, String cargo) {
-		this.id = id;
-//		this.id = count.incrementAndGet();  does not work yet since we pass ID to journey so far
-		this.startDestination = startDestination;
-		this.endDestination = endDestination;
-		this.cargo = cargo;
+	public JourneyStatus getJourneyStatus() {
+		return journeyStatus;
 	}
 	
 	public Journey() {this.id = count.incrementAndGet(); }; 
@@ -129,20 +128,7 @@ public class Journey implements ArchivableObject{
 		return journey.getCargo() == null;	
 	}
 	
-	public void setCurrentLocation(String currentLocation) {
-		this.currentLocation = currentLocation;
-		
-	}
-	public String getCurrentLocation(){
-		return currentLocation;
-		
-	}
-	
-	public void addLocationToLog(Journey journey , String currentDateTime) {	
-		String currentInfo = journey.getCurrentLocation() + " " +currentDateTime;
-		journeyLog.add(currentInfo);
-	}
-	
+
 	public boolean matchJourney(String searchCargo) {
 		return cargo.contains(searchCargo);
 	}
@@ -167,52 +153,5 @@ public class Journey implements ArchivableObject{
 //		else { endDestinationReached = false; }
 //	}
 // .............................................................................................................................//	
-	public void archive() {
-		String fileName = "Journey_" + this.id + ".json";
-		String folderName = "Journeys";
-		
-		Database JSONfile = new Database();
-		JSONfile.createFile(this,folderName,fileName);
-	}
 	
-	@Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        
-        Journey journey = (Journey) o;
-        return 	this.id == journey.getId() &&
-        		this.startDestination.equals(journey.getStartDestination()) &&
-        		this.endDestination.equals(journey.getEndDestination()) &&
-        		this.cargo.equals(journey.getCargo()) &&
-        		this.currentLocation.equals(journey.getCurrentLocation()) &&
-        		this.endDestinationReached == journey.endDestinationReached;
-    }
-	
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder(19, 53)
-				.append(id)
-				.append(startDestination)
-				.append(endDestination)
-				.append(cargo)
-				.append(currentLocation)
-				.append(endDestinationReached)
-				.toHashCode();
-	}
-	
-	public static void main(String [] args) {
-		Journey journey = new Journey();
-		journey.setStartDestination("DK");
-		journey.setEndDestination("AUS");
-		journey.setCurrentLocation("AUS");
-//		journey.isJourneyDone();
-		System.out.println(journey.endDestinationReached);
-		
-	}
 }
