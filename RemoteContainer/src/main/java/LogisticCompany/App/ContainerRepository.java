@@ -18,6 +18,8 @@ public interface ContainerRepository {
 	void clearContainerDatabase();
 	
 	Container getContainer(String cargo);
+
+	void updateContainer(Container container);
 	
 
 }

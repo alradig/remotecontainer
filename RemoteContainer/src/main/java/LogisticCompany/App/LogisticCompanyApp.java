@@ -9,7 +9,7 @@ import LogisticCompany.domain.Client;
 import LogisticCompany.domain.Container;
 import LogisticCompany.domain.Journey;
 import LogisticCompany.domain.JourneyStatus;
-import LogisticCompany.domain.ContainerStatus;
+import LogisticCompany.domain.ContainerStatusEntry;
 import LogisticCompany.info.ContainerInfo;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.info.JourneyInfo;
@@ -17,13 +17,12 @@ import LogisticCompany.info.JourneyInfo;
 
 public class LogisticCompanyApp {
 
-	private boolean logicticCompanyloggedIn = false;
+	private boolean logisticCompanyloggedIn = false;
 	private boolean clientLoggedIn = false;
 	private ClientRepository clientRepository;
 	private JourneyRepository journeyRepository;
 	private ContainerRepository containerRepository;
-	private Database database;
-	private ContainerStatus containerStatus; 
+	private ContainerStatusEntry containerStatus; 
 	private JourneyStatus journeyStatus; 
 	private CalenderDate calenderDate = new CalenderDate();
 	
@@ -77,6 +76,7 @@ public class LogisticCompanyApp {
 		
 		Client client = findClient(cc);
 		if (client != null) {
+			System.out.println("Exeption trown here!");
 			throw new OperationNotAllowedException("The client is already registered");
 		}
 		
@@ -117,16 +117,16 @@ public class LogisticCompanyApp {
 	}
 	
 	public boolean logisticCompanyLogin(String password) {
-		logicticCompanyloggedIn = password.equals("logisticCompany123");
-		return logicticCompanyloggedIn;
+		logisticCompanyloggedIn = password.equals("logisticCompany123");
+		return logisticCompanyloggedIn;
 	}
 	
 	public boolean logisticCompanyLoggedIn() {
-		return logicticCompanyloggedIn;
+		return logisticCompanyloggedIn;
 	}
 	
 	public void logisticCompanyLogout() {
-		logicticCompanyloggedIn = false;
+		logisticCompanyloggedIn = false;
 	}
 	
 	public boolean clientLoggedIn() {
@@ -184,12 +184,23 @@ public class LogisticCompanyApp {
 		clientObj.addJourney(journeyObj);
 	}
 
-	public void addMeasurements(Container container, ContainerStatus containerStatus) throws OperationNotAllowedException {
-		checkLogisticCompanyLoggedIn();
-		containerStatus.addToMeasurementList(containerStatus.getCurrentTemp(), containerStatus.getCurrentAirHum(), containerStatus.getCurrentAtmPre());		
-		container.setContainerStatus(containerStatus); 
+//	public void addMeasurements(Container container, ContainerStatusEntry containerStatus) throws OperationNotAllowedException {
+//		checkLogisticCompanyLoggedIn();
+//		containerStatus.addToMeasurementList(containerStatus.getCurrentTemp(), containerStatus.getCurrentAirHum(), containerStatus.getCurrentAtmPre());		
+//		container.setContainerStatus(containerStatus); 
+//	
+//	}
 	
+	public void addMeasurements(Container container, String temp, String AirHum, String AtmPre) throws OperationNotAllowedException {
+		checkLogisticCompanyLoggedIn();
+		container.addToMeasurementList(temp, AirHum, AtmPre);
+		
+		
+//		containerStatus.addToMeasurementList(containerStatus.getCurrentTemp(), containerStatus.getCurrentAirHum(), containerStatus.getCurrentAtmPre());		
+//		container.setContainerStatus(containerStatus); 
 	}
+	
+	
 	public void updateJourneyInfo(Journey journey, JourneyStatus journeyStatus)throws OperationNotAllowedException {
 		checkLogisticCompanyLoggedIn();
 		journeyStatus.addLocationToLog(journeyStatus.getCurrentLocation(), calenderDate.getCurrentDate());

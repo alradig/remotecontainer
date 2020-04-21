@@ -10,7 +10,7 @@ public class JourneyInfo {
 	private String endDestination;
 	private String cargo;
 	private String currentLocation;
-	private int id;
+	private long id;
 	private ArrayList<String> journeyLog = new ArrayList<String>();
 
 	
@@ -18,7 +18,6 @@ public class JourneyInfo {
 		this.cargo = cargo;
 		this.startDestination = startDestination;
 		this.endDestination = endDestination;
-		this.id = id;
 	}
 	
 	public JourneyInfo(Journey journey) {
@@ -50,7 +49,7 @@ public class JourneyInfo {
 		return endDestination;
 	}
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 	

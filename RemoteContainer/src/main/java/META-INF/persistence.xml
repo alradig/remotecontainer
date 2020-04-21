@@ -7,6 +7,8 @@
 		<class>LogisticCompany.domain.Container</class> 
 		<class>LogisticCompany.domain.Journey</class>
 		<class>LogisticCompany.domain.Address</class>
+		<class>LogisticCompany.domain.JourneyStatus</class>
+		<class>LogisticCompany.domain.ContainerStatusEntry</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC" />
 			<!-- Note the use of a relative path as the database URL.

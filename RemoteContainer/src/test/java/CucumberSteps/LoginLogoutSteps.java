@@ -112,7 +112,7 @@ public class LoginLogoutSteps {
 
 	@Then("the logistic company is logged in")
 	public void the_logistic_company_is_logged_in() throws Exception {
-		assertTrue(logisticCompanyApp.logisticCompanyLoggedIn());
+		assertTrue(logisticCompanyApp.logisticCompanyLogin("logisticCompany123"));
 	}
 	
 	@Given("that the logistic company is logged in")

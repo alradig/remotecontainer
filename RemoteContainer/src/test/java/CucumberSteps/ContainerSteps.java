@@ -6,7 +6,7 @@ import java.util.Optional;
 import LogisticCompany.App.LogisticCompanyApp;
 import LogisticCompany.domain.Client;
 import LogisticCompany.domain.Container;
-import LogisticCompany.domain.ContainerStatus;
+import LogisticCompany.domain.ContainerStatusEntry;
 import LogisticCompany.domain.Journey;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.info.ContainerInfo;
@@ -28,7 +28,7 @@ public class ContainerSteps {
 	private Journey journey;
 	private ClientInfo clientInfo;
 	public ClientHelper helper;
-	private ContainerStatus containerStatus;
+	private ContainerStatusEntry containerStatus;
 
 	public ContainerSteps(LogisticCompanyApp logisticCompanyApp, ClientHelper helper) {
 		this.logisticCompanyApp = logisticCompanyApp;
@@ -61,7 +61,7 @@ public class ContainerSteps {
 	
 	@When("internal temperatur of {string} degrees, air humidity of {string} percent, and atmopshere pressure of {string} Pa")
 	public void internal_temperatur_of_degrees_air_humidity_of_percent_and_atmopshere_pressure_of_Pa(String currentTemp, String currentAirHum, String currentAtmPre) {
-		containerStatus = new ContainerStatus(currentTemp, currentAirHum, currentAtmPre);
+		containerStatus = new ContainerStatusEntry(currentTemp, currentAirHum, currentAtmPre);
 		
 		assertEquals(containerStatus.getCurrentTemp(),currentTemp);
 		assertEquals(containerStatus.getCurrentAirHum(),currentAirHum);
@@ -75,7 +75,7 @@ public class ContainerSteps {
 		
 		Container container = logisticCompanyApp.findContainer(containerInfo);
 		logisticCompanyApp.addMeasurements(container, containerStatus);
-		ContainerStatus containerStatus = container.getContainerStatus();
+		ContainerStatusEntry containerStatus = container.getContainerStatus();
 
 
 		assertEquals(containerStatus.getTemp().size(),1);

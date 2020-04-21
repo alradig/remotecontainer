@@ -39,16 +39,16 @@ public class SearchSteps {
 
     	}
 
- 
-
     @Given("these clients are in the system")
-    public void these_clients_are_in_the_system(List<List<String>> clients) throws Exception {
-        for (List<String> clientInfo : clients) {
-            logisticCompanyApp.registerClient(new ClientInfo(clientInfo.get(0), clientInfo.get(1), clientInfo.get(2)));
+    public void these_clients_are_in_the_system(List<List<String>> clients) throws Exception {  
+    	
+    	for (List<String> clientInfo : clients) {
+        	System.out.println(clientInfo.get(0));
+        	System.out.println(clientInfo.get(1));
+        	System.out.println(clientInfo.get(2));
+        	logisticCompanyApp.registerClient(new ClientInfo(clientInfo.get(0), clientInfo.get(1), clientInfo.get(2)));
         }
     }
-
- 
 
 //    @Given("the logistic company logs out")
 //    public void the_logistic_company_logs_out() throws Exception {

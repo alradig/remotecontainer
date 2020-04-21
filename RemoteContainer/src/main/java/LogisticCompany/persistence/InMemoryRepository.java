@@ -118,6 +118,24 @@ public class InMemoryRepository implements ClientRepository, ContainerRepository
 		return clients.stream().filter(c -> c.getEmail().equals(email)).findFirst().orElse(null);
 	}
 
+	@Override
+	public void updateJourney(Journey journey) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateContainer(Container container) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateClient(Client client) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 
 	

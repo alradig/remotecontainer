@@ -12,27 +12,32 @@ import LogisticCompany.info.JourneyInfo;
 
 @Entity
 public class Journey{
-	private static final AtomicInteger count = new AtomicInteger(0); 
 	@Id
-	private final int id;
+    @GeneratedValue
+    private long id;
 	private String startDestination;
 	private String endDestination;
 	private boolean isRegistered;
 	private String currentLocation;
 	private String cargo;
 	private boolean endDestinationReached;
-	@ElementCollection
-	private List<String> journeyLog = new ArrayList<String>(); //Consider creating a logEntry object and having a list of it here!
 	@OneToMany
 	private List<Container> containers = new ArrayList<Container>();
 	private Container container;
-	private JourneyStatus journeyStatus; 
+	@Embedded
+	private JourneyStatus currentJourneyStatus;
+	
+//	@ElementCollection
+//	private List<String> journeyLog = new ArrayList<String>(); //Consider creating a logEntry object and having a list of it here!
+//	@OneToMany
+//	private ArrayList<JourneyStatus> journeyLogs = new ArrayList<>();
+	
+	
 	public Container getContainer() {
 		return container;
 	}
 	
-	public Journey(int id, String startDestination, String endDestination, String cargo) {
-		this.id = id;
+	public Journey(long id, String startDestination, String endDestination, String cargo) {
 //		this.id = count.incrementAndGet();  does not work yet since we pass ID to journey so far
 		this.startDestination = startDestination;
 		this.endDestination = endDestination;
@@ -45,15 +50,24 @@ public class Journey{
 		containers.add(container);
 	}
 	
-	public void setJourneyStatus(JourneyStatus journeyStatus) {
-		this.journeyStatus=journeyStatus;
+//	public void setJourneyStatus(JourneyStatus journeyStatus) {
+//		journeyLogs.add(this.currentJourneyStatus);
+//		this.currentJourneyStatus=journeyStatus;
+//	}
+	
+	public void setJourneyStatus(String startDestination, String currentLocation) {
+//		journeyLogs.add(this.currentJourneyStatus);
+		
+		currentJourneyStatus = new JourneyStatus(startDestination,currentLocation);
 	}
 
 	public JourneyStatus getJourneyStatus() {
-		return journeyStatus;
+		return currentJourneyStatus;
 	}
 	
-	public Journey() {this.id = count.incrementAndGet(); }; 
+	public Journey() {
+		
+	} 
 	
 	
 //	public Journey() {
@@ -93,7 +107,7 @@ public class Journey{
 		return cargo;
 	}
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 	

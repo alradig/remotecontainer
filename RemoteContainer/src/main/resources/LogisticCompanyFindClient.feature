@@ -5,7 +5,7 @@ Background: The logistic company has a set of clients
 	And these clients are in the system
 		| BananaExpress |  bob@mail.com  | Bob |
 		| HappyPrint | jiayi@mail.com | Jiayi |
-		| CakeDay | ida@mail.com | Ida | 
+		| CakeDay | ida@mail.com | Ida |
 	And the logistic company logs out 
 	
 Scenario: Searching for client

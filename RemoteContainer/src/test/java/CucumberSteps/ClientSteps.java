@@ -62,8 +62,8 @@ public class ClientSteps {
 		assertEquals(clientInfo.getAddress().getCity(),city);	
 	}
 	
-	@When("the logictic company registers the client")
-	public void the_logictic_company_registers_the_client() {
+	@When("the logistic company registers the client")
+	public void the_logistic_company_registers_the_client() {
 		try {
 			this.logisticCompanyApp.registerClient(clientInfo);
 		} catch (Exception e) {
@@ -71,9 +71,9 @@ public class ClientSteps {
 		}
 	}
 	
-	@When("the logictic company registers the client again")
-	public void the_logictic_company_registers_the_client_again() {
-		the_logictic_company_registers_the_client();
+	@When("the logistic company registers the client again")
+	public void the_logistic_company_registers_the_client_again() {
+		the_logistic_company_registers_the_client();
 	}
 	
 	@Then("the client is registered in the system")

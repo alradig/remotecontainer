@@ -9,23 +9,22 @@ import LogisticCompany.info.ContainerInfo;
 
 @Entity
 public class Container {
-	private static final AtomicInteger count = new AtomicInteger(0); 
 	@Id
-	private final int id;
+    @GeneratedValue
+	private long id;
 	private String cargo;
 	@OneToMany
-	private ArrayList<ContainerStatus> containerStatusList = new ArrayList<>();
+	private List<ContainerStatusEntry> containerStatusList = new ArrayList<>();
 	
 	public Container() {
-		this.id = count.incrementAndGet(); 
+
 	}
 
 	public Container(String cargo) {
 		this.cargo = cargo;
-		this.id = count.incrementAndGet();
 	}
 	
-	public void addContainerStatus(ContainerStatus containerStatus) {
+	public void addContainerStatus(ContainerStatusEntry containerStatus) {
 		containerStatusList.add(containerStatus);
 	}
 	
@@ -34,12 +33,11 @@ public class Container {
 	}
 	
 	public void addToMeasurementList(String currentTemp, String currentAirHum, String currentAtmPre) {
-		ContainerStatus containerStatus = new ContainerStatus(currentTemp,currentAirHum,currentAtmPre);
+		ContainerStatusEntry containerStatus = new ContainerStatusEntry(currentTemp,currentAirHum,currentAtmPre);
 		containerStatusList.add(containerStatus);
-		
 	}
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 		

@@ -52,6 +52,11 @@ public class SQLRepository implements ClientRepository, ContainerRepository , Jo
 			  .setParameter("email", email)
 			  .getResultStream().findFirst().orElse(null);
 		}
+		
+		@Override
+		public Stream<Client> getAllClientsStream() {
+			return em.createQuery("SELECT c FROM Client c", Client.class).getResultStream();
+		}
 
 		@Override
 		public boolean contains(Journey journey) {
@@ -66,11 +71,17 @@ public class SQLRepository implements ClientRepository, ContainerRepository , Jo
 			em.getTransaction().commit();
 			
 		}
+		
+		@Override
+		public Journey getJourney(String cargo) {
+			return em.createQuery("SELECT j FROM Journey j WHERE j.cargo=:cargo", Journey.class)
+					  .setParameter("cargo", cargo)
+					  .getResultStream().findFirst().orElse(null);
+		}
 
 		@Override
 		public Stream<Journey> getAllJourneysStream() {
-			// TODO Auto-generated method stub
-			return null;
+			return em.createQuery("SELECT j FROM Journey j", Journey.class).getResultStream();
 		}
 
 		@Override
@@ -83,25 +94,6 @@ public class SQLRepository implements ClientRepository, ContainerRepository , Jo
 		public void removeJourney(Journey journey) {
 			// TODO Auto-generated method stub
 			
-		}
-
-		@Override
-		public void clearJourneyDatabase() {
-			if (isProduction) {
-				throw new Error("clearDatabase should not be called with a production database");
-			}
-			em.getTransaction().begin();
-			em.createNativeQuery("DELETE FROM Journey").executeUpdate();
-			em.createQuery("DELETE FROM Journey").executeUpdate();
-			em.getTransaction().commit();
-			
-		}
-
-		@Override
-		public Journey getJourney(String cargo) {
-			return em.createQuery("SELECT j FROM Journey j WHERE j.cargo=:cargo", Journey.class)
-					  .setParameter("cargo", cargo)
-					  .getResultStream().findFirst().orElse(null);
 		}
 
 		@Override
@@ -135,17 +127,6 @@ public class SQLRepository implements ClientRepository, ContainerRepository , Jo
 		}
 
 		@Override
-		public void clearContainerDatabase() {
-			if (isProduction) {
-				throw new Error("clearDatabase should not be called with a production database");
-			}
-			em.getTransaction().begin();
-			em.createNativeQuery("DELETE FROM Container").executeUpdate();
-			em.createQuery("DELETE FROM Container").executeUpdate();
-			em.getTransaction().commit();
-		}
-
-		@Override
 		public Container getContainer(String cargo) {
 			// TODO Auto-generated method stub
 			return null;
@@ -155,11 +136,6 @@ public class SQLRepository implements ClientRepository, ContainerRepository , Jo
 		public boolean contains(Client client) {
 			// TODO Auto-generated method stub
 			return false;
-		}
-
-		@Override
-		public Stream<Client> getAllClientsStream() {
-			return em.createQuery("SELECT c FROM Client c", Client.class).getResultStream();
 		}
 
 		@Override
@@ -173,7 +149,30 @@ public class SQLRepository implements ClientRepository, ContainerRepository , Jo
 			// TODO Auto-generated method stub
 			
 		}
-
+		
+		@Override
+		public void clearJourneyDatabase() {
+			if (isProduction) {
+				throw new Error("clearDatabase should not be called with a production database");
+			}
+			em.getTransaction().begin();
+			em.createNativeQuery("DELETE FROM Journey").executeUpdate();
+			em.createQuery("DELETE FROM Journey").executeUpdate();
+			em.getTransaction().commit();
+			
+		}
+		
+		@Override
+		public void clearContainerDatabase() {
+			if (isProduction) {
+				throw new Error("clearDatabase should not be called with a production database");
+			}
+			em.getTransaction().begin();
+			em.createNativeQuery("DELETE FROM Container").executeUpdate();
+			em.createQuery("DELETE FROM Container").executeUpdate();
+			em.getTransaction().commit();
+		}
+		
 		@Override
 		public void clearClientDatabase() {
 			if (isProduction) {

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import LogisticCompany.domain.Container;
-import LogisticCompany.domain.ContainerStatus;
+import LogisticCompany.domain.ContainerStatusEntry;
 
 public class ContainerInfo {
 	
@@ -12,7 +12,7 @@ public class ContainerInfo {
 	private String currentTemp;
 	private String currentAirHum;
 	private String currentAtmPre;
-	private ContainerStatus containerStatus;
+	private ContainerStatusEntry containerStatus;
 	
 
 
@@ -46,7 +46,7 @@ public class ContainerInfo {
 		return new Container(cargo);
 	}
 	
-	public ContainerStatus getContainerStatus() {
+	public ContainerStatusEntry getContainerStatus() {
 		return containerStatus;
 	}
 	

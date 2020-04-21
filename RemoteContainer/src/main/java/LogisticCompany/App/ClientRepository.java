@@ -18,4 +18,6 @@ public interface ClientRepository {
 	void clearClientDatabase();
 
 	Client getClient(String email);
+
+	void updateClient(Client client);
 }

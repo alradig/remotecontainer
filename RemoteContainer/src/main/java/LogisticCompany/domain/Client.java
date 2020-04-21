@@ -8,12 +8,12 @@ import LogisticCompany.App.ClientRepository;
 import LogisticCompany.info.ClientInfo;
 
 @Entity
-@DiscriminatorValue("C")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "TYPE", discriminatorType = DiscriminatorType.STRING, length = 20)
+//@DiscriminatorValue("C")
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@DiscriminatorColumn(name = "TYPE", discriminatorType = DiscriminatorType.STRING, length = 20)
 public class Client{
-	private static final AtomicInteger count = new AtomicInteger(0); 
-	private final int id;
+    @GeneratedValue
+    private long id;
 	private String name;
 	@Id
 	private String email;
@@ -23,7 +23,7 @@ public class Client{
 	private Address address;
 	private boolean Register;
 	@OneToMany
-	private ArrayList<Journey> journeys = new ArrayList<Journey>();
+	private List<Journey> journeys = new ArrayList<>();
 
 
 	public Client(String name, String email, String reference_person) {
@@ -31,14 +31,14 @@ public class Client{
 		this.name = name;
 		this.email = email;
 		this.refPerson = reference_person;
-		this.id = count.incrementAndGet(); 
 	}
 
 	public Client() {
-		this.id = 0;}; // Needed by Java Persistence Layer
+		
+		}
 	
 
-	public ArrayList<Journey> getJourneyList(){
+	public List<Journey> getJourneyList(){
 		return journeys;
 	}
 	
@@ -82,7 +82,7 @@ public class Client{
 	public void setAddress(Address address2) {
 		this.address = address2;
 	}
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 	

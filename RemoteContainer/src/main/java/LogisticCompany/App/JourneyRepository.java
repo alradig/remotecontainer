@@ -17,4 +17,6 @@ public interface JourneyRepository {
 	void clearJourneyDatabase();
 	
 	Journey getJourney(String cargo);
+
+	void updateJourney(Journey journey);
 }
