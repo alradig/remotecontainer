@@ -10,8 +10,11 @@ public class JourneyStatus {
 	
 	
 	private ArrayList<String> journeyLog = new ArrayList<String>();
-	
-	
+
+	public JourneyStatus(String currentLocation)
+	{
+		this.currentLocation = currentLocation;
+	}
 	public void setCurrentLocation(String currentLocation) {
 		this.currentLocation = currentLocation;
 		
@@ -24,6 +27,10 @@ public class JourneyStatus {
 	public void addLocationToLog(String currentLocation, String currentDateTime) {	
 		String currentInfo = currentLocation + " " +currentDateTime;
 		journeyLog.add(currentInfo);
+	}
+	
+	public ArrayList<String> getJourneyLog(){
+		return journeyLog;
 	}
 
 	

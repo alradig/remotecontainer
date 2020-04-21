@@ -21,18 +21,22 @@ import static org.junit.Assert.*;
 
 public class ContainerSteps {
 	
-	private JourneyInfo journeyInfo;
+	public JourneyInfo journeyInfo;
 	private ContainerInfo containerInfo;
 	private LogisticCompanyApp logisticCompanyApp;
 	private String errorMessage;
 	private Journey journey;
 	private ClientInfo clientInfo;
 	public ClientHelper helper;
+	public JourneyHelper helperJourney;
+	public ContainerHelper containerHelper;
 	private ContainerStatus containerStatus;
 
-	public ContainerSteps(LogisticCompanyApp logisticCompanyApp, ClientHelper helper) {
+	public ContainerSteps(LogisticCompanyApp logisticCompanyApp, ClientHelper helper, JourneyHelper helperJourney, ContainerHelper containerHelper) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.helper = helper;
+		this.helperJourney=helperJourney;
+		this.containerHelper = containerHelper;
 	}
 
 	@Given("there is a journey with port of origin harbor {string} and destination {string}")
@@ -41,22 +45,27 @@ public class ContainerSteps {
 		assertEquals(journeyInfo.getStartDestination(),Port_of_origin);
 		assertEquals(journeyInfo.getEndDestination(),destination);
 	}
-	@Given("there is an existing journey with cargo {string}, port of origin harbor {string} and destination  {string}") 
-	public void there_is_an_existing_journey_with_cargo_port_of_origin_harbor_and_destination(String cargo, String Port_of_origin, String destination) throws Exception  {
-		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
-		containerInfo = new ContainerInfo(cargo);
-		logisticCompanyApp.registerContainer(containerInfo);
-		journeyInfo = new JourneyInfo(cargo, Port_of_origin,destination);
+	@Given("there is an existing journey and container") 
+	public void there_is_an_existing_journey_and_container() throws Exception  {
+		journeyInfo = helperJourney.registerExampleJourney();
+		containerInfo = containerHelper.registerExampleContainer();
 		
-		try {
-			logisticCompanyApp.registerJourney(journeyInfo);
-			logisticCompanyApp.registerContainerToJourney(containerInfo, journeyInfo);
-			
-		}
-		catch(Exception e) {
-			 this.errorMessage = e.getMessage();
-		}
-		logisticCompanyApp.registerJourneyToClient(helper.getClient(), journeyInfo);
+		
+//		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
+//		containerInfo = containerHelper.getContainer();
+//		logisticCompanyApp.registerContainer(containerInfo);
+//		journeyInfo = helperJourney.getJourney();
+		
+//		
+//		try {
+//			logisticCompanyApp.registerJourney(journeyInfo);
+//			logisticCompanyApp.registerContainerToJourney(containerInfo, journeyInfo);
+//			
+//		}
+//		catch(Exception e) {
+//			 this.errorMessage = e.getMessage();
+//		}
+//		logisticCompanyApp.registerJourneyToClient(helper.getClient(), journeyInfo);
 	}
 	
 	@When("internal temperatur of {string} degrees, air humidity of {string} percent, and atmopshere pressure of {string} Pa")
@@ -92,7 +101,7 @@ public class ContainerSteps {
 	@Given("the client registers a journey with cargo {string}, port of origin harbor {string} and destination  {string}")
 	public void the_client_registers_a_journey_with_cargo_port_of_origin_harbor_and_destination(String cargo, String Port_of_origin, String destination) throws Exception {
 		journeyInfo = new JourneyInfo(cargo, Port_of_origin,destination);   
-		   
+
 	   try {
 			logisticCompanyApp.registerJourney(journeyInfo);
 	   } catch (Exception e) {
