@@ -47,7 +47,7 @@ public class Journey{
 
 	public void setContainer(Container container) {
 		this.container = container;
-		container.setCargo(cargo);
+		container.setCargo(this.cargo);
 		containers.add(container);
 	}
 	

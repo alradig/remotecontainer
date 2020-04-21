@@ -45,6 +45,13 @@ public class SQLRepository implements ClientRepository, ContainerRepository , Jo
 			em.persist(client);
 			em.getTransaction().commit();
 		}
+		
+		@Override
+		public void addContainer(Container container) {
+			em.getTransaction().begin();
+			em.persist(container);
+			em.getTransaction().commit();
+		}
 
 		@Override
 		public Client getClient(String email) {
@@ -103,12 +110,6 @@ public class SQLRepository implements ClientRepository, ContainerRepository , Jo
 		}
 
 		@Override
-		public void addContainer(Container container) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
 		public Stream<Container> getAllContainersStream() {
 			// TODO Auto-generated method stub
 			return null;
@@ -128,8 +129,9 @@ public class SQLRepository implements ClientRepository, ContainerRepository , Jo
 
 		@Override
 		public Container getContainer(String cargo) {
-			// TODO Auto-generated method stub
-			return null;
+			return em.createQuery("SELECT c FROM Container c WHERE c.cargo=:cargo", Container.class)
+					  .setParameter("cargo", cargo)
+					  .getResultStream().findFirst().orElse(null);
 		}
 
 		@Override

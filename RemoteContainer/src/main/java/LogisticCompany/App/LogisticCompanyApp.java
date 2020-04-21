@@ -75,8 +75,8 @@ public class LogisticCompanyApp {
 		checkLogisticCompanyLoggedIn();
 		
 		Client client = findClient(cc);
+//		System.out.println("found client email: " + client.getEmail());
 		if (client != null) {
-			System.out.println("Exeption trown here!");
 			throw new OperationNotAllowedException("The client is already registered");
 		}
 		
@@ -165,7 +165,6 @@ public class LogisticCompanyApp {
 		checkLogisticCompanyLoggedIn();
 		Journey journeyObj = findJourney(journey);
 		Container containerObj = findContainer(container);
-		
 		journeyObj.setContainer(containerObj);
 	}
 	
@@ -196,7 +195,7 @@ public class LogisticCompanyApp {
 	
 	public void updateJourneyInfo(Journey journey, JourneyStatus journeyStatus)throws OperationNotAllowedException {
 		checkLogisticCompanyLoggedIn();
-		journeyStatus.addLocationToLog(journeyStatus.getCurrentLocation(), calenderDate.getCurrentDate());
+//		journeyStatus.addLocationToLog(journeyStatus.getCurrentLocation(), calenderDate.getCurrentDate());
 		journey.setJourneyStatus(journeyStatus);
 	}
 

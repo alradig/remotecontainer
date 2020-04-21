@@ -6,7 +6,7 @@ Background: The logistic company has a set of clients
 		| BananaExpress |  bob@mail.com  | Bob |
 		| HappyPrint | jiayi@mail.com | Jiayi |
 		| CakeDay | ida@mail.com | Ida |
-	And the logistic company logs out 
+	And the logistic company logs out
 	
 Scenario: Searching for client
 	Given that the logistic company is logged in 

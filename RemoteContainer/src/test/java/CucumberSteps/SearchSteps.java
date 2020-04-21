@@ -28,6 +28,7 @@ public class SearchSteps {
     private InMemoryRepository repository = new InMemoryRepository();
     private LogisticCompanyApp logisticCompanyApp = new LogisticCompanyApp(repository,repository,repository);
     public ClientHelper helper;
+    private String errorMessage;
     
     private List<ClientInfo> clients;
     private List<JourneyInfo> journeys;
@@ -41,12 +42,12 @@ public class SearchSteps {
 
     @Given("these clients are in the system")
     public void these_clients_are_in_the_system(List<List<String>> clients) throws Exception {  
-    	
     	for (List<String> clientInfo : clients) {
-        	System.out.println(clientInfo.get(0));
-        	System.out.println(clientInfo.get(1));
-        	System.out.println(clientInfo.get(2));
-        	logisticCompanyApp.registerClient(new ClientInfo(clientInfo.get(0), clientInfo.get(1), clientInfo.get(2)));
+    		try {
+    			logisticCompanyApp.registerClient(new ClientInfo(clientInfo.get(0), clientInfo.get(1), clientInfo.get(2)));
+    		} catch (Exception e) {
+    			this.errorMessage = e.getMessage();
+    		}
         }
     }
 

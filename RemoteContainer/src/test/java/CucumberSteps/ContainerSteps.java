@@ -1,5 +1,6 @@
 package CucumberSteps;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -28,6 +29,8 @@ public class ContainerSteps {
 	private Journey journey;
 	private ClientInfo clientInfo;
 	public ClientHelper helper;
+	
+
 
 	private ContainerStatusEntry containerStatus;
 
@@ -125,7 +128,7 @@ public class ContainerSteps {
 	
 	@Given("there is an empty container")
 	public void there_is_an_empty_container() {
-		containerInfo = new ContainerInfo("");
+		containerInfo = new ContainerInfo("empty");
 		try {
 			logisticCompanyApp.registerContainer(containerInfo);
 		} catch (Exception e) {
@@ -151,7 +154,7 @@ public class ContainerSteps {
 	public void the_journey_is_a_registered_journey_for_the_client() {
 		Client clientObj = logisticCompanyApp.findClient(helper.getClient());
 		
-		ArrayList<Journey> journeys = clientObj.getJourneyList();
+		List<Journey> journeys = clientObj.getJourneyList();
 		
 		Optional<Journey> jrn = journeys.stream().filter(j -> j.getCargo().equals(journeyInfo.getCargo())).findFirst();
 	    assertTrue(jrn.isPresent());
