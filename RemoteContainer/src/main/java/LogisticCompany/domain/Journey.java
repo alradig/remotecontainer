@@ -24,6 +24,7 @@ public class Journey{
 	@OneToMany
 	private List<Container> containers = new ArrayList<Container>();
 	private Container container;
+
 	@Embedded
 	private JourneyStatus currentJourneyStatus;
 	
@@ -50,15 +51,10 @@ public class Journey{
 		containers.add(container);
 	}
 	
-//	public void setJourneyStatus(JourneyStatus journeyStatus) {
+
+	public void setJourneyStatus(JourneyStatus journeyStatus) {
 //		journeyLogs.add(this.currentJourneyStatus);
-//		this.currentJourneyStatus=journeyStatus;
-//	}
-	
-	public void setJourneyStatus(String startDestination, String currentLocation) {
-//		journeyLogs.add(this.currentJourneyStatus);
-		
-		currentJourneyStatus = new JourneyStatus(startDestination,currentLocation);
+		this.currentJourneyStatus=journeyStatus;
 	}
 
 	public JourneyStatus getJourneyStatus() {

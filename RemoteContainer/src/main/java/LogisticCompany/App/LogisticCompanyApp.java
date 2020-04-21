@@ -84,13 +84,10 @@ public class LogisticCompanyApp {
 	}
 	
 	public void registerContainer(ContainerInfo c) throws OperationNotAllowedException {
-		checkLogisticCompanyLoggedIn();
 		containerRepository.addContainer(c.asContainer());
-		
 	}
 	
 	public void registerJourney(JourneyInfo j) {
-		
 		journeyRepository.addJourney(j.asJourney());
 	}
 	
@@ -110,10 +107,6 @@ public class LogisticCompanyApp {
 			return true; 
 		}
 		else { return false; }
-	}
-	
-	public void setNewLocation() {
-		
 	}
 	
 	public boolean logisticCompanyLogin(String password) {
@@ -168,7 +161,7 @@ public class LogisticCompanyApp {
 		clientLoggedIn = false;
 	}
 
-	public void registerContainerToJourney(ContainerInfo container, JourneyInfo journey) throws OperationNotAllowedException{
+	public void registerContainerToJourney(ContainerInfo container, JourneyInfo journey) throws OperationNotAllowedException {
 		checkLogisticCompanyLoggedIn();
 		Journey journeyObj = findJourney(journey);
 		Container containerObj = findContainer(container);
