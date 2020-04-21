@@ -2,6 +2,7 @@ package LogisticCompany.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import javax.persistence.*;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -9,16 +10,23 @@ import LogisticCompany.App.ArchivableObject;
 import LogisticCompany.App.Database;
 import LogisticCompany.info.ContainerInfo;
 
+@Entity
+//@DiscriminatorValue("T")
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@DiscriminatorColumn(name = "TYPE", discriminatorType = DiscriminatorType.STRING, length = 20)
 public class Container implements ArchivableObject{
 	private static final AtomicInteger count = new AtomicInteger(0); 
+	@Id
 	private final int id;
 	private String cargo;
 	private String currentTemp;
 	private String currentAirHum;
 	private String currentAtmPre;
-	
-	private List<String> Temp = new ArrayList<String>();
+	@ElementCollection
+	private List<String> Temp = new ArrayList<String>(); // Create a containerStatus object with the three information and having here a list of it instead! Pay attention to when we have primitive data type in the left side of the attribute!
+	@ElementCollection
 	private List<String> AirHum = new ArrayList<String>();
+	@ElementCollection
 	private List<String> AtmPre = new ArrayList<String>();
 	
 //	private ArrayList<String> journeyLog = new ArrayList<String>();

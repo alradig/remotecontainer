@@ -8,6 +8,7 @@ import java.util.Optional;
 import LogisticCompany.App.LogisticCompanyApp;
 import LogisticCompany.App.OperationNotAllowedException;
 import LogisticCompany.domain.Address;
+import LogisticCompany.domain.Client;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.persistence.InMemoryRepository;
 import io.cucumber.java.en.Given;
@@ -80,6 +81,9 @@ public class ClientSteps {
 	    Optional<ClientInfo> usr = logisticCompanyApp.getClientsStream().findFirst();
 	    assertTrue(usr.isPresent());
 	    ClientInfo c = usr.get();
+	    
+//	    Client c = logisticCompanyApp.findClient(clientInfo);
+	    
 	    assertEquals(clientInfo.getName(), c.getName());
 	    assertEquals(clientInfo.getEmail(), c.getEmail());
 	    assertEquals(clientInfo.getReference_person(), c.getReference_person());

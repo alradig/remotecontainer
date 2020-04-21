@@ -2,7 +2,10 @@ package LogisticCompany.domain;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import javax.persistence.*;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -11,8 +14,13 @@ import LogisticCompany.App.Database;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.info.JourneyInfo;
 
+@Entity
+@DiscriminatorValue("J")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "TYPE", discriminatorType = DiscriminatorType.STRING, length = 20)
 public class Journey implements ArchivableObject{
 	private static final AtomicInteger count = new AtomicInteger(0); 
+	@Id
 	private final int id;
 	private String startDestination;
 	private String endDestination;
@@ -20,8 +28,10 @@ public class Journey implements ArchivableObject{
 	private String cargo;
 	private String currentLocation;
 	private boolean endDestinationReached;
-	private ArrayList<String> journeyLog = new ArrayList<String>();
-	private ArrayList<Container> containers = new ArrayList<Container>();
+	@ElementCollection
+	private List<String> journeyLog = new ArrayList<String>(); //Consider creating a logEntry object and having a list of it here!
+	@OneToMany
+	private List<Container> containers = new ArrayList<Container>();
 	private Container container;
 	
 	

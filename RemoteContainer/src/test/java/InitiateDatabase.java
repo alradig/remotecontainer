@@ -1,5 +1,6 @@
 import LogisticCompany.App.LogisticCompanyApp;
 import LogisticCompany.persistence.InMemoryRepository;
+import LogisticCompany.persistence.SQLRepository;
 import io.cucumber.java.Before;
 
 public class InitiateDatabase {
@@ -11,8 +12,8 @@ public class InitiateDatabase {
 	
 	@Before
 	public void connectDatabase() {
-//		SqliteRepository repo = new SqliteRepository();
-		InMemoryRepository repo = new InMemoryRepository();
+		SQLRepository repo = new SQLRepository();
+//		InMemoryRepository repo = new InMemoryRepository();
 		logisticCompanyApp.setRepositories(repo,repo,repo);
 		logisticCompanyApp.clearDatabase();
 		

@@ -46,6 +46,7 @@ public class LogisticCompanyApp {
 	
 	public Client findClient(ClientInfo cc) {
 		return clientRepository.getClient(cc.getEmail());
+		
 	}
 	
 //	private Container searchContainer() {
