@@ -58,9 +58,5 @@ public class JourneyInfo {
 		return new Journey(id, startDestination,endDestination,cargo);
 	}
 	
-	public void addLocationToLog(JourneyInfo journeyInfo, String currentDateTime) {	
-		String currentInfo = journeyInfo.getCurrentLocation() + " " +currentDateTime;
-		journeyLog.add(currentInfo);
-	}
 	
 }

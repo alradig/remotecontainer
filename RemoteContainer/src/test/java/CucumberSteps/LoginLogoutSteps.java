@@ -99,7 +99,7 @@ public class LoginLogoutSteps {
 	public void a_client_logs_out() throws Exception {
 		logisticCompanyApp.clientLogout();
 	}
-	
+
 	@Given("the password is {string}")
 	public void the_password_is(String password) throws Exception {
 		this.password = password;

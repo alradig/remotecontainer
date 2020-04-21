@@ -8,7 +8,7 @@ public class Container {
 	private static final AtomicInteger count = new AtomicInteger(0); 
 	private final int id;
 	private String cargo;
-	ContainerStatus containerStatus;
+	private ContainerStatus containerStatus;
 	
 	
 	public Container() {

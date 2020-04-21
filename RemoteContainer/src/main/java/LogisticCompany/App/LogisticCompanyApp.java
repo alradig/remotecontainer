@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 import LogisticCompany.domain.Client;
 import LogisticCompany.domain.Container;
 import LogisticCompany.domain.Journey;
+import LogisticCompany.domain.JourneyStatus;
 import LogisticCompany.domain.ContainerStatus;
 import LogisticCompany.info.ContainerInfo;
 import LogisticCompany.info.ClientInfo;
@@ -23,7 +24,7 @@ public class LogisticCompanyApp {
 	private ContainerRepository containerRepository;
 	private Database database;
 	private ContainerStatus containerStatus; 
-
+	private JourneyStatus journeyStatus; 
 	private CalenderDate calenderDate = new CalenderDate();
 	
 
@@ -47,11 +48,7 @@ public class LogisticCompanyApp {
 	public Client findClient(ClientInfo cc) {
 		return clientRepository.getClient(cc.getEmail());
 	}
-	
-//	private Container searchContainer() {
-//		
-//	}
-	
+
 	public Container findContainer(ContainerInfo container) {
 		return containerRepository.getContainer(container.getCargo());
 	}
@@ -86,23 +83,13 @@ public class LogisticCompanyApp {
 	}
 	
 	public void registerContainer(ContainerInfo c) throws OperationNotAllowedException {
-		// checkLogisticCompanyLoggedIn();
-		// register group ....
-		// 
-		
-		//repository done
+		checkLogisticCompanyLoggedIn();
 		containerRepository.addContainer(c.asContainer());
 		
 	}
 	
 	public void registerJourney(JourneyInfo j) {
 		
-		// register group ....
-		// 
-		
-		
-				
-		//repository done
 		journeyRepository.addJourney(j.asJourney());
 	}
 	
@@ -127,12 +114,6 @@ public class LogisticCompanyApp {
 	public void setNewLocation() {
 		
 	}
-
-	public void updateJourneyInfo(JourneyInfo journeyInfo) {
-		logisticCompanyLoggedIn();
-		journeyInfo.addLocationToLog(journeyInfo, calenderDate.getCurrentDate());		
-	}
-	
 	
 	public boolean logisticCompanyLogin(String password) {
 		logicticCompanyloggedIn = password.equals("logisticCompany123");
@@ -195,6 +176,7 @@ public class LogisticCompanyApp {
 	}
 	
 	public void registerJourneyToClient(ClientInfo client, JourneyInfo journey) throws OperationNotAllowedException{
+		
 		Journey journeyObj = findJourney(journey);
 		Client clientObj = findClient(client);
 		
@@ -206,6 +188,11 @@ public class LogisticCompanyApp {
 		containerStatus.addToMeasurementList(containerStatus.getCurrentTemp(), containerStatus.getCurrentAirHum(), containerStatus.getCurrentAtmPre());		
 		container.setContainerStatus(containerStatus); 
 	
+	}
+	public void updateJourneyInfo(Journey journey, JourneyStatus journeyStatus)throws OperationNotAllowedException {
+		checkLogisticCompanyLoggedIn();
+		journeyStatus.addLocationToLog(journeyStatus.getCurrentLocation(), calenderDate.getCurrentDate());
+		journey.setJourneyStatus(journeyStatus);
 	}
 
 	

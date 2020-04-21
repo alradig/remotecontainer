@@ -1,6 +1,6 @@
 Feature: A Tracker for containers
 
-Background: A container registered
+Background: A container and journey is registered
 	Given there is a client registered in the system
 	And there is an existing journey with cargo "Apples", port of origin harbor "Copenhagen" and destination  "London"
 

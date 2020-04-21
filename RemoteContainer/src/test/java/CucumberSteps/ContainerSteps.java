@@ -43,7 +43,7 @@ public class ContainerSteps {
 	}
 	@Given("there is an existing journey with cargo {string}, port of origin harbor {string} and destination  {string}") 
 	public void there_is_an_existing_journey_with_cargo_port_of_origin_harbor_and_destination(String cargo, String Port_of_origin, String destination) throws Exception  {
-		
+		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
 		containerInfo = new ContainerInfo(cargo);
 		logisticCompanyApp.registerContainer(containerInfo);
 		journeyInfo = new JourneyInfo(cargo, Port_of_origin,destination); 
@@ -66,6 +66,8 @@ public class ContainerSteps {
 		assertEquals(containerStatus.getCurrentTemp(),currentTemp);
 		assertEquals(containerStatus.getCurrentAirHum(),currentAirHum);
 		assertEquals(containerStatus.getCurrentAtmPre(),currentAtmPre);
+		
+		
 	}
 
 	@Then("new measurements {string}, {string}, {string} are saved")

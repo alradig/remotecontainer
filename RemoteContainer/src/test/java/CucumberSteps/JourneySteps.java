@@ -24,17 +24,15 @@ public class JourneySteps {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.helper = helper;
 	}
-
 	@When("the journey has arrived at {string}")
 	public void the_journey_has_arrived_at(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    
 	}
 
 	@Then("current position is updated")
 	public void current_position_is_updated() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    
 	}
+
 
 }

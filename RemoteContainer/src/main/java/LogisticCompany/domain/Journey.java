@@ -7,9 +7,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import LogisticCompany.App.ArchivableObject;
+
+import LogisticCompany.domain.JourneyStatus;
 import LogisticCompany.App.Database;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.info.JourneyInfo;
+
 
 public class Journey implements ArchivableObject{
 	private static final AtomicInteger count = new AtomicInteger(0); 
@@ -17,15 +20,22 @@ public class Journey implements ArchivableObject{
 	private String startDestination;
 	private String endDestination;
 	private boolean isRegistered;
-	private String cargo;
 	private String currentLocation;
+	private String cargo;
 	private boolean endDestinationReached;
-	private ArrayList<String> journeyLog = new ArrayList<String>();
 	private ArrayList<Container> containers = new ArrayList<Container>();
 	private Container container;
-	
+	private JourneyStatus journeyStatus; 
 	public Container getContainer() {
 		return container;
+	}
+	
+	public Journey(int id, String startDestination, String endDestination, String cargo) {
+		this.id = id;
+//		this.id = count.incrementAndGet();  does not work yet since we pass ID to journey so far
+		this.startDestination = startDestination;
+		this.endDestination = endDestination;
+		this.cargo = cargo;
 	}
 
 	public void setContainer(Container container) {
@@ -33,13 +43,13 @@ public class Journey implements ArchivableObject{
 		container.setCargo(cargo);
 		containers.add(container);
 	}
+	
+	public void setJourneyStatus(JourneyStatus journeyStatus) {
+		this.journeyStatus=journeyStatus;
+	}
 
-	public Journey(int id, String startDestination, String endDestination, String cargo) {
-		this.id = id;
-//		this.id = count.incrementAndGet();  does not work yet since we pass ID to journey so far
-		this.startDestination = startDestination;
-		this.endDestination = endDestination;
-		this.cargo = cargo;
+	public JourneyStatus getJourneyStatus() {
+		return journeyStatus;
 	}
 	
 	public Journey() {this.id = count.incrementAndGet(); }; 
@@ -117,15 +127,7 @@ public class Journey implements ArchivableObject{
 		return journey.getCargo() == null;	
 	}
 	
-	public void setCurrentLocation(String currentLocation) {
-		this.currentLocation = currentLocation;
-		
-	}
-	public String getCurrentLocation(){
-		return currentLocation;
-		
-	}
-	
+
 	public boolean matchJourney(String searchCargo) {
 		return cargo.contains(searchCargo);
 	}
