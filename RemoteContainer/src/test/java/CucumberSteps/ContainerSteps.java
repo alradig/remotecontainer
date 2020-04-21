@@ -46,7 +46,7 @@ public class ContainerSteps {
 		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
 		containerInfo = new ContainerInfo(cargo);
 		logisticCompanyApp.registerContainer(containerInfo);
-		journeyInfo = new JourneyInfo(cargo, Port_of_origin,destination); 
+		journeyInfo = new JourneyInfo(cargo, Port_of_origin,destination);
 		
 		try {
 			logisticCompanyApp.registerJourney(journeyInfo);
