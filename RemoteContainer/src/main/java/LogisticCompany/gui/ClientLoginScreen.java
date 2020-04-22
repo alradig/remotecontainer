@@ -80,12 +80,9 @@ public class ClientLoginScreen {
 				parentWindow.setVisible(true);
 			}
 		});
-		btnBack.setBounds(21, 28, 59, 29);
+		btnBack.setBounds(21, 28, 65, 29);
 		panelClientLogin.add(btnBack);
-		
-		
-	
-		
+			
 	}
 
 	public void setVisible(boolean aFlag) {

@@ -87,13 +87,12 @@ public class MainScreen {
 		
 		btnClientLogin = new JButton("Client login");
 		btnClientLogin.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				clientLoginScreen.setVisible(true);
-				
+				clientLoginScreen.setVisible(true);	
 			}
 		});
-		
 		btnClientLogin.setBounds(104, 52, 193, 29);
 		panelMenu.add(btnClientLogin);
 		
@@ -102,15 +101,16 @@ public class MainScreen {
 
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				clientLoginScreen.setVisible(true);
+				logisticCompanyLoginScreen.setVisible(true);
 			}
 		});
 		btnLogisticCompanyLogin.setBounds(104, 93, 193, 29);
 		panelMenu.add(btnLogisticCompanyLogin);	
 		
 		clientLoginScreen = new ClientLoginScreen(logisticCompanyApp, this);
-		
 
+		logisticCompanyLoginScreen = new LogisticCompanyLoginScreen(logisticCompanyApp, this);
+		
 	}
 	
 	public void setVisible(boolean aFlag) {
