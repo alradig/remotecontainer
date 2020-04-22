@@ -109,6 +109,8 @@ public class LogisticCompanyFunctionalitiesScreen {
 		
 		
 		
+		
+		
 	}
 	
 	public void setVisible(boolean aFlag) {
