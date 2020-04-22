@@ -22,28 +22,28 @@ public class ClientSteps {
 	
 	private String errorMessage;
 	private Address address;
-	public ClientHelper helper;
+	public ClientHelper clientHelper;
+	private Client client;
 	
 	public ClientSteps(LogisticCompanyApp logisticCompanyApp, ClientHelper helper) {
 		this.logisticCompanyApp = logisticCompanyApp;
-		this.helper = helper;
+		this.clientHelper = helper;
 	}
 	
 	@Given("there is a client with name {string}, email {string}, reference person {string}")
 
 	 public void there_is_a_client_with_name_email_reference_person_password(String name, String email, String ref_person) {
-	   clientInfo = new ClientInfo(name, email, ref_person);
+		clientInfo = new ClientInfo(name, email, ref_person);
 		
 	    assertEquals(clientInfo.getName(),name);
 	    assertEquals(clientInfo.getEmail(),email);
 	    assertEquals(clientInfo.getReference_person(),ref_person);
-
 	}
 	
 	@Given("there is a client registered in the system")
 	public void there_is_a_client_registered_in_the_system() {
 		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
-		clientInfo = helper.getClient();
+		clientInfo = clientHelper.getClient();
 		try {
 			logisticCompanyApp.registerClient(clientInfo);
 		} catch (OperationNotAllowedException e) {
@@ -76,6 +76,25 @@ public class ClientSteps {
 		the_logistic_company_registers_the_client();
 	}
 	
+	@When("the logistic company updates the client reference person to {string}")
+	public void the_logistic_company_updates_the_client_reference_person_to(String newReferencePerson) {
+	    clientInfo = clientHelper.getClient();
+	    client = logisticCompanyApp.findClient(clientInfo);
+	    clientInfo.setRefPerson(newReferencePerson);
+	    
+	    try {
+			logisticCompanyApp.updateClientInfo(client, clientInfo);
+		} catch (OperationNotAllowedException e) {
+			errorMessage = e.getMessage();
+		}
+	}
+	
+	@Then("the client information should be updated")
+	public void the_client_information_should_be_updated() {
+		client = logisticCompanyApp.findClient(clientInfo);
+		assertEquals(client.getRefPerson(),clientInfo.getReference_person());
+	}
+	
 	@Then("the client is registered in the system")
 	public void the_client_is_registered_in_the_system() {
 	    Optional<ClientInfo> usr = logisticCompanyApp.getClientsStream().findFirst();
@@ -91,7 +110,7 @@ public class ClientSteps {
 	
 	@Then("the system gives the error message {string}")
 	public void the_system_gives_the_error_message(String message) {
-	    assertEquals(errorMessage, message);
+	    assertEquals(message,errorMessage);
 	}
 
 	

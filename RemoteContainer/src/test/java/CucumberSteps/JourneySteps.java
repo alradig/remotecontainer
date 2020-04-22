@@ -58,7 +58,8 @@ public class JourneySteps {
 	
 	@Then("the journey current position is updated with current location {string}")
 	public void the_journey_current_position_is_updated_with_current_location(String string) {
-	    assertEquals(journey.getJourneyStatus().getLocation(),journeyStatus.getLocation());
+		journey = logisticCompanyApp.findJourney(journeyInfo);
+		assertEquals(journey.getJourneyStatus().getLocation(),journeyStatus.getLocation());
 	}
 	
 //	@When("the journey has arrived at {string}")
