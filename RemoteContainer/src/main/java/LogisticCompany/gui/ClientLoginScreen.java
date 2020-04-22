@@ -27,6 +27,8 @@ public class ClientLoginScreen {
 	private JTextField passwordField;
 	private JButton btnBack;
 	private JButton btnLogin;
+	private JLabel lblPassword;
+	private JLabel lblUsername;
 	
 	
 	public ClientLoginScreen(LogisticCompanyApp logisticCompanyApp, MainScreen parentWindow) {
@@ -44,23 +46,40 @@ public class ClientLoginScreen {
                 "Client login"));
 		
 		userNameField = new JTextField();
-		userNameField.setBounds(138, 28, 130, 26);
+		userNameField.setBounds(138, 100, 130, 26);
 		panelClientLogin.add(userNameField);
 		userNameField.setColumns(10);
 		
+		lblUsername = new JLabel("User Name:");
+		lblUsername.setBounds(50, 105, 74, 16);
+		panelClientLogin.add(lblUsername);
+
+		
 		passwordField = new JTextField();
-		passwordField.setBounds(138, 28, 130, 26);
+		passwordField.setBounds(138, 140, 130, 26);
 		panelClientLogin.add(passwordField);
 		passwordField.setColumns(10);
 		
+		lblPassword = new JLabel("Password:");
+		lblPassword.setBounds(50, 145, 74, 16);
+		panelClientLogin.add(lblPassword);
+
+		
+		
 		JButton btnLogin = new JButton("Login");
 
-		btnLogin.setBounds(148, 68, 117, 29);
+		btnLogin.setBounds(148, 200, 117, 29);
 		panelClientLogin.add(btnLogin);
 		btnLogin.getRootPane().setDefaultButton(btnLogin);
 		
 		
 		btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				parentWindow.setVisible(true);
+			}
+		});
 		btnBack.setBounds(21, 28, 59, 29);
 		panelClientLogin.add(btnBack);
 		

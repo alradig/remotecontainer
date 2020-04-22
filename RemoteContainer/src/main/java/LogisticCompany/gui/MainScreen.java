@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import LogisticCompany.App.LogisticCompanyApp;
 
 
+
 public class MainScreen {
 	
 	LogisticCompanyApp logisticCompanyApp;
@@ -84,7 +85,7 @@ public class MainScreen {
 		panelMenu.setBorder(BorderFactory.createTitledBorder(
                 "Login Page"));
 		
-		JButton btnClientLogin = new JButton("Client login");
+		btnClientLogin = new JButton("Client login");
 		btnClientLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
@@ -96,17 +97,19 @@ public class MainScreen {
 		btnClientLogin.setBounds(104, 52, 193, 29);
 		panelMenu.add(btnClientLogin);
 		
-//		btnLogisticCompanyLogin = new JButton("Logistic Company login");
-////		btnLogisticCompanyLogin.addActionListener(new ActionListener() {
-////
-////			public void actionPerformed(ActionEvent e) {
-////				setVisible(false);
-////				administratorFunctionsScreen.setVisible(true);
-////			}
-////		});
-//		btnLogisticCompanyLogin.setBounds(104, 93, 193, 29);
-//		panelMenu.add(btnLogisticCompanyLogin);
-//		
+		btnLogisticCompanyLogin = new JButton("Logistic Company login");
+		btnLogisticCompanyLogin.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				clientLoginScreen.setVisible(true);
+			}
+		});
+		btnLogisticCompanyLogin.setBounds(104, 93, 193, 29);
+		panelMenu.add(btnLogisticCompanyLogin);	
+		
+		clientLoginScreen = new ClientLoginScreen(logisticCompanyApp, this);
+
 	}
 	
 	public void setVisible(boolean aFlag) {
