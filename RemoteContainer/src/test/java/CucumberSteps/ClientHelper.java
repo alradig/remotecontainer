@@ -29,18 +29,18 @@ public class ClientHelper {
 	}
 	
 	public ClientInfo registerExampleClient() throws Exception {
-		ClientInfo usr = getClient();
+		ClientInfo client = getClient();
 		boolean loggedIn = logisticCompanyApp.logisticCompanyLoggedIn();
 		if (!loggedIn) {
 			logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
 		}
 		
-		logisticCompanyApp.registerClient(usr);
+		logisticCompanyApp.registerClient(client);
 		
 		if (!loggedIn) {
 			logisticCompanyApp.logisticCompanyLogout();
 		}
-		return usr;
+		return client;
 	}
 	
 	private ClientInfo exampleClient() {

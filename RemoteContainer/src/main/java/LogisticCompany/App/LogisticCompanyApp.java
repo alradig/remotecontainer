@@ -187,6 +187,13 @@ public class LogisticCompanyApp {
 	public void updateJourneyInfo(Journey journey, JourneyStatusEntry journeyStatus) throws OperationNotAllowedException {
 		checkLogisticCompanyLoggedIn();
 		journey.setJourneyStatus(journeyStatus);
+		journeyRepository.updateJourney(journey);
+	}
+	
+	public void updateClientInfo(Client client, ClientInfo clientInfo) throws OperationNotAllowedException {
+		checkLogisticCompanyLoggedIn();
+		client.updateClientInfo(clientInfo);
+		clientRepository.updateClient(client);
 	}
 
 	

@@ -16,14 +16,9 @@ public class JourneyStatusEntry {
 	}
 	
 	public JourneyStatusEntry() {
-		this.originPort = "";
-		this.location = "";
-	}
 
-	public void setLocation(String currentLocation) {
-		this.location = currentLocation;
-		
 	}
+	
 	public String getLocation(){
 		return location;
 	}

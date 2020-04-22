@@ -75,11 +75,21 @@ public class RegisterJourneyScreen {
 		btnregister.setBounds(170, 425, 74, 16);
 		panelRegisterJourney.add(btnregister);
 		
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				parentWindow.setVisible(true);
+			}
+		});
+		btnBack.setBounds(21, 28, 65, 29);
+		panelRegisterJourney.add(btnBack);
+
 	}
 	
 	public void setVisible(boolean aFlag) {
 		panelRegisterJourney.setVisible(aFlag);
 		
 	}
-
+	
 }

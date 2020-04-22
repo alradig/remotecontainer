@@ -10,9 +10,6 @@ public class ClientInfo {
 	private String reference_person;
 	private Address address;
 	
-	public ClientInfo() {
-		
-	}
 	
 	public ClientInfo(String name, String email, String reference_person) {
 		this.name = name;
@@ -51,7 +48,9 @@ public class ClientInfo {
 		return new Client(this);
 	}
 	
-	
+	public void setRefPerson(String refPerson) {
+		this.reference_person = refPerson;
+	}
 	
 
 }
