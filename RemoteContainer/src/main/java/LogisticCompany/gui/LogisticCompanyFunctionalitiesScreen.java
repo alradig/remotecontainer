@@ -22,6 +22,9 @@ import javax.swing.event.ListSelectionListener;
 public class LogisticCompanyFunctionalitiesScreen {
 	LogisticCompanyApp logisticCompanyApp;
 	RegisterClientScreen registerClientScreen;
+	RegisterContainerScreen registerContainerScreen;
+	FindClientScreen findClientScreen; 
+	FindJourneyScreen findJourneyScreen;
 	private LogisticCompanyLoginScreen parentWindow;
 	
 	private JButton btnRegisterClient;
@@ -66,7 +69,7 @@ public class LogisticCompanyFunctionalitiesScreen {
 		btnContainerForJourney.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				registerClientScreen.setVisible(true);
+				registerContainerScreen.setVisible(true);
 			}
 		});
 		btnContainerForJourney.setBounds(104, 133, 193, 29);
@@ -76,7 +79,7 @@ public class LogisticCompanyFunctionalitiesScreen {
 		btnFindJourney.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				registerClientScreen.setVisible(true);
+				findJourneyScreen.setVisible(true);
 			}
 		});
 		btnFindJourney.setBounds(104, 173, 193, 29);
@@ -86,7 +89,7 @@ public class LogisticCompanyFunctionalitiesScreen {
 		btnFindClient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				registerClientScreen.setVisible(true);
+				findClientScreen.setVisible(true);
 			}
 		});
 		btnFindClient.setBounds(104, 213, 193, 29);
@@ -97,19 +100,17 @@ public class LogisticCompanyFunctionalitiesScreen {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				mainScreen.setVisible(true);
-				// logout from app. 
+				// logout from LogisticCompanyApp !!!!!!!!
 			}
 		});
-		btnLogout.setBounds(21, 28, 65, 29);
+		btnLogout.setBounds(21, 28, 65, 40);
 		panelLogisticCompanyFunc.add(btnLogout);
 		
 		
 		registerClientScreen = new RegisterClientScreen(logisticCompanyApp, this);
-
-		
-		
-		
-		
+		registerContainerScreen = new RegisterContainerScreen(logisticCompanyApp, this);
+		findClientScreen = new FindClientScreen(logisticCompanyApp, this);
+		findJourneyScreen = new FindJourneyScreen(logisticCompanyApp, this);
 		
 	}
 	
