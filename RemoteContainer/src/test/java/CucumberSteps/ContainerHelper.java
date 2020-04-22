@@ -24,7 +24,9 @@ public class ContainerHelper {
 		if (!loggedIn) {
 			logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
 		}
+		
 		logisticCompanyApp.registerContainer(usr);
+		
 		if (!loggedIn) {
 			logisticCompanyApp.logisticCompanyLogout();
 		}

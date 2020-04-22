@@ -176,21 +176,20 @@ public class LogisticCompanyApp {
 		clientObj.addJourney(journeyObj);
 	}
 
-//	public void addMeasurements(Container container, ContainerStatusEntry containerStatus) throws OperationNotAllowedException {
-//		checkLogisticCompanyLoggedIn();
-//		containerStatus.addToMeasurementList(containerStatus.getCurrentTemp(), containerStatus.getCurrentAirHum(), containerStatus.getCurrentAtmPre());		
-//		container.setContainerStatus(containerStatus); 
-//	
-//	}
-	
-	public void addMeasurements(Container container, String temp, String AirHum, String AtmPre) throws OperationNotAllowedException {
+	public void addMeasurements(Container container, ContainerStatusEntry containerStatus) throws OperationNotAllowedException {
 		checkLogisticCompanyLoggedIn();
-		container.addToMeasurementList(temp, AirHum, AtmPre);
-		
-		
-//		containerStatus.addToMeasurementList(containerStatus.getCurrentTemp(), containerStatus.getCurrentAirHum(), containerStatus.getCurrentAtmPre());		
-//		container.setContainerStatus(containerStatus); 
+		container.updateContainerStatus(containerStatus);		
+	
 	}
+	
+//	public void addMeasurements(Container container, String temp, String AirHum, String AtmPre) throws OperationNotAllowedException {
+//		checkLogisticCompanyLoggedIn();
+//		container.addToMeasurementList(temp, AirHum, AtmPre);
+//		
+//		
+////		containerStatus.addToMeasurementList(containerStatus.getCurrentTemp(), containerStatus.getCurrentAirHum(), containerStatus.getCurrentAtmPre());		
+////		container.setContainerStatus(containerStatus); 
+//	}
 	
 	
 	public void updateJourneyInfo(Journey journey, JourneyStatus journeyStatus)throws OperationNotAllowedException {

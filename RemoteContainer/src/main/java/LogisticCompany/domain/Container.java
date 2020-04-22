@@ -2,6 +2,8 @@ package LogisticCompany.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Stream;
+
 import javax.persistence.*;
 
 import LogisticCompany.info.ContainerInfo;
@@ -16,6 +18,10 @@ public class Container {
 	@OneToMany
 	private List<ContainerStatusEntry> containerStatusList = new ArrayList<>();
 	
+	public Stream<ContainerStatusEntry> getContainerStatusListStream() {
+		return containerStatusList.stream();
+	}
+
 	public Container() {
 
 	}
@@ -24,16 +30,11 @@ public class Container {
 		this.cargo = cargo;
 	}
 	
-	public void addContainerStatus(ContainerStatusEntry containerStatus) {
-		containerStatusList.add(containerStatus);
-	}
-	
 	public void clearContainerStatusList() {
 		containerStatusList.clear();
 	}
 	
-	public void addToMeasurementList(String currentTemp, String currentAirHum, String currentAtmPre) {
-		ContainerStatusEntry containerStatus = new ContainerStatusEntry(currentTemp,currentAirHum,currentAtmPre);
+	public void updateContainerStatus(ContainerStatusEntry containerStatus) {
 		containerStatusList.add(containerStatus);
 	}
 	
