@@ -2,6 +2,7 @@ package LogisticCompany.gui;
 
 
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,7 +30,7 @@ public class LogisticCompanyLoginScreen {
 	LogisticCompanyApp logisticCompanyApp;
 	private JPanel panelLogisticCompanyLogin;
 	private MainScreen parentWindow;
-	private JTextField passwordField;
+//	private JTextField passwordField;
 	private JButton btnBack;
 	private JButton btnLogin;
 	private JLabel lblPassword;
@@ -52,10 +53,10 @@ public class LogisticCompanyLoginScreen {
 		panelLogisticCompanyLogin.setBorder(BorderFactory.createTitledBorder(
                 "Logistic Company login"));
 		
-		passwordField = new JTextField();
-		passwordField.setBounds(138, 100, 130, 26);
-		panelLogisticCompanyLogin.add(passwordField);
-		passwordField.setColumns(10);
+		JPasswordField passWordText = new JPasswordField();
+		passWordText.setBounds(138, 100, 130, 26);
+		panelLogisticCompanyLogin.add(passWordText);
+		
 		
 		lblPassword = new JLabel("Password:");
 		lblPassword.setBounds(50, 105, 74, 16);

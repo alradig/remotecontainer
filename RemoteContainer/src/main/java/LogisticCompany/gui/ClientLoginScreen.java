@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
@@ -59,15 +60,13 @@ public class ClientLoginScreen {
 		panelClientLogin.add(lblUsername);
 
 		
-		passwordField = new JTextField();
-		passwordField.setBounds(138, 140, 130, 26);
-		panelClientLogin.add(passwordField);
-		passwordField.setColumns(10);
-		
 		lblPassword = new JLabel("Password:");
 		lblPassword.setBounds(50, 145, 74, 16);
 		panelClientLogin.add(lblPassword);
-
+		
+		JPasswordField passWordText = new JPasswordField();
+		passWordText.setBounds(138, 140, 130, 26);
+		panelClientLogin.add(passWordText);
 		
 		
 		JButton btnLogin = new JButton("Login");

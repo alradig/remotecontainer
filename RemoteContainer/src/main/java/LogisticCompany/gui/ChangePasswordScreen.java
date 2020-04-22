@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import LogisticCompany.App.LogisticCompanyApp;
@@ -35,23 +36,33 @@ public class ChangePasswordScreen {
 		panelChangePassword.setBorder(BorderFactory.createTitledBorder(
                 "Change Password"));
 		
-		currentPasswordField = new JTextField();
-		currentPasswordField.setBounds(170, 100, 130, 26);
-		panelChangePassword.add(currentPasswordField);
-		currentPasswordField.setColumns(10);
+//		currentPasswordField = new JTextField();
+//		currentPasswordField.setBounds(170, 100, 130, 26);
+//		panelChangePassword.add(currentPasswordField);
+//		currentPasswordField.setColumns(10);
+		
+		JPasswordField passWordText = new JPasswordField();
+		passWordText.setBounds(170, 100, 130, 26);
+		panelChangePassword.add(passWordText);
 		
 		lblCurrentPassword = new JLabel("Current Password:");
 		lblCurrentPassword.setBounds(50, 105, 120, 16);
 		panelChangePassword.add(lblCurrentPassword);
 		
-		newPasswordField = new JTextField();
-		newPasswordField.setBounds(170, 140, 130, 26);
-		panelChangePassword.add(newPasswordField);
-		newPasswordField.setColumns(10);
+//		newPasswordField = new JTextField();
+//		newPasswordField.setBounds(170, 140, 130, 26);
+//		panelChangePassword.add(newPasswordField);
+//		newPasswordField.setColumns(10);
+		
+		JPasswordField newPassWordText = new JPasswordField();
+		newPassWordText.setBounds(170, 140, 130, 26);
+		panelChangePassword.add(newPassWordText);
 		
 		lblNewPassword = new JLabel("New Password:");
 		lblNewPassword.setBounds(50, 145, 120, 16);
 		panelChangePassword.add(lblNewPassword);
+		
+		
 		
 		JButton btnregister = new JButton("submit");
 		btnregister.addActionListener(new ActionListener() {
