@@ -107,6 +107,8 @@ public class LogisticCompanyFunctionalitiesScreen {
 		registerClientScreen = new RegisterClientScreen(logisticCompanyApp, this);
 
 		
+		
+		
 	}
 	
 	public void setVisible(boolean aFlag) {
