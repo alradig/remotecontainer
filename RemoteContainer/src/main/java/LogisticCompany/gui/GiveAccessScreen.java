@@ -27,7 +27,7 @@ public class GiveAccessScreen {
 		parentWindow.addPanel(panelGiveAccess);
 		panelGiveAccess.setLayout(null);
 		panelGiveAccess.setBorder(BorderFactory.createTitledBorder(
-                "Register Journey"));
+                "Give Access to Other Clients"));
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {

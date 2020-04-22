@@ -27,7 +27,7 @@ public class OtherClientScreen {
 		parentWindow.addPanel(panelOtherClient);
 		panelOtherClient.setLayout(null);
 		panelOtherClient.setBorder(BorderFactory.createTitledBorder(
-                "Register Journey"));
+                "View Other Clients"));
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {

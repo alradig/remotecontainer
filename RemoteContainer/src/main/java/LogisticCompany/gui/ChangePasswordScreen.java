@@ -27,7 +27,7 @@ public class ChangePasswordScreen {
 		parentWindow.addPanel(panelChangePassword);
 		panelChangePassword.setLayout(null);
 		panelChangePassword.setBorder(BorderFactory.createTitledBorder(
-                "Register Journey"));
+                "Change Password"));
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
