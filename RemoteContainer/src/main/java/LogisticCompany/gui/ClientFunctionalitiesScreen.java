@@ -22,6 +22,10 @@ import javax.swing.event.ListSelectionListener;
 public class ClientFunctionalitiesScreen {
 	LogisticCompanyApp logisticCompanyApp;
 	RegisterJourneyScreen registerJourneyScreen;
+	ClientFindJourneyScreen clientFindJourneyScreen;
+	OtherClientScreen otherClientScreen;
+	GiveAccessScreen giveAccessScreen;
+	ChangePasswordScreen changePasswordScreen;	
 	private ClientLoginScreen parentWindow;
 	
 	private JButton btnRegisterJourney;
@@ -51,7 +55,7 @@ public class ClientFunctionalitiesScreen {
                 "Client functionalities"));
 		
 		
-		btnRegisterJourney = new JButton("Register Client");
+		btnRegisterJourney = new JButton("Register Journey");
 		btnRegisterJourney.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
@@ -67,37 +71,37 @@ public class ClientFunctionalitiesScreen {
 		btnFindJourney.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				registerJourneyScreen.setVisible(true);
+				clientFindJourneyScreen.setVisible(true);
 			}
 		});
 		btnFindJourney.setBounds(104, 133, 193, 29);
 		panelClientFunc.add(btnFindJourney);
 		
-		btnOtherClients = new JButton("Find Journey");
+		btnOtherClients = new JButton("View Other Clients");
 		btnOtherClients.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				registerJourneyScreen.setVisible(true);
+				otherClientScreen.setVisible(true);
 			}
 		});
 		btnOtherClients.setBounds(104, 173, 193, 29);
 		panelClientFunc.add(btnOtherClients);
 		
-		btnGiveAccess = new JButton("Find Client");
+		btnGiveAccess = new JButton("Give Access to Other Clients");
 		btnGiveAccess.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				registerJourneyScreen.setVisible(true);
+				giveAccessScreen.setVisible(true);
 			}
 		});
 		btnGiveAccess.setBounds(104, 213, 193, 29);
 		panelClientFunc.add(btnGiveAccess);
 		
-		btnChangePassword = new JButton("Find Client");
+		btnChangePassword = new JButton("Change Password");
 		btnChangePassword.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				registerJourneyScreen.setVisible(true);
+				changePasswordScreen.setVisible(true);
 			}
 		});
 		btnChangePassword.setBounds(104, 213, 193, 29);
@@ -116,6 +120,10 @@ public class ClientFunctionalitiesScreen {
 		
 		
 		registerJourneyScreen = new RegisterJourneyScreen(logisticCompanyApp, this);
+		clientFindJourneyScreen = new ClientFindJourneyScreen(logisticCompanyApp, this);
+		otherClientScreen = new OtherClientScreen(logisticCompanyApp, this);
+		giveAccessScreen = new GiveAccessScreen(logisticCompanyApp, this);
+		changePasswordScreen = new ChangePasswordScreen(logisticCompanyApp, this);
 		
 	}
 	

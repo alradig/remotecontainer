@@ -10,23 +10,23 @@ import javax.swing.JPanel;
 
 import LogisticCompany.App.LogisticCompanyApp;
 
-public class RegisterJourneyScreen {
+public class ChangePasswordScreen {
 	LogisticCompanyApp logisticCompanyApp;
 	private ClientFunctionalitiesScreen parentWindow;
-	private JPanel panelRegisterJourney;
+	private JPanel panelChangePassword;
 	
 
-	public RegisterJourneyScreen(LogisticCompanyApp logisticCompanyApp, ClientFunctionalitiesScreen parentWindow) {
+	public ChangePasswordScreen(LogisticCompanyApp logisticCompanyApp, ClientFunctionalitiesScreen parentWindow) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
 		initialize();
 	}
 	
 	private void initialize() {
-		panelRegisterJourney = new JPanel();
-		parentWindow.addPanel(panelRegisterJourney);
-		panelRegisterJourney.setLayout(null);
-		panelRegisterJourney.setBorder(BorderFactory.createTitledBorder(
+		panelChangePassword = new JPanel();
+		parentWindow.addPanel(panelChangePassword);
+		panelChangePassword.setLayout(null);
+		panelChangePassword.setBorder(BorderFactory.createTitledBorder(
                 "Register Journey"));
 		
 		JButton btnBack = new JButton("Back");
@@ -37,12 +37,13 @@ public class RegisterJourneyScreen {
 			}
 		});
 		btnBack.setBounds(21, 28, 65, 29);
-		panelRegisterJourney.add(btnBack);
+		panelChangePassword.add(btnBack);
 	}
 	
 	public void setVisible(boolean aFlag) {
-		panelRegisterJourney.setVisible(aFlag);
+		panelChangePassword.setVisible(aFlag);
 		
 	}
 	
 }
+
