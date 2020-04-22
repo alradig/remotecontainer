@@ -11,6 +11,7 @@ import LogisticCompany.App.JourneyRepository;
 import LogisticCompany.domain.Client;
 import LogisticCompany.domain.Container;
 import LogisticCompany.domain.Journey;
+import dtu.library.domain.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -61,14 +62,22 @@ public class SQLRepository implements ClientRepository, ContainerRepository , Jo
 		}
 		
 		@Override
+		public Container getContainer(String cargo) {
+			return em.createQuery("SELECT c FROM Container c WHERE c.cargo=:cargo", Container.class)
+					  .setParameter("cargo", cargo)
+					  .getResultStream().findFirst().orElse(null);
+		}
+		
+		@Override
+		public Journey getJourney(String cargo) {
+			return em.createQuery("SELECT j FROM Journey j WHERE j.cargo=:cargo", Journey.class)
+					  .setParameter("cargo", cargo)
+					  .getResultStream().findFirst().orElse(null);
+		}
+		
+		@Override
 		public Stream<Client> getAllClientsStream() {
 			return em.createQuery("SELECT c FROM Client c", Client.class).getResultStream();
-		}
-
-		@Override
-		public boolean contains(Journey journey) {
-			// TODO Auto-generated method stub
-			return false;
 		}
 
 		@Override
@@ -78,13 +87,6 @@ public class SQLRepository implements ClientRepository, ContainerRepository , Jo
 			em.getTransaction().commit();
 			
 		}
-		
-		@Override
-		public Journey getJourney(String cargo) {
-			return em.createQuery("SELECT j FROM Journey j WHERE j.cargo=:cargo", Journey.class)
-					  .setParameter("cargo", cargo)
-					  .getResultStream().findFirst().orElse(null);
-		}
 
 		@Override
 		public Stream<Journey> getAllJourneysStream() {
@@ -93,18 +95,56 @@ public class SQLRepository implements ClientRepository, ContainerRepository , Jo
 
 		@Override
 		public void updateJourney(Journey journey) {
+			em.getTransaction().begin();
+			em.merge(journey);
+			em.getTransaction().commit();
+		}
+		
+		@Override
+		public void updateClient(Client client) {
+			em.getTransaction().begin();
+			em.merge(client);
+			em.getTransaction().commit();
+		}
+		
+		@Override
+		public void updateContainer(Container container) {
 			// TODO Auto-generated method stub
-			
+
 		}
 
 		@Override
 		public void removeJourney(Journey journey) {
+			// TODO Auto-generated method stub
+
+		}
+		
+		@Override
+		public void removeContainer(Container container) {
+			// TODO Auto-generated method stub
+		
+		}
+		
+		@Override
+		public void removeClient(Client client) {
 			// TODO Auto-generated method stub
 			
 		}
 
 		@Override
 		public boolean contains(Container container) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+		
+		@Override
+		public boolean contains(Client client) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+		
+		@Override
+		public boolean contains(Journey journey) {
 			// TODO Auto-generated method stub
 			return false;
 		}
@@ -115,43 +155,6 @@ public class SQLRepository implements ClientRepository, ContainerRepository , Jo
 			return null;
 		}
 
-		@Override
-		public void updateContainer(Container container) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void removeContainer(Container container) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public Container getContainer(String cargo) {
-			return em.createQuery("SELECT c FROM Container c WHERE c.cargo=:cargo", Container.class)
-					  .setParameter("cargo", cargo)
-					  .getResultStream().findFirst().orElse(null);
-		}
-
-		@Override
-		public boolean contains(Client client) {
-			// TODO Auto-generated method stub
-			return false;
-		}
-
-		@Override
-		public void updateClient(Client client) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void removeClient(Client client) {
-			// TODO Auto-generated method stub
-			
-		}
-		
 		@Override
 		public void clearJourneyDatabase() {
 			if (isProduction) {

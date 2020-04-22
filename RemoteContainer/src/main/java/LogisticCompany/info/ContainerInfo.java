@@ -23,10 +23,6 @@ public class ContainerInfo {
 	public String getCargo() {
 		return cargo;
 	}
-
-	public void setCargo(String cargo) {
-		this.cargo = cargo;
-	}
 	
 	public Container asContainer() {
 		return new Container(this);

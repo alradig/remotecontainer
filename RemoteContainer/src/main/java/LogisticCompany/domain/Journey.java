@@ -18,9 +18,7 @@ public class Journey{
 	private String originPort;
 	private String destinationPort;
 	private boolean isRegistered;
-	private String location;
 	private String cargo;
-	private boolean endDestinationReached;
 	@OneToMany
 	private List<Container> containers = new ArrayList<Container>();
 	private Container container;
@@ -40,7 +38,7 @@ public class Journey{
 	public Journey(JourneyInfo journeyInfo) {
 		this.originPort = journeyInfo.getOriginPort();
 		this.destinationPort = journeyInfo.getDestinationPort();
-		this.location = journeyInfo.getLocation();
+		journeyInfo.getLocation();
 		this.cargo = journeyInfo.getCargo();
 	}
 	
@@ -64,32 +62,12 @@ public class Journey{
 		return currentJourneyStatus;
 	}
 	
-	public void setStartDestination(String startDestination) {
-		this.originPort = startDestination;
-	}
-	
 	public String getStartDestination() {
 		return originPort;
-	}
-
-	public void setEndDestination(String endDestination) {
-		this.destinationPort = endDestination;
 	}
 	
 	public String getEndDestination() {
 		return destinationPort;
-	}
-
-	public void setRegistrationStatus(boolean isRegistered) {
-		this.isRegistered = isRegistered;
-	}
-	
-	public boolean getRegistrationStatus() {
-		return isRegistered;
-	}
-
-	public void setCargo(String cargo) {
-		this.cargo = cargo;
 	}
 
 	public String getCargo() {
@@ -98,37 +76,6 @@ public class Journey{
 	
 	public long getId() {
 		return id;
-	}
-	
-////	public void setId(int id) {
-////		this.id = id;
-//	}
-// !! 
-	public void registerJourney(Journey journey, Container container) {
-		if (journeyInformationNotComplete(journey) & Container.containerRegistered(container))
-		{
-			this.isRegistered = false; 
-		}
-		else {
-			this.isRegistered = true; 
-		}
-		
-	}
-// !! 
-	public boolean journeyInformationNotComplete(Journey journey) {
-		return cargoIsEmpty(journey) || endDestinationIsEmpty(journey) || startDestinationIsEmpty(journey);
-	}
-// !! 
-	 public boolean startDestinationIsEmpty(Journey journey) {
-		return journey.getStartDestination() == null;
-	}
-// !! 
-	public boolean endDestinationIsEmpty(Journey journey) {
-		return journey.getEndDestination() == null;
-	}
-// !! 	
-	public boolean cargoIsEmpty(Journey journey) {
-		return journey.getCargo() == null;	
 	}
 	
 

@@ -45,10 +45,6 @@ public class Container {
 	public long getId() {
 		return id;
 	}
-		
-	public static boolean containerRegistered(Container container) {
-		return container.getId() == 0;
-	}
 
 	public String getCargo() {
 		return cargo;
