@@ -77,11 +77,9 @@ public class ContainerSteps {
 	public void internal_temperatur_of_degrees_air_humidity_of_percent_and_atmopshere_pressure_of_Pa(String currentTemp, String currentAirHum, String currentAtmPre) {
 		containerStatus = new ContainerStatusEntry(currentTemp, currentAirHum, currentAtmPre);
 		
-		assertEquals(containerStatus.getCurrentTemp(),currentTemp);
-		assertEquals(containerStatus.getCurrentAirHum(),currentAirHum);
-		assertEquals(containerStatus.getCurrentAtmPre(),currentAtmPre);
-		
-		
+		assertEquals(containerStatus.getTemperature(),currentTemp);
+		assertEquals(containerStatus.getAirHumidity(),currentAirHum);
+		assertEquals(containerStatus.getAtmPressure(),currentAtmPre);
 	}
 
 	@Then("new measurements {string}, {string}, {string} are saved")
@@ -89,18 +87,14 @@ public class ContainerSteps {
 		
 		Container container = logisticCompanyApp.findContainer(containerInfo);
 		logisticCompanyApp.addMeasurements(container, containerStatus);
-		ContainerStatusEntry containerStatus = container.getContainerStatus();
-
-		assertEquals(containerStatus.getTemp().size(),1);
-		assertEquals(containerStatus.getAirHum().size(),1);
-		assertEquals(containerStatus.getAtmPre().size(),1);
-		assertEquals(containerStatus.getTemp().get(0),currentTemp);
-		assertEquals(containerStatus.getAirHum().get(0),currentAirHum);
-		assertEquals(containerStatus.getAtmPre().get(0),currentAtmPre);
-		assertEquals(container.getContainerStatus().getAirHum().get(0) ,currentAirHum);
-		assertEquals(container.getContainerStatus().getAtmPre().get(0) ,currentAtmPre);
-		assertEquals(container.getContainerStatus().getTemp().get(0) ,currentTemp);
 		
+		Optional<ContainerStatusEntry> csStream = container.getContainerStatusListStream().findFirst();
+	    assertTrue(csStream.isPresent());
+	    ContainerStatusEntry cs = csStream.get();
+	    
+	    assertEquals(containerStatus.getTemperature(), cs.getTemperature());
+	    assertEquals(containerStatus.getAtmPressure(), cs.getAtmPressure());
+	    assertEquals(containerStatus.getAirHumidity(), cs.getAirHumidity());
 	}
 
 	@Given("the client registers a journey with cargo {string}, port of origin harbor {string} and destination  {string}")

@@ -7,41 +7,41 @@ import javax.persistence.*;
 @Entity
 public class ContainerStatusEntry {
 	@Id
-	private String currentTemp;
-	private String currentAirHum;
-	private String currentAtmPre;
+	private String temperature;
+	private String airHumidity;
+	private String atmPressure;
 	
-	public ContainerStatusEntry(String currentTemp, String currentAirHum, String currentAtmPre) {
-		this.currentTemp = currentTemp;
-		this.currentAirHum = currentAirHum;
-		this.currentAtmPre = currentAtmPre;
+	public ContainerStatusEntry(String temperature, String airHumidity, String atmPressure) {
+		this.temperature = temperature;
+		this.airHumidity = airHumidity;
+		this.atmPressure = atmPressure;
 	}
 	
 	public ContainerStatusEntry() {
 		
 	}
 
-	public void setCurrentTemp(String currentTemp) {
-		this.currentTemp = currentTemp;
+	public void setTemperature(String currentTemp) {
+		this.temperature = currentTemp;
 	}
 	
-	public String getCurrentTemp() {
-		return currentTemp;
+	public String getTemperature() {
+		return temperature;
 	}
 	
-	public String getCurrentAirHum() {
-		return currentAirHum;
+	public String getAirHumidity() {
+		return airHumidity;
 	}
 
-	public void setCurrentAirHum(String currentAirHum) {
-		this.currentAirHum = currentAirHum;
+	public void setAirHumidity(String currentAirHum) {
+		this.airHumidity = currentAirHum;
 	}
 	
-	public void setAtmPre(String currentAtmPre) {
-		this.currentAtmPre = currentAtmPre;
+	public void setAtmPressure(String currentAtmPre) {
+		this.atmPressure = currentAtmPre;
 	}
 	
-	public String getCurrentAtmPre() {
-		return currentAtmPre;
+	public String getAtmPressure() {
+		return atmPressure;
 	}
 }

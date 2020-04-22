@@ -28,13 +28,15 @@ public class ClientHelper {
 		client.setAddress(a);
 	}
 	
-	public ClientInfo registerExampleUser() throws Exception {
+	public ClientInfo registerExampleClient() throws Exception {
 		ClientInfo usr = getClient();
 		boolean loggedIn = logisticCompanyApp.logisticCompanyLoggedIn();
 		if (!loggedIn) {
 			logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
 		}
+		
 		logisticCompanyApp.registerClient(usr);
+		
 		if (!loggedIn) {
 			logisticCompanyApp.logisticCompanyLogout();
 		}
