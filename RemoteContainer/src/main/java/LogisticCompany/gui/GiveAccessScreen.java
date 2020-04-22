@@ -33,7 +33,7 @@ public class GiveAccessScreen {
 		parentWindow.addPanel(panelGiveAccess);
 		panelGiveAccess.setLayout(null);
 		panelGiveAccess.setBorder(BorderFactory.createTitledBorder(
-                "Register Journey"));
+                "Give Access to Other Clients"));
 		
 
 		nameField = new JTextField();

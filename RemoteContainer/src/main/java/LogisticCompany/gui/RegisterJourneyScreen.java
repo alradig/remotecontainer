@@ -35,7 +35,7 @@ public class RegisterJourneyScreen {
 		parentWindow.addPanel(panelRegisterJourney);
 		panelRegisterJourney.setLayout(null);
 		panelRegisterJourney.setBorder(BorderFactory.createTitledBorder(
-                "Register Client"));
+                "Register Journey"));
 		
 		cargoField = new JTextField();
 		cargoField.setBounds(138, 100, 130, 26);

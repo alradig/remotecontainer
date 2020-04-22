@@ -103,7 +103,7 @@ public class LogisticCompanyFunctionalitiesScreen {
 				// logout from LogisticCompanyApp !!!!!!!!
 			}
 		});
-		btnLogout.setBounds(21, 28, 65, 40);
+		btnLogout.setBounds(21, 28, 80, 40);
 		panelLogisticCompanyFunc.add(btnLogout);
 		
 		

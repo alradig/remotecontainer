@@ -26,7 +26,7 @@ public class FindJourneyScreen {
 		parentWindow.addPanel(panelFindJourney);
 		panelFindJourney.setLayout(null);
 		panelFindJourney.setBorder(BorderFactory.createTitledBorder(
-                "Find Client"));
+                "Find Existing Journey"));
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {

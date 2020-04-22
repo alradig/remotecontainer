@@ -63,7 +63,7 @@ public class ClientFunctionalitiesScreen {
 				registerJourneyScreen.setVisible(true);
 			}
 		});
-		btnRegisterJourney.setBounds(104, 93, 193, 29);
+		btnRegisterJourney.setBounds(95, 93, 210, 29);
 		panelClientFunc.add(btnRegisterJourney);	
 		
 		
@@ -75,7 +75,7 @@ public class ClientFunctionalitiesScreen {
 				clientFindJourneyScreen.setVisible(true);
 			}
 		});
-		btnFindJourney.setBounds(104, 133, 193, 29);
+		btnFindJourney.setBounds(95, 133, 210, 29);
 		panelClientFunc.add(btnFindJourney);
 		
 		btnOtherClients = new JButton("View Other Clients");
@@ -85,7 +85,7 @@ public class ClientFunctionalitiesScreen {
 				otherClientScreen.setVisible(true);
 			}
 		});
-		btnOtherClients.setBounds(104, 173, 193, 29);
+		btnOtherClients.setBounds(95, 173, 210, 29);
 		panelClientFunc.add(btnOtherClients);
 		
 		btnGiveAccess = new JButton("Give Access to Other Clients");
@@ -95,7 +95,7 @@ public class ClientFunctionalitiesScreen {
 				giveAccessScreen.setVisible(true);
 			}
 		});
-		btnGiveAccess.setBounds(104, 213, 193, 29);
+		btnGiveAccess.setBounds(95, 213, 210, 29);
 		panelClientFunc.add(btnGiveAccess);
 		
 		btnChangePassword = new JButton("Change Password");
@@ -105,7 +105,7 @@ public class ClientFunctionalitiesScreen {
 				changePasswordScreen.setVisible(true);
 			}
 		});
-		btnChangePassword.setBounds(104, 253, 193, 29);
+		btnChangePassword.setBounds(95, 253, 210, 29);
 		panelClientFunc.add(btnChangePassword);
 		
 		btnLogout = new JButton("Log out");
@@ -116,7 +116,7 @@ public class ClientFunctionalitiesScreen {
 				// logout from app. 
 			}
 		});
-		btnLogout.setBounds(21, 28, 65, 29);
+		btnLogout.setBounds(21, 28, 80, 29);
 		panelClientFunc.add(btnLogout);
 		
 		
