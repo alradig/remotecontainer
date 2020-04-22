@@ -109,6 +109,7 @@ public class MainScreen {
 		panelMenu.add(btnLogisticCompanyLogin);	
 		
 		clientLoginScreen = new ClientLoginScreen(logisticCompanyApp, this);
+		
 
 	}
 	
