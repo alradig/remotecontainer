@@ -9,13 +9,15 @@ import LogisticCompany.domain.ContainerStatusEntry;
 public class ContainerInfo {
 	
 	private String cargo;
-	private String currentTemp;
-	private String currentAirHum;
-	private String currentAtmPre;
-	private ContainerStatusEntry containerStatus;
+	private List<ContainerStatusEntry> containerStatusList = new ArrayList<>();
 	
 	public ContainerInfo(String cargo) {
 		this.cargo = cargo;
+	}
+	
+	public ContainerInfo(Container container) {
+		this.cargo = container.getCargo();
+		this.containerStatusList = container.getContainerStatusList();
 	}
 	
 	public String getCargo() {
@@ -26,28 +28,12 @@ public class ContainerInfo {
 		this.cargo = cargo;
 	}
 	
-	public String getCurrentTemp() {
-		return currentTemp;
-	}
-	
-	public String getCurrentAirHum() {
-		return currentAirHum;
-	}
-	
-	public String getCurrentAtmPre() {
-		return currentAtmPre;
-	}
-	
 	public Container asContainer() {
-		// missing things to register container with .. Ask group ! ? 
-		
-		return new Container(cargo);
+		return new Container(this);
 	}
 	
-	public ContainerStatusEntry getContainerStatus() {
-		return containerStatus;
+	public List<ContainerStatusEntry> getContainerStatusList() {
+		return containerStatusList;
 	}
-	
-
 	
 }

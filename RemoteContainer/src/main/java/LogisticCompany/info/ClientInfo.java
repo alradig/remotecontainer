@@ -31,15 +31,6 @@ public class ClientInfo {
 		return reference_person;
 	}
 
-//	public void setReference_person(String reference_person) {
-//		this.reference_person = reference_person;
-//	}
-
-
-//	public void setPassword(String password) {
-//		this.password = password;
-//	}
-	
 	public Address getAddress() {
 		return address;
 	}
@@ -57,7 +48,7 @@ public class ClientInfo {
 	}
 	
 	public Client asClient() {
-		return new Client(name, email, reference_person);
+		return new Client(this);
 	}
 	
 	

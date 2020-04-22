@@ -4,48 +4,51 @@ package LogisticCompany.info;
 import java.util.ArrayList;
 
 import LogisticCompany.domain.Journey;
+import LogisticCompany.domain.JourneyStatusEntry;
 
 public class JourneyInfo {
-	private String startDestination;
-	private String endDestination;
+	private String originPort;
+	private String destinationPort;
 	private String cargo;
-	private String currentLocation;
+	private String location;
 
 	private long id;
-	private ArrayList<String> journeyLog = new ArrayList<String>();
+//	private ArrayList<String> journeyLog = new ArrayList<String>();
+	private JourneyStatusEntry currentJourneyStatus;
 	
 	public JourneyInfo(String startDestination, String endDestination) {
-		this.startDestination = startDestination;
-		this.endDestination = endDestination;
+		this.originPort = startDestination;
+		this.destinationPort = endDestination;
 	}
 	
 	public JourneyInfo(Journey journey) {
 		this.id = journey.getId();
-		this.startDestination = journey.getStartDestination();
-		this.endDestination = journey.getEndDestination();
+		this.originPort = journey.getStartDestination();
+		this.destinationPort = journey.getEndDestination();
 		this.cargo = journey.getCargo();
+		this.currentJourneyStatus = journey.getJourneyStatus();
 	}
 	
-	public JourneyInfo(String cargo, String startDestination, String endDestination) {
+	public JourneyInfo(String cargo, String originPort, String endDestination) {
 		this.cargo = cargo;
-		this.startDestination = startDestination;
-		this.endDestination = endDestination;
+		this.originPort = originPort;
+		this.destinationPort = endDestination;
 	}
 	
 	public String getCargo() {
 		return cargo;
 	}
 	
-	public String getStartDestination() {
-		return startDestination;
+	public String getOriginPort() {
+		return originPort;
 	}
 	
-	public String getCurrentLocation(){
-		return currentLocation;
+	public String getLocation(){
+		return location;
 		
 	}
-	public String getEndDestination() {
-		return endDestination;
+	public String getDestinationPort() {
+		return destinationPort;
 	}
 	
 	public long getId() {
@@ -53,7 +56,7 @@ public class JourneyInfo {
 	}
 	
 	public Journey asJourney() {
-		return new Journey(id, startDestination,endDestination,cargo);
+		return new Journey(this);
 	}
 	
 	

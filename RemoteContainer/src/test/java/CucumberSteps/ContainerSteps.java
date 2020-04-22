@@ -34,25 +34,25 @@ public class ContainerSteps {
 
 	private ContainerStatusEntry containerStatus;
 
-	public JourneyHelper helperJourney;
+	public JourneyHelper journeyHelper;
 	public ContainerHelper containerHelper;
 
-	public ContainerSteps(LogisticCompanyApp logisticCompanyApp, ClientHelper helper, JourneyHelper helperJourney, ContainerHelper containerHelper) {
+	public ContainerSteps(LogisticCompanyApp logisticCompanyApp, ClientHelper helper, JourneyHelper journeyHelper, ContainerHelper containerHelper) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.helper = helper;
-		this.helperJourney=helperJourney;
+		this.journeyHelper=journeyHelper;
 		this.containerHelper = containerHelper;
 	}
 
 	@Given("there is a journey with port of origin harbor {string} and destination {string}")
 	public void there_is_a_journey_with_port_of_origin_harbor_and_destination(String Port_of_origin, String destination) {
 		journeyInfo = new JourneyInfo(Port_of_origin,destination);
-		assertEquals(journeyInfo.getStartDestination(),Port_of_origin);
-		assertEquals(journeyInfo.getEndDestination(),destination);
+		assertEquals(journeyInfo.getOriginPort(),Port_of_origin);
+		assertEquals(journeyInfo.getDestinationPort(),destination);
 	}
 	@Given("there is an existing journey and container") 
 	public void there_is_an_existing_journey_and_container() throws Exception  {
-		journeyInfo = helperJourney.registerExampleJourney();
+		journeyInfo = journeyHelper.registerExampleJourney();
 		containerInfo = containerHelper.registerExampleContainer();
 		
 		
@@ -109,8 +109,8 @@ public class ContainerSteps {
 	   
 	   logisticCompanyApp.registerJourneyToClient(helper.getClient(), journeyInfo);
 		
-	   assertEquals(journeyInfo.getStartDestination(),Port_of_origin);
-	   assertEquals(journeyInfo.getEndDestination(),destination);
+	   assertEquals(journeyInfo.getOriginPort(),Port_of_origin);
+	   assertEquals(journeyInfo.getDestinationPort(),destination);
 	   assertEquals(journeyInfo.getCargo(),cargo);
 	}
 
@@ -154,8 +154,8 @@ public class ContainerSteps {
 	    assertTrue(jrn.isPresent());
 	    Journey j = jrn.get();
 		
-		assertEquals(journeyInfo.getStartDestination(),j.getStartDestination());
-		assertEquals(journeyInfo.getEndDestination(),j.getEndDestination());
+		assertEquals(journeyInfo.getOriginPort(),j.getStartDestination());
+		assertEquals(journeyInfo.getDestinationPort(),j.getEndDestination());
 		assertEquals(journeyInfo.getCargo(),j.getCargo());
 	}
 	

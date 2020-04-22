@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import javax.persistence.*;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import LogisticCompany.domain.JourneyStatus;
+import LogisticCompany.domain.JourneyStatusEntry;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.info.JourneyInfo;
 
@@ -15,10 +15,10 @@ public class Journey{
 	@Id
     @GeneratedValue
     private long id;
-	private String startDestination;
-	private String endDestination;
+	private String originPort;
+	private String destinationPort;
 	private boolean isRegistered;
-	private String currentLocation;
+	private String location;
 	private String cargo;
 	private boolean endDestinationReached;
 	@OneToMany
@@ -26,23 +26,26 @@ public class Journey{
 	private Container container;
 
 	@Embedded
-	private JourneyStatus currentJourneyStatus;
+	private JourneyStatusEntry currentJourneyStatus;
 	
 //	@ElementCollection
 //	private List<String> journeyLog = new ArrayList<String>(); //Consider creating a logEntry object and having a list of it here!
 //	@OneToMany
 //	private ArrayList<JourneyStatus> journeyLogs = new ArrayList<>();
 	
+	public Journey() {
+		
+	}
+	
+	public Journey(JourneyInfo journeyInfo) {
+		this.originPort = journeyInfo.getOriginPort();
+		this.destinationPort = journeyInfo.getDestinationPort();
+		this.location = journeyInfo.getLocation();
+		this.cargo = journeyInfo.getCargo();
+	}
 	
 	public Container getContainer() {
 		return container;
-	}
-	
-	public Journey(long id, String startDestination, String endDestination, String cargo) {
-//		this.id = count.incrementAndGet();  does not work yet since we pass ID to journey so far
-		this.startDestination = startDestination;
-		this.endDestination = endDestination;
-		this.cargo = cargo;
 	}
 
 	public void setContainer(Container container) {
@@ -52,39 +55,29 @@ public class Journey{
 	}
 	
 
-	public void setJourneyStatus(JourneyStatus journeyStatus) {
+	public void setJourneyStatus(JourneyStatusEntry journeyStatus) {
 //		journeyLogs.add(this.currentJourneyStatus);
 		this.currentJourneyStatus=journeyStatus;
 	}
 
-	public JourneyStatus getJourneyStatus() {
+	public JourneyStatusEntry getJourneyStatus() {
 		return currentJourneyStatus;
 	}
 	
-	public Journey() {
-		
-	} 
-	
-	
-//	public Journey() {
-//		this.id = 0;
-//		this.endDestinationReached = false;
-//	}
-	
 	public void setStartDestination(String startDestination) {
-		this.startDestination = startDestination;
+		this.originPort = startDestination;
 	}
 	
 	public String getStartDestination() {
-		return startDestination;
+		return originPort;
 	}
 
 	public void setEndDestination(String endDestination) {
-		this.endDestination = endDestination;
+		this.destinationPort = endDestination;
 	}
 	
 	public String getEndDestination() {
-		return endDestination;
+		return destinationPort;
 	}
 
 	public void setRegistrationStatus(boolean isRegistered) {
