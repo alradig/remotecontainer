@@ -1,0 +1,48 @@
+package LogisticCompany.gui;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import LogisticCompany.App.LogisticCompanyApp;
+
+public class RegisterJourneyScreen {
+	LogisticCompanyApp logisticCompanyApp;
+	private ClientFunctionalitiesScreen parentWindow;
+	private JPanel panelRegisterJourney;
+	
+
+	public RegisterJourneyScreen(LogisticCompanyApp logisticCompanyApp, ClientFunctionalitiesScreen parentWindow) {
+		this.logisticCompanyApp = logisticCompanyApp;
+		this.parentWindow = parentWindow;
+		initialize();
+	}
+	
+	private void initialize() {
+		panelRegisterJourney = new JPanel();
+		parentWindow.addPanel(panelRegisterJourney);
+		panelRegisterJourney.setLayout(null);
+		panelRegisterJourney.setBorder(BorderFactory.createTitledBorder(
+                "Register Journey"));
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				parentWindow.setVisible(true);
+			}
+		});
+		btnBack.setBounds(21, 28, 65, 29);
+		panelRegisterJourney.add(btnBack);
+	}
+	
+	public void setVisible(boolean aFlag) {
+		panelRegisterJourney.setVisible(aFlag);
+		
+	}
+	
+}

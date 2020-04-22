@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -29,11 +30,14 @@ public class ClientLoginScreen {
 	private JButton btnLogin;
 	private JLabel lblPassword;
 	private JLabel lblUsername;
+	private JFrame frame;
+	MainScreen mainScreen;
+	ClientFunctionalitiesScreen clientFunctionalitiesScreen;
 	
-	
-	public ClientLoginScreen(LogisticCompanyApp logisticCompanyApp, MainScreen parentWindow) {
+	public ClientLoginScreen(LogisticCompanyApp logisticCompanyApp, MainScreen parentWindow, JFrame frame) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
+		this.frame = frame;
 		initialize();
 	}
 	
@@ -67,7 +71,12 @@ public class ClientLoginScreen {
 		
 		
 		JButton btnLogin = new JButton("Login");
-
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				clientFunctionalitiesScreen.setVisible(true);	
+			}
+		});
 		btnLogin.setBounds(148, 200, 117, 29);
 		panelClientLogin.add(btnLogin);
 		btnLogin.getRootPane().setDefaultButton(btnLogin);
@@ -82,12 +91,17 @@ public class ClientLoginScreen {
 		});
 		btnBack.setBounds(21, 28, 65, 29);
 		panelClientLogin.add(btnBack);
+		clientFunctionalitiesScreen = new ClientFunctionalitiesScreen(logisticCompanyApp, this, frame, parentWindow);
+
 			
 	}
 
 	public void setVisible(boolean aFlag) {
 		panelClientLogin.setVisible(aFlag);
 		
+	}
+	public void addPanel(JPanel panel) {
+		frame.getContentPane().add(panel);
 	}
 	
 }

@@ -5,29 +5,30 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import LogisticCompany.App.LogisticCompanyApp;
 
-public class RegisterClientScreen {
+public class FindClientScreen {
 	LogisticCompanyApp logisticCompanyApp;
 	private LogisticCompanyFunctionalitiesScreen parentWindow;
-	private JPanel panelRegisterClient;
-	
+	private JPanel panelFindClient;
 
-	public RegisterClientScreen(LogisticCompanyApp logisticCompanyApp, LogisticCompanyFunctionalitiesScreen parentWindow) {
+	
+	
+	public FindClientScreen(LogisticCompanyApp logisticCompanyApp,
+		LogisticCompanyFunctionalitiesScreen parentWindow) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
 		initialize();
 	}
 	
 	private void initialize() {
-		panelRegisterClient = new JPanel();
-		parentWindow.addPanel(panelRegisterClient);
-		panelRegisterClient.setLayout(null);
-		panelRegisterClient.setBorder(BorderFactory.createTitledBorder(
-                "Register Client"));
+		panelFindClient = new JPanel();
+		parentWindow.addPanel(panelFindClient);
+		panelFindClient.setLayout(null);
+		panelFindClient.setBorder(BorderFactory.createTitledBorder(
+                "Find Client"));
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
@@ -37,14 +38,12 @@ public class RegisterClientScreen {
 			}
 		});
 		btnBack.setBounds(21, 28, 65, 29);
-		panelRegisterClient.add(btnBack);
+		panelFindClient.add(btnBack);
+	
 	}
 	
 	public void setVisible(boolean aFlag) {
-		panelRegisterClient.setVisible(aFlag);
+		panelFindClient.setVisible(aFlag);
 		
 	}
-	
-	
-
 }
