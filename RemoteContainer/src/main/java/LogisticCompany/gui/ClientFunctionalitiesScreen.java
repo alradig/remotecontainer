@@ -46,6 +46,7 @@ public class ClientFunctionalitiesScreen {
 		this.frame = frame;
 		initialize();
 	}
+	
 	private void initialize() {
 		
 		panelClientFunc = new JPanel();
