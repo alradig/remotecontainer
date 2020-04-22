@@ -107,7 +107,7 @@ public class MainScreen {
 		btnLogisticCompanyLogin.setBounds(104, 93, 193, 29);
 		panelMenu.add(btnLogisticCompanyLogin);	
 		
-		clientLoginScreen = new ClientLoginScreen(logisticCompanyApp, this);
+		clientLoginScreen = new ClientLoginScreen(logisticCompanyApp, this, frame);
 
 		logisticCompanyLoginScreen = new LogisticCompanyLoginScreen(logisticCompanyApp, this, frame);
 		
