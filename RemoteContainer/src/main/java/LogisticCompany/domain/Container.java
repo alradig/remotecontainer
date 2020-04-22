@@ -26,8 +26,12 @@ public class Container {
 
 	}
 
-	public Container(String cargo) {
-		this.cargo = cargo;
+	public Container(ContainerInfo containerInfo) {
+		this.cargo = containerInfo.getCargo();
+	}
+	
+	public List<ContainerStatusEntry> getContainerStatusList() {
+		return containerStatusList;
 	}
 	
 	public void clearContainerStatusList() {
@@ -55,16 +59,7 @@ public class Container {
 	}
 	
 	public ContainerInfo asContainerIfo() {
-		return new ContainerInfo(this.getCargo());
+		return new ContainerInfo(cargo);
 	}
-	
-//	public void archive() {
-//	String fileName = "Container_" + this.id + ".json";
-//	String folderName = "Containers";
-//	
-//	Database JSONfile = new Database();
-//	JSONfile.createFile(this,folderName, fileName);
-//}
-
 	
 }

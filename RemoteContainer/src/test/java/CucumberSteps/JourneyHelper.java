@@ -14,12 +14,14 @@ public class JourneyHelper {
 	public JourneyHelper(LogisticCompanyApp logisticCompanyApp) {
 		this.logisticCompanyApp = logisticCompanyApp;
 	}
+	
 	public JourneyInfo getJourney() {
 		if (journeyInfo == null) {
 			journeyInfo = exampleJourney();
 		}
 		return journeyInfo;
 	}
+	
 	public JourneyInfo registerExampleJourney() throws Exception {
 		JourneyInfo usr = getJourney();
 		boolean loggedIn = logisticCompanyApp.logisticCompanyLoggedIn();

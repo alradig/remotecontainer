@@ -8,9 +8,6 @@ import LogisticCompany.App.ClientRepository;
 import LogisticCompany.info.ClientInfo;
 
 @Entity
-//@DiscriminatorValue("C")
-//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-//@DiscriminatorColumn(name = "TYPE", discriminatorType = DiscriminatorType.STRING, length = 20)
 public class Client{
     @GeneratedValue
     private long id;
@@ -25,18 +22,16 @@ public class Client{
 	@OneToMany
 	private List<Journey> journeys = new ArrayList<>();
 
-
-	public Client(String name, String email, String reference_person) {
-		
-		this.name = name;
-		this.email = email;
-		this.refPerson = reference_person;
-	}
-
 	public Client() {
 		
-		}
+	}
 	
+	public Client(ClientInfo clientInfo) {
+		this.name = clientInfo.getName();
+		this.email = clientInfo.getEmail();
+		this.refPerson = clientInfo.getReference_person();
+		this.address = clientInfo.getAddress();
+	}
 
 	public List<Journey> getJourneyList(){
 		return journeys;

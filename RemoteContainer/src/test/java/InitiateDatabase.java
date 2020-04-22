@@ -12,8 +12,8 @@ public class InitiateDatabase {
 	
 	@Before
 	public void connectDatabase() {
-//		SQLRepository repo = new SQLRepository();
-		InMemoryRepository repo = new InMemoryRepository();
+		SQLRepository repo = new SQLRepository();
+//		InMemoryRepository repo = new InMemoryRepository();
 		logisticCompanyApp.setRepositories(repo,repo,repo);
 		logisticCompanyApp.clearDatabase();
 		

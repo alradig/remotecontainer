@@ -32,6 +32,7 @@ public class SearchSteps {
     
     private List<ClientInfo> clients;
     private List<JourneyInfo> journeys;
+    private JourneyInfo journeyInfo;
     
     public SearchSteps(LogisticCompanyApp logisticCompanyApp,ClientHelper helper) {
 
@@ -87,7 +88,8 @@ public class SearchSteps {
     @Given("these journeys are in the system")
     public void these_journeys_are_in_the_system(List<List<String>> journeys) throws Exception {
         for (List<String> journeyInfo : journeys) {
-            logisticCompanyApp.registerJourney(new JourneyInfo(journeyInfo.get(0), journeyInfo.get(1), journeyInfo.get(2)));
+        	JourneyInfo newJourneyInfo = new JourneyInfo(journeyInfo.get(0), journeyInfo.get(1), journeyInfo.get(2));
+            logisticCompanyApp.registerJourney(newJourneyInfo);
         }
     }
  
@@ -103,8 +105,8 @@ public class SearchSteps {
     public void the_journey_with_cargo_start_destination_and_end_destination_is_found(String cargo, String startDestination, String endDestination) {
         assertEquals(1, journeys.size());
         assertEquals(cargo, journeys.get(0).getCargo());
-        assertEquals(startDestination, journeys.get(0).getStartDestination());
-        assertEquals(endDestination, journeys.get(0).getEndDestination());
+        assertEquals(startDestination, journeys.get(0).getOriginPort());
+        assertEquals(endDestination, journeys.get(0).getDestinationPort());
     }
     
     @Then("no journeys are found")
@@ -117,8 +119,8 @@ public class SearchSteps {
         assertEquals(2, journeys.size());
         JourneyInfo journey1 = journeys.get(0);
         JourneyInfo journey2 = journeys.get(1);
-        assertTrue((journey1.getStartDestination().equals(startDestination1) && journey2.getStartDestination().equals(startDestination2))
-                || (journey1.getStartDestination().equals(startDestination2) && journey2.getStartDestination().equals(startDestination1)));
+        assertTrue((journey1.getOriginPort().equals(startDestination1) && journey2.getOriginPort().equals(startDestination2))
+                || (journey1.getOriginPort().equals(startDestination2) && journey2.getOriginPort().equals(startDestination1)));
     
     }
 }
