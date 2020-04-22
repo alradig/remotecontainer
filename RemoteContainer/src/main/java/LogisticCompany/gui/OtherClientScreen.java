@@ -16,10 +16,7 @@ public class OtherClientScreen {
 	LogisticCompanyApp logisticCompanyApp;
 	private ClientFunctionalitiesScreen parentWindow;
 	private JPanel panelOtherClient;
-	private JTextField nameField;
-	private JLabel lblName;
-	private JTextField emailField;
-	private JLabel lblemail;
+
 
 	public OtherClientScreen(LogisticCompanyApp logisticCompanyApp, ClientFunctionalitiesScreen parentWindow) {
 		this.logisticCompanyApp = logisticCompanyApp;
@@ -33,34 +30,6 @@ public class OtherClientScreen {
 		panelOtherClient.setLayout(null);
 		panelOtherClient.setBorder(BorderFactory.createTitledBorder(
                 "Register Journey"));
-		
-		nameField = new JTextField();
-		nameField.setBounds(138, 100, 130, 26);
-		panelOtherClient.add(nameField);
-		nameField.setColumns(10);
-		
-		lblName = new JLabel("Name:");
-		lblName.setBounds(50, 105, 74, 16);
-		panelOtherClient.add(lblName);
-		
-		emailField = new JTextField();
-		emailField.setBounds(138, 140, 130, 26);
-		panelOtherClient.add(emailField);
-		nameField.setColumns(10);
-		
-		lblemail = new JLabel("email:");
-		lblemail.setBounds(50, 145, 74, 16);
-		panelOtherClient.add(lblemail);
-		
-		JButton btnregister = new JButton("submit");
-		btnregister.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// register and go back 
-				parentWindow.setVisible(true);
-			}
-		});
-		btnregister.setBounds(170, 225, 74, 16);
-		panelOtherClient.add(btnregister);
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
