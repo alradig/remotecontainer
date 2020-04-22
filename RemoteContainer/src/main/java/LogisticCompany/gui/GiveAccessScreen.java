@@ -35,8 +35,12 @@ public class GiveAccessScreen {
 		panelGiveAccess.setBorder(BorderFactory.createTitledBorder(
                 "Give Access to Other Clients"));
 		
-
+		JLabel lblComment = new JLabel("Enter the name and email of the user "
+				+ "you want to give access to your journey informations");
+		lblComment.setBounds(50, 50, 400, 50);
+		panelGiveAccess.add(lblComment);
 		nameField = new JTextField();
+		
 		nameField.setBounds(138, 100, 130, 26);
 		panelGiveAccess.add(nameField);
 		nameField.setColumns(10);
