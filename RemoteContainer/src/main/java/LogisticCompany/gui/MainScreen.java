@@ -109,7 +109,7 @@ public class MainScreen {
 		
 		clientLoginScreen = new ClientLoginScreen(logisticCompanyApp, this);
 
-		logisticCompanyLoginScreen = new LogisticCompanyLoginScreen(logisticCompanyApp, this);
+		logisticCompanyLoginScreen = new LogisticCompanyLoginScreen(logisticCompanyApp, this, frame);
 		
 	}
 	

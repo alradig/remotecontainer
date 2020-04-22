@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -29,12 +30,15 @@ public class LogisticCompanyFunctionalitiesScreen {
 	private JButton btnFindClient;
 	private JButton btnLogout;
 	private JPanel panelLogisticCompanyFunc;
-	
+	private JFrame frame;
+	MainScreen mainScreen;
 
 
-	public LogisticCompanyFunctionalitiesScreen(LogisticCompanyApp logisticCompanyApp, LogisticCompanyLoginScreen parentWindow) {
+	public LogisticCompanyFunctionalitiesScreen(LogisticCompanyApp logisticCompanyApp, LogisticCompanyLoginScreen parentWindow, JFrame frame, MainScreen mainScreen) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
+		this.mainScreen = mainScreen;
+		this.frame = frame;
 		initialize();
 	}
 	private void initialize() {
@@ -47,25 +51,70 @@ public class LogisticCompanyFunctionalitiesScreen {
 		
 		
 		btnRegisterClient = new JButton("Register Client");
-//		btnRegisterClient.addActionListener(new ActionListener() {
-//
-//			public void actionPerformed(ActionEvent e) {
-////				setVisible(false);
-////				registerClientScreen.setVisible(true);
-//			}
-//		});
+		btnRegisterClient.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				registerClientScreen.setVisible(true);
+			}
+		});
 		btnRegisterClient.setBounds(104, 93, 193, 29);
 		panelLogisticCompanyFunc.add(btnRegisterClient);	
 		
-		registerClientScreen = new RegisterClientScreen(logisticCompanyApp, this);
-	
 		
+
+		btnContainerForJourney = new JButton("Register Container for Journey");
+		btnContainerForJourney.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				registerClientScreen.setVisible(true);
+			}
+		});
+		btnContainerForJourney.setBounds(104, 133, 193, 29);
+		panelLogisticCompanyFunc.add(btnContainerForJourney);
+		
+		btnFindJourney = new JButton("Find Journey");
+		btnFindJourney.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				registerClientScreen.setVisible(true);
+			}
+		});
+		btnFindJourney.setBounds(104, 173, 193, 29);
+		panelLogisticCompanyFunc.add(btnFindJourney);
+		
+		btnFindClient = new JButton("Find Client");
+		btnFindClient.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				registerClientScreen.setVisible(true);
+			}
+		});
+		btnFindClient.setBounds(104, 213, 193, 29);
+		panelLogisticCompanyFunc.add(btnFindClient);
+		
+		btnLogout = new JButton("Log out");
+		btnLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				mainScreen.setVisible(true);
+				// logout from app. 
+			}
+		});
+		btnLogout.setBounds(21, 28, 65, 29);
+		panelLogisticCompanyFunc.add(btnLogout);
+		
+		
+		registerClientScreen = new RegisterClientScreen(logisticCompanyApp, this);
+
 		
 	}
 	
 	public void setVisible(boolean aFlag) {
 		panelLogisticCompanyFunc.setVisible(aFlag);
 		
+	}
+	public void addPanel(JPanel panel) {
+		frame.getContentPane().add(panel);
 	}
 	
 

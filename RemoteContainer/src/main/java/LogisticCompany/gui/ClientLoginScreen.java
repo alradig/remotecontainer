@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -29,11 +30,11 @@ public class ClientLoginScreen {
 	private JButton btnLogin;
 	private JLabel lblPassword;
 	private JLabel lblUsername;
-	
-	
-	public ClientLoginScreen(LogisticCompanyApp logisticCompanyApp, MainScreen parentWindow) {
+	private JFrame frame;
+	public ClientLoginScreen(LogisticCompanyApp logisticCompanyApp, MainScreen parentWindow, JFrame frame) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
+		this.frame = frame;
 		initialize();
 	}
 	
@@ -88,6 +89,9 @@ public class ClientLoginScreen {
 	public void setVisible(boolean aFlag) {
 		panelClientLogin.setVisible(aFlag);
 		
+	}
+	public void addPanel(JPanel panel) {
+		frame.getContentPane().add(panel);
 	}
 	
 }

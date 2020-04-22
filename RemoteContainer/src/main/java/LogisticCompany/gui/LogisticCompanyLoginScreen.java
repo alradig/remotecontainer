@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -32,12 +33,14 @@ public class LogisticCompanyLoginScreen {
 	private JButton btnBack;
 	private JButton btnLogin;
 	private JLabel lblPassword;
+	private JFrame frame;
 	MainScreen mainScreen;
 	LogisticCompanyFunctionalitiesScreen logisticCompanyFunctionalitiesScreen;
 	
-	public LogisticCompanyLoginScreen(LogisticCompanyApp logisticCompanyApp, MainScreen parentWindow) {
+	public LogisticCompanyLoginScreen(LogisticCompanyApp logisticCompanyApp, MainScreen parentWindow, JFrame frame) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
+		this.frame = frame;
 		initialize();
 	}
 	
@@ -82,7 +85,7 @@ public class LogisticCompanyLoginScreen {
 		});
 		btnBack.setBounds(21, 28, 65, 29);
 		panelLogisticCompanyLogin.add(btnBack);
-		logisticCompanyFunctionalitiesScreen = new LogisticCompanyFunctionalitiesScreen(logisticCompanyApp , this);
+		logisticCompanyFunctionalitiesScreen = new LogisticCompanyFunctionalitiesScreen(logisticCompanyApp, this, parentWindow);
 		
 	}
 
@@ -91,7 +94,7 @@ public class LogisticCompanyLoginScreen {
 		
 	}
 	public void addPanel(JPanel panel) {
-		mainScreen.getFrame().getContentPane().add(panel);
+		frame.getContentPane().add(panel);
 	}
 	
 }
