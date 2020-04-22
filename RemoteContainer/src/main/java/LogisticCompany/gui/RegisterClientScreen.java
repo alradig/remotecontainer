@@ -4,9 +4,9 @@ import LogisticCompany.App.LogisticCompanyApp;
 
 public class RegisterClientScreen {
 	LogisticCompanyApp logisticCompanyApp;
-	private LogisticCompanyLoginScreen parentWindow;
+	private LogisticCompanyFunctionalitiesScreen parentWindow;
 
-	public RegisterClientScreen(LogisticCompanyApp logisticCompanyApp, LogisticCompanyLoginScreen parentWindow) {
+	public RegisterClientScreen(LogisticCompanyApp logisticCompanyApp, LogisticCompanyFunctionalitiesScreen parentWindow) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
 //		initialize();

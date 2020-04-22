@@ -47,18 +47,18 @@ public class LogisticCompanyFunctionalitiesScreen {
 		
 		
 		btnRegisterClient = new JButton("Register Client");
-		btnRegisterClient.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				registerClientScreen.setVisible(true);
-			}
-		});
+//		btnRegisterClient.addActionListener(new ActionListener() {
+//
+//			public void actionPerformed(ActionEvent e) {
+////				setVisible(false);
+////				registerClientScreen.setVisible(true);
+//			}
+//		});
 		btnRegisterClient.setBounds(104, 93, 193, 29);
 		panelLogisticCompanyFunc.add(btnRegisterClient);	
 		
 		registerClientScreen = new RegisterClientScreen(logisticCompanyApp, this);
-
+	
 		
 		
 	}
@@ -67,6 +67,7 @@ public class LogisticCompanyFunctionalitiesScreen {
 		panelLogisticCompanyFunc.setVisible(aFlag);
 		
 	}
+	
 
 
 }

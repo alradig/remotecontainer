@@ -32,7 +32,8 @@ public class LogisticCompanyLoginScreen {
 	private JButton btnBack;
 	private JButton btnLogin;
 	private JLabel lblPassword;
-	
+	MainScreen mainScreen;
+	LogisticCompanyFunctionalitiesScreen logisticCompanyFunctionalitiesScreen;
 	
 	public LogisticCompanyLoginScreen(LogisticCompanyApp logisticCompanyApp, MainScreen parentWindow) {
 		this.logisticCompanyApp = logisticCompanyApp;
@@ -59,8 +60,15 @@ public class LogisticCompanyLoginScreen {
 		
 		
 		JButton btnLogin = new JButton("Login");
-
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				logisticCompanyFunctionalitiesScreen.setVisible(true);	
+			}
+		});
 		btnLogin.setBounds(148, 200, 117, 29);
+		
+		
 		panelLogisticCompanyLogin.add(btnLogin);
 		btnLogin.getRootPane().setDefaultButton(btnLogin);
 		
@@ -74,12 +82,16 @@ public class LogisticCompanyLoginScreen {
 		});
 		btnBack.setBounds(21, 28, 65, 29);
 		panelLogisticCompanyLogin.add(btnBack);
+		logisticCompanyFunctionalitiesScreen = new LogisticCompanyFunctionalitiesScreen(logisticCompanyApp , this);
 		
 	}
 
 	public void setVisible(boolean aFlag) {
 		panelLogisticCompanyLogin.setVisible(aFlag);
 		
+	}
+	public void addPanel(JPanel panel) {
+		mainScreen.getFrame().getContentPane().add(panel);
 	}
 	
 }
