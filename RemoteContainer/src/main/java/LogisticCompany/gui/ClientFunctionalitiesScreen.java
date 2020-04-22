@@ -104,7 +104,7 @@ public class ClientFunctionalitiesScreen {
 				changePasswordScreen.setVisible(true);
 			}
 		});
-		btnChangePassword.setBounds(104, 213, 193, 29);
+		btnChangePassword.setBounds(104, 253, 193, 29);
 		panelClientFunc.add(btnChangePassword);
 		
 		btnLogout = new JButton("Log out");
