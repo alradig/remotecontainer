@@ -72,7 +72,7 @@ public class RegisterJourneyScreen {
 				parentWindow.setVisible(true);
 			}
 		});
-		btnregister.setBounds(170, 425, 74, 16);
+		btnregister.setBounds(170, 225, 74, 16);
 		panelRegisterJourney.add(btnregister);
 		
 		JButton btnBack = new JButton("Back");
