@@ -85,7 +85,7 @@ public class LogisticCompanyLoginScreen {
 		});
 		btnBack.setBounds(21, 28, 65, 29);
 		panelLogisticCompanyLogin.add(btnBack);
-		logisticCompanyFunctionalitiesScreen = new LogisticCompanyFunctionalitiesScreen(logisticCompanyApp, this, parentWindow);
+		logisticCompanyFunctionalitiesScreen = new LogisticCompanyFunctionalitiesScreen(logisticCompanyApp, this, frame, parentWindow);
 		
 	}
 
