@@ -85,28 +85,28 @@ public class MainScreen {
                 "Login Page"));
 		
 		JButton btnClientLogin = new JButton("Client login");
-		btnClientLogin.setVisible(true);
-//		btnClientLogin.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				setVisible(false);
-//				clientLoginScreen.setVisible(true);
-//				
-//			}
-//		});
+		btnClientLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				clientLoginScreen.setVisible(true);
+				
+			}
+		});
+		
 		btnClientLogin.setBounds(104, 52, 193, 29);
 		panelMenu.add(btnClientLogin);
 		
-		btnLogisticCompanyLogin = new JButton("Logistic Company login");
-//		btnLogisticCompanyLogin.addActionListener(new ActionListener() {
-//
-//			public void actionPerformed(ActionEvent e) {
-//				setVisible(false);
-//				administratorFunctionsScreen.setVisible(true);
-//			}
-//		});
-		btnLogisticCompanyLogin.setBounds(104, 93, 193, 29);
-		panelMenu.add(btnLogisticCompanyLogin);
-		
+//		btnLogisticCompanyLogin = new JButton("Logistic Company login");
+////		btnLogisticCompanyLogin.addActionListener(new ActionListener() {
+////
+////			public void actionPerformed(ActionEvent e) {
+////				setVisible(false);
+////				administratorFunctionsScreen.setVisible(true);
+////			}
+////		});
+//		btnLogisticCompanyLogin.setBounds(104, 93, 193, 29);
+//		panelMenu.add(btnLogisticCompanyLogin);
+//		
 	}
 	
 	public void setVisible(boolean aFlag) {
