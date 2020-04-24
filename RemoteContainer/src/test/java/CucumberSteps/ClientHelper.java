@@ -1,17 +1,22 @@
 package CucumberSteps;
 
+import java.util.List;
+
 import LogisticCompany.App.LogisticCompanyApp;
 import LogisticCompany.domain.Address;
 import LogisticCompany.domain.Client;
 import LogisticCompany.info.ClientInfo;
+import LogisticCompany.info.*;
 
 
 public class ClientHelper {
 	private ClientInfo client;
 	private LogisticCompanyApp logisticCompanyApp;
+	private JourneyHelper journeyHelper;
 	
-	public ClientHelper(LogisticCompanyApp logisticCompanyApp) {
+	public ClientHelper(LogisticCompanyApp logisticCompanyApp, JourneyHelper journeyHelper) {
 		this.logisticCompanyApp = logisticCompanyApp;
+		this.journeyHelper = journeyHelper;
 		
 	}
 	
@@ -20,12 +25,6 @@ public class ClientHelper {
 			client = exampleClient();
 		}
 		return client;
-	}
-	
-	public void setUser(String name, String email, String referencePerson, String street, int postcode, String city) {
-		Address a = new Address(street,postcode,city);
-		client = new ClientInfo(name,email,referencePerson);
-		client.setAddress(a);
 	}
 	
 	public ClientInfo registerExampleClient() throws Exception {
@@ -49,4 +48,5 @@ public class ClientHelper {
 		client.setAddress(address);
 		return client;
 	}
+
 }

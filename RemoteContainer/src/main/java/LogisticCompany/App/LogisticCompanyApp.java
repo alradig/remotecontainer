@@ -1,6 +1,5 @@
 package LogisticCompany.App;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -61,6 +60,13 @@ public class LogisticCompanyApp {
 		return clientRepository.getAllClientsStream()
 				.filter(c -> c.matchClient(searchEmail))
 				.map(c -> c.asClientInfo())
+				.collect(Collectors.toList());
+	}
+	
+	public List<ContainerInfo> searchContainer(String cargo) {
+		return containerRepository.getAllContainersStream()
+				.filter(c -> c.matchContainer(cargo))
+				.map(c -> c.asContainerInfo())
 				.collect(Collectors.toList());
 	}
 
@@ -163,11 +169,14 @@ public class LogisticCompanyApp {
 		clientLoggedIn = false;
 	}
 
-	public void registerContainerToJourney(ContainerInfo container, JourneyInfo journey) throws OperationNotAllowedException {
+	public void registerContainerToJourney(ContainerInfo containerInfo, JourneyInfo journey) throws OperationNotAllowedException {
 		checkLogisticCompanyLoggedIn();
+		
 		Journey journeyObj = findJourney(journey);
-		Container containerObj = findContainer(container);
+		Container containerObj = findContainer(containerInfo);
+		
 		journeyObj.setContainer(containerObj);
+		updateContainerInfo(containerObj,containerObj.asContainerInfo());
 	}
 	
 	public void registerJourneyToClient(ClientInfo client, JourneyInfo journey) throws OperationNotAllowedException{
@@ -194,6 +203,18 @@ public class LogisticCompanyApp {
 		checkLogisticCompanyLoggedIn();
 		client.updateClientInfo(clientInfo);
 		clientRepository.updateClient(client);
+	}
+	
+	public void updateContainerInfo(Container container, ContainerInfo containerInfo) throws OperationNotAllowedException {
+		checkLogisticCompanyLoggedIn();
+		container.updateContainerInfo(containerInfo);
+		containerRepository.updateContainer(container);
+	}
+	
+	public List<Container> getClientContainers(ClientInfo clientInfo) {
+//		List<Journey> journeyList = client.getJourneyList();
+		Client client = findClient(clientInfo);
+		return client.getJourneysStream().map(j -> j.getContainer()).collect(Collectors.toList());	
 	}
 
 	

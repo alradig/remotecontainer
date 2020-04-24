@@ -43,13 +43,7 @@ public class ContainerSteps {
 		this.journeyHelper=journeyHelper;
 		this.containerHelper = containerHelper;
 	}
-
-	@Given("there is a journey with port of origin harbor {string} and destination {string}")
-	public void there_is_a_journey_with_port_of_origin_harbor_and_destination(String Port_of_origin, String destination) {
-		journeyInfo = new JourneyInfo(Port_of_origin,destination);
-		assertEquals(journeyInfo.getOriginPort(),Port_of_origin);
-		assertEquals(journeyInfo.getDestinationPort(),destination);
-	}
+	
 	@Given("there is an existing journey and container") 
 	public void there_is_an_existing_journey_and_container() throws Exception  {
 		journeyInfo = journeyHelper.registerExampleJourney();

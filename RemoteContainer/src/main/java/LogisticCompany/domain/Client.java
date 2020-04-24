@@ -3,6 +3,8 @@ package LogisticCompany.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Stream;
+
 import javax.persistence.*;
 import LogisticCompany.App.ClientRepository;
 import LogisticCompany.info.ClientInfo;
@@ -34,6 +36,10 @@ public class Client{
 
 	public List<Journey> getJourneyList(){
 		return journeys;
+	}
+	
+	public Stream<Journey> getJourneysStream() {
+		return journeys.stream();
 	}
 	
 	public void addJourney(Journey journey){

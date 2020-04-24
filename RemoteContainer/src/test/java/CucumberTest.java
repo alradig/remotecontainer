@@ -4,8 +4,8 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		features = "src/main/resources")
-//		features = "src/main/resources/LogisticCompanyFindClient.feature")
+//		features = "src/main/resources")
+		features = "src/main/resources/ClientViewOwnInformation.feature")
 
 public class CucumberTest {
 

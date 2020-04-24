@@ -12,8 +12,6 @@ import javax.swing.JPanel;
 
 import LogisticCompany.App.LogisticCompanyApp;
 
-
-
 public class MainScreen {
 	
 	LogisticCompanyApp logisticCompanyApp;

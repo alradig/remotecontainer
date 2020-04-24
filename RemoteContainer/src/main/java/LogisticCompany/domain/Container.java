@@ -23,7 +23,6 @@ public class Container {
 	}
 
 	public Container() {
-
 	}
 
 	public Container(ContainerInfo containerInfo) {
@@ -54,8 +53,16 @@ public class Container {
 		this.cargo = cargo;
 	}
 	
-	public ContainerInfo asContainerIfo() {
+	public ContainerInfo asContainerInfo() {
 		return new ContainerInfo(cargo);
+	}
+
+	public boolean matchContainer(String searchCargo) {
+		return cargo.contains(searchCargo); 
+	}
+
+	public void updateContainerInfo(ContainerInfo containerInfo) {
+		this.cargo = containerInfo.getCargo();	
 	}
 	
 }

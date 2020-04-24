@@ -1,7 +1,6 @@
 package LogisticCompany.persistence;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
@@ -11,7 +10,6 @@ import LogisticCompany.App.JourneyRepository;
 import LogisticCompany.domain.Client;
 import LogisticCompany.domain.Container;
 import LogisticCompany.domain.Journey;
-import dtu.library.domain.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -62,7 +60,7 @@ public class SQLRepository implements ClientRepository, ContainerRepository , Jo
 		}
 		
 		@Override
-		public Container getContainer(String cargo) {
+		public Container getContainer(String cargo) {		
 			return em.createQuery("SELECT c FROM Container c WHERE c.cargo=:cargo", Container.class)
 					  .setParameter("cargo", cargo)
 					  .getResultStream().findFirst().orElse(null);
@@ -109,8 +107,9 @@ public class SQLRepository implements ClientRepository, ContainerRepository , Jo
 		
 		@Override
 		public void updateContainer(Container container) {
-			// TODO Auto-generated method stub
-
+			em.getTransaction().begin();
+			em.merge(container);
+			em.getTransaction().commit();
 		}
 
 		@Override
@@ -164,7 +163,6 @@ public class SQLRepository implements ClientRepository, ContainerRepository , Jo
 			em.createNativeQuery("DELETE FROM Journey").executeUpdate();
 			em.createQuery("DELETE FROM Journey").executeUpdate();
 			em.getTransaction().commit();
-			
 		}
 		
 		@Override
@@ -187,7 +185,6 @@ public class SQLRepository implements ClientRepository, ContainerRepository , Jo
 			em.createNativeQuery("DELETE FROM Client").executeUpdate();
 			em.createQuery("DELETE FROM Client").executeUpdate();
 			em.getTransaction().commit();
-			
 		}
-	
+		
 }

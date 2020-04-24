@@ -3,13 +3,19 @@ package CucumberSteps;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import LogisticCompany.App.LogisticCompanyApp;
 import LogisticCompany.App.OperationNotAllowedException;
 import LogisticCompany.domain.Address;
 import LogisticCompany.domain.Client;
+import LogisticCompany.domain.Container;
+import LogisticCompany.domain.Journey;
 import LogisticCompany.info.ClientInfo;
+import LogisticCompany.info.ContainerInfo;
+import LogisticCompany.info.JourneyInfo;
 import LogisticCompany.persistence.InMemoryRepository;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -23,11 +29,16 @@ public class ClientSteps {
 	private String errorMessage;
 	private Address address;
 	public ClientHelper clientHelper;
+	private JourneyHelper journeyHelper;
+	private ContainerHelper containerHelper;
 	private Client client;
+	private List<Container> containersList;
 	
-	public ClientSteps(LogisticCompanyApp logisticCompanyApp, ClientHelper helper) {
+	public ClientSteps(LogisticCompanyApp logisticCompanyApp, ClientHelper helper, JourneyHelper journeyHelper,ContainerHelper containerHelper) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.clientHelper = helper;
+		this.journeyHelper = journeyHelper;
+		this.containerHelper = containerHelper;
 	}
 	
 	@Given("there is a client with name {string}, email {string}, reference person {string}")
@@ -62,6 +73,50 @@ public class ClientSteps {
 		assertEquals(clientInfo.getAddress().getCity(),city);	
 	}
 	
+	@Given("the client has registered journeys")
+	public void the_client_has_registered_journeys() {
+		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
+		
+		clientInfo = clientHelper.getClient();
+		
+		journeyHelper.registerMultipleJourneys();
+		List<JourneyInfo> journeysList = journeyHelper.getMultipleJourneys();
+		List<ContainerInfo> containersList = containerHelper.getMultipleContainers();
+		
+		try {
+			containerHelper.registerMultipleContainers();
+		} catch (Exception e) {
+			this.errorMessage = e.getMessage();
+		}
+		
+		for (int i=0; i < 3; i++) {
+			try {
+				logisticCompanyApp.registerJourneyToClient(clientInfo, journeysList.get(i));
+				logisticCompanyApp.registerContainerToJourney(containersList.get(i), journeysList.get(i));
+			} catch (OperationNotAllowedException e) {
+				this.errorMessage = e.getMessage();
+			}
+		}
+		
+		logisticCompanyApp.logisticCompanyLogout();
+	}
+	
+	@When("the client looks for all his\\/her containers")
+	public void the_client_looks_for_all_his_her_containers() {
+		containersList = logisticCompanyApp.getClientContainers(clientInfo);
+	}
+	
+	@Then("all containers registered for the client journeys is given")
+	public void all_containers_registered_for_the_client_journeys_is_given() {
+		client = logisticCompanyApp.findClient(clientInfo);
+		List<Journey> journeysList = client.getJourneyList();
+		
+		int n = journeysList.size();
+		for (int i=0; i < n; i++) {
+			assertEquals(journeysList.get(i).getContainer().getCargo(),containersList.get(i).getCargo());
+		}
+	}
+
 	@When("the logistic company registers the client")
 	public void the_logistic_company_registers_the_client() {
 		try {
@@ -100,8 +155,6 @@ public class ClientSteps {
 	    Optional<ClientInfo> usr = logisticCompanyApp.getClientsStream().findFirst();
 	    assertTrue(usr.isPresent());
 	    ClientInfo c = usr.get();
-	    
-//	    Client c = logisticCompanyApp.findClient(clientInfo);
 	    
 	    assertEquals(clientInfo.getName(), c.getName());
 	    assertEquals(clientInfo.getEmail(), c.getEmail());
