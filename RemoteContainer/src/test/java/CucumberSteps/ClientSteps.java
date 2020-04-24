@@ -32,6 +32,7 @@ public class ClientSteps {
 	private JourneyHelper journeyHelper;
 	private ContainerHelper containerHelper;
 	private Client client;
+	private Client client2;
 	private List<Container> containersList;
 	
 	public ClientSteps(LogisticCompanyApp logisticCompanyApp, ClientHelper helper, JourneyHelper journeyHelper,ContainerHelper containerHelper) {
@@ -89,6 +90,7 @@ public class ClientSteps {
 			this.errorMessage = e.getMessage();
 		}
 		
+		
 		for (int i=0; i < 3; i++) {
 			try {
 				logisticCompanyApp.registerJourneyToClient(clientInfo, journeysList.get(i));
@@ -104,6 +106,43 @@ public class ClientSteps {
 	@When("the client looks for all his\\/her containers")
 	public void the_client_looks_for_all_his_her_containers() {
 		containersList = logisticCompanyApp.getClientContainers(clientInfo);
+	}
+	
+	@When("the client provide access to another client")
+	public void the_client_provide_access_to_another_client() {
+		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
+		clientInfo = clientHelper.getClient();
+		
+		try {
+			clientHelper.registerMultipleClients();
+		} catch (Exception e) {
+			this.errorMessage = e.getMessage();
+		}
+		
+		List<ClientInfo> clientsList = clientHelper.getMultipleClients();
+		ClientInfo clientInfo2 = clientsList.get(0);
+		
+		logisticCompanyApp.provideAccess(clientInfo,clientInfo2);
+		
+		logisticCompanyApp.logisticCompanyLogout();
+	}
+	
+	@Then("the other client should be able to access the client data")
+	public void the_other_client_should_be_able_to_access_the_client_data() {
+	    ClientInfo clientInfo2 = clientHelper.getMultipleClients().get(0);
+	    
+	    clientInfo = clientHelper.getClient();
+	    client = logisticCompanyApp.findClient(clientInfo);
+	    List<Journey> clientJourneys = client.getJourneyList();
+	    
+	    List<Container> resultList = logisticCompanyApp.collectAccessibleContainers(clientInfo2);
+	    
+	    assertTrue(resultList.contains(clientJourneys.get(0).getContainer()));
+	    
+	    for (Journey j : clientJourneys) {
+	    	assertTrue(resultList.contains(j.getContainer()));
+	    }
+	    
 	}
 	
 	@Then("all containers registered for the client journeys is given")

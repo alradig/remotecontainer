@@ -22,6 +22,9 @@ public class Client{
 	private Address address;
 	@OneToMany
 	private List<Journey> journeys = new ArrayList<>();
+	
+	@OneToMany
+	private List<Client> accessList = new ArrayList<>();
 
 	public Client() {
 		
@@ -75,6 +78,14 @@ public class Client{
 		this.email = clientInfo.getEmail();
 		this.refPerson = clientInfo.getReference_person();
 		this.address = clientInfo.getAddress();
+	}
+
+	public void addToAccessList(Client client) {
+		accessList.add(client);
+	}
+
+	public List<Client> getAccessList() {
+		return accessList;
 	}
 
 	

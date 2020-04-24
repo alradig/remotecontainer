@@ -39,8 +39,6 @@ public class JourneyHelper {
 		return usr;
 	}
 	
-	
-	
 	private JourneyInfo exampleJourney() {
 		JourneyInfo journeyInfo = new JourneyInfo("Apples","Copenhagen","London");
 		return journeyInfo;

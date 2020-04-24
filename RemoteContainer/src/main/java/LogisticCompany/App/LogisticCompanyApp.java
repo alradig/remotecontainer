@@ -1,5 +1,6 @@
 package LogisticCompany.App;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -217,5 +218,28 @@ public class LogisticCompanyApp {
 		return client.getJourneysStream().map(j -> j.getContainer()).collect(Collectors.toList());	
 	}
 
+	public void provideAccess(ClientInfo clientInfo1, ClientInfo clientInfo2) {
+		Client client = findClient(clientInfo1);
+		Client client2 = findClient(clientInfo2);
+		
+		client2.addToAccessList(client);
+		clientRepository.updateClient(client2);
+	}
+	
+	public List<Container> collectAccessibleContainers(ClientInfo clientInfo) {
+		Client client = findClient(clientInfo);
+		List<Container> ContainersList = getClientContainers(clientInfo);
+		
+		List<Client> clientAccessList = client.getAccessList();
+		if(!clientAccessList.isEmpty()) {
+			for (Client c : clientAccessList) {
+				List<Journey> journeyList = c.getJourneyList();
+				for (Journey j : journeyList) {
+					ContainersList.add(j.getContainer());
+				}
+			}
+		}		
+		return ContainersList;
+	}
 	
 }
