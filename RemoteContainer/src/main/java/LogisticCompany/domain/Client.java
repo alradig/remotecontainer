@@ -88,5 +88,13 @@ public class Client{
 		return accessList;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	
 }

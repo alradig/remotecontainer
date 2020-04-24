@@ -55,10 +55,16 @@ public class ClientSteps {
 	@Given("there is a client registered in the system")
 	public void there_is_a_client_registered_in_the_system() {
 		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
+//		clientInfo = clientHelper.getClient();
+//		try {
+//			logisticCompanyApp.registerClient(clientInfo, "clientclient");
+//		} catch (OperationNotAllowedException e) {
+//			this.errorMessage = e.getMessage();
+//		}
 		clientInfo = clientHelper.getClient();
 		try {
-			logisticCompanyApp.registerClient(clientInfo);
-		} catch (OperationNotAllowedException e) {
+			clientHelper.registerExampleClient();
+		} catch (Exception e) {
 			this.errorMessage = e.getMessage();
 		}
 		logisticCompanyApp.logisticCompanyLogout();
@@ -158,8 +164,9 @@ public class ClientSteps {
 
 	@When("the logistic company registers the client")
 	public void the_logistic_company_registers_the_client() {
+		
 		try {
-			this.logisticCompanyApp.registerClient(clientInfo);
+			this.logisticCompanyApp.registerClient(clientInfo, "clientclient");
 		} catch (Exception e) {
 			this.errorMessage = e.getMessage();
 		}

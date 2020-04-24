@@ -11,6 +11,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import LogisticCompany.App.LogisticCompanyApp;
+import LogisticCompany.App.OperationNotAllowedException;
+import LogisticCompany.domain.Address;
+import LogisticCompany.info.ClientInfo;
+import LogisticCompany.persistence.SQLRepository;
 
 public class MainScreen {
 	
@@ -45,12 +49,41 @@ public class MainScreen {
 	 */
 	public MainScreen() throws Exception {
 //		SqliteRepository repository = new SqliteRepository(true);
-//		logisticCompanyApp = new LibraryApp(repository,repository);
-		// createExampleData();
+		SQLRepository repository = new SQLRepository();
+		logisticCompanyApp = new LogisticCompanyApp(repository,repository,repository);
+		logisticCompanyApp.clearDatabase();
+		
+		
+		try {
+			createExampleData();
+		} catch (OperationNotAllowedException e) {
+			
+		}
+		
 		initialize();
 	}
 
-//	private void createExampleData() throws Exception {
+	private void createExampleData() throws Exception {
+		
+		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
+		
+		ClientInfo client = new ClientInfo("Expresso","expresso@exp.com","Nach Jicholson");
+		Address address = new Address("The street 3",1700,"Aarhus");
+		client.setAddress(address);
+		
+		ClientInfo client2 = new ClientInfo("Wurth","wurth@wrt.com","Mika McNuggets");
+		Address address2 = new Address("The german strasse 5",27645,"Berlin");
+		client2.setAddress(address2);
+		
+		ClientInfo client3 = new ClientInfo("Embraer","embraer@emb.com","Bhristian Cale");
+		Address address3 = new Address("The brasilian rua 34",27645,"Rio de Janeiro");
+		client3.setAddress(address3);
+		
+		logisticCompanyApp.registerClient(client, "clientclient");
+		logisticCompanyApp.registerClient(client2, "clientclient");
+		logisticCompanyApp.registerClient(client2, "clientclient");
+		
+		logisticCompanyApp.logisticCompanyLogout();
 //		libraryApp.adminLogin("adminadmin");
 //		UserInfo user = new UserInfo("050149-2833","Tom P. Davis","TomPDavis@rhyta.com");
 //		Address address = new Address("Oakmound Drive",60062,"Northbrook");
@@ -65,7 +98,7 @@ public class MainScreen {
 //		libraryApp.borrowMedium(cd, user);
 //		
 //		libraryApp.adminLogout();		
-//	}
+	}
 
 	
 	/**

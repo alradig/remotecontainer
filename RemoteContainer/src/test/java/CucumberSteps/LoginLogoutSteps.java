@@ -19,28 +19,28 @@ public class LoginLogoutSteps {
 	private String errorMessage;
 	private InMemoryRepository repository = new InMemoryRepository();
 	private LogisticCompanyApp logisticCompanyApp = new LogisticCompanyApp(repository,repository,repository);
-	public ClientHelper helper;
+	public ClientHelper clientHelper;
 	private String password;
 	
 	public LoginLogoutSteps(LogisticCompanyApp logisticCompanyApp,ClientHelper helper) {
 		this.logisticCompanyApp = logisticCompanyApp;
-		this.helper = helper;
+		this.clientHelper = helper;
 	}
 	
 	@Given("that a client is logged in")
 	public void that_a_client_is_logged_in() throws Exception {
 		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
 		
-		clientInfo = helper.getClient();
+		clientInfo = clientHelper.getClient();
 		
 		try {
-			logisticCompanyApp.registerClient(clientInfo);
+			logisticCompanyApp.registerClient(clientInfo, "clientclient");
 		} catch (OperationNotAllowedException e) {
 			this.errorMessage = e.getMessage();
 		}
 
 		logisticCompanyApp.logisticCompanyLogout();
-		logisticCompanyApp.clientLogin("client123");
+		logisticCompanyApp.clientLogin(clientInfo.getEmail(), "clientclient");
 		
 		try {
 			logisticCompanyApp.checkClientLoggedIn();
@@ -53,16 +53,16 @@ public class LoginLogoutSteps {
 	public void a_client_is_logged_in() throws Exception {
 		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
 		
-		clientInfo = helper.getClient();
+		clientInfo = clientHelper.getClient();
 		
 		try {
-			logisticCompanyApp.registerClient(clientInfo);
+			logisticCompanyApp.registerClient(clientInfo, "clientclient");
 		} catch (OperationNotAllowedException e) {
 			this.errorMessage = e.getMessage();
 		}
 
 		logisticCompanyApp.logisticCompanyLogout();
-		logisticCompanyApp.clientLogin("client123");
+		logisticCompanyApp.clientLogin(clientInfo.getEmail(),"clientclient");
 	}
 	
 	@Given("that a client logs out")
@@ -82,12 +82,14 @@ public class LoginLogoutSteps {
 
 	@Then("a client login succeeds")
 	public void a_client_login_succeeds() throws Exception {
-		assertTrue(logisticCompanyApp.clientLogin(password));
+		ClientInfo clientInfo = clientHelper.getClient();
+		assertTrue(logisticCompanyApp.clientLogin(clientInfo.getEmail() ,password));
 	}
 
 	@Then("a client login fails")
 	public void a_client_login_fails() throws Exception {
-		assertFalse(logisticCompanyApp.clientLogin(password));
+		ClientInfo clientInfo = clientHelper.getClient();
+		assertFalse(logisticCompanyApp.clientLogin(clientInfo.getEmail(),password));
 	}
 
 	@Then("a client is not logged in")

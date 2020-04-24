@@ -25,6 +25,7 @@ public class LogisticCompanyApp {
 	private ContainerStatusEntry containerStatus; 
 	private JourneyStatusEntry journeyStatus; 
 	private CalenderDate calenderDate = new CalenderDate();
+	private Client client;
 	
 
 	
@@ -78,16 +79,16 @@ public class LogisticCompanyApp {
 				.collect(Collectors.toList());
 	}
 	
-	public void registerClient(ClientInfo cc) throws OperationNotAllowedException {
+	public void registerClient(ClientInfo cc, String password) throws OperationNotAllowedException {
 		checkLogisticCompanyLoggedIn();
 		
 		Client client = findClient(cc);
-//		System.out.println("found client email: " + client.getEmail());
 		if (client != null) {
 			throw new OperationNotAllowedException("The client is already registered");
 		}
 		
 		clientRepository.addClient(cc.asClient());
+		setClientPassword(cc,password);
 	}
 	
 	public void registerContainer(ContainerInfo c) throws OperationNotAllowedException {
@@ -161,8 +162,19 @@ public class LogisticCompanyApp {
 		return this.journeyRepository.getAllJourneysStream().map(j -> new JourneyInfo(j));
 	}
 
-	public boolean clientLogin(String clientPassword) {
-		clientLoggedIn = clientPassword.equals("client123");
+	public boolean clientLogin(String email, String password) throws OperationNotAllowedException{
+		client = findClient(new ClientInfo("",email,""));
+		
+		if (client == null) {
+			throw new OperationNotAllowedException("No client registered with the given email!");
+		}
+
+		clientLoggedIn = password.equals(client.getPassword());
+		
+		if (clientLoggedIn == false) {
+			throw new OperationNotAllowedException("Incorrect password!");
+		}
+		
 		return clientLoggedIn;
 	}
 
@@ -212,6 +224,7 @@ public class LogisticCompanyApp {
 		containerRepository.updateContainer(container);
 	}
 	
+	
 	public List<Container> getClientContainers(ClientInfo clientInfo) {
 //		List<Journey> journeyList = client.getJourneyList();
 		Client client = findClient(clientInfo);
@@ -240,6 +253,12 @@ public class LogisticCompanyApp {
 			}
 		}		
 		return ContainersList;
+	}
+
+	public void setClientPassword(ClientInfo clientInfo, String password) {
+		Client client = findClient(clientInfo);
+		client.setPassword(password);
+		
 	}
 	
 }

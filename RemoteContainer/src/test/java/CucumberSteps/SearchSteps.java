@@ -45,7 +45,7 @@ public class SearchSteps {
     public void these_clients_are_in_the_system(List<List<String>> clients) throws Exception {  
     	for (List<String> clientInfo : clients) {
     		try {
-    			logisticCompanyApp.registerClient(new ClientInfo(clientInfo.get(0), clientInfo.get(1), clientInfo.get(2)));
+    			logisticCompanyApp.registerClient(new ClientInfo(clientInfo.get(0), clientInfo.get(1), clientInfo.get(2)), null);
     		} catch (Exception e) {
     			this.errorMessage = e.getMessage();
     		}

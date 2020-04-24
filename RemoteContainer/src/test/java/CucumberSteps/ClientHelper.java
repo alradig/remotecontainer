@@ -35,7 +35,7 @@ public class ClientHelper {
 			logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
 		}
 		
-		logisticCompanyApp.registerClient(client);
+		logisticCompanyApp.registerClient(client, "clientclient");
 		
 		if (!loggedIn) {
 			logisticCompanyApp.logisticCompanyLogout();
@@ -54,7 +54,8 @@ public class ClientHelper {
 		List<ClientInfo> clientsList = getMultipleClients();
 		
 		for (ClientInfo c : clientsList) {
-			logisticCompanyApp.registerClient(c);
+			logisticCompanyApp.registerClient(c, null);
+			logisticCompanyApp.setClientPassword(c, "clientclient");
 		}
 	}
 

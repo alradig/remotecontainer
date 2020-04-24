@@ -2,7 +2,7 @@ package LogisticCompany.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.beans.*;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -19,19 +19,23 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import LogisticCompany.App.LogisticCompanyApp;
+import LogisticCompany.App.OperationNotAllowedException;
 
 
-public class ClientLoginScreen {
+public class ClientLoginScreen implements PropertyChangeListener{
+	PropertyChangeSupport support = new PropertyChangeSupport(this);
 	LogisticCompanyApp logisticCompanyApp;
 	private JPanel panelClientLogin;
 	private MainScreen parentWindow;
-	private JTextField userNameField;
-	private JTextField passwordField;
+	private JTextField clientEmailField;
+	private JPasswordField passwordField;
 	private JButton btnBack;
 	private JButton btnLogin;
 	private JLabel lblPassword;
-	private JLabel lblUsername;
+	private JLabel lblClientEmail;
+	private JLabel lblLoginStatus;
 	private JFrame frame;
+	private String errorMessage;
 	MainScreen mainScreen;
 	ClientFunctionalitiesScreen clientFunctionalitiesScreen;
 	
@@ -39,41 +43,68 @@ public class ClientLoginScreen {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
 		this.frame = frame;
+		this.addObserver(this);
 		initialize();
 	}
 	
+	void addObserver(PropertyChangeListener l) {
+		support.addPropertyChangeListener(l);
+	}
+
 	public void initialize() {
-		
+
 		panelClientLogin = new JPanel();
 		parentWindow.addPanel(panelClientLogin);
 		panelClientLogin.setLayout(null);
 		panelClientLogin.setBorder(BorderFactory.createTitledBorder(
                 "Client login"));
 		
-		userNameField = new JTextField();
-		userNameField.setBounds(138, 100, 130, 26);
-		panelClientLogin.add(userNameField);
-		userNameField.setColumns(10);
+		clientEmailField = new JTextField();
+		clientEmailField.setBounds(138, 100, 130, 26);
+		panelClientLogin.add(clientEmailField);
+		clientEmailField.setColumns(10);
 		
-		lblUsername = new JLabel("User Name:");
-		lblUsername.setBounds(50, 105, 74, 16);
-		panelClientLogin.add(lblUsername);
+		lblClientEmail = new JLabel("Client email:");
+		lblClientEmail.setBounds(50, 105, 90, 16);
+		panelClientLogin.add(lblClientEmail);
 
 		
 		lblPassword = new JLabel("Password:");
 		lblPassword.setBounds(50, 145, 74, 16);
 		panelClientLogin.add(lblPassword);
 		
-		JPasswordField passWordText = new JPasswordField();
-		passWordText.setBounds(138, 140, 130, 26);
-		panelClientLogin.add(passWordText);
+		lblLoginStatus = new JLabel("");
+		lblLoginStatus.setBounds(0, 65, 300, 16);
+		lblLoginStatus.setHorizontalAlignment(SwingConstants.CENTER);
+		panelClientLogin.add(lblLoginStatus);
+		
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(138, 140, 130, 26);
+		panelClientLogin.add(passwordField);
 		
 		
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				clientFunctionalitiesScreen.setVisible(true);	
+				
+				boolean loginOk = false;
+				
+				try {
+					loginOk = logisticCompanyApp.clientLogin(clientEmailField.getText(), passwordField.getText());
+				} catch (OperationNotAllowedException exception) {
+					lblLoginStatus.setText(exception.getMessage());
+				}
+				
+				passwordField.setText("");
+				clientEmailField.setText("");
+				
+				if(loginOk) {
+					setVisible(false);
+					clientFunctionalitiesScreen.setVisible(true);
+					lblLoginStatus.setText("");
+				}
+				
 			}
 		});
 		btnLogin.setBounds(148, 200, 117, 29);
@@ -101,6 +132,11 @@ public class ClientLoginScreen {
 	}
 	public void addPanel(JPanel panel) {
 		frame.getContentPane().add(panel);
+	}
+	
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		
 	}
 	
 }

@@ -1,8 +1,9 @@
 Feature: Client login
 	
 Scenario: Client can login
-	Given a client is not logged in
-	And the password is "client123"
+	Given there is a client registered in the system
+	And a client is not logged in
+	And the password is "clientclient"
 	Then a client login succeeds
 	And a client is logged in
 	
