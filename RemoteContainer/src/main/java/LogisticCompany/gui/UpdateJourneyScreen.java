@@ -33,9 +33,10 @@ public class UpdateJourneyScreen {
 	private String errorMessage;
 
 	public UpdateJourneyScreen(LogisticCompanyApp logisticCompanyApp,
-			FindJourneyScreen parentWindow) {
+			FindJourneyScreen parentWindow,JourneyInfo selectedjourneyInfo) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
+		this.journeyinfo = selectedjourneyInfo;
 		initialize();
 	}
 	
@@ -66,9 +67,6 @@ public class UpdateJourneyScreen {
 		panelUpdateJourney.add(btnSearch);
 		btnSearch.getRootPane().setDefaultButton(btnSearch);
 		
-		
-		
-		
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -82,9 +80,9 @@ public class UpdateJourneyScreen {
 	}
 	
 	protected void updateJourney() {
-		journey = logisticCompanyApp.findJourney(journeyinfo);
-		journeyStatus = new JourneyStatusEntry(journeyinfo.getOriginPort(),journeyinfo.getDestinationPort(), updateField.getText());
 		
+		journeyStatus = new JourneyStatusEntry(journeyinfo.getOriginPort(),journeyinfo.getDestinationPort(), updateField.getText());
+		journey = logisticCompanyApp.findJourney(journeyinfo);
 		try {
 			logisticCompanyApp.updateJourneyInfo(journey, journeyStatus);
 			

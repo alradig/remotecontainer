@@ -21,6 +21,10 @@ public class Client{
 	private String refPerson;
 	@Embedded
 	private Address address;
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
 	@OneToMany
 	private List<Journey> journeys = new ArrayList<>();
 	
@@ -65,13 +69,12 @@ public class Client{
 	public Address getAddress() {
 		return address;
 	}
-	
 	public boolean matchClient(String searchEmail) {
 		return email.contains(searchEmail) || name.contains(searchEmail) || refPerson.contains(searchEmail);
 	}
 	
 	public ClientInfo asClientInfo() {
-		return new ClientInfo(this.getName(), this.getEmail(), this.getRefPerson());
+		return new ClientInfo(this.getName(), this.getEmail(), this.getRefPerson(), this.address);
 	}
 	
 	public void updateClientInfo(ClientInfo clientInfo) {

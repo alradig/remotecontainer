@@ -137,7 +137,7 @@ public class RegisterClientScreen {
 				}else {
 					try { 
 						logisticCompanyApp.registerClient(name, email, password, zipCode, city, street, refPerson);
-						lblRegistrationStatus.setText("Journey successfully registered!");
+						lblRegistrationStatus.setText("Client is successfully registered!");
 					} catch (OperationNotAllowedException e1) {
 						e1.printStackTrace();
 					}

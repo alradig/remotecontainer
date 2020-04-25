@@ -18,9 +18,12 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import LogisticCompany.App.LogisticCompanyApp;
+import LogisticCompany.App.OperationNotAllowedException;
+import LogisticCompany.domain.Journey;
+import LogisticCompany.domain.JourneyStatusEntry;
 import LogisticCompany.info.JourneyInfo;
 
-public class FindJourneyScreen {
+public class FindJourneyScreen implements ListSelectionListener{
 	LogisticCompanyApp logisticCompanyApp;
 	UpdateJourneyScreen updateJourneyScreen;
 	private LogisticCompanyFunctionalitiesScreen parentWindow;
@@ -30,6 +33,12 @@ public class FindJourneyScreen {
 	private JTextField searchField;
 	private JLabel lblSearchResultDetail;
 	private JFrame frame;
+	private JourneyInfo selectedjourneyInfo ;
+    private JourneyStatusEntry journeyStatus;
+	private String errorMessage;
+	private JTextField updateField;
+	private JButton btnUpdate; 
+
 	public FindJourneyScreen(LogisticCompanyApp logisticCompanyApp,
 			LogisticCompanyFunctionalitiesScreen parentWindow, JFrame frame) {
 		this.logisticCompanyApp = logisticCompanyApp;
@@ -68,21 +77,11 @@ public class FindJourneyScreen {
 		listSearchResult = new JList<>(searchResults);
 		listSearchResult.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listSearchResult.setSelectedIndex(0);
-		listSearchResult.addListSelectionListener(new ListSelectionListener() {
-			
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-		        if (e.getValueIsAdjusting() == false) {
-
-		            if (listSearchResult.getSelectedIndex() == -1) {
-		            	lblSearchResultDetail.setText("");
-
-		            } else {
-		            	lblSearchResultDetail.setText(new JourneyPrinter(listSearchResult.getSelectedValue()).printDetail());
-		            }
-		        }
-			}
-		});
+		
+		
+		
+		
+		listSearchResult.addListSelectionListener(this);
 		listSearchResult.setVisibleRowCount(5);
         JScrollPane listScrollPane = new JScrollPane(listSearchResult);
         
@@ -119,6 +118,7 @@ public class FindJourneyScreen {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				updateJourneyScreen.setVisible(true);
+				System.out.println(selectedjourneyInfo.getCargo());
 			}
 		});
 		
@@ -138,8 +138,31 @@ public class FindJourneyScreen {
 		panelFindJourney.add(btnViewContainer);
 		
 		
-		updateJourneyScreen = new UpdateJourneyScreen(logisticCompanyApp, this);
+		updateJourneyScreen = new UpdateJourneyScreen(logisticCompanyApp, this, selectedjourneyInfo);
 		
+		
+		updateField = new JTextField();
+		updateField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+	
+			}
+		});
+		updateField.setBounds(20, 500, 180, 29); 
+		panelFindJourney.add(updateField);
+		updateField.setColumns(10);
+		
+		btnUpdate = new JButton("Update");
+		btnUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				updateJourney();
+            	lblSearchResultDetail.setText(new JourneyPrinter(listSearchResult.getSelectedValue()).printDetail());
+				System.out.println(selectedjourneyInfo.getLocation());
+
+			}
+		});
+		btnUpdate.setBounds(20, 525, 180, 29); 
+		panelFindJourney.add(btnUpdate);
+	
 	}
 	protected void searchJourney() {
 		searchResults.clear();
@@ -157,4 +180,37 @@ public class FindJourneyScreen {
 	public void addPanel(JPanel panel) {
 		frame.getContentPane().add(panel);
 	}
+	
+	
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+        if (e.getValueIsAdjusting() == false) {
+
+            if (listSearchResult.getSelectedIndex() == -1) {
+            	lblSearchResultDetail.setText("");
+
+            } else {
+            	lblSearchResultDetail.setText(new JourneyPrinter(listSearchResult.getSelectedValue()).printDetail());
+
+            }
+        }
+        this.selectedjourneyInfo = listSearchResult.getSelectedValue();
+	}
+	
+	protected void updateJourney() {
+		
+		journeyStatus = new JourneyStatusEntry(selectedjourneyInfo.getOriginPort(),selectedjourneyInfo.getDestinationPort(), updateField.getText());
+		Journey journey = logisticCompanyApp.findJourney(selectedjourneyInfo);
+
+		try {
+			logisticCompanyApp.updateJourneyInfo(journey, journeyStatus);
+			selectedjourneyInfo = new JourneyInfo(journey);
+			
+		} catch (OperationNotAllowedException e) {
+			errorMessage = e.getMessage();
+		} 
+	
+	}
+
+
 }

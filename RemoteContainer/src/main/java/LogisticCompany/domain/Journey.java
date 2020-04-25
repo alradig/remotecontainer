@@ -56,6 +56,7 @@ public class Journey {
 	public void setJourneyStatus(JourneyStatusEntry journeyStatus) {
 //		journeyLogs.add(this.currentJourneyStatus);
 		this.currentJourneyStatus = journeyStatus;
+//		journeyStatus.getLocation();
 	}
 
 	public JourneyStatusEntry getJourneyStatus() {

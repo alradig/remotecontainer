@@ -32,7 +32,6 @@ public class ClientSteps {
 	private JourneyHelper journeyHelper;
 	private ContainerHelper containerHelper;
 	private Client client;
-	private Client client2;
 	private List<Container> containersList;
 	
 	public ClientSteps(LogisticCompanyApp logisticCompanyApp, ClientHelper helper, JourneyHelper journeyHelper,ContainerHelper containerHelper) {
@@ -66,14 +65,18 @@ public class ClientSteps {
 	}
 	
 	@Given("the client address is {string}, {string}, {string}")
-	public void the_client_address_is(String street, String postcode, String city) {
+	public void the_client_address_is(String street, String postcode, String city) throws OperationNotAllowedException {
 		this.address = new Address(street,postcode,city);
 		this.clientInfo.setAddress(address);
 		
 		assertEquals(clientInfo.getAddress().getStreet(),street);
 		assertEquals(clientInfo.getAddress().getPostCode(),postcode);
 		assertEquals(clientInfo.getAddress().getCity(),city);	
+		
+		
+
 	}
+
 	
 	@Given("the client has registered journeys")
 	public void the_client_has_registered_journeys() throws OperationNotAllowedException {
