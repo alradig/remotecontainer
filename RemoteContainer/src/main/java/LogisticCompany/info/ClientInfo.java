@@ -31,10 +31,9 @@ public class ClientInfo {
 	public Address getAddress() {
 		return address;
 	}
-	public int getZipCode() {
+	public String getZipCode() {
 		return address.getPostCode();
 	}
-	
 	
 	public void setAddress(Address address) {
 		this.address = address;
