@@ -80,9 +80,9 @@ public class MainScreen {
 		Address address3 = new Address("The brasilian rua 34",27645,"Rio de Janeiro");
 		client3.setAddress(address3);
 		
-		logisticCompanyApp.registerClient(client1, "clientclient");
-		logisticCompanyApp.registerClient(client2, "clientclient");
-		logisticCompanyApp.registerClient(client3, "clientclient");
+		logisticCompanyApp.registerClient(client1, "client");
+		logisticCompanyApp.registerClient(client2, "client");
+		logisticCompanyApp.registerClient(client3, "client");
 		
 		logisticCompanyApp.logisticCompanyLogout();
 		
