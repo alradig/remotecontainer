@@ -45,7 +45,7 @@ public class ClientHelper {
 	
 	private ClientInfo exampleClient() {
 		ClientInfo client = new ClientInfo("Expresso","expresso@exp.com","Nach Jicholson");
-		Address address = new Address("The street 3",1700,"Aarhus");
+		Address address = new Address("The street 3","1700","Aarhus");
 		client.setAddress(address);
 		return client;
 	}
@@ -61,11 +61,11 @@ public class ClientHelper {
 
 	public List<ClientInfo> getMultipleClients() {
 		ClientInfo client2 = new ClientInfo("Wurth","wurth@wrt.com","Mika McNuggets");
-		Address address2 = new Address("The german strasse 5",27645,"Berlin");
+		Address address2 = new Address("The german strasse 5","27645","Berlin");
 		client2.setAddress(address2);
 		
 		ClientInfo client3 = new ClientInfo("Embraer","embraer@emb.com","Bhristian Cale");
-		Address address3 = new Address("The brasilian rua 34",27645,"Rio de Janeiro");
+		Address address3 = new Address("The brasilian rua 34","27645","Rio de Janeiro");
 		client3.setAddress(address3);
 		
 		return new ArrayList<ClientInfo>(Arrays.asList(client2, client3));

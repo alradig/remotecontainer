@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import LogisticCompany.domain.Address;
 import LogisticCompany.domain.Client;
 import LogisticCompany.domain.Container;
 import LogisticCompany.domain.Journey;
@@ -46,7 +47,6 @@ public class LogisticCompanyApp {
 	
 	public Client findClient(ClientInfo cc) {
 		return clientRepository.getClient(cc.getEmail());
-		
 	}
 
 	public Container findContainer(ContainerInfo container) {
@@ -88,6 +88,15 @@ public class LogisticCompanyApp {
 		
 		clientRepository.addClient(cc.asClient());
 		setClientPassword(cc,password);
+	}
+	
+	public void registerClient(String name, String email, String password, String zipCode, String city, String street, String refPerson) throws OperationNotAllowedException {
+		ClientInfo clientInfo = new ClientInfo(name, email, refPerson);
+		
+		Address address = new Address(street,zipCode,city);
+		clientInfo.setAddress(address);
+		
+		registerClient(clientInfo, password);
 	}
 	
 	public void registerContainer(ContainerInfo c) throws OperationNotAllowedException {
@@ -244,6 +253,23 @@ public class LogisticCompanyApp {
 		return client.getJourneysStream().map(j -> j.getContainer()).collect(Collectors.toList());	
 	}
 
+	public boolean provideAccess(String name, String email) throws  Exception{
+		ClientInfo clientInfo2 = new ClientInfo(name, email, "");
+		
+		Client client2 = findClient(clientInfo2);
+		
+		if(client2 == null) {
+			throw new OperationNotAllowedException("No client registered with the given email!");
+		}
+		
+		if(!client2.getName().equals(name)) {
+			throw new OperationNotAllowedException("Client name and email do not match!");
+		}
+		
+		provideAccess(client.asClientInfo(),client2.asClientInfo());
+		return true;
+	}
+	
 	public void provideAccess(ClientInfo clientInfo1, ClientInfo clientInfo2) {
 		Client client = findClient(clientInfo1);
 		Client client2 = findClient(clientInfo2);
