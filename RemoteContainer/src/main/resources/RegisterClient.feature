@@ -7,7 +7,7 @@ Feature: Register client
 	Scenario: Successful register a client
 		Given the logistic company is logged in
 		And there is a client with name "Brothers Farm", email "old@email.comold@email.com", reference person "Jason"
-		And the client address is "Kollegiebakken 9", 2800, "Lyngby"
+		And the client address is "Kollegiebakken 9", "2800", "Lyngby"
 		When the logistic company registers the client 
 		Then the client is registered in the system
 		
