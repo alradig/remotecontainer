@@ -58,9 +58,9 @@ public class LogisticCompanyApp {
 		return journeyRepository.getJourney(j.getCargo());
 	}
 	
-	public List<ClientInfo> searchClient(String searchEmail) {
+	public List<ClientInfo> searchClient(String searchText) {
 		return clientRepository.getAllClientsStream()
-				.filter(c -> c.matchClient(searchEmail))
+				.filter(c -> c.matchClient(searchText))
 				.map(c -> c.asClientInfo())
 				.collect(Collectors.toList());
 	}
@@ -72,9 +72,9 @@ public class LogisticCompanyApp {
 				.collect(Collectors.toList());
 	}
 
-	public List<JourneyInfo> searchJourney(String searchCargo) {
+	public List<JourneyInfo> searchJourney(String searchText) {
 		return journeyRepository.getAllJourneysStream()
-				.filter(j -> j.matchJourney(searchCargo))
+				.filter(j -> j.matchJourney(searchText))
 				.map(j -> j.asJourneyInfo())
 				.collect(Collectors.toList());
 	}
