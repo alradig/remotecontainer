@@ -78,8 +78,9 @@ public class Journey {
 		return id;
 	}
 
-	public boolean matchJourney(String searchCargo) {
-		return cargo.contains(searchCargo);
+	public boolean matchJourney(String searchText) {
+		return cargo.contains(searchText) || originPort.contains(searchText) || destinationPort.contains(searchText);
+
 	}
 
 	public JourneyInfo asJourneyInfo() {

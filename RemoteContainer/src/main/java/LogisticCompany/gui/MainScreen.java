@@ -16,7 +16,6 @@ import LogisticCompany.domain.Address;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.info.JourneyInfo;
 import LogisticCompany.persistence.SQLRepository;
-import dtu.library.dto.UserInfo;
 
 public class MainScreen {
 	
@@ -69,9 +68,9 @@ public class MainScreen {
 		
 		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
 		
-		ClientInfo client = new ClientInfo("Expresso","expresso@exp.com","Nach Jicholson");
+		ClientInfo client1 = new ClientInfo("Expresso","expresso@exp.com","Nach Jicholson");
 		Address address = new Address("The street 3",1700,"Aarhus");
-		client.setAddress(address);
+		client1.setAddress(address);
 		
 		ClientInfo client2 = new ClientInfo("Wurth","wurth@wrt.com","Mika McNuggets");
 		Address address2 = new Address("The german strasse 5",27645,"Berlin");
@@ -81,17 +80,32 @@ public class MainScreen {
 		Address address3 = new Address("The brasilian rua 34",27645,"Rio de Janeiro");
 		client3.setAddress(address3);
 		
-		logisticCompanyApp.registerClient(client, "clientclient");
+		logisticCompanyApp.registerClient(client1, "clientclient");
 		logisticCompanyApp.registerClient(client2, "clientclient");
-		logisticCompanyApp.registerClient(client2, "clientclient");
+		logisticCompanyApp.registerClient(client3, "clientclient");
 		
 		logisticCompanyApp.logisticCompanyLogout();
 		
+		JourneyInfo journey1 = new JourneyInfo("Bananas","Copenhagen","Moscow");
+		JourneyInfo journey2 = new JourneyInfo("Chairs","London","Sydney");
+		JourneyInfo journey3 = new JourneyInfo("Tables","Johannesburg","Beijing");
+		JourneyInfo journey4 = new JourneyInfo("Paper","New York","Hanoi");
+		JourneyInfo journey5 = new JourneyInfo("Computers","Rio de Janeiro","Madrid");
+		JourneyInfo journey6 = new JourneyInfo("Apples","Nuuk","Mexico City");
 		
-		JourneyInfo journey1 = new JourneyInfo("Banana","Copenhagen","Moskva");
-		JourneyInfo journey2 = new JourneyInfo("Chair","London","");
 		logisticCompanyApp.registerJourney(journey1);
 		logisticCompanyApp.registerJourney(journey2);
+		logisticCompanyApp.registerJourney(journey3);
+		logisticCompanyApp.registerJourney(journey4);
+		logisticCompanyApp.registerJourney(journey5);
+		logisticCompanyApp.registerJourney(journey6);
+		
+		logisticCompanyApp.registerJourneyToClient(client1, journey1);
+		logisticCompanyApp.registerJourneyToClient(client1, journey2);
+		logisticCompanyApp.registerJourneyToClient(client2, journey3);
+		logisticCompanyApp.registerJourneyToClient(client2, journey4);
+		logisticCompanyApp.registerJourneyToClient(client3, journey5);
+		logisticCompanyApp.registerJourneyToClient(client3, journey6);
 	}
 
 	

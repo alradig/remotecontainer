@@ -66,7 +66,7 @@ public class Client{
 	}
 	
 	public boolean matchClient(String searchEmail) {
-		return email.contains(searchEmail);
+		return email.contains(searchEmail) || name.contains(searchEmail) || refPerson.contains(searchEmail);
 	}
 	
 	public ClientInfo asClientInfo() {
