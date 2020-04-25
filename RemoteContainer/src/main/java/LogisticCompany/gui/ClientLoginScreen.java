@@ -105,7 +105,7 @@ public class ClientLoginScreen implements PropertyChangeListener {
 					clientFunctionalitiesScreen.setVisible(true);
 					lblLoginStatus.setText("");
 				}
-				
+
 			}
 		});
 		btnLogin.setBounds(148, 200, 117, 29);

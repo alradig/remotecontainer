@@ -195,14 +195,15 @@ public class LogisticCompanyApp {
 		clientLoggedIn = false;
 	}
 
-	public void registerContainerToJourney(ContainerInfo containerInfo, JourneyInfo journey) throws OperationNotAllowedException {
+	public void registerContainerToJourney(ContainerInfo containerInfo, JourneyInfo journeyInfo) throws OperationNotAllowedException {
 		checkLogisticCompanyLoggedIn();
 		
-		Journey journeyObj = findJourney(journey);
+		Journey journeyObj = findJourney(journeyInfo);
 		Container containerObj = findContainer(containerInfo);
 		
 		journeyObj.setContainer(containerObj);
 		updateContainerInfo(containerObj,containerObj.asContainerInfo());
+		journeyRepository.updateJourney(journeyObj);
 	}
 	
 	public void registerJourney(String cargo, String originPort, String endDestination) {
@@ -293,6 +294,28 @@ public class LogisticCompanyApp {
 		}		
 		return ContainersList;
 	}
+	
+//	public List<Container> collectAccessibleJourneys(String searchText) {
+//		client = findClient(client.asClientInfo());
+//		
+//		List<Client> accessList = client.getAccessList();
+//		
+//		for (Client c : accessList) {
+//			List<Journey> JourneysList = c.getJourneyList();
+//		}
+//		
+//		
+//		List<Client> clientAccessList = client.getAccessList();
+//		if(!clientAccessList.isEmpty()) {
+//			for (Client c : clientAccessList) {
+//				List<Journey> journeyList = c.getJourneyList();
+//				for (Journey j : journeyList) {
+//					ContainersList.add(j.getContainer());
+//				}
+//			}
+//		}		
+//		return ContainersList;
+//	}
 
 	public void setClientPassword(ClientInfo clientInfo, String password) {
 		Client client = findClient(clientInfo);

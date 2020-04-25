@@ -8,16 +8,19 @@ import LogisticCompany.domain.ContainerStatusEntry;
 
 public class ContainerInfo {
 	
+	private long id;
 	private String cargo;
 	private List<ContainerStatusEntry> containerStatusList = new ArrayList<>();
 	
 	public ContainerInfo(String cargo) {
 		this.cargo = cargo;
+		this.id = 0;
 	}
 	
 	public ContainerInfo(Container container) {
 		this.cargo = container.getCargo();
 		this.containerStatusList = container.getContainerStatusList();
+		this.id = container.getId();
 	}
 	
 	public String getCargo() {
@@ -30,6 +33,10 @@ public class ContainerInfo {
 	
 	public List<ContainerStatusEntry> getContainerStatusList() {
 		return containerStatusList;
+	}
+	
+	public long getId() {
+		return id;
 	}
 	
 }

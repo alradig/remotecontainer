@@ -9,6 +9,7 @@ public class JourneyInfo {
 	private String destinationPort;
 	private String cargo;
 	private String location;
+	private ContainerInfo containerInfo;
 //	private ArrayList<String> journeyLog = new ArrayList<String>();
 	private JourneyStatusEntry currentJourneyStatus;
 	
@@ -17,6 +18,7 @@ public class JourneyInfo {
 		this.destinationPort = journey.getEndDestination();
 		this.cargo = journey.getCargo();
 		this.currentJourneyStatus = journey.getJourneyStatus();
+		this.containerInfo = journey.getContainer().asContainerInfo();
 	}
 	
 	public JourneyInfo(String cargo, String originPort, String endDestination) {
