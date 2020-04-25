@@ -55,12 +55,7 @@ public class ClientSteps {
 	@Given("there is a client registered in the system")
 	public void there_is_a_client_registered_in_the_system() throws OperationNotAllowedException {
 		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
-//		clientInfo = clientHelper.getClient();
-//		try {
-//			logisticCompanyApp.registerClient(clientInfo, "clientclient");
-//		} catch (OperationNotAllowedException e) {
-//			this.errorMessage = e.getMessage();
-//		}
+
 		clientInfo = clientHelper.getClient();
 		try {
 			clientHelper.registerExampleClient();
@@ -117,7 +112,6 @@ public class ClientSteps {
 	@When("the client provide access to another client")
 	public void the_client_provide_access_to_another_client() throws OperationNotAllowedException {
 		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
-		clientInfo = clientHelper.getClient();
 		
 		try {
 			clientHelper.registerMultipleClients();

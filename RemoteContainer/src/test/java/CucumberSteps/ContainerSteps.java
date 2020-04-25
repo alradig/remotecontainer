@@ -128,11 +128,13 @@ public class ContainerSteps {
 	@When("the logistic company registers the container for the journey")
 	public void the_logistic_company_registers_the_container_for_the_journey() throws OperationNotAllowedException {
 		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
+		
 		try {
 			logisticCompanyApp.registerContainerToJourney(containerInfo, journeyInfo);
 		} catch (Exception e) {
 			this.errorMessage = e.getMessage();
 		}
+		
 		logisticCompanyApp.logisticCompanyLogout();
 		
 		Journey journey = logisticCompanyApp.findJourney(journeyInfo);

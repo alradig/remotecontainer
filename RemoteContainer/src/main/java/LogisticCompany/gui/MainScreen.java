@@ -49,10 +49,9 @@ public class MainScreen {
 	 * @throws Exception 
 	 */
 	public MainScreen() throws Exception {
-//		SqliteRepository repository = new SqliteRepository(true);
-		SQLRepository repository = new SQLRepository();
+		SQLRepository repository = new SQLRepository(false);
 		logisticCompanyApp = new LogisticCompanyApp(repository,repository,repository);
-		logisticCompanyApp.clearDatabase();
+//		logisticCompanyApp.clearDatabase();
 		
 		
 		try {

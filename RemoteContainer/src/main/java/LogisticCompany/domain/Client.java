@@ -12,9 +12,10 @@ import LogisticCompany.info.ClientInfo;
 @Entity
 public class Client{
     @GeneratedValue
+    @Id
     private long id;
 	private String name;
-	@Id
+//	@Id
 	private String email;
 	private String password;
 	private String refPerson;
@@ -40,7 +41,7 @@ public class Client{
 	public List<Journey> getJourneyList(){
 		return journeys;
 	}
-	
+
 	public Stream<Journey> getJourneysStream() {
 		return journeys.stream();
 	}

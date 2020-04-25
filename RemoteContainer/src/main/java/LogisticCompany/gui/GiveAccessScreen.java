@@ -20,6 +20,7 @@ public class GiveAccessScreen {
 	private JLabel lblName;
 	private JTextField emailField;
 	private JLabel lblemail;
+	private JLabel submitStatus;
 	
 
 	public GiveAccessScreen(LogisticCompanyApp logisticCompanyApp, ClientFunctionalitiesScreen parentWindow) {
@@ -35,37 +36,50 @@ public class GiveAccessScreen {
 		panelGiveAccess.setBorder(BorderFactory.createTitledBorder(
                 "Give Access to Other Clients"));
 		
-		JLabel lblComment = new JLabel("Enter the name and email of the user "
-				+ "you want to give access to your journey informations");
-		lblComment.setBounds(50, 50, 400, 50);
+		JLabel lblComment = new JLabel("<html>Enter the name and email of the user you want to give access to your journey information.</html>");
+		lblComment.setBounds(50, 50, 300, 50);
 		panelGiveAccess.add(lblComment);
 		nameField = new JTextField();
 		
-		nameField.setBounds(138, 100, 130, 26);
+		submitStatus = new JLabel("");
+		submitStatus.setBounds(100, 110, 300, 26);
+		panelGiveAccess.add(submitStatus);
+		
+		nameField.setBounds(138, 150, 130, 26);
 		panelGiveAccess.add(nameField);
 		nameField.setColumns(10);
 		
 		lblName = new JLabel("Name:");
-		lblName.setBounds(50, 105, 74, 16);
+		lblName.setBounds(50, 155, 74, 16);
 		panelGiveAccess.add(lblName);
 		
 		emailField = new JTextField();
-		emailField.setBounds(138, 140, 130, 26);
+		emailField.setBounds(138, 190, 130, 26);
 		panelGiveAccess.add(emailField);
 		nameField.setColumns(10);
 		
 		lblemail = new JLabel("email:");
-		lblemail.setBounds(50, 145, 74, 16);
+		lblemail.setBounds(50, 195, 74, 16);
 		panelGiveAccess.add(lblemail);
 		
 		JButton btnregister = new JButton("submit");
 		btnregister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// register and go back 
-				parentWindow.setVisible(true);
+				
+				boolean submitionOk = false;
+				
+				try {
+					submitionOk = logisticCompanyApp.provideAccess(nameField.getText(), emailField.getText());
+				} catch (Exception e1) {
+					submitStatus.setText(e1.getMessage());
+				}
+				
+				if(submitionOk) {
+					submitStatus.setText("Access successfully granted!");
+				}
 			}
 		});
-		btnregister.setBounds(170, 225, 74, 16);
+		btnregister.setBounds(170, 255, 74, 16);
 		panelGiveAccess.add(btnregister);
 		
 		
