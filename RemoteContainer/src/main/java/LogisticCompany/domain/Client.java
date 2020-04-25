@@ -40,7 +40,7 @@ public class Client{
 	public List<Journey> getJourneyList(){
 		return journeys;
 	}
-	
+
 	public Stream<Journey> getJourneysStream() {
 		return journeys.stream();
 	}

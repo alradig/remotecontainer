@@ -4,16 +4,29 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import LogisticCompany.App.LogisticCompanyApp;
+import LogisticCompany.info.JourneyInfo;
 
 public class FindJourneyScreen {
 	LogisticCompanyApp logisticCompanyApp;
 	private LogisticCompanyFunctionalitiesScreen parentWindow;
-
 	private JPanel panelFindJourney;
+	private DefaultListModel<JourneyInfo> searchResults;
+	private JList<JourneyInfo> listSearchResult;
+	private JTextField searchField;
+	private JLabel lblSearchResultDetail;
 
 	public FindJourneyScreen(LogisticCompanyApp logisticCompanyApp,
 			LogisticCompanyFunctionalitiesScreen parentWindow) {
@@ -28,6 +41,65 @@ public class FindJourneyScreen {
 		panelFindJourney.setBorder(BorderFactory.createTitledBorder(
                 "Find Existing Journey"));
 		
+		searchField = new JTextField();
+		searchField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				searchJourney();
+			}
+		});
+		searchField.setBounds(138, 28, 130, 26);
+		panelFindJourney.add(searchField);
+		searchField.setColumns(10);
+		
+		JButton btnSearch = new JButton("Search");
+		btnSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				searchJourney();
+			}
+		});
+		btnSearch.setBounds(148, 68, 117, 29);
+		panelFindJourney.add(btnSearch);
+		btnSearch.getRootPane().setDefaultButton(btnSearch);
+		
+		searchResults = new DefaultListModel<>();
+		listSearchResult = new JList<>(searchResults);
+		listSearchResult.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		listSearchResult.setSelectedIndex(0);
+		listSearchResult.addListSelectionListener(new ListSelectionListener() {
+			
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+		        if (e.getValueIsAdjusting() == false) {
+
+		            if (listSearchResult.getSelectedIndex() == -1) {
+		            	lblSearchResultDetail.setText("");
+
+		            } else {
+		            	lblSearchResultDetail.setText(new JourneyPrinter(listSearchResult.getSelectedValue()).printDetail());
+		            }
+		        }
+			}
+		});
+		listSearchResult.setVisibleRowCount(5);
+        JScrollPane listScrollPane = new JScrollPane(listSearchResult);
+        
+
+        listScrollPane.setBounds(21, 109, 361, 149);
+        panelFindJourney.add(listScrollPane);
+		
+		JPanel panelSearchResult = new JPanel();
+		panelSearchResult.setBounds(21, 270, 361, 175);
+		panelFindJourney.add(panelSearchResult);
+		panelSearchResult.setBorder(BorderFactory.createTitledBorder(
+                "Detail"));
+		panelSearchResult.setLayout(null);
+        
+        lblSearchResultDetail = new JLabel("");
+		lblSearchResultDetail.setVerticalAlignment(SwingConstants.TOP);
+		lblSearchResultDetail.setHorizontalAlignment(SwingConstants.LEFT);
+		lblSearchResultDetail.setBounds(23, 19, 318, 137);
+		panelSearchResult.add(lblSearchResultDetail);
+	
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -39,10 +111,18 @@ public class FindJourneyScreen {
 		panelFindJourney.add(btnBack);
 		
 	}
-	
+	protected void searchJourney() {
+		searchResults.clear();
+		logisticCompanyApp.searchJourney(searchField.getText())
+		          .forEach((m) -> {searchResults.addElement(m);});
+	}
 	public void setVisible(boolean aFlag) {
 		panelFindJourney.setVisible(aFlag);
 		
+	}
+	public void clear() {
+		searchField.setText("");
+		searchResults.clear();
 	}
 
 }
