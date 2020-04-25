@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -21,17 +22,19 @@ import LogisticCompany.info.JourneyInfo;
 
 public class FindJourneyScreen {
 	LogisticCompanyApp logisticCompanyApp;
+	UpdateJourneyScreen updateJourneyScreen;
 	private LogisticCompanyFunctionalitiesScreen parentWindow;
 	private JPanel panelFindJourney;
 	private DefaultListModel<JourneyInfo> searchResults;
 	private JList<JourneyInfo> listSearchResult;
 	private JTextField searchField;
 	private JLabel lblSearchResultDetail;
-
+	private JFrame frame;
 	public FindJourneyScreen(LogisticCompanyApp logisticCompanyApp,
-			LogisticCompanyFunctionalitiesScreen parentWindow) {
+			LogisticCompanyFunctionalitiesScreen parentWindow, JFrame frame) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
+		this.frame = frame;
 		initialize();
 	}
 	private void initialize() {
@@ -110,6 +113,33 @@ public class FindJourneyScreen {
 		btnBack.setBounds(21, 28, 65, 29);
 		panelFindJourney.add(btnBack);
 		
+		
+		JButton btnUpdateJourney = new JButton("Update journey");
+		btnUpdateJourney.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				updateJourneyScreen.setVisible(true);
+			}
+		});
+		
+		btnUpdateJourney.setBounds(20, 450, 180, 29);
+		panelFindJourney.add(btnUpdateJourney);
+		
+
+		JButton btnViewContainer = new JButton("View containers");
+		btnViewContainer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+//				setVisible(false);
+//				updateJourneyScreen.setVisible(true);
+			}
+		});
+		
+		btnViewContainer.setBounds(203, 450, 180, 29);
+		panelFindJourney.add(btnViewContainer);
+		
+		
+		updateJourneyScreen = new UpdateJourneyScreen(logisticCompanyApp, this);
+		
 	}
 	protected void searchJourney() {
 		searchResults.clear();
@@ -124,5 +154,7 @@ public class FindJourneyScreen {
 		searchField.setText("");
 		searchResults.clear();
 	}
-
+	public void addPanel(JPanel panel) {
+		frame.getContentPane().add(panel);
+	}
 }

@@ -18,12 +18,14 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import LogisticCompany.App.LogisticCompanyApp;
+import LogisticCompany.domain.Client;
 import LogisticCompany.info.JourneyInfo;
 
 
 public class ClientFindJourneyScreen {
 	
 	LogisticCompanyApp logisticCompanyApp;
+	Client client;
 	private ClientFunctionalitiesScreen parentWindow;
 	private JPanel panelClientFindJourney;
 	private DefaultListModel<JourneyInfo> searchResults;
@@ -31,9 +33,10 @@ public class ClientFindJourneyScreen {
 	private JTextField searchField;
 	private JLabel lblSearchResultDetail;
 	
-	public ClientFindJourneyScreen(LogisticCompanyApp logisticCompanyApp, ClientFunctionalitiesScreen parentWindow) {
+	public ClientFindJourneyScreen(LogisticCompanyApp logisticCompanyApp, ClientFunctionalitiesScreen parentWindow, Client client) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
+		this.client = client;
 		initialize();
 	}
 	

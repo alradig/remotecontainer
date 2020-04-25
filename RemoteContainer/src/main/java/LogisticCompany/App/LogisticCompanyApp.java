@@ -74,6 +74,7 @@ public class LogisticCompanyApp {
 	public List<JourneyInfo> searchJourney(String searchText) {
 		return journeyRepository.getAllJourneysStream()
 				.filter(j -> j.matchJourney(searchText))
+//				.filter(j -> client.matchClient(client.getEmail()))
 				.map(j -> j.asJourneyInfo())
 				.collect(Collectors.toList());
 	}
@@ -321,6 +322,10 @@ public class LogisticCompanyApp {
 		Client client = findClient(clientInfo);
 		client.setPassword(password);
 		
+	}
+	
+	public Client getClient() {
+		return client;
 	}
 	
 }

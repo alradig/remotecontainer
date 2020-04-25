@@ -1,6 +1,7 @@
 package LogisticCompany.gui;
 
 import LogisticCompany.App.LogisticCompanyApp;
+import LogisticCompany.domain.Client;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,7 +21,9 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 public class ClientFunctionalitiesScreen {
+	
 	LogisticCompanyApp logisticCompanyApp;
+	Client client;
 	RegisterJourneyScreen registerJourneyScreen;
 	ClientFindJourneyScreen clientFindJourneyScreen;
 	OtherClientScreen otherClientScreen;
@@ -39,7 +42,7 @@ public class ClientFunctionalitiesScreen {
 	MainScreen mainScreen;
 
 
-	public ClientFunctionalitiesScreen(LogisticCompanyApp logisticCompanyApp, ClientLoginScreen parentWindow, JFrame frame, MainScreen mainScreen) {
+	public ClientFunctionalitiesScreen(LogisticCompanyApp logisticCompanyApp, ClientLoginScreen parentWindow, JFrame frame, MainScreen mainScreen, Client client) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
 		this.mainScreen = mainScreen;
@@ -121,10 +124,10 @@ public class ClientFunctionalitiesScreen {
 		
 		
 		registerJourneyScreen = new RegisterJourneyScreen(logisticCompanyApp, this);
-		clientFindJourneyScreen = new ClientFindJourneyScreen(logisticCompanyApp, this);
+		clientFindJourneyScreen = new ClientFindJourneyScreen(logisticCompanyApp, this, client);
 		otherClientScreen = new OtherClientScreen(logisticCompanyApp, this);
 		giveAccessScreen = new GiveAccessScreen(logisticCompanyApp, this);
-		changePasswordScreen = new ChangePasswordScreen(logisticCompanyApp, this);
+		changePasswordScreen = new ChangePasswordScreen(logisticCompanyApp, this, client);
 		
 	}
 	
