@@ -14,7 +14,9 @@ import LogisticCompany.App.LogisticCompanyApp;
 import LogisticCompany.App.OperationNotAllowedException;
 import LogisticCompany.domain.Address;
 import LogisticCompany.info.ClientInfo;
+import LogisticCompany.info.JourneyInfo;
 import LogisticCompany.persistence.SQLRepository;
+import dtu.library.dto.UserInfo;
 
 public class MainScreen {
 	
@@ -85,6 +87,11 @@ public class MainScreen {
 		
 		logisticCompanyApp.logisticCompanyLogout();
 		
+		
+		JourneyInfo journey1 = new JourneyInfo("Banana","Copenhagen","Moskva");
+		JourneyInfo journey2 = new JourneyInfo("Chair","London","");
+		logisticCompanyApp.registerJourney(journey1);
+		logisticCompanyApp.registerJourney(journey2);
 	}
 
 	
