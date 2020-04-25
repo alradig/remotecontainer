@@ -87,11 +87,14 @@ public class MainScreen {
 		
 		logisticCompanyApp.logisticCompanyLogout();
 		
+		logisticCompanyApp.logisticCompanyLogout();
 		
-		JourneyInfo journey1 = new JourneyInfo("Banana","Copenhagen","Moskva");
-		JourneyInfo journey2 = new JourneyInfo("Chair","London","");
+		JourneyInfo journey1 = new JourneyInfo("Banana","Copenhagen","Moscow");
+		JourneyInfo journey2 = new JourneyInfo("Chair","London","Sydney");
+		JourneyInfo journey3 = new JourneyInfo("Table","Johannesburg","Beijing");
 		logisticCompanyApp.registerJourney(journey1);
 		logisticCompanyApp.registerJourney(journey2);
+		logisticCompanyApp.registerJourney(journey3);
 	}
 
 	
