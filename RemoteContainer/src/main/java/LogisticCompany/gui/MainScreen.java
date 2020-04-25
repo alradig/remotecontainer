@@ -113,7 +113,7 @@ public class MainScreen {
 	 */
 	private void initialize() {
 		frame = new JFrame("Remote Container Tracking");
-		frame.setBounds(100, 100, 404, 486);
+		frame.setBounds(100, 100, 404, 550);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new CardLayout(0, 0));
 		
