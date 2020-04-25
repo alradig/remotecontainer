@@ -34,17 +34,18 @@ public class JourneyInfo {
 	}
 	
 	public String getLocation(){
-		return location;
-		
+		return location;	
 	}
+	
 	public String getDestinationPort() {
 		return destinationPort;
 	}
-	
 	
 	public Journey asJourney() {
 		return new Journey(this);
 	}
 	
-	
+	public String toString() {
+		return "Journey from " + getOriginPort() + " to " + getDestinationPort();
+	}
 }
