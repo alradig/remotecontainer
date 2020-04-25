@@ -20,12 +20,14 @@ import javax.swing.event.ListSelectionListener;
 
 import LogisticCompany.App.LogisticCompanyApp;
 import LogisticCompany.App.OperationNotAllowedException;
+import LogisticCompany.domain.Client;
 
 
 public class ClientLoginScreen implements PropertyChangeListener {
 	
 	PropertyChangeSupport support = new PropertyChangeSupport(this);
 	LogisticCompanyApp logisticCompanyApp;
+	Client client;
 	private JPanel panelClientLogin;
 	private MainScreen parentWindow;
 	private JTextField clientEmailField;
@@ -93,6 +95,7 @@ public class ClientLoginScreen implements PropertyChangeListener {
 				
 				try {
 					loginOk = logisticCompanyApp.clientLogin(clientEmailField.getText(), passwordField.getText());
+					client = logisticCompanyApp.getClient();
 				} catch (OperationNotAllowedException exception) {
 					lblLoginStatus.setText(exception.getMessage());
 				}
@@ -122,14 +125,14 @@ public class ClientLoginScreen implements PropertyChangeListener {
 		});
 		btnBack.setBounds(21, 28, 65, 29);
 		panelClientLogin.add(btnBack);
-		clientFunctionalitiesScreen = new ClientFunctionalitiesScreen(logisticCompanyApp, this, frame, parentWindow);
+		clientFunctionalitiesScreen = new ClientFunctionalitiesScreen(logisticCompanyApp, this, frame, parentWindow, client);
 			
 	}
 
 	public void setVisible(boolean aFlag) {
 		panelClientLogin.setVisible(aFlag);
-		
 	}
+	
 	public void addPanel(JPanel panel) {
 		frame.getContentPane().add(panel);
 	}
