@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import LogisticCompany.domain.Address;
 import LogisticCompany.domain.Client;
 import LogisticCompany.domain.Container;
 import LogisticCompany.domain.Journey;
@@ -88,6 +89,15 @@ public class LogisticCompanyApp {
 		
 		clientRepository.addClient(cc.asClient());
 		setClientPassword(cc,password);
+	}
+	
+	public void registerClient(String name, String email, String password, String zipCode, String city, String street, String refPerson) throws OperationNotAllowedException {
+		ClientInfo clientInfo = new ClientInfo(name, email, refPerson);
+		
+		Address address = new Address(street,zipCode,city);
+		clientInfo.setAddress(address);
+		
+		registerClient(clientInfo, password);
 	}
 	
 	public void registerContainer(ContainerInfo c) throws OperationNotAllowedException {

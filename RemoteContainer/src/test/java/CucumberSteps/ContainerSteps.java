@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import LogisticCompany.App.LogisticCompanyApp;
+import LogisticCompany.App.OperationNotAllowedException;
 import LogisticCompany.domain.Client;
 import LogisticCompany.domain.Container;
 import LogisticCompany.domain.ContainerStatusEntry;
@@ -125,7 +126,7 @@ public class ContainerSteps {
 	}
 	
 	@When("the logistic company registers the container for the journey")
-	public void the_logistic_company_registers_the_container_for_the_journey() {
+	public void the_logistic_company_registers_the_container_for_the_journey() throws OperationNotAllowedException {
 		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
 		try {
 			logisticCompanyApp.registerContainerToJourney(containerInfo, journeyInfo);

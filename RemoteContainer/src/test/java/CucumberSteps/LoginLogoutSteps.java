@@ -108,7 +108,7 @@ public class LoginLogoutSteps {
 	}
 
 	@Then("the logistic company login succeeds")
-	public void the_logistic_company_login_succeeds() {
+	public void the_logistic_company_login_succeeds() throws OperationNotAllowedException {
 		assertTrue(logisticCompanyApp.logisticCompanyLogin(password));
 	}
 

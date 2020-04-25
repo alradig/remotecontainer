@@ -9,8 +9,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import LogisticCompany.App.LogisticCompanyApp;
+import LogisticCompany.App.OperationNotAllowedException;
 
 public class RegisterClientScreen {
 	LogisticCompanyApp logisticCompanyApp;
@@ -22,7 +24,7 @@ public class RegisterClientScreen {
 	private JLabel lblemail;
 	private JTextField passwordField;
 	private JLabel lblPassword;
-	private JTextField zipCpdeField;
+	private JTextField zipCodeField;
 	private JLabel lblZipCode;
 	private JTextField cityField;
 	private JLabel lblCity;
@@ -30,6 +32,7 @@ public class RegisterClientScreen {
 	private JLabel lblStreet;
 	private JTextField refPField;
 	private JLabel lblRefP;
+	private JLabel lblRegistrationStatus;
 
 	public RegisterClientScreen(LogisticCompanyApp logisticCompanyApp, LogisticCompanyFunctionalitiesScreen parentWindow) {
 		this.logisticCompanyApp = logisticCompanyApp;
@@ -43,6 +46,11 @@ public class RegisterClientScreen {
 		panelRegisterClient.setLayout(null);
 		panelRegisterClient.setBorder(BorderFactory.createTitledBorder(
                 "Register Client"));
+		
+		lblRegistrationStatus = new JLabel("");
+		lblRegistrationStatus.setBounds(0, 65, 300, 16);
+		lblRegistrationStatus.setHorizontalAlignment(SwingConstants.CENTER);
+		panelRegisterClient.add(lblRegistrationStatus);
 		
 		nameField = new JTextField();
 		nameField.setBounds(138, 100, 130, 26);
@@ -75,9 +83,9 @@ public class RegisterClientScreen {
 		lblAddress.setBounds(170, 225, 74, 16);
 		panelRegisterClient.add(lblAddress);
 		
-		zipCpdeField = new JTextField();
-		zipCpdeField.setBounds(138, 260, 130, 26);
-		panelRegisterClient.add(zipCpdeField);
+		zipCodeField = new JTextField();
+		zipCodeField.setBounds(138, 260, 130, 26);
+		panelRegisterClient.add(zipCodeField);
 		passwordField.setColumns(10);
 		
 		lblZipCode = new JLabel("Zip code:");
@@ -115,8 +123,33 @@ public class RegisterClientScreen {
 		JButton btnregister = new JButton("Register");
 		btnregister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// register and go back 
-				parentWindow.setVisible(true);
+				String name = nameField.getText();
+				String email = emailField.getText();
+				String password = passwordField.getText();
+				String zipCode = zipCodeField.getText();
+				String city = cityField.getText();
+				String street = streetField.getText();
+				String refPerson = refPField.getText();
+				
+				
+				if (name.equals("") || email.equals("") || password.equals("") || zipCode.equals("") || city.equals("") || street.equals("") || refPerson.equals("")) {
+					lblRegistrationStatus.setText("Missing information!");
+				}else {
+					try { 
+						logisticCompanyApp.registerClient(name, email, password, zipCode, city, street, refPerson);
+						lblRegistrationStatus.setText("Journey successfully registered!");
+					} catch (OperationNotAllowedException e1) {
+						e1.printStackTrace();
+					}
+					
+					nameField.setText("");
+					emailField.setText("");
+					passwordField.setText("");
+					zipCodeField.setText("");
+					cityField.setText("");
+					streetField.setText("");
+					refPField.setText("");
+				}
 			}
 		});
 		btnregister.setBounds(170, 425, 74, 16);

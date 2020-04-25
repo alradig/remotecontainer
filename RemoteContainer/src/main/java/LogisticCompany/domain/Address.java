@@ -6,10 +6,10 @@ import javax.persistence.Embeddable;
 public class Address {
 
 	private String street;
-	private int postCode;
+	private String postCode;
 	private String city;
 
-	public Address(String street, int postCode, String city) {
+	public Address(String street, String postCode, String city) {
 		this.street = street;
 		this.postCode = postCode;
 		this.city = city;
@@ -21,7 +21,7 @@ public class Address {
 		return street;
 	}
 
-	public int getPostCode() {
+	public String getPostCode() {
 		return postCode;
 	}
 

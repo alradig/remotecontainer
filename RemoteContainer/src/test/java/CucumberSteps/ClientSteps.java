@@ -53,7 +53,7 @@ public class ClientSteps {
 	}
 	
 	@Given("there is a client registered in the system")
-	public void there_is_a_client_registered_in_the_system() {
+	public void there_is_a_client_registered_in_the_system() throws OperationNotAllowedException {
 		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
 //		clientInfo = clientHelper.getClient();
 //		try {
@@ -70,8 +70,8 @@ public class ClientSteps {
 		logisticCompanyApp.logisticCompanyLogout();
 	}
 	
-	@Given("the client address is {string}, {int}, {string}")
-	public void the_client_address_is(String street, int postcode, String city) {
+	@Given("the client address is {string}, {string}, {string}")
+	public void the_client_address_is(String street, String postcode, String city) {
 		this.address = new Address(street,postcode,city);
 		this.clientInfo.setAddress(address);
 		
@@ -81,7 +81,7 @@ public class ClientSteps {
 	}
 	
 	@Given("the client has registered journeys")
-	public void the_client_has_registered_journeys() {
+	public void the_client_has_registered_journeys() throws OperationNotAllowedException {
 		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
 		
 		clientInfo = clientHelper.getClient();
@@ -115,7 +115,7 @@ public class ClientSteps {
 	}
 	
 	@When("the client provide access to another client")
-	public void the_client_provide_access_to_another_client() {
+	public void the_client_provide_access_to_another_client() throws OperationNotAllowedException {
 		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
 		clientInfo = clientHelper.getClient();
 		
