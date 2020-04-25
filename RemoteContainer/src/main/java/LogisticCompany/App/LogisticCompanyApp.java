@@ -46,7 +46,6 @@ public class LogisticCompanyApp {
 	
 	public Client findClient(ClientInfo cc) {
 		return clientRepository.getClient(cc.getEmail());
-		
 	}
 
 	public Container findContainer(ContainerInfo container) {
@@ -244,6 +243,23 @@ public class LogisticCompanyApp {
 		return client.getJourneysStream().map(j -> j.getContainer()).collect(Collectors.toList());	
 	}
 
+	public boolean provideAccess(String name, String email) throws  Exception{
+		ClientInfo clientInfo2 = new ClientInfo(name, email, "");
+		
+		Client client2 = findClient(clientInfo2);
+		
+		if(client2 == null) {
+			throw new OperationNotAllowedException("No client registered with the given email!");
+		}
+		
+		if(!client2.getName().equals(name)) {
+			throw new OperationNotAllowedException("Client name and email do not match!");
+		}
+		
+		provideAccess(client.asClientInfo(),client2.asClientInfo());
+		return true;
+	}
+	
 	public void provideAccess(ClientInfo clientInfo1, ClientInfo clientInfo2) {
 		Client client = findClient(clientInfo1);
 		Client client2 = findClient(clientInfo2);
