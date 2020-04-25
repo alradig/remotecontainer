@@ -19,7 +19,7 @@ public class JourneyPrinter {
 	}
 	
 	public String print() {
-			return "Journey from " + journey.getOriginPort().toString() + " to " +journey.getDestinationPort().toString();
+			return String.format("Journey from " + journey.getOriginPort() + " to " +journey.getDestinationPort()).toString();
 	}
 
 }
