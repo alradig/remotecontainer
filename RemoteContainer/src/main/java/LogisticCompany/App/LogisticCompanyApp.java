@@ -27,7 +27,6 @@ public class LogisticCompanyApp {
 	private CalenderDate calenderDate = new CalenderDate();
 	private Client client;
 	
-
 	
 	public LogisticCompanyApp(ClientRepository clientRepository, JourneyRepository journeyRepository, ContainerRepository containerRepository ) {
 		this.containerRepository = containerRepository;
@@ -163,7 +162,7 @@ public class LogisticCompanyApp {
 	}
 
 	public boolean clientLogin(String email, String password) throws OperationNotAllowedException{
-		client = findClient(new ClientInfo("",email,""));
+		this.client = findClient(new ClientInfo("",email,""));
 		
 		if (client == null) {
 			throw new OperationNotAllowedException("No client registered with the given email!");
@@ -192,12 +191,19 @@ public class LogisticCompanyApp {
 		updateContainerInfo(containerObj,containerObj.asContainerInfo());
 	}
 	
-	public void registerJourneyToClient(ClientInfo client, JourneyInfo journey) throws OperationNotAllowedException{
+	public void registerJourney(String cargo, String originPort, String endDestination) {
+		JourneyInfo journeyInfo = new JourneyInfo(cargo, originPort, endDestination);
+		
+		registerJourneyToClient(client.asClientInfo(), journeyInfo);
+	}
+	
+	public void registerJourneyToClient(ClientInfo client, JourneyInfo journey){
 		
 		Journey journeyObj = findJourney(journey);
 		Client clientObj = findClient(client);
 		
 		clientObj.addJourney(journeyObj);
+		clientRepository.updateClient(clientObj);
 	}
 
 	public void addMeasurements(Container container, ContainerStatusEntry containerStatus) throws OperationNotAllowedException {
