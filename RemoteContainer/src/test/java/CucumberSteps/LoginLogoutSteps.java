@@ -89,7 +89,16 @@ public class LoginLogoutSteps {
 	@Then("a client login fails")
 	public void a_client_login_fails() throws Exception {
 		ClientInfo clientInfo = clientHelper.getClient();
-		assertFalse(logisticCompanyApp.clientLogin(clientInfo.getEmail(),password));
+		
+		boolean loginStatus = false;	
+		
+		try {
+			loginStatus = logisticCompanyApp.clientLogin(clientInfo.getEmail(),password);
+		} catch (OperationNotAllowedException e) {
+			this.errorMessage = e.getMessage();
+		}
+
+		assertFalse(loginStatus);
 	}
 
 	@Then("a client is not logged in")
@@ -109,7 +118,11 @@ public class LoginLogoutSteps {
 
 	@Then("the logistic company login succeeds")
 	public void the_logistic_company_login_succeeds() {
-		assertTrue(logisticCompanyApp.logisticCompanyLogin(password));
+		try {
+			assertTrue(logisticCompanyApp.logisticCompanyLogin(password));
+		} catch (OperationNotAllowedException e) {
+			this.errorMessage = e.getMessage();
+		}
 	}
 
 	@Then("the logistic company is logged in")
@@ -139,7 +152,16 @@ public class LoginLogoutSteps {
 	
 	@Then("the logistic company login fails")
 	public void the_logistic_company_login_fails() throws Exception {
-		assertFalse(logisticCompanyApp.logisticCompanyLogin(password));
+		
+		boolean loginStatus = false;	
+		
+		try {
+			loginStatus = logisticCompanyApp.logisticCompanyLogin(password);
+		} catch (OperationNotAllowedException e) {
+			this.errorMessage = e.getMessage();
+		}
+
+		assertFalse(loginStatus);
 	}
 	
 	@Given("the logistic company logs out")

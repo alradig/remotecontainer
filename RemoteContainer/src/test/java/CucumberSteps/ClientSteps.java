@@ -54,7 +54,11 @@ public class ClientSteps {
 	
 	@Given("there is a client registered in the system")
 	public void there_is_a_client_registered_in_the_system() {
-		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
+		try {
+			logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
+		} catch (OperationNotAllowedException e) {
+			this.errorMessage = e.getMessage();
+		}
 //		clientInfo = clientHelper.getClient();
 //		try {
 //			logisticCompanyApp.registerClient(clientInfo, "clientclient");
@@ -82,7 +86,11 @@ public class ClientSteps {
 	
 	@Given("the client has registered journeys")
 	public void the_client_has_registered_journeys() {
-		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
+		try {
+			logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
+		} catch (OperationNotAllowedException e) {
+			this.errorMessage = e.getMessage();
+		}
 		
 		clientInfo = clientHelper.getClient();
 		
@@ -116,7 +124,11 @@ public class ClientSteps {
 	
 	@When("the client provide access to another client")
 	public void the_client_provide_access_to_another_client() {
-		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
+		try {
+			logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
+		} catch (OperationNotAllowedException e) {
+			this.errorMessage = e.getMessage();
+		}
 		clientInfo = clientHelper.getClient();
 		
 		try {
