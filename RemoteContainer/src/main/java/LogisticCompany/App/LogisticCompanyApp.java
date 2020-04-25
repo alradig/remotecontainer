@@ -117,8 +117,13 @@ public class LogisticCompanyApp {
 		else { return false; }
 	}
 	
-	public boolean logisticCompanyLogin(String password) {
+	public boolean logisticCompanyLogin(String password) throws OperationNotAllowedException {
 		logisticCompanyloggedIn = password.equals("logisticCompany123");
+		
+		if (logisticCompanyloggedIn == false) {
+			throw new OperationNotAllowedException("Incorrect password!");
+		}
+		
 		return logisticCompanyloggedIn;
 	}
 	

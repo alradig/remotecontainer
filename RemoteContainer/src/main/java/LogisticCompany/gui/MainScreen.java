@@ -84,20 +84,7 @@ public class MainScreen {
 		logisticCompanyApp.registerClient(client2, "clientclient");
 		
 		logisticCompanyApp.logisticCompanyLogout();
-//		libraryApp.adminLogin("adminadmin");
-//		UserInfo user = new UserInfo("050149-2833","Tom P. Davis","TomPDavis@rhyta.com");
-//		Address address = new Address("Oakmound Drive",60062,"Northbrook");
-//		user.setAddress(address);
-//		libraryApp.registerUser(user);
-//		BookInfo book = new BookInfo("Extreme Programming Explained", "Kent Beck","Beck99");
-//		libraryApp.addMedium(book);
-//		CdInfo cd = new CdInfo("A Fish Named Wanda","John Cleese","Cleese88");
-//		libraryApp.addMedium(cd);
-//		
-//		libraryApp.borrowMedium(book, user);
-//		libraryApp.borrowMedium(cd, user);
-//		
-//		libraryApp.adminLogout();		
+		
 	}
 
 	

@@ -2,10 +2,7 @@ package LogisticCompany.App;
 
 
 /**
- * The class represents an exception that is thrown to indicate that the 
- * intended operation is not allowed. In most cases, it is thrown, when the
- * administrator is not logged in, but the operation requires administrator authorization.
- * @author huba
+ * 
  *
  */
 public class OperationNotAllowedException extends Exception {

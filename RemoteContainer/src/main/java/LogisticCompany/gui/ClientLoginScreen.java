@@ -22,7 +22,8 @@ import LogisticCompany.App.LogisticCompanyApp;
 import LogisticCompany.App.OperationNotAllowedException;
 
 
-public class ClientLoginScreen implements PropertyChangeListener{
+public class ClientLoginScreen implements PropertyChangeListener {
+	
 	PropertyChangeSupport support = new PropertyChangeSupport(this);
 	LogisticCompanyApp logisticCompanyApp;
 	private JPanel panelClientLogin;
@@ -122,7 +123,6 @@ public class ClientLoginScreen implements PropertyChangeListener{
 		btnBack.setBounds(21, 28, 65, 29);
 		panelClientLogin.add(btnBack);
 		clientFunctionalitiesScreen = new ClientFunctionalitiesScreen(logisticCompanyApp, this, frame, parentWindow);
-
 			
 	}
 
