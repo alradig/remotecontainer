@@ -199,6 +199,8 @@ public class LogisticCompanyApp {
 	public void registerJourney(String cargo, String originPort, String endDestination) {
 		JourneyInfo journeyInfo = new JourneyInfo(cargo, originPort, endDestination);
 		
+		registerJourney(journeyInfo);
+		
 		registerJourneyToClient(client.asClientInfo(), journeyInfo);
 	}
 	
