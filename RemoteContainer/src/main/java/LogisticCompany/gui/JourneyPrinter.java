@@ -17,6 +17,7 @@ public class JourneyPrinter {
 		
 		b.append("<html>"+String.format("<b>The journey has cargo:</b>     %s<br>", journey.getCargo()));
 		b.append(String.format("<b>The journey starts at:</b>    %s<br>", journey.getOriginPort()));
+		b.append(String.format("<b>The current location:</b>    %s<br>", journey.getLocation()));
 		b.append(String.format("<b>The journey ends at:</b>   %s<br></html>" , journey.getDestinationPort()));
 		return b.toString();
 	}

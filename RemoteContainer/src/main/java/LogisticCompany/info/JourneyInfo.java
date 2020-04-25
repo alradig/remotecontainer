@@ -8,7 +8,7 @@ public class JourneyInfo {
 	private String originPort;
 	private String destinationPort;
 	private String cargo;
-	private String location;
+	private String location = " not updated ";
 	private ContainerInfo containerInfo;
 //	private ArrayList<String> journeyLog = new ArrayList<String>();
 	private JourneyStatusEntry currentJourneyStatus;
