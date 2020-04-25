@@ -110,7 +110,7 @@ public class LogisticCompanyFunctionalitiesScreen {
 		registerClientScreen = new RegisterClientScreen(logisticCompanyApp, this);
 		registerContainerScreen = new RegisterContainerScreen(logisticCompanyApp, this);
 		findClientScreen = new FindClientScreen(logisticCompanyApp, this);
-		findJourneyScreen = new FindJourneyScreen(logisticCompanyApp, this);
+		findJourneyScreen = new FindJourneyScreen(logisticCompanyApp, this, frame);
 		
 	}
 	
