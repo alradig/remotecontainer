@@ -12,14 +12,14 @@ public class JourneyPrinter {
 
 	public String printDetail() {
 		StringBuffer b = new StringBuffer();
-		b.append(String.format("<b>The journey has content:</b>     %s<br>", journey.getCargo()));
+		b.append("<html>"+String.format("<b>The journey has content:</b>     %s<br>", journey.getCargo()));
 		b.append(String.format("<b>The journey starts at:</b>    %s<br>", journey.getOriginPort()));
-		b.append(String.format("<b>The journey ends at:</b>    %s<br>" , journey.getDestinationPort()));
+		b.append(String.format("<b>The journey ends at:</b>   %s<br></html>" , journey.getDestinationPort()));
 		return b.toString();
 	}
 	
 	public String print() {
-			return "Journey from " + journey.getOriginPort() + " to " +journey.getDestinationPort();
+			return "Journey from " + journey.getOriginPort().toString() + " to " +journey.getDestinationPort().toString();
 	}
 
 }
