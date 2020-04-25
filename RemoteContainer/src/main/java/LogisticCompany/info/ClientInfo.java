@@ -56,5 +56,8 @@ public class ClientInfo {
 		this.reference_person = refPerson;
 	}
 	
-
+	public String toString() {
+		return getName() + ", " + getEmail();
+	}
+	
 }
