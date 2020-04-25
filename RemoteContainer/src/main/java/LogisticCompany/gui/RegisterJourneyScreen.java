@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import LogisticCompany.App.LogisticCompanyApp;
 
@@ -23,6 +24,7 @@ public class RegisterJourneyScreen {
 	private JLabel lblStartDestinationField;
 	private JTextField endDestinationField;
 	private JLabel lblEndestinationField;
+	private JLabel lblRegistrationStatus;
 
 	
 	public RegisterJourneyScreen(LogisticCompanyApp logisticCompanyApp, ClientFunctionalitiesScreen parentWindow) {
@@ -37,13 +39,18 @@ public class RegisterJourneyScreen {
 		panelRegisterJourney.setBorder(BorderFactory.createTitledBorder(
                 "Register Journey"));
 		
+		lblRegistrationStatus = new JLabel("");
+		lblRegistrationStatus.setBounds(0, 65, 300, 16);
+		lblRegistrationStatus.setHorizontalAlignment(SwingConstants.CENTER);
+		panelRegisterJourney.add(lblRegistrationStatus);
+		
 		cargoField = new JTextField();
 		cargoField.setBounds(138, 100, 130, 26);
 		panelRegisterJourney.add(cargoField);
 		cargoField.setColumns(10);
 		
 		lblCargo = new JLabel("Cargo:");
-		lblCargo.setBounds(50, 105, 74, 16);
+		lblCargo.setBounds(30, 105, 74, 16);
 		panelRegisterJourney.add(lblCargo);
 		
 		startDestinationField = new JTextField();
@@ -52,7 +59,7 @@ public class RegisterJourneyScreen {
 		startDestinationField.setColumns(10);
 		
 		lblStartDestinationField = new JLabel("Start destination:");
-		lblStartDestinationField.setBounds(50, 145, 74, 16);
+		lblStartDestinationField.setBounds(30, 145, 120, 16);
 		panelRegisterJourney.add(lblStartDestinationField);
 		
 		endDestinationField = new JTextField();
@@ -61,15 +68,29 @@ public class RegisterJourneyScreen {
 		endDestinationField.setColumns(10);
 		
 		lblEndestinationField = new JLabel("End destination:");
-		lblEndestinationField.setBounds(50, 185, 74, 16);
+		lblEndestinationField.setBounds(30, 185, 120, 16);
 		panelRegisterJourney.add(lblEndestinationField);
 		
 		
 		JButton btnregister = new JButton("Register");
 		btnregister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// register and go back 
-				parentWindow.setVisible(true);
+				String cargo = cargoField.getText();
+				String originPort = startDestinationField.getText();
+				String destinationPort = endDestinationField.getText();
+				
+				
+				if (cargo.equals("") || originPort.equals("") || destinationPort.equals("")){
+					lblRegistrationStatus.setText("Missing information!");
+				}else {
+					logisticCompanyApp.registerJourney(cargo, originPort, destinationPort);
+					lblRegistrationStatus.setText("Journey successfully registered!");
+					
+					cargoField.setText("");
+					startDestinationField.setText("");
+					endDestinationField.setText("");
+				}
+							
 			}
 		});
 		btnregister.setBounds(170, 225, 74, 16);
