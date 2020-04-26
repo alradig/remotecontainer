@@ -17,6 +17,7 @@ public class JourneyInfo {
 	private JourneyStatusEntry currentJourneyStatus;
 	private List<Container> containers ;
 	
+
 	public JourneyInfo(Journey journey) {
 		this.originPort = journey.getStartDestination();
 		this.destinationPort = journey.getEndDestination();
@@ -40,6 +41,10 @@ public class JourneyInfo {
 		this.containers = containers;
 	}
 	
+	public List<Container> getContainers() {
+		return containers;
+	}
+
 	public String getCargo() {
 		return cargo;
 	}

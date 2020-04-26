@@ -148,6 +148,12 @@ public class ContainerSteps {
 		
 		Journey journey = logisticCompanyApp.findJourney(journeyInfo);
 	    assertEquals(journey.getContainer().getCargo(), journey.getCargo());
+	    
+		List <JourneyInfo>  list = logisticCompanyApp.searchJourney(journeyInfo.getCargo());
+		assertEquals(list.get(0).getContainers().get(0).getCargo(),journey.getCargo());	
+		
+	    
+	    
 	}
 	
 	@When("the journey is a registered journey for the client")
