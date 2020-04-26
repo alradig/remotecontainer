@@ -54,7 +54,7 @@ public class Container {
 	}
 	
 	public ContainerInfo asContainerInfo() {
-		return new ContainerInfo(cargo);
+		return new ContainerInfo(this, this.containerStatusList);
 	}
 
 	public boolean matchContainer(String searchCargo) {

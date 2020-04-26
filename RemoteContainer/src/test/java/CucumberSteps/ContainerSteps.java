@@ -49,8 +49,7 @@ public class ContainerSteps {
 	public void there_is_an_existing_journey_and_container() throws Exception  {
 		journeyInfo = journeyHelper.registerExampleJourney();
 		containerInfo = containerHelper.registerExampleContainer();
-		
-		
+//	    List <ContainerInfo>  list = logisticCompanyApp.searchContainer(containerInfo.getCargo());
 //		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
 //		containerInfo = containerHelper.getContainer();
 //		logisticCompanyApp.registerContainer(containerInfo);

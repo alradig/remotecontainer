@@ -23,6 +23,12 @@ public class ContainerInfo {
 		this.id = container.getId();
 	}
 	
+	public ContainerInfo(Container container, List<ContainerStatusEntry> containerStatusList) {
+		this.cargo = container.getCargo();
+		this.containerStatusList = containerStatusList;
+		this.id = container.getId();
+	}
+	
 	public String getCargo() {
 		return cargo;
 	}
