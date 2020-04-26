@@ -28,6 +28,13 @@ public class JourneyInfo {
 		this.destinationPort = endDestination;
 	}
 	
+	public JourneyInfo(String cargo, String originPort, String endDestination, JourneyStatusEntry currentJourneyStatus) {
+		this.cargo = cargo;
+		this.originPort = originPort;
+		this.destinationPort = endDestination;
+		this.currentJourneyStatus = currentJourneyStatus;
+	}
+	
 	public String getCargo() {
 		return cargo;
 	}
