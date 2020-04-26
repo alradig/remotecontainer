@@ -243,6 +243,12 @@ public class LogisticCompanyApp {
 		journey.setJourneyStatus(journeyStatus);
 		journeyRepository.updateJourney(journey);
 	}
+	public void updateJourneyInfo(JourneyInfo journeyinfo, JourneyStatusEntry journeyStatus) throws OperationNotAllowedException {
+		checkLogisticCompanyLoggedIn();
+		Journey journey = findJourney(journeyinfo);
+		journey.setJourneyStatus(journeyStatus);
+		journeyRepository.updateJourney(journey);
+	}
 	
 	public void updateClientInfo(Client client, ClientInfo clientInfo) throws OperationNotAllowedException {
 		checkLogisticCompanyLoggedIn();

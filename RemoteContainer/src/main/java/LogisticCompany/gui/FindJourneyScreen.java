@@ -152,28 +152,7 @@ public class FindJourneyScreen implements ListSelectionListener, PropertyChangeL
 		
 		
 		updateJourneyScreen = new UpdateJourneyScreen(logisticCompanyApp, this, selectedjourneyInfo);
-		
-		
-		updateField = new JTextField();
-		updateField.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
 	
-			}
-		});
-		updateField.setBounds(20, 500, 180, 29); 
-		panelFindJourney.add(updateField);
-		updateField.setColumns(10);
-		
-		btnUpdate = new JButton("Update");
-		btnUpdate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				updateJourney();
-            	lblSearchResultDetail.setText(new JourneyPrinter(listSearchResult.getSelectedValue()).printDetail());
-
-			}
-		});
-		btnUpdate.setBounds(20, 525, 180, 29); 
-		panelFindJourney.add(btnUpdate);
 	
 	}
 	protected void searchJourney() {

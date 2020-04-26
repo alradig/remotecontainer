@@ -15,6 +15,8 @@ public class JourneyInfo {
 	private ContainerInfo containerInfo;
 //	private ArrayList<String> journeyLog = new ArrayList<String>();
 	private JourneyStatusEntry currentJourneyStatus;
+
+
 	private List<Container> containers ;
 	
 
@@ -44,6 +46,10 @@ public class JourneyInfo {
 	
 	public List<Container> getContainers() {
 		return containers;
+	}
+	
+	public JourneyStatusEntry getCurrentJourneyStatus() {
+		return currentJourneyStatus;
 	}
 
 	public String getCargo() {
