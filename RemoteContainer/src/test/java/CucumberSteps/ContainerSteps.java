@@ -107,6 +107,15 @@ public class ContainerSteps {
 	   assertEquals(journeyInfo.getOriginPort(),Port_of_origin);
 	   assertEquals(journeyInfo.getDestinationPort(),destination);
 	   assertEquals(journeyInfo.getCargo(),cargo);
+	   
+	   List <ClientInfo>  list = logisticCompanyApp.searchClient(helper.getClient().getEmail());
+		
+	   assertEquals(list.get(0).getJourneys().get(0).getCargo(),cargo);
+	   assertEquals(list.get(0).getJourneys().get(0).getStartDestination() ,Port_of_origin);
+	   assertEquals(list.get(0).getJourneys().get(0).getEndDestination() ,destination);
+
+	
+	   
 	}
 
 	@Given("there is a container with content {string}")

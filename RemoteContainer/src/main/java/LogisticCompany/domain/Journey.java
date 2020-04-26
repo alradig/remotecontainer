@@ -85,7 +85,7 @@ public class Journey {
 	}
 
 	public JourneyInfo asJourneyInfo() {
-		return new JourneyInfo(this.getCargo(), this.getStartDestination(), this.getEndDestination(), this.currentJourneyStatus);
+		return new JourneyInfo(this.getCargo(), this.getStartDestination(), this.getEndDestination(), this.currentJourneyStatus, this.containers);
 	}
 
 }

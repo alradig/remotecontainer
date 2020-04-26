@@ -1,6 +1,9 @@
 package LogisticCompany.info;
 
 
+import java.util.List;
+
+import LogisticCompany.domain.Container;
 import LogisticCompany.domain.Journey;
 import LogisticCompany.domain.JourneyStatusEntry;
 
@@ -12,6 +15,7 @@ public class JourneyInfo {
 	private ContainerInfo containerInfo;
 //	private ArrayList<String> journeyLog = new ArrayList<String>();
 	private JourneyStatusEntry currentJourneyStatus;
+	private List<Container> containers ;
 	
 	public JourneyInfo(Journey journey) {
 		this.originPort = journey.getStartDestination();
@@ -28,11 +32,12 @@ public class JourneyInfo {
 		this.destinationPort = endDestination;
 	}
 	
-	public JourneyInfo(String cargo, String originPort, String endDestination, JourneyStatusEntry currentJourneyStatus) {
+	public JourneyInfo(String cargo, String originPort, String endDestination, JourneyStatusEntry currentJourneyStatus, List<Container> containers) {
 		this.cargo = cargo;
 		this.originPort = originPort;
 		this.destinationPort = endDestination;
 		this.currentJourneyStatus = currentJourneyStatus;
+		this.containers = containers;
 	}
 	
 	public String getCargo() {
