@@ -45,4 +45,8 @@ public class ContainerInfo {
 		return id;
 	}
 	
+	public void addContainerStatus(ContainerStatusEntry newEntry) {
+		containerStatusList.add(newEntry);
+	}
+	
 }

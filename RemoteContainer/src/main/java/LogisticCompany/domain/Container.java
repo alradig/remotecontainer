@@ -58,11 +58,12 @@ public class Container {
 	}
 
 	public boolean matchContainer(String searchCargo) {
-		return cargo.contains(searchCargo); 
+		return cargo.contains(searchCargo);
 	}
 
 	public void updateContainerInfo(ContainerInfo containerInfo) {
-		this.cargo = containerInfo.getCargo();	
+		this.cargo = containerInfo.getCargo();
+//		this.containerStatusList = containerInfo.getContainerStatusList();
 	}
 	
 }

@@ -39,6 +39,7 @@ public class JourneyInfo {
 		this.destinationPort = endDestination;
 		this.currentJourneyStatus = currentJourneyStatus;
 		this.containers = containers;
+		this.containerInfo = containers.get(0).asContainerInfo();
 	}
 	
 	public List<Container> getContainers() {
@@ -67,5 +68,9 @@ public class JourneyInfo {
 	
 	public String toString() {
 		return "Journey from " + getOriginPort() + " to " + getDestinationPort();
+	}
+
+	public ContainerInfo getContainerInfo() {
+		return containerInfo;
 	}
 }

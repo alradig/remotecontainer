@@ -1,5 +1,7 @@
 package LogisticCompany.App;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,7 +19,9 @@ import LogisticCompany.info.JourneyInfo;
 
 
 public class LogisticCompanyApp {
-
+	
+	private PropertyChangeSupport support = new PropertyChangeSupport(this);
+	
 	private boolean logisticCompanyloggedIn = false;
 	private boolean clientLoggedIn = false;
 	private ClientRepository clientRepository;
@@ -27,7 +31,11 @@ public class LogisticCompanyApp {
 	private JourneyStatusEntry journeyStatus; 
 	private CalenderDate calenderDate = new CalenderDate();
 	private Client client;
-	
+	private JourneyInfo selectedJourneyInfo;
+	private ContainerInfo selectedContainerInfo;
+	private Container selectedContainer;
+	private Journey selectedJourney;
+	private String errorMessage;
 	
 	public LogisticCompanyApp(ClientRepository clientRepository, JourneyRepository journeyRepository, ContainerRepository containerRepository ) {
 		this.containerRepository = containerRepository;
@@ -227,7 +235,7 @@ public class LogisticCompanyApp {
 	public void addMeasurements(Container container, ContainerStatusEntry containerStatus) throws OperationNotAllowedException {
 		checkLogisticCompanyLoggedIn();
 		container.updateContainerStatus(containerStatus);		
-	
+		containerRepository.updateContainer(container);
 	}
 	
 	public void updateJourneyInfo(Journey journey, JourneyStatusEntry journeyStatus) throws OperationNotAllowedException {
@@ -327,5 +335,63 @@ public class LogisticCompanyApp {
 	public Client getClient() {
 		return client;
 	}
+	
+	public void addObserver(PropertyChangeListener l) {
+		support.addPropertyChangeListener(l);
+	}
+
+	public JourneyInfo getSelectedjourneyInfo() {
+		return selectedJourneyInfo;
+	}
+	
+	public ContainerInfo getSelectedContainerInfo() {
+		return this.selectedContainerInfo;
+	}
+
+	public void setSelectedObjects(JourneyInfo selectedJourneyInfo) {
+		this.selectedJourneyInfo = selectedJourneyInfo;
+		this.selectedJourney = findJourney(selectedJourneyInfo);
+
+		this.selectedContainer = selectedJourney.getContainer();
+		selectedContainerInfo = this.selectedContainer.asContainerInfo();
+		
+		support.firePropertyChange("SelectedJourney",null,null);
+	}
+
+	public void updateSelectedContainer(String temperature, String humidity, String airPressure) {
+		ContainerStatusEntry newEntry;
+		ContainerStatusEntry previousEntry;
+		List<ContainerStatusEntry> ContainerStatusList = selectedContainer.getContainerStatusList();
+		
+		if(!ContainerStatusList.isEmpty()) {
+			previousEntry = ContainerStatusList.get(ContainerStatusList.size()-1);
+			newEntry = new ContainerStatusEntry(previousEntry.getTemperature(), previousEntry.getAirHumidity(), previousEntry.getAtmPressure());
+		}else {
+			newEntry = new ContainerStatusEntry("not registered","not registered","not registered");
+		}
+		
+		
+		if(temperature != null && !temperature.isEmpty()) {
+			newEntry.setTemperature(temperature);
+		}
+		
+		if(!humidity.isEmpty()) {
+			newEntry.setHumidity(humidity);
+		}
+		
+		if(!airPressure.isEmpty()) {
+			newEntry.setPressure(airPressure);
+		}
+		
+		try {
+			addMeasurements(this.selectedContainer, newEntry);
+		} catch (OperationNotAllowedException e) {
+			this.errorMessage = e.getMessage();
+		}
+		
+		support.firePropertyChange("UpdatedContainer",null,null);
+	}
+	
+	
 	
 }
