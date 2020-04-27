@@ -26,7 +26,7 @@ public class ClientFunctionalitiesScreen {
 	Client client;
 	RegisterJourneyScreen registerJourneyScreen;
 	ClientFindJourneyScreen clientFindJourneyScreen;
-	OtherClientScreen otherClientScreen;
+	ClientViewOtherClientsScreen clientViewOtherClientsScreen;
 	GiveAccessScreen giveAccessScreen;
 	ChangePasswordScreen changePasswordScreen;	
 	private ClientLoginScreen parentWindow;
@@ -85,7 +85,7 @@ public class ClientFunctionalitiesScreen {
 		btnOtherClients.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				otherClientScreen.setVisible(true);
+				clientViewOtherClientsScreen.setVisible(true);
 			}
 		});
 		btnOtherClients.setBounds(95, 173, 210, 29);
@@ -125,7 +125,7 @@ public class ClientFunctionalitiesScreen {
 		
 		registerJourneyScreen = new RegisterJourneyScreen(logisticCompanyApp, this);
 		clientFindJourneyScreen = new ClientFindJourneyScreen(logisticCompanyApp, this, client);
-		otherClientScreen = new OtherClientScreen(logisticCompanyApp, this);
+		clientViewOtherClientsScreen = new ClientViewOtherClientsScreen(logisticCompanyApp, this);
 		giveAccessScreen = new GiveAccessScreen(logisticCompanyApp, this);
 		changePasswordScreen = new ChangePasswordScreen(logisticCompanyApp, this, client);
 		
