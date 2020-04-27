@@ -50,6 +50,7 @@ public class FindJourneyScreen implements ListSelectionListener, PropertyChangeL
 		this.parentWindow = parentWindow;
 		this.frame = frame;
 		this.updateContainersScreen = new UpdateContainersScreen(logisticCompanyApp, this);
+		this.updateJourneyScreen = new UpdateJourneyScreen(logisticCompanyApp, this);
 		logisticCompanyApp.addObserver(this);
 		initialize();
 	}
@@ -149,11 +150,6 @@ public class FindJourneyScreen implements ListSelectionListener, PropertyChangeL
 		btnViewContainer.setBounds(203, 450, 180, 29);
 		btnViewContainer.setEnabled(false);
 		panelFindJourney.add(btnViewContainer);
-		
-		
-		updateJourneyScreen = new UpdateJourneyScreen(logisticCompanyApp, this, selectedjourneyInfo);
-	
-	
 	}
 	protected void searchJourney() {
 		searchResults.clear();
@@ -189,20 +185,6 @@ public class FindJourneyScreen implements ListSelectionListener, PropertyChangeL
         this.selectedjourneyInfo = listSearchResult.getSelectedValue();
 	}
 	
-	protected void updateJourney() {
-		
-		journeyStatus = new JourneyStatusEntry(selectedjourneyInfo.getOriginPort(),selectedjourneyInfo.getDestinationPort(), updateField.getText());
-		Journey journey = logisticCompanyApp.findJourney(selectedjourneyInfo);
-
-		try {
-			logisticCompanyApp.updateJourneyInfo(journey, journeyStatus);
-			selectedjourneyInfo = new JourneyInfo(journey);
-			
-		} catch (OperationNotAllowedException e) {
-			errorMessage = e.getMessage();
-		} 
-	
-	}
 	
 //	protected void setSelectedContainer() {
 //		logisticCompanyApp.setSelectedContainer();
