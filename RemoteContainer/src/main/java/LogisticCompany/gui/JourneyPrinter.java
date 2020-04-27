@@ -43,7 +43,7 @@ public class JourneyPrinter {
 		}
 		
 		if (journey.getCurrentJourneyStatus() == null) {
-			location = "not registered !!";
+			location = "not registered";
 //			journeyStatus = new JourneyStatusEntry(journey.getOriginPort(),journey.getDestinationPort(),"not registered");
 			localTime = "";
 		}else { 

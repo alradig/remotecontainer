@@ -54,11 +54,11 @@ public class UpdateJourneyScreen {
 		panelUpdateJourney.add(lblJourney);
 		
 		updateField = new JTextField();
-//		updateField.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//	
-//			}
-//		});
+		updateField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+	
+			}
+		});
 		updateField.setBounds(138, 85, 130, 26);
 		panelUpdateJourney.add(updateField);
 		updateField.setColumns(10);
@@ -67,8 +67,6 @@ public class UpdateJourneyScreen {
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				updateJourney();
-				System.out.println(logisticCompanyApp.getSelectedjourneyInfo().getCargo());
-				System.out.println(logisticCompanyApp.getSelectedjourneyInfo().getCurrentJourneyStatus().getLocation());
 
 			}
 		});
@@ -90,7 +88,6 @@ public class UpdateJourneyScreen {
 	
 	protected void updateJourney() {
 		
-//		journeyStatus = new JourneyStatusEntry(logisticCompanyApp.getSelectedjourneyInfo().getOriginPort(),logisticCompanyApp.getSelectedjourneyInfo().getDestinationPort(), updateField.getText());
 		try {
 			logisticCompanyApp.updateSelectedJourney(updateField.getText());
 			
