@@ -12,7 +12,7 @@ public class InitiateDatabase {
 	
 	@Before
 	public void connectDatabase() {
-		SQLRepository repo = new SQLRepository();
+		SQLRepository repo = new SQLRepository(false);
 //		InMemoryRepository repo = new InMemoryRepository();
 		logisticCompanyApp.setRepositories(repo,repo,repo);
 		logisticCompanyApp.clearDatabase();

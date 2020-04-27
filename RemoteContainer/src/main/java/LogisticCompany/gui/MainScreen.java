@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 
 import LogisticCompany.App.LogisticCompanyApp;
 import LogisticCompany.App.OperationNotAllowedException;
-import LogisticCompany.domain.Address;
+import LogisticCompany.domain.*;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.info.ContainerInfo;
 import LogisticCompany.info.JourneyInfo;
@@ -55,7 +55,7 @@ public class MainScreen {
 	public MainScreen() throws Exception {
 		SQLRepository repository = new SQLRepository(false);
 		logisticCompanyApp = new LogisticCompanyApp(repository,repository,repository);
-		logisticCompanyApp.clearDatabase();
+//		logisticCompanyApp.clearDatabase();
 		
 		
 		try {
@@ -86,9 +86,7 @@ public class MainScreen {
 		logisticCompanyApp.registerClient(client1, "client");
 		logisticCompanyApp.registerClient(client2, "client");
 		logisticCompanyApp.registerClient(client3, "client");
-		
-		
-		
+
 		JourneyInfo journey1 = new JourneyInfo("Bananas","Copenhagen","Moscow");
 		JourneyInfo journey2 = new JourneyInfo("Chairs","London","Sydney");
 		JourneyInfo journey3 = new JourneyInfo("Tables","Johannesburg","Beijing");
@@ -110,15 +108,30 @@ public class MainScreen {
 		logisticCompanyApp.registerJourneyToClient(client3, journey5);
 		logisticCompanyApp.registerJourneyToClient(client3, journey6);
 		
+		ContainerInfo container = new ContainerInfo("empty");
+		logisticCompanyApp.registerContainer(container);
+		logisticCompanyApp.registerContainer(container);
+		for (int i=0 ; i<6 ; i++) {
+			logisticCompanyApp.registerContainer(container);
+		}
+//		
+//		logisticCompanyApp.registerContainerToJourney(container, journey1);
+//		logisticCompanyApp.registerContainerToJourney(container, journey2);
+//		logisticCompanyApp.registerContainerToJourney(container, journey3);
+//		logisticCompanyApp.registerContainerToJourney(container, journey4);
+//		logisticCompanyApp.registerContainerToJourney(container, journey5);
+//		logisticCompanyApp.registerContainerToJourney(container, journey6);
+
+		
 //		logisticCompanyApp.registerContainer(new ContainerInfo(""));
 //		logisticCompanyApp.registerContainerToJourney(new ContainerInfo(""), journey1);
 		
-		List<JourneyInfo> journeysList = Arrays.asList(journey1,journey2,journey3,journey4,journey5,journey6);
-		for (int i=0 ; i<6 ; i++) {
-			ContainerInfo container = new ContainerInfo("");
-			logisticCompanyApp.registerContainer(container);
-			logisticCompanyApp.registerContainerToJourney(container, journeysList.get(i));
-		}
+//		List<JourneyInfo> journeysList = Arrays.asList(journey1,journey2,journey3,journey4,journey5,journey6);
+//		for (int i=1 ; i<6 ; i++) {
+//			ContainerInfo container = new ContainerInfo("");
+//			logisticCompanyApp.registerContainer(container);
+//			logisticCompanyApp.registerContainerToJourney(container, journeysList.get(i));
+//		}
 		
 		logisticCompanyApp.logisticCompanyLogout();
 	}

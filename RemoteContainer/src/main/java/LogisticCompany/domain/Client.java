@@ -15,7 +15,6 @@ public class Client{
     @Id
     private long id;
 	private String name;
-//	@Id
 	private String email;
 	private String password;
 	private String refPerson;
@@ -74,7 +73,8 @@ public class Client{
 	}
 	
 	public ClientInfo asClientInfo() {
-		return new ClientInfo(this.getName(), this.getEmail(), this.getRefPerson(), this.address, this.journeys, this.accessList);
+//		return new ClientInfo(this.getName(), this.getEmail(), this.getRefPerson(), this.address, this.journeys, this.accessList);
+		return new ClientInfo(this);
 	}
 	
 	public void updateClientInfo(ClientInfo clientInfo) {

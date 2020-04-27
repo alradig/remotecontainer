@@ -1,7 +1,11 @@
 package LogisticCompany.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import LogisticCompany.domain.Address;
 import LogisticCompany.domain.Client;
+import LogisticCompany.domain.Journey;
 
 
 public class ClientInfo {
@@ -9,6 +13,7 @@ public class ClientInfo {
 	private String email;
 	private String reference_person;
 	private Address address;
+	private List<Journey> journeys = new ArrayList<>();
 	
 	
 	public ClientInfo(String name, String email, String reference_person) {
@@ -22,6 +27,7 @@ public class ClientInfo {
 		this.email = client.getEmail();
 		this.reference_person = client.getRefPerson();
 		this.address = client.getAddress();
+		this.journeys = client.getJourneyList();
 	}
 	
 	public String getReference_person() {
@@ -57,6 +63,10 @@ public class ClientInfo {
 	
 	public String toString() {
 		return getName() + ", " + getEmail();
+	}
+
+	public List<Journey> getJourneys() {
+		return journeys;
 	}
 	
 }

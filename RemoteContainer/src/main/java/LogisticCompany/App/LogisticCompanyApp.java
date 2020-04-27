@@ -82,7 +82,6 @@ public class LogisticCompanyApp {
 	public List<JourneyInfo> searchJourney(String searchText) {
 		return journeyRepository.getAllJourneysStream()
 				.filter(j -> j.matchJourney(searchText))
-//				.filter(j -> client.matchClient(client.getEmail()))
 				.map(j -> j.asJourneyInfo())
 				.collect(Collectors.toList());
 	}
@@ -113,6 +112,7 @@ public class LogisticCompanyApp {
 	}
 	
 	public void registerJourney(JourneyInfo j) {
+		System.out.println(j.getOriginPort());
 		journeyRepository.addJourney(j.asJourney());
 	}
 	
@@ -353,7 +353,7 @@ public class LogisticCompanyApp {
 		this.selectedJourney = findJourney(selectedJourneyInfo);
 
 		this.selectedContainer = selectedJourney.getContainer();
-		selectedContainerInfo = this.selectedContainer.asContainerInfo();
+		this.selectedContainerInfo = this.selectedContainer.asContainerInfo();
 		
 		support.firePropertyChange("SelectedJourney",null,null);
 	}

@@ -15,7 +15,8 @@ public class JourneyInfo {
 	private ContainerInfo containerInfo;
 //	private ArrayList<String> journeyLog = new ArrayList<String>();
 	private JourneyStatusEntry currentJourneyStatus;
-	private List<Container> containers ;
+//	private List<Container> containers ;
+	private Container container;
 	
 
 	public JourneyInfo(Journey journey) {
@@ -31,19 +32,18 @@ public class JourneyInfo {
 		this.cargo = cargo;
 		this.originPort = originPort;
 		this.destinationPort = endDestination;
+		currentJourneyStatus = new JourneyStatusEntry("not registered","not registered","not registered");
 	}
 	
-	public JourneyInfo(String cargo, String originPort, String endDestination, JourneyStatusEntry currentJourneyStatus, List<Container> containers) {
+	public JourneyInfo(String cargo, String originPort, String endDestination, JourneyStatusEntry currentJourneyStatus) {
 		this.cargo = cargo;
 		this.originPort = originPort;
 		this.destinationPort = endDestination;
 		this.currentJourneyStatus = currentJourneyStatus;
-		this.containers = containers;
-		this.containerInfo = containers.get(0).asContainerInfo();
 	}
 	
-	public List<Container> getContainers() {
-		return containers;
+	public Container getContainer() {
+		return container;
 	}
 
 	public String getCargo() {
@@ -72,5 +72,9 @@ public class JourneyInfo {
 
 	public ContainerInfo getContainerInfo() {
 		return containerInfo;
+	}
+
+	public JourneyStatusEntry getCurrentJourneyStatus() {
+		return currentJourneyStatus;
 	}
 }
