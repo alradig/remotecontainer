@@ -12,8 +12,7 @@ public class JourneyPrinter {
 	
 	private JourneyInfo journey;
 	private ContainerInfo container;
-//	private CalenderDate calenderDate = new CalenderDate();
-//	private String localTime;
+
 	private String location;
 	public JourneyPrinter(JourneyInfo journey) {
 		this.journey = journey;
@@ -42,20 +41,17 @@ public class JourneyPrinter {
 			containerStatus = containerStatusList.get(containerStatusList.size()-1);
 		}
 		
-		if (journey.getCurrentJourneyStatus()== null) {
+		if (journey.getCurrentJourneyStatus() == null) {
 			location = "not registered";
-//			journeyStatus = new JourneyStatusEntry(journey.getOriginPort(),journey.getDestinationPort(),"not registered");
-//			localTime = "";
 		}else { 
 			location = journey.getCurrentJourneyStatus().getLocation();
-//			localTime = calenderDate.getCurrentDate() + " at ";
 		}
 		
 		String tab = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 		
 		b.append("<html>"+String.format("<b>The journey has cargo:</b>     %s<br>", journey.getCargo()));
 		b.append(String.format("<b>The journey starts at:</b>    %s<br>", journey.getOriginPort()));
-		b.append(String.format("<b>The current location:</b>    %s<br>", location));
+		b.append(String.format("<b>The current location:</b>    %s<br>",  location));
 		b.append(String.format("<b>The journey ends at:</b>   %s<br>" , journey.getDestinationPort()));
 		
 		b.append(String.format("<b>Container status:</b><br>"));

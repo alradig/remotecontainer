@@ -13,6 +13,9 @@ public class JourneyStatusEntry {
 		this.location = location;
 		this.destinationPort = destinationPort;
 	}
+	public JourneyStatusEntry(String location) {
+		this.location = location;
+	}
 	
 	public JourneyStatusEntry() {
 
@@ -20,6 +23,10 @@ public class JourneyStatusEntry {
 	
 	public String getLocation(){
 		return location;
+	}
+	public void setLocation(String newLocation) {
+		this.location = newLocation;
+		
 	}
 	
 }

@@ -31,8 +31,7 @@ public class UpdateJourneyScreen {
     private JourneyStatusEntry journeyStatus;
 	private String errorMessage;
 
-	public UpdateJourneyScreen(LogisticCompanyApp logisticCompanyApp,
-			FindJourneyScreen parentWindow ) {
+	public UpdateJourneyScreen(LogisticCompanyApp logisticCompanyApp, FindJourneyScreen parentWindow ) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
 		initialize();
@@ -54,11 +53,11 @@ public class UpdateJourneyScreen {
 		panelUpdateJourney.add(lblJourney);
 		
 		updateField = new JTextField();
-//		updateField.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//	
-//			}
-//		});
+		updateField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+	
+			}
+		});
 		updateField.setBounds(138, 85, 130, 26);
 		panelUpdateJourney.add(updateField);
 		updateField.setColumns(10);
@@ -67,6 +66,8 @@ public class UpdateJourneyScreen {
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				updateJourney();
+				updateField.setText("");
+
 			}
 		});
 		btnUpdate.setBounds(148, 125, 117, 29);
@@ -87,9 +88,12 @@ public class UpdateJourneyScreen {
 	
 	protected void updateJourney() {
 		
-		journeyStatus = new JourneyStatusEntry(logisticCompanyApp.getSelectedjourneyInfo().getOriginPort(),logisticCompanyApp.getSelectedjourneyInfo().getDestinationPort(), updateField.getText());
 		try {
-			logisticCompanyApp.updateJourneyInfo(logisticCompanyApp.getSelectedjourneyInfo(), journeyStatus);
+			
+//			JourneyStatusEntry journeyStatus6 = new JourneyStatusEntry(updateField.getText());
+//			logisticCompanyApp.updateJourneyInfo(logisticCompanyApp.getSelectedjourneyInfo(), journeyStatus6);
+//			System.out.println(logisticCompanyApp.getSelectedjourneyInfo().getCurrentJourneyStatus().getLocation());
+			logisticCompanyApp.updateSelectedJourney(updateField.getText());
 			
 		} catch (OperationNotAllowedException e) {
 			errorMessage = e.getMessage();

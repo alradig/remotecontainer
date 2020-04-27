@@ -177,25 +177,22 @@ public class FindJourneyScreen implements ListSelectionListener, PropertyChangeL
             	lblSearchResultDetail.setText("");
 
             } else {
-//            	lblSearchResultDetail.setText(new JourneyPrinter(listSearchResult.getSelectedValue()).printDetail());
             	logisticCompanyApp.setSelectedObjects(listSearchResult.getSelectedValue());
             	lblSearchResultDetail.setText(new JourneyPrinter(listSearchResult.getSelectedValue(),logisticCompanyApp.getSelectedContainerInfo()).printDetail());
             }
         }
         this.selectedjourneyInfo = listSearchResult.getSelectedValue();
-	}
+	} 
 	
-	
-//	protected void setSelectedContainer() {
-//		logisticCompanyApp.setSelectedContainer();
-//	}
 	
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
 		if(evt.getPropertyName().contentEquals("UpdatedContainer")){
 			lblSearchResultDetail.setText("");
 		}
-		
+		if(evt.getPropertyName().contentEquals("UpdatedJourney")){
+			lblSearchResultDetail.setText("");
+		}
 		updateScreen();
 	}
 	
