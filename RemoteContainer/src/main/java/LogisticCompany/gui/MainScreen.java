@@ -111,8 +111,7 @@ public class MainScreen {
 		logisticCompanyApp.registerJourneyToClient(client3, journey5);
 		logisticCompanyApp.registerJourneyToClient(client3, journey6);
 		
-		JourneyStatusEntry journeyStatus6 = new JourneyStatusEntry(journey6.getOriginPort(),journey6.getDestinationPort(), "Rome");
-		logisticCompanyApp.updateJourneyInfo(journey6, journeyStatus6);
+
 //		List <JourneyInfo>  list = logisticCompanyApp.searchJourney(journey6.getOriginPort());
 //		System.out.println(list.get(0).getCurrentJourneyStatus().getLocation());
 //		System.out.println(list.get(0).getJourneys().size());

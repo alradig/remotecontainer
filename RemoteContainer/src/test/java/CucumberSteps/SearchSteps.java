@@ -52,13 +52,6 @@ public class SearchSteps {
         }
     }
 
-//    @Given("the logistic company logs out")
-//    public void the_logistic_company_logs_out() throws Exception {
-//        logisticCompanyApp.logisticCompanyLogout();
-//    }
-
- 
-
     @When("the logistic company search for {string}")
     public void the_logistic_company_search_for(String searchEmail) throws Exception {
         clients = logisticCompanyApp.searchClient(searchEmail);
@@ -72,19 +65,11 @@ public class SearchSteps {
         assertEquals(name, clients.get(0).getName());
     }
     
-//    @Given("that the client {string} is logged in")
-//    public void that_the_client_is_logged_in(String string) {
-//        assertTrue(logisticCompanyApp.clientLogin("client123"));
-//    }
-    
     @Then("no client is found")
     public void no_client_is_found() {
         assertTrue(clients.isEmpty());
     }
     
-
- 
-
     @Given("these journeys are in the system")
     public void these_journeys_are_in_the_system(List<List<String>> journeys) throws Exception {
         for (List<String> journeyInfo : journeys) {

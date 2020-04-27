@@ -62,25 +62,5 @@ public class JourneySteps {
 		assertEquals(journey.getJourneyStatus().getLocation(),journeyStatus.getLocation());
 	}
 	
-//	@When("the journey has arrived at {string}")
-//	public void the_journey_has_arrived_at(String currentLocation) {
-//		journeyStatus = new JourneyStatusEntry(currentLocation);
-//		assertEquals(journeyStatus.getCurrentLocation(),currentLocation);
-//
-//	}
-//	
-
-
-//	@Then("current position is updated with current location {string}")
-//	public void current_position_is_updated_with_current_location(String currentLocation) throws Exception  {
-//		journeyInfo = jouerneyHelper.getJourney();
-//		Journey journey = logisticCompanyApp.findJourney(journeyInfo);
-//		
-//		logisticCompanyApp.updateJourneyInfo(journey, journeyStatus);
-//		JourneyStatusEntry journeyStatus = journey.getJourneyStatus();
-//		assertEquals(journeyStatus.getJourneyLog().size(),1);
-//		assertTrue(journeyStatus.getJourneyLog().get(0).contains(currentLocation)); 
-//	    
-//	}
 
 }

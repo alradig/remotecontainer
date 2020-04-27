@@ -26,6 +26,7 @@ public class JourneyInfo {
 		this.currentJourneyStatus = journey.getJourneyStatus();
 		this.containerInfo = journey.getContainer().asContainerInfo();
 		this.location = journey.getJourneyStatus().getLocation();
+		this.containerInfo = containers.get(0).asContainerInfo();
 	}
 	
 	public JourneyInfo(String cargo, String originPort, String endDestination) {
@@ -40,7 +41,7 @@ public class JourneyInfo {
 		this.destinationPort = endDestination;
 		this.currentJourneyStatus = currentJourneyStatus;
 		this.containers = containers;
-		this.containerInfo = containers.get(0).asContainerInfo();
+//		this.containerInfo = containers.get(0).asContainerInfo();
 	}
 	
 	public List<Container> getContainers() {

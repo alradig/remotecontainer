@@ -24,7 +24,7 @@ import LogisticCompany.info.JourneyInfo;
 
 public class UpdateJourneyScreen {
 	private FindJourneyScreen parentWindow;
-	LogisticCompanyApp logisticCompanyApp;
+	LogisticCompanyApp LogisticCompanyApp ;
 	private JPanel panelUpdateJourney;
 	private JTextField updateField;
 	private JourneyInfo journeyinfo;
@@ -32,7 +32,7 @@ public class UpdateJourneyScreen {
 	private String errorMessage;
 
 	public UpdateJourneyScreen(LogisticCompanyApp logisticCompanyApp, FindJourneyScreen parentWindow ) {
-		this.logisticCompanyApp = logisticCompanyApp;
+		this.LogisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
 		initialize();
 	}
@@ -86,19 +86,13 @@ public class UpdateJourneyScreen {
 	
 	}
 	
-	protected void updateJourney() {
-		
+	protected void updateJourney() {	
 		try {
-			
-//			JourneyStatusEntry journeyStatus6 = new JourneyStatusEntry(updateField.getText());
-//			logisticCompanyApp.updateJourneyInfo(logisticCompanyApp.getSelectedjourneyInfo(), journeyStatus6);
-//			System.out.println(logisticCompanyApp.getSelectedjourneyInfo().getCurrentJourneyStatus().getLocation());
-			logisticCompanyApp.updateSelectedJourney(updateField.getText());
-			
+			LogisticCompanyApp.updateSelectedJourney(updateField.getText());
+
 		} catch (OperationNotAllowedException e) {
 			errorMessage = e.getMessage();
 		} 
-	
 	}
 	
 	public void setVisible(boolean aFlag) {
