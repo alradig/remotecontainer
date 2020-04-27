@@ -178,10 +178,11 @@ public class FindJourneyScreen implements ListSelectionListener, PropertyChangeL
 
             } else {
             	logisticCompanyApp.setSelectedObjects(listSearchResult.getSelectedValue());
-            	lblSearchResultDetail.setText(new JourneyPrinter(listSearchResult.getSelectedValue(),logisticCompanyApp.getSelectedContainerInfo()).printDetail());
+            	lblSearchResultDetail.setText(new JourneyPrinter(logisticCompanyApp).printDetail());
+//            	lblSearchResultDetail.setText(new JourneyPrinter(logisticCompanyApp.getSelectedjourneyInfo(),logisticCompanyApp.getSelectedContainerInfo()).printDetail());
             }
         }
-        this.selectedjourneyInfo = listSearchResult.getSelectedValue();
+//        this.selectedjourneyInfo = listSearchResult.getSelectedValue();
 	} 
 	
 	

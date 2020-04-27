@@ -27,7 +27,7 @@ public class ClientLoginScreen implements PropertyChangeListener {
 	
 	PropertyChangeSupport support = new PropertyChangeSupport(this);
 	LogisticCompanyApp logisticCompanyApp;
-	Client client;
+
 	private JPanel panelClientLogin;
 	private MainScreen parentWindow;
 	private JTextField clientEmailField;
@@ -95,14 +95,14 @@ public class ClientLoginScreen implements PropertyChangeListener {
 				
 				try {
 					loginOk = logisticCompanyApp.clientLogin(clientEmailField.getText(), passwordField.getText());
-					client = logisticCompanyApp.getClient();
+					
 				} catch (OperationNotAllowedException exception) {
 					lblLoginStatus.setText(exception.getMessage());
 				}
 				
 				passwordField.setText("");
 				clientEmailField.setText("");
-				
+		
 				if(loginOk) {
 					setVisible(false);
 					clientFunctionalitiesScreen.setVisible(true);
@@ -125,7 +125,7 @@ public class ClientLoginScreen implements PropertyChangeListener {
 		});
 		btnBack.setBounds(21, 28, 65, 29);
 		panelClientLogin.add(btnBack);
-		clientFunctionalitiesScreen = new ClientFunctionalitiesScreen(logisticCompanyApp, this, frame, parentWindow, client);
+		clientFunctionalitiesScreen = new ClientFunctionalitiesScreen(logisticCompanyApp, this, frame, parentWindow);
 			
 	}
 

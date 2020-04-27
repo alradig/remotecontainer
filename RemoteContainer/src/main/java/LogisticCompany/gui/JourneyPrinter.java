@@ -3,6 +3,7 @@ package LogisticCompany.gui;
 import java.util.List;
 
 import LogisticCompany.App.CalenderDate;
+import LogisticCompany.App.LogisticCompanyApp;
 import LogisticCompany.domain.ContainerStatusEntry;
 import LogisticCompany.domain.JourneyStatusEntry;
 import LogisticCompany.info.ContainerInfo;
@@ -12,22 +13,33 @@ public class JourneyPrinter {
 	
 	private JourneyInfo journey;
 	private ContainerInfo container;
+	LogisticCompanyApp  logisticCompanyApp;
+	private ContainerStatusEntry containerStatus;
+	List<ContainerStatusEntry> containerStatusList;
 
 	private String location;
 	public JourneyPrinter(JourneyInfo journey) {
 		this.journey = journey;
+		this.container = journey.getContainerInfo();
+
 	}
 	
 	public JourneyPrinter(JourneyInfo journey, ContainerInfo container) {
 		this.journey = journey;
 		this.container = container;
 	}
+	
+	public JourneyPrinter(LogisticCompanyApp  logisticCompanyApp) {
+		this.logisticCompanyApp = logisticCompanyApp;
+		this.journey = logisticCompanyApp.getSelectedJourney().asJourneyInfo();
+		this.container = logisticCompanyApp.getSelectedContainerInfo();
+	}
+
 
 	public String printDetail() {
 		StringBuffer b = new StringBuffer();
 		List<ContainerStatusEntry> containerStatusList;
 		ContainerStatusEntry containerStatus;
-		JourneyStatusEntry journeyStatus;
 		
 		if(container == null) {
 			containerStatusList = journey.getContainerInfo().getContainerStatusList();
