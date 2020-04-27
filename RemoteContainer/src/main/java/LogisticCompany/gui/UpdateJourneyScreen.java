@@ -28,15 +28,13 @@ public class UpdateJourneyScreen {
 	private JPanel panelUpdateJourney;
 	private JTextField updateField;
 	private JourneyInfo journeyinfo;
-	private Journey journey;
     private JourneyStatusEntry journeyStatus;
 	private String errorMessage;
 
 	public UpdateJourneyScreen(LogisticCompanyApp logisticCompanyApp,
-			FindJourneyScreen parentWindow,JourneyInfo selectedjourneyInfo) {
+			FindJourneyScreen parentWindow ) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
-		this.journeyinfo = selectedjourneyInfo;
 		initialize();
 	}
 	
@@ -47,8 +45,6 @@ public class UpdateJourneyScreen {
 		panelUpdateJourney.setBorder(BorderFactory.createTitledBorder(
                 "Update Journey"));
 		
-		
-		
 		JLabel lblComment = new JLabel("<html>Please enter the current location of the container</html>");
 		lblComment.setBounds(50, 50, 300, 50);
 		panelUpdateJourney.add(lblComment);
@@ -58,24 +54,24 @@ public class UpdateJourneyScreen {
 		panelUpdateJourney.add(lblJourney);
 		
 		updateField = new JTextField();
-		updateField.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-	
-			}
-		});
+//		updateField.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//	
+//			}
+//		});
 		updateField.setBounds(138, 85, 130, 26);
 		panelUpdateJourney.add(updateField);
 		updateField.setColumns(10);
 		
-		JButton btnSearch = new JButton("Update");
-		btnSearch.addActionListener(new ActionListener() {
+		JButton btnUpdate = new JButton("Update");
+		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				updateJourney();
 			}
 		});
-		btnSearch.setBounds(148, 125, 117, 29);
-		panelUpdateJourney.add(btnSearch);
-		btnSearch.getRootPane().setDefaultButton(btnSearch);
+		btnUpdate.setBounds(148, 125, 117, 29);
+		panelUpdateJourney.add(btnUpdate);
+		btnUpdate.getRootPane().setDefaultButton(btnUpdate);
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
@@ -91,10 +87,9 @@ public class UpdateJourneyScreen {
 	
 	protected void updateJourney() {
 		
-		journeyStatus = new JourneyStatusEntry(journeyinfo.getOriginPort(),journeyinfo.getDestinationPort(), updateField.getText());
-		journey = logisticCompanyApp.findJourney(journeyinfo);
+		journeyStatus = new JourneyStatusEntry(logisticCompanyApp.getSelectedjourneyInfo().getOriginPort(),logisticCompanyApp.getSelectedjourneyInfo().getDestinationPort(), updateField.getText());
 		try {
-			logisticCompanyApp.updateJourneyInfo(journey, journeyStatus);
+			logisticCompanyApp.updateJourneyInfo(logisticCompanyApp.getSelectedjourneyInfo(), journeyStatus);
 			
 		} catch (OperationNotAllowedException e) {
 			errorMessage = e.getMessage();
