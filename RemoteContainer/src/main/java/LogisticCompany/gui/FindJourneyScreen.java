@@ -61,6 +61,7 @@ public class FindJourneyScreen implements ListSelectionListener, PropertyChangeL
 	}
 	
 	private void initialize() {
+
 		panelFindJourney = new JPanel();
 		parentWindow.addPanel(panelFindJourney);
 		panelFindJourney.setLayout(null);
@@ -151,6 +152,7 @@ public class FindJourneyScreen implements ListSelectionListener, PropertyChangeL
 		btnViewContainer.setEnabled(false);
 		panelFindJourney.add(btnViewContainer);
 	}
+
 	protected void searchJourney() {
 		searchResults.clear();
 		logisticCompanyApp.searchJourney(searchField.getText())
@@ -178,11 +180,9 @@ public class FindJourneyScreen implements ListSelectionListener, PropertyChangeL
 
             } else {
             	logisticCompanyApp.setSelectedObjects(listSearchResult.getSelectedValue());
-            	lblSearchResultDetail.setText(new JourneyPrinter(logisticCompanyApp).printDetail());
-//            	lblSearchResultDetail.setText(new JourneyPrinter(logisticCompanyApp.getSelectedjourneyInfo(),logisticCompanyApp.getSelectedContainerInfo()).printDetail());
+            	lblSearchResultDetail.setText(new JourneyPrinter(logisticCompanyApp).printDetail());         	
             }
         }
-//        this.selectedjourneyInfo = listSearchResult.getSelectedValue();
 	} 
 	
 	
