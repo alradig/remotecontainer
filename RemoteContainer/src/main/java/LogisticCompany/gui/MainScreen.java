@@ -108,20 +108,10 @@ public class MainScreen {
 		logisticCompanyApp.registerJourneyToClient(client3, journey5);
 		logisticCompanyApp.registerJourneyToClient(client3, journey6);
 		
-
-//		ContainerInfo container = new ContainerInfo("empty");
-//		logisticCompanyApp.registerContainer(container);
-//		logisticCompanyApp.registerContainer(container);
-//		for (int i=0 ; i<6 ; i++) {
-//			logisticCompanyApp.registerContainer(container);
-//		}
 		
-//		logisticCompanyApp.registerContainer(new ContainerInfo(""));
-//		logisticCompanyApp.registerContainerToJourney(new ContainerInfo(""), journey1);
-		
+		ContainerInfo container = new ContainerInfo("empty");
 		List<JourneyInfo> journeysList = Arrays.asList(journey1,journey2,journey3,journey4,journey5,journey6);
 		for (int i=0 ; i<6 ; i++) {
-			ContainerInfo container = new ContainerInfo("empty");
 			logisticCompanyApp.registerContainer(container);
 			logisticCompanyApp.registerContainerToJourney(container, journeysList.get(i));
 		}
