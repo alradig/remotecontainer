@@ -4,6 +4,9 @@ import LogisticCompany.App.LogisticCompanyApp;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
@@ -19,7 +22,9 @@ import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-public class LogisticCompanyFunctionalitiesScreen {
+public class LogisticCompanyFunctionalitiesScreen  {
+
+
 	LogisticCompanyApp logisticCompanyApp;
 	RegisterClientScreen registerClientScreen;
 	RegisterContainerScreen registerContainerScreen;
@@ -122,6 +127,6 @@ public class LogisticCompanyFunctionalitiesScreen {
 		frame.getContentPane().add(panel);
 	}
 	
-
+	
 
 }

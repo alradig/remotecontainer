@@ -5,6 +5,8 @@ import LogisticCompany.domain.Client;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
@@ -20,7 +22,7 @@ import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-public class ClientFunctionalitiesScreen {
+public class ClientFunctionalitiesScreen implements PropertyChangeListener  {
 	
 	LogisticCompanyApp logisticCompanyApp;
 	Client client;
@@ -42,7 +44,7 @@ public class ClientFunctionalitiesScreen {
 	MainScreen mainScreen;
 
 
-	public ClientFunctionalitiesScreen(LogisticCompanyApp logisticCompanyApp, ClientLoginScreen parentWindow, JFrame frame, MainScreen mainScreen, Client client) {
+	public ClientFunctionalitiesScreen(LogisticCompanyApp logisticCompanyApp, ClientLoginScreen parentWindow, JFrame frame, MainScreen mainScreen) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
 		this.mainScreen = mainScreen;
@@ -76,6 +78,7 @@ public class ClientFunctionalitiesScreen {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				clientFindJourneyScreen.setVisible(true);
+
 			}
 		});
 		btnFindJourney.setBounds(95, 133, 210, 29);
@@ -139,5 +142,8 @@ public class ClientFunctionalitiesScreen {
 		frame.getContentPane().add(panel);
 	}
 	
-
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		
+	}
 }

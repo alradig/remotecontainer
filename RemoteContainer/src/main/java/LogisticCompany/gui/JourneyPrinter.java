@@ -14,10 +14,14 @@ public class JourneyPrinter {
 	private JourneyInfo journey;
 	private ContainerInfo container;
 	LogisticCompanyApp  logisticCompanyApp;
+	private ContainerStatusEntry containerStatus;
+	List<ContainerStatusEntry> containerStatusList;
 
 	private String location;
 	public JourneyPrinter(JourneyInfo journey) {
 		this.journey = journey;
+		this.container = journey.getContainerInfo();
+
 	}
 	
 	public JourneyPrinter(JourneyInfo journey, ContainerInfo container) {
@@ -36,7 +40,6 @@ public class JourneyPrinter {
 		StringBuffer b = new StringBuffer();
 		List<ContainerStatusEntry> containerStatusList;
 		ContainerStatusEntry containerStatus;
-		JourneyStatusEntry journeyStatus;
 		
 		if(container == null) {
 			containerStatusList = journey.getContainerInfo().getContainerStatusList();

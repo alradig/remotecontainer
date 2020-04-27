@@ -34,6 +34,8 @@ public class LogisticCompanyApp {
 	private ContainerInfo selectedContainerInfo;
 	private Container selectedContainer;
 	private Journey selectedJourney;
+	private Client selectedClient; 
+	private ClientInfo selectedClientInfo;
 	
 	
 	public Journey getSelectedJourney() {
@@ -201,6 +203,12 @@ public class LogisticCompanyApp {
 			throw new OperationNotAllowedException("Incorrect password!");
 		}
 		
+		if (clientLoggedIn == true) {
+			this.selectedClient = this.client;
+			this.selectedClientInfo = this.client.asClientInfo();
+			support.firePropertyChange("SelectedClient",null,null);
+		}
+
 		return clientLoggedIn;
 	}
 
@@ -351,10 +359,6 @@ public class LogisticCompanyApp {
 		
 	}
 	
-	public Client getClient() {
-		return client;
-	}
-	
 	public void addObserver(PropertyChangeListener l) {
 		support.addPropertyChangeListener(l);
 	}
@@ -375,6 +379,13 @@ public class LogisticCompanyApp {
 		selectedContainerInfo = this.selectedContainer.asContainerInfo();
 		
 		support.firePropertyChange("SelectedJourney",null,null);
+	}
+	
+	public void setSelectedClient(ClientInfo clientInfo) {
+		this.selectedClientInfo = clientInfo;
+		this.selectedClient = findClient(clientInfo);
+		
+		support.firePropertyChange("SelectedClient",null,null);
 	}
 
 	public void updateSelectedContainer(String temperature, String humidity, String airPressure) {
@@ -411,6 +422,14 @@ public class LogisticCompanyApp {
 		support.firePropertyChange("UpdatedContainer",null,null);
 	}
 	
+	public Client getSelectedClient() {
+		return selectedClient;
+	}
+	
+	public ClientInfo getSelectedClientInfo() {
+		return selectedClientInfo;
+	}
+
 	
 	
 }
