@@ -80,8 +80,8 @@ public class ChangePasswordScreen implements PropertyChangeListener  {
 					logisticCompanyApp.setClientPassword(new ClientInfo(logisticCompanyApp.getSelectedClient()), newPassword);
 					lblRegistrationStatus.setText("The password is changed!");
 				}
-				
-				parentWindow.setVisible(true);
+				newPasswordField.setText("");
+				currentPasswordField.setText("");	
 			}
 		});
 		btnregister.setBounds(170, 225, 74, 16);
