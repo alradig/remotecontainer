@@ -2,6 +2,8 @@ package LogisticCompany.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
@@ -23,9 +25,10 @@ import LogisticCompany.domain.Journey;
 import LogisticCompany.domain.JourneyStatusEntry;
 import LogisticCompany.info.JourneyInfo;
 
-public class FindJourneyScreen implements ListSelectionListener{
+public class FindJourneyScreen implements ListSelectionListener, PropertyChangeListener{
 	LogisticCompanyApp logisticCompanyApp;
 	UpdateJourneyScreen updateJourneyScreen;
+	UpdateContainersScreen updateContainersScreen;
 	private LogisticCompanyFunctionalitiesScreen parentWindow;
 	private JPanel panelFindJourney;
 	private DefaultListModel<JourneyInfo> searchResults;
@@ -33,19 +36,30 @@ public class FindJourneyScreen implements ListSelectionListener{
 	private JTextField searchField;
 	private JLabel lblSearchResultDetail;
 	private JFrame frame;
-	private JourneyInfo selectedjourneyInfo ;
+	private JourneyInfo selectedjourneyInfo;
     private JourneyStatusEntry journeyStatus;
 	private String errorMessage;
 	private JTextField updateField;
-	private JButton btnUpdate; 
+	private JButton btnUpdate;
+	private JButton btnViewContainer;
+	private JButton btnUpdateJourney;
 
 	public FindJourneyScreen(LogisticCompanyApp logisticCompanyApp,
 			LogisticCompanyFunctionalitiesScreen parentWindow, JFrame frame) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
 		this.frame = frame;
+		this.updateContainersScreen = new UpdateContainersScreen(logisticCompanyApp, this);
+		this.updateJourneyScreen = new UpdateJourneyScreen(logisticCompanyApp, this);
+		logisticCompanyApp.addObserver(this);
 		initialize();
 	}
+	
+	private void updateScreen() {
+		this.btnViewContainer.setEnabled(true);
+		btnUpdateJourney.setEnabled(true);
+	}
+	
 	private void initialize() {
 		panelFindJourney = new JPanel();
 		parentWindow.addPanel(panelFindJourney);
@@ -78,9 +92,7 @@ public class FindJourneyScreen implements ListSelectionListener{
 		listSearchResult.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listSearchResult.setSelectedIndex(0);
 		
-		
-		
-		
+
 		listSearchResult.addListSelectionListener(this);
 		listSearchResult.setVisibleRowCount(5);
         JScrollPane listScrollPane = new JScrollPane(listSearchResult);
@@ -106,6 +118,7 @@ public class FindJourneyScreen implements ListSelectionListener{
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
+				resetScreen();
 				parentWindow.setVisible(true);
 			}
 		});
@@ -113,56 +126,30 @@ public class FindJourneyScreen implements ListSelectionListener{
 		panelFindJourney.add(btnBack);
 		
 		
-		JButton btnUpdateJourney = new JButton("Update journey");
+		btnUpdateJourney = new JButton("Update journey");
 		btnUpdateJourney.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				updateJourneyScreen.setVisible(true);
-				System.out.println(selectedjourneyInfo.getCargo());
 			}
 		});
 		
 		btnUpdateJourney.setBounds(20, 450, 180, 29);
+		btnUpdateJourney.setEnabled(false);
 		panelFindJourney.add(btnUpdateJourney);
 		
 
-		JButton btnViewContainer = new JButton("View containers");
+		btnViewContainer = new JButton("Update container");
 		btnViewContainer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				setVisible(false);
-//				updateJourneyScreen.setVisible(true);
+				setVisible(false);
+				updateContainersScreen.setVisible(true);
 			}
 		});
 		
 		btnViewContainer.setBounds(203, 450, 180, 29);
+		btnViewContainer.setEnabled(false);
 		panelFindJourney.add(btnViewContainer);
-		
-		
-		updateJourneyScreen = new UpdateJourneyScreen(logisticCompanyApp, this, selectedjourneyInfo);
-		
-		
-		updateField = new JTextField();
-		updateField.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-	
-			}
-		});
-		updateField.setBounds(20, 500, 180, 29); 
-		panelFindJourney.add(updateField);
-		updateField.setColumns(10);
-		
-		btnUpdate = new JButton("Update");
-		btnUpdate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				updateJourney();
-            	lblSearchResultDetail.setText(new JourneyPrinter(listSearchResult.getSelectedValue()).printDetail());
-				System.out.println(selectedjourneyInfo.getLocation());
-
-			}
-		});
-		btnUpdate.setBounds(20, 525, 180, 29); 
-		panelFindJourney.add(btnUpdate);
-	
 	}
 	protected void searchJourney() {
 		searchResults.clear();
@@ -190,27 +177,33 @@ public class FindJourneyScreen implements ListSelectionListener{
             	lblSearchResultDetail.setText("");
 
             } else {
-            	lblSearchResultDetail.setText(new JourneyPrinter(listSearchResult.getSelectedValue()).printDetail());
-
+//            	lblSearchResultDetail.setText(new JourneyPrinter(listSearchResult.getSelectedValue()).printDetail());
+            	logisticCompanyApp.setSelectedObjects(listSearchResult.getSelectedValue());
+            	lblSearchResultDetail.setText(new JourneyPrinter(listSearchResult.getSelectedValue(),logisticCompanyApp.getSelectedContainerInfo()).printDetail());
             }
         }
         this.selectedjourneyInfo = listSearchResult.getSelectedValue();
 	}
 	
-	protected void updateJourney() {
-		
-		journeyStatus = new JourneyStatusEntry(selectedjourneyInfo.getOriginPort(),selectedjourneyInfo.getDestinationPort(), updateField.getText());
-		Journey journey = logisticCompanyApp.findJourney(selectedjourneyInfo);
-
-		try {
-			logisticCompanyApp.updateJourneyInfo(journey, journeyStatus);
-			selectedjourneyInfo = new JourneyInfo(journey);
-			
-		} catch (OperationNotAllowedException e) {
-			errorMessage = e.getMessage();
-		} 
 	
+//	protected void setSelectedContainer() {
+//		logisticCompanyApp.setSelectedContainer();
+//	}
+	
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		if(evt.getPropertyName().contentEquals("UpdatedContainer")){
+			lblSearchResultDetail.setText("");
+		}
+		
+		updateScreen();
 	}
-
+	
+	public void resetScreen() {
+		lblSearchResultDetail.setText("");
+		lblSearchResultDetail.setText("");
+		searchField.setText("");
+		searchResults.clear();
+	}
 
 }

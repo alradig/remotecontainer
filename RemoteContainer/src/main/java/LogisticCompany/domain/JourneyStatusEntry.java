@@ -8,7 +8,6 @@ public class JourneyStatusEntry {
 	private String destinationPort;
 	private String location;
 	
-
 	public JourneyStatusEntry(String originPort,String destinationPort, String location) {
 		this.originPort = originPort;
 		this.location = location;

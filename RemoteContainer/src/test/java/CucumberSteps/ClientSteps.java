@@ -105,6 +105,13 @@ public class ClientSteps {
 		}
 		
 		logisticCompanyApp.logisticCompanyLogout();
+		
+		List <ClientInfo>  list = logisticCompanyApp.searchClient(clientInfo.getEmail());
+		
+		assertEquals(list.get(0).getAddress().getCity(),clientInfo.getAddress().getCity());
+		assertEquals(list.get(0).getAddress().getStreet(),clientInfo.getAddress().getStreet());
+		assertEquals(list.get(0).getAddress().getPostCode(),clientInfo.getAddress().getPostCode());
+		
 	}
 	
 	@When("the client looks for all his\\/her containers")

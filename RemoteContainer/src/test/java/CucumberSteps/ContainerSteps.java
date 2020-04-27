@@ -49,8 +49,7 @@ public class ContainerSteps {
 	public void there_is_an_existing_journey_and_container() throws Exception  {
 		journeyInfo = journeyHelper.registerExampleJourney();
 		containerInfo = containerHelper.registerExampleContainer();
-		
-		
+//	    List <ContainerInfo>  list = logisticCompanyApp.searchContainer(containerInfo.getCargo());
 //		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
 //		containerInfo = containerHelper.getContainer();
 //		logisticCompanyApp.registerContainer(containerInfo);
@@ -107,6 +106,15 @@ public class ContainerSteps {
 	   assertEquals(journeyInfo.getOriginPort(),Port_of_origin);
 	   assertEquals(journeyInfo.getDestinationPort(),destination);
 	   assertEquals(journeyInfo.getCargo(),cargo);
+	   
+	   List <ClientInfo>  list = logisticCompanyApp.searchClient(helper.getClient().getEmail());
+		
+	   assertEquals(list.get(0).getJourneys().get(0).getCargo(),cargo);
+	   assertEquals(list.get(0).getJourneys().get(0).getStartDestination() ,Port_of_origin);
+	   assertEquals(list.get(0).getJourneys().get(0).getEndDestination() ,destination);
+
+	
+	   
 	}
 
 	@Given("there is a container with content {string}")
@@ -139,6 +147,12 @@ public class ContainerSteps {
 		
 		Journey journey = logisticCompanyApp.findJourney(journeyInfo);
 	    assertEquals(journey.getContainer().getCargo(), journey.getCargo());
+	    
+		List <JourneyInfo>  list = logisticCompanyApp.searchJourney(journeyInfo.getCargo());
+		assertEquals(list.get(0).getContainers().get(0).getCargo(),journey.getCargo());	
+		
+	    
+	    
 	}
 	
 	@When("the journey is a registered journey for the client")
