@@ -36,14 +36,13 @@ public class LogisticCompanyApp {
 	private Journey selectedJourney;
 	private Client selectedClient; 
 	private ClientInfo selectedClientInfo;
+	private String errorMessage;
 	
 	
 	public Journey getSelectedJourney() {
 		return selectedJourney;
 	}
 
-	private String errorMessage;
-	
 	public LogisticCompanyApp(ClientRepository clientRepository, JourneyRepository journeyRepository, ContainerRepository containerRepository ) {
 		this.containerRepository = containerRepository;
 		this.journeyRepository = journeyRepository;
@@ -58,7 +57,6 @@ public class LogisticCompanyApp {
 		journeyRepository.clearJourneyDatabase();
 		containerRepository.clearContainerDatabase();
 	}
-	
 	
 	public Client findClient(ClientInfo cc) {
 		return clientRepository.getClient(cc.getEmail());
@@ -285,7 +283,6 @@ public class LogisticCompanyApp {
 	
 	
 	public List<Container> getClientContainers(ClientInfo clientInfo) {
-//		List<Journey> journeyList = client.getJourneyList();
 		Client client = findClient(clientInfo);
 		return client.getJourneysStream().map(j -> j.getContainer()).collect(Collectors.toList());	
 	}

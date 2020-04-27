@@ -71,10 +71,7 @@ public class ClientSteps {
 		
 		assertEquals(clientInfo.getAddress().getStreet(),street);
 		assertEquals(clientInfo.getAddress().getPostCode(),postcode);
-		assertEquals(clientInfo.getAddress().getCity(),city);	
-		
-		
-
+		assertEquals(clientInfo.getAddress().getCity(),city);
 	}
 
 	
