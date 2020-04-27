@@ -127,10 +127,10 @@ public class ClientFunctionalitiesScreen implements PropertyChangeListener  {
 		
 		
 		registerJourneyScreen = new RegisterJourneyScreen(logisticCompanyApp, this);
-		clientFindJourneyScreen = new ClientFindJourneyScreen(logisticCompanyApp, this, client);
+		clientFindJourneyScreen = new ClientFindJourneyScreen(logisticCompanyApp, this);
 		clientViewOtherClientsScreen = new ClientViewOtherClientsScreen(logisticCompanyApp, this);
 		giveAccessScreen = new GiveAccessScreen(logisticCompanyApp, this);
-		changePasswordScreen = new ChangePasswordScreen(logisticCompanyApp, this, client);
+		changePasswordScreen = new ChangePasswordScreen(logisticCompanyApp, this);
 		
 	}
 	

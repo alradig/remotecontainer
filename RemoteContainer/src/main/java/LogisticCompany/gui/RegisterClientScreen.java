@@ -48,7 +48,7 @@ public class RegisterClientScreen {
                 "Register Client"));
 		
 		lblRegistrationStatus = new JLabel("");
-		lblRegistrationStatus.setBounds(0, 65, 300, 16);
+		lblRegistrationStatus.setBounds(0, 200, 300, 16);
 		lblRegistrationStatus.setHorizontalAlignment(SwingConstants.CENTER);
 		panelRegisterClient.add(lblRegistrationStatus);
 		
