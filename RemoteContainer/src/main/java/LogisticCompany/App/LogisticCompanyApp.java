@@ -119,7 +119,6 @@ public class LogisticCompanyApp {
 	}
 	
 	public void registerJourney(JourneyInfo j) {
-		System.out.println(j.getOriginPort());
 		journeyRepository.addJourney(j.asJourney());
 	}
 	

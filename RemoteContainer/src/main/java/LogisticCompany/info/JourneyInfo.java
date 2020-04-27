@@ -23,7 +23,6 @@ public class JourneyInfo {
 		this.destinationPort = journey.getEndDestination();
 		this.cargo = journey.getCargo();
 		this.currentJourneyStatus = journey.getJourneyStatus();
-		this.containerInfo = journey.getContainer().asContainerInfo();
 		this.location = journey.getJourneyStatus().getLocation();
 	}
 	

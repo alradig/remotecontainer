@@ -20,8 +20,6 @@ public class Journey {
 	private String originPort;
 	private String destinationPort;
 	private String cargo;
-//	@OneToMany
-//	private List<Container> containers = new ArrayList<Container>();
 	
 	private Container container;
 
@@ -51,13 +49,10 @@ public class Journey {
 	public void setContainer(Container container) {
 		this.container = container;
 		container.setCargo(this.cargo);
-//		containers.add(container);
 	}
 
 	public void setJourneyStatus(JourneyStatusEntry journeyStatus) {
-//		journeyLogs.add(this.currentJourneyStatus);
 		this.currentJourneyStatus = journeyStatus;
-//		journeyStatus.getLocation();
 	}
 
 	public JourneyStatusEntry getJourneyStatus() {
