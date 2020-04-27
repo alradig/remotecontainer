@@ -195,7 +195,9 @@ public class FindJourneyScreen implements ListSelectionListener, PropertyChangeL
 		if(evt.getPropertyName().contentEquals("UpdatedContainer")){
 			lblSearchResultDetail.setText("");
 		}
-		
+		if(evt.getPropertyName().contentEquals("UpdatedJourney")){
+			lblSearchResultDetail.setText("");
+		}
 		updateScreen();
 	}
 	

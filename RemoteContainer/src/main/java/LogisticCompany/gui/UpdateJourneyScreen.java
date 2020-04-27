@@ -67,6 +67,9 @@ public class UpdateJourneyScreen {
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				updateJourney();
+				System.out.println(logisticCompanyApp.getSelectedjourneyInfo().getCargo());
+				System.out.println(logisticCompanyApp.getSelectedjourneyInfo().getCurrentJourneyStatus().getLocation());
+
 			}
 		});
 		btnUpdate.setBounds(148, 125, 117, 29);
@@ -87,9 +90,9 @@ public class UpdateJourneyScreen {
 	
 	protected void updateJourney() {
 		
-		journeyStatus = new JourneyStatusEntry(logisticCompanyApp.getSelectedjourneyInfo().getOriginPort(),logisticCompanyApp.getSelectedjourneyInfo().getDestinationPort(), updateField.getText());
+//		journeyStatus = new JourneyStatusEntry(logisticCompanyApp.getSelectedjourneyInfo().getOriginPort(),logisticCompanyApp.getSelectedjourneyInfo().getDestinationPort(), updateField.getText());
 		try {
-			logisticCompanyApp.updateJourneyInfo(logisticCompanyApp.getSelectedjourneyInfo(), journeyStatus);
+			logisticCompanyApp.updateSelectedJourney(updateField.getText());
 			
 		} catch (OperationNotAllowedException e) {
 			errorMessage = e.getMessage();
