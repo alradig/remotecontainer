@@ -93,7 +93,7 @@ public class ContainerSteps {
 
 	@Given("the client registers a journey with cargo {string}, port of origin harbor {string} and destination  {string}")
 	public void the_client_registers_a_journey_with_cargo_port_of_origin_harbor_and_destination(String cargo, String Port_of_origin, String destination) throws Exception {
-		journeyInfo = new JourneyInfo(cargo, Port_of_origin,destination);   
+		journeyInfo = new JourneyInfo(cargo, Port_of_origin,destination);
 
 	   try {
 			logisticCompanyApp.registerJourney(journeyInfo);
@@ -112,8 +112,6 @@ public class ContainerSteps {
 	   assertEquals(list.get(0).getJourneys().get(0).getCargo(),cargo);
 	   assertEquals(list.get(0).getJourneys().get(0).getStartDestination() ,Port_of_origin);
 	   assertEquals(list.get(0).getJourneys().get(0).getEndDestination() ,destination);
-
-	
 	   
 	}
 
@@ -148,11 +146,8 @@ public class ContainerSteps {
 		Journey journey = logisticCompanyApp.findJourney(journeyInfo);
 	    assertEquals(journey.getContainer().getCargo(), journey.getCargo());
 	    
-		List <JourneyInfo>  list = logisticCompanyApp.searchJourney(journeyInfo.getCargo());
-		assertEquals(list.get(0).getContainers().get(0).getCargo(),journey.getCargo());	
-		
-	    
-	    
+//		List <JourneyInfo>  list = logisticCompanyApp.searchJourney(journeyInfo.getCargo());
+//		assertEquals(list.get(0).getContainers().get(0).getCargo(),journey.getCargo());
 	}
 	
 	@When("the journey is a registered journey for the client")

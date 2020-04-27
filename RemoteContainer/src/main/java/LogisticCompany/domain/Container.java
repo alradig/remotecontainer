@@ -27,6 +27,7 @@ public class Container {
 
 	public Container(ContainerInfo containerInfo) {
 		this.cargo = containerInfo.getCargo();
+		this.containerStatusList = containerInfo.getContainerStatusList();
 	}
 	
 	public List<ContainerStatusEntry> getContainerStatusList() {

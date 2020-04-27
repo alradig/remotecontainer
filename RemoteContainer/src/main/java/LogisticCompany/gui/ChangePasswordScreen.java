@@ -2,6 +2,7 @@ package LogisticCompany.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 import javax.swing.BorderFactory;
@@ -11,14 +12,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import LogisticCompany.App.LogisticCompanyApp;
 import LogisticCompany.domain.Client;
 import LogisticCompany.info.ClientInfo;
 
-public class ChangePasswordScreen {
+public class ChangePasswordScreen implements PropertyChangeListener  {
 	LogisticCompanyApp logisticCompanyApp;
-	Client client;
+
 	private ClientFunctionalitiesScreen parentWindow;
 	private JPanel panelChangePassword;
 	private JPasswordField currentPasswordField;
@@ -28,10 +30,9 @@ public class ChangePasswordScreen {
 	private JLabel lblRegistrationStatus;
 
 
-	public ChangePasswordScreen(LogisticCompanyApp logisticCompanyApp, ClientFunctionalitiesScreen parentWindow, Client client) {
+	public ChangePasswordScreen(LogisticCompanyApp logisticCompanyApp, ClientFunctionalitiesScreen parentWindow) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
-		this.client = client;
 		initialize();
 	}
 	
@@ -42,9 +43,10 @@ public class ChangePasswordScreen {
 		panelChangePassword.setBorder(BorderFactory.createTitledBorder(
                 "Change Password"));
 		
-//		void addObserver(PropertyChangeListener l) {
-//			support.addPropertyChangeListener(l);
-//		}
+		lblRegistrationStatus = new JLabel("");
+		lblRegistrationStatus.setBounds(0, 65, 300, 16);
+		lblRegistrationStatus.setHorizontalAlignment(SwingConstants.CENTER);
+		panelChangePassword.add(lblRegistrationStatus);
 		
 		currentPasswordField = new JPasswordField();
 		currentPasswordField.setBounds(170, 100, 130, 26);
@@ -70,16 +72,16 @@ public class ChangePasswordScreen {
 				String currentPassword = currentPasswordField.getText();
 				String newPassword = newPasswordField.getText();
 				
-				if (!currentPassword.equals(client.getPassword())) {
+				if (!currentPassword.equals(logisticCompanyApp.getSelectedClient().getPassword())) {
 					lblRegistrationStatus.setText("The password is wrong!");
 				} else if (newPassword.equals("")) {
 					lblRegistrationStatus.setText("Please enter a new password!");
 				} else {
-					logisticCompanyApp.setClientPassword(new ClientInfo(client), newPassword);
+					logisticCompanyApp.setClientPassword(new ClientInfo(logisticCompanyApp.getSelectedClient()), newPassword);
 					lblRegistrationStatus.setText("The password is changed!");
 				}
-				
-				parentWindow.setVisible(true);
+				newPasswordField.setText("");
+				currentPasswordField.setText("");	
 			}
 		});
 		btnregister.setBounds(170, 225, 74, 16);
@@ -99,6 +101,11 @@ public class ChangePasswordScreen {
 	
 	public void setVisible(boolean aFlag) {
 		panelChangePassword.setVisible(aFlag);
+		
+	}
+	
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
 		
 	}
 	

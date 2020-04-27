@@ -27,16 +27,16 @@ public class JourneyHelper {
 	}
 	
 	public JourneyInfo registerExampleJourney() throws Exception {
-		JourneyInfo usr = getJourney();
+		JourneyInfo jrn = getJourney();
 		boolean loggedIn = logisticCompanyApp.logisticCompanyLoggedIn();
 		if (!loggedIn) {
 			logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
 		}
-		logisticCompanyApp.registerJourney(usr);
+		logisticCompanyApp.registerJourney(jrn);
 		if (!loggedIn) {
 			logisticCompanyApp.logisticCompanyLogout();
 		}
-		return usr;
+		return jrn;
 	}
 	
 	private JourneyInfo exampleJourney() {

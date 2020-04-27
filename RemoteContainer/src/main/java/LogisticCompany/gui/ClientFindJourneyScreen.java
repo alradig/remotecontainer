@@ -36,10 +36,10 @@ public class ClientFindJourneyScreen implements PropertyChangeListener  {
 	private JTextField searchField;
 	private JLabel lblSearchResultDetail;
 	
-	public ClientFindJourneyScreen(LogisticCompanyApp logisticCompanyApp, ClientFunctionalitiesScreen parentWindow, Client client) {
+	public ClientFindJourneyScreen(LogisticCompanyApp logisticCompanyApp, ClientFunctionalitiesScreen parentWindow) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
-		this.client = client;
+		
 		initialize();
 	}
 	

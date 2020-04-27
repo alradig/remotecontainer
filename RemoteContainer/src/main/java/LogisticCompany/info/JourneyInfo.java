@@ -14,9 +14,8 @@ public class JourneyInfo {
 	private String location;
 	private ContainerInfo containerInfo;
 	private JourneyStatusEntry currentJourneyStatus;
+	private Container container;
 
-
-	private List<Container> containers ;
 	
 
 	public JourneyInfo(Journey journey) {
@@ -24,28 +23,25 @@ public class JourneyInfo {
 		this.destinationPort = journey.getEndDestination();
 		this.cargo = journey.getCargo();
 		this.currentJourneyStatus = journey.getJourneyStatus();
-		this.containerInfo = journey.getContainer().asContainerInfo();
 		this.location = journey.getJourneyStatus().getLocation();
-		this.containerInfo = containers.get(0).asContainerInfo();
 	}
 	
 	public JourneyInfo(String cargo, String originPort, String endDestination) {
 		this.cargo = cargo;
 		this.originPort = originPort;
 		this.destinationPort = endDestination;
+		currentJourneyStatus = new JourneyStatusEntry("not registered","not registered","not registered");
 	}
 	
-	public JourneyInfo(String cargo, String originPort, String endDestination, JourneyStatusEntry currentJourneyStatus, List<Container> containers) {
+	public JourneyInfo(String cargo, String originPort, String endDestination, JourneyStatusEntry currentJourneyStatus) {
 		this.cargo = cargo;
 		this.originPort = originPort;
 		this.destinationPort = endDestination;
 		this.currentJourneyStatus = currentJourneyStatus;
-		this.containers = containers;
-//		this.containerInfo = containers.get(0).asContainerInfo();
 	}
 	
-	public List<Container> getContainers() {
-		return containers;
+	public Container getContainer() {
+		return container;
 	}
 	
 	public JourneyStatusEntry getCurrentJourneyStatus() {

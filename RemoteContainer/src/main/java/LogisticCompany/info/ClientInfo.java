@@ -1,5 +1,5 @@
 package LogisticCompany.info;
-
+import java.util.ArrayList;
 import java.util.List;
 
 import LogisticCompany.domain.Address;
@@ -31,13 +31,16 @@ public class ClientInfo {
 		this.name = name;
 		this.email = email;
 		this.reference_person = reference_person;
-
+		this.journeys = new ArrayList<>();
 	}
 	
 	public ClientInfo(Client client) {
 		this.name = client.getName();
 		this.email = client.getEmail();
 		this.reference_person = client.getRefPerson();
+		this.address = client.getAddress();
+		this.journeys = client.getJourneyList();
+
 	}
 	
 	public List<Client> getAccessList() {

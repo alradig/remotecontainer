@@ -9,24 +9,23 @@ import javax.persistence.*;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import LogisticCompany.domain.JourneyStatusEntry;
 import LogisticCompany.info.ClientInfo;
+import LogisticCompany.info.ContainerInfo;
 import LogisticCompany.info.JourneyInfo;
 
 @Entity
 public class Journey {
-	@Id
 	@GeneratedValue
+	@Id
 	private long id;
 	private String originPort;
 	private String destinationPort;
-	private boolean isRegistered;
 	private String cargo;
-	@OneToMany
-	private List<Container> containers = new ArrayList<Container>();
+	
 	private Container container;
 
 	@Embedded
 	private JourneyStatusEntry currentJourneyStatus;
-
+	
 //	@ElementCollection
 //	private List<String> journeyLog = new ArrayList<String>(); //Consider creating a logEntry object and having a list of it here!
 //	@OneToMany
@@ -39,8 +38,8 @@ public class Journey {
 	public Journey(JourneyInfo journeyInfo) {
 		this.originPort = journeyInfo.getOriginPort();
 		this.destinationPort = journeyInfo.getDestinationPort();
-		journeyInfo.getLocation();
 		this.cargo = journeyInfo.getCargo();
+		this.currentJourneyStatus = journeyInfo.getCurrentJourneyStatus();
 	}
 
 	public Container getContainer() {
@@ -50,13 +49,10 @@ public class Journey {
 	public void setContainer(Container container) {
 		this.container = container;
 		container.setCargo(this.cargo);
-		containers.add(container);
 	}
 
 	public void setJourneyStatus(JourneyStatusEntry journeyStatus) {
-//		journeyLogs.add(this.currentJourneyStatus);
 		this.currentJourneyStatus = journeyStatus;
-//		journeyStatus.getLocation();
 	}
 
 	public JourneyStatusEntry getJourneyStatus() {
@@ -81,11 +77,15 @@ public class Journey {
 
 	public boolean matchJourney(String searchText) {
 		return cargo.contains(searchText) || originPort.contains(searchText) || destinationPort.contains(searchText);
-
 	}
 
 	public JourneyInfo asJourneyInfo() {
-		return new JourneyInfo(this.getCargo(), this.getStartDestination(), this.getEndDestination(), this.currentJourneyStatus, this.containers);
+//		return new JourneyInfo(this.getCargo(), this.getStartDestination(), this.getEndDestination(), this.currentJourneyStatus, this.containers);
+		
+		// This method should not change: if we need more things from this journey object,
+		// then we need to build a get function in this Journey object and call it in the JourneyInfo constructor
+		// and then pass the gotten information to the JoruneyInfo object inside its constructor!
+		return new JourneyInfo(this); 
 	}
 
 }

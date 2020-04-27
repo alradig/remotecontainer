@@ -15,6 +15,7 @@ public class ContainerInfo {
 	public ContainerInfo(String cargo) {
 		this.cargo = cargo;
 		this.id = 0;
+		this.containerStatusList = new ArrayList<>();
 	}
 	
 	public ContainerInfo(Container container) {

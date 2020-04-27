@@ -15,7 +15,6 @@ public class Client{
     @Id
     private long id;
 	private String name;
-//	@Id
 	private String email;
 	private String password;
 	private String refPerson;
@@ -73,9 +72,9 @@ public class Client{
 		return email.contains(searchEmail) || name.contains(searchEmail) || refPerson.contains(searchEmail);
 	}
 	
-	public ClientInfo asClientInfo() {
-		return new ClientInfo(this.getName(), this.getEmail(), this.getRefPerson(), this.address, this.journeys, this.accessList);
-
+	public ClientInfo asClientInfo() { 
+//		return new ClientInfo(this.getName(), this.getEmail(), this.getRefPerson(), this.address, this.journeys, this.accessList);
+		return new ClientInfo(this);
 	}
 	
 	

@@ -15,9 +15,7 @@ import javax.swing.JPanel;
 
 import LogisticCompany.App.LogisticCompanyApp;
 import LogisticCompany.App.OperationNotAllowedException;
-import LogisticCompany.domain.Address;
-import LogisticCompany.domain.Journey;
-import LogisticCompany.domain.JourneyStatusEntry;
+import LogisticCompany.domain.*;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.info.ContainerInfo;
 import LogisticCompany.info.JourneyInfo;
@@ -88,8 +86,7 @@ public class MainScreen {
 		logisticCompanyApp.registerClient(client1, "client");
 		logisticCompanyApp.registerClient(client2, "client");
 		logisticCompanyApp.registerClient(client3, "client");
-		
-		
+
 		JourneyInfo journey1 = new JourneyInfo("Bananas","Copenhagen","Moscow");
 		JourneyInfo journey2 = new JourneyInfo("Chairs","London","Sydney");
 		JourneyInfo journey3 = new JourneyInfo("Tables","Johannesburg","Beijing");
@@ -111,17 +108,10 @@ public class MainScreen {
 		logisticCompanyApp.registerJourneyToClient(client3, journey5);
 		logisticCompanyApp.registerJourneyToClient(client3, journey6);
 		
-
-//		List <JourneyInfo>  list = logisticCompanyApp.searchJourney(journey6.getOriginPort());
-//		System.out.println(list.get(0).getCurrentJourneyStatus().getLocation());
-//		System.out.println(list.get(0).getJourneys().size());
 		
-//		logisticCompanyApp.registerContainer(new ContainerInfo(""));
-//		logisticCompanyApp.registerContainerToJourney(new ContainerInfo(""), journey1);
-		
+		ContainerInfo container = new ContainerInfo("empty");
 		List<JourneyInfo> journeysList = Arrays.asList(journey1,journey2,journey3,journey4,journey5,journey6);
 		for (int i=0 ; i<6 ; i++) {
-			ContainerInfo container = new ContainerInfo("");
 			logisticCompanyApp.registerContainer(container);
 			logisticCompanyApp.registerContainerToJourney(container, journeysList.get(i));
 		}

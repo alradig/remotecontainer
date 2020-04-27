@@ -372,7 +372,7 @@ public class LogisticCompanyApp {
 		this.selectedJourney = findJourney(selectedJourneyInfo);
 
 		this.selectedContainer = selectedJourney.getContainer();
-		selectedContainerInfo = this.selectedContainer.asContainerInfo();
+		this.selectedContainerInfo = this.selectedContainer.asContainerInfo();
 		
 		support.firePropertyChange("SelectedJourney",null,null);
 	}
