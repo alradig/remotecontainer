@@ -247,6 +247,8 @@ public class LogisticCompanyApp {
 		Journey journey = findJourney(journeyinfo);
 		journey.setJourneyStatus(journeyStatus);
 		journeyRepository.updateJourney(journey);
+		support.firePropertyChange("UpdatedJourney",null,null);
+
 	}
 	public void updateSelectedJourney(String newLocation) throws OperationNotAllowedException {
 		checkLogisticCompanyLoggedIn();
