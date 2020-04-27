@@ -50,6 +50,7 @@ public class FindJourneyScreen implements ListSelectionListener, PropertyChangeL
 		this.parentWindow = parentWindow;
 		this.frame = frame;
 		this.updateContainersScreen = new UpdateContainersScreen(logisticCompanyApp, this);
+		this.updateJourneyScreen = new UpdateJourneyScreen(logisticCompanyApp, this);
 		logisticCompanyApp.addObserver(this);
 		initialize();
 	}
@@ -149,32 +150,6 @@ public class FindJourneyScreen implements ListSelectionListener, PropertyChangeL
 		btnViewContainer.setBounds(203, 450, 180, 29);
 		btnViewContainer.setEnabled(false);
 		panelFindJourney.add(btnViewContainer);
-		
-		
-		updateJourneyScreen = new UpdateJourneyScreen(logisticCompanyApp, this, selectedjourneyInfo);
-		
-		
-		updateField = new JTextField();
-		updateField.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-	
-			}
-		});
-		updateField.setBounds(20, 500, 180, 29); 
-		panelFindJourney.add(updateField);
-		updateField.setColumns(10);
-		
-		btnUpdate = new JButton("Update");
-		btnUpdate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				updateJourney();
-            	lblSearchResultDetail.setText(new JourneyPrinter(listSearchResult.getSelectedValue()).printDetail());
-
-			}
-		});
-		btnUpdate.setBounds(20, 525, 180, 29); 
-		panelFindJourney.add(btnUpdate);
-	
 	}
 	protected void searchJourney() {
 		searchResults.clear();
@@ -202,39 +177,23 @@ public class FindJourneyScreen implements ListSelectionListener, PropertyChangeL
             	lblSearchResultDetail.setText("");
 
             } else {
-//            	lblSearchResultDetail.setText(new JourneyPrinter(listSearchResult.getSelectedValue()).printDetail());
             	logisticCompanyApp.setSelectedObjects(listSearchResult.getSelectedValue());
-            	lblSearchResultDetail.setText(new JourneyPrinter(listSearchResult.getSelectedValue(),logisticCompanyApp.getSelectedContainerInfo()).printDetail());
+            	lblSearchResultDetail.setText(new JourneyPrinter(logisticCompanyApp).printDetail());
+//            	lblSearchResultDetail.setText(new JourneyPrinter(logisticCompanyApp.getSelectedjourneyInfo(),logisticCompanyApp.getSelectedContainerInfo()).printDetail());
             }
         }
-        this.selectedjourneyInfo = listSearchResult.getSelectedValue();
-	}
+//        this.selectedjourneyInfo = listSearchResult.getSelectedValue();
+	} 
 	
-	protected void updateJourney() {
-		
-		journeyStatus = new JourneyStatusEntry(selectedjourneyInfo.getOriginPort(),selectedjourneyInfo.getDestinationPort(), updateField.getText());
-		Journey journey = logisticCompanyApp.findJourney(selectedjourneyInfo);
-
-		try {
-			logisticCompanyApp.updateJourneyInfo(journey, journeyStatus);
-			selectedjourneyInfo = new JourneyInfo(journey);
-			
-		} catch (OperationNotAllowedException e) {
-			errorMessage = e.getMessage();
-		} 
-	
-	}
-	
-//	protected void setSelectedContainer() {
-//		logisticCompanyApp.setSelectedContainer();
-//	}
 	
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
 		if(evt.getPropertyName().contentEquals("UpdatedContainer")){
 			lblSearchResultDetail.setText("");
 		}
-		
+		if(evt.getPropertyName().contentEquals("UpdatedJourney")){
+			lblSearchResultDetail.setText("");
+		}
 		updateScreen();
 	}
 	

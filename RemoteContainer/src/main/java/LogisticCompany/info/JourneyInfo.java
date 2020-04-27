@@ -13,10 +13,9 @@ public class JourneyInfo {
 	private String cargo;
 	private String location;
 	private ContainerInfo containerInfo;
-//	private ArrayList<String> journeyLog = new ArrayList<String>();
 	private JourneyStatusEntry currentJourneyStatus;
-//	private List<Container> containers ;
 	private Container container;
+
 	
 
 	public JourneyInfo(Journey journey) {
@@ -45,6 +44,10 @@ public class JourneyInfo {
 	public Container getContainer() {
 		return container;
 	}
+	
+	public JourneyStatusEntry getCurrentJourneyStatus() {
+		return currentJourneyStatus;
+	}
 
 	public String getCargo() {
 		return cargo;
@@ -72,9 +75,5 @@ public class JourneyInfo {
 
 	public ContainerInfo getContainerInfo() {
 		return containerInfo;
-	}
-
-	public JourneyStatusEntry getCurrentJourneyStatus() {
-		return currentJourneyStatus;
 	}
 }

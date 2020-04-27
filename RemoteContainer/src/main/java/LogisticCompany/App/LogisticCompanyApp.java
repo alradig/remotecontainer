@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
 import LogisticCompany.domain.Address;
 import LogisticCompany.domain.Client;
 import LogisticCompany.domain.Container;
@@ -35,6 +34,14 @@ public class LogisticCompanyApp {
 	private ContainerInfo selectedContainerInfo;
 	private Container selectedContainer;
 	private Journey selectedJourney;
+	private Client selectedClient; 
+	private ClientInfo selectedClientInfo;
+	
+	
+	public Journey getSelectedJourney() {
+		return selectedJourney;
+	}
+
 	private String errorMessage;
 	
 	public LogisticCompanyApp(ClientRepository clientRepository, JourneyRepository journeyRepository, ContainerRepository containerRepository ) {
@@ -197,6 +204,12 @@ public class LogisticCompanyApp {
 			throw new OperationNotAllowedException("Incorrect password!");
 		}
 		
+		if (clientLoggedIn == true) {
+			this.selectedClient = this.client;
+			this.selectedClientInfo = this.client.asClientInfo();
+			support.firePropertyChange("SelectedClient",null,null);
+		}
+
 		return clientLoggedIn;
 	}
 
@@ -242,6 +255,21 @@ public class LogisticCompanyApp {
 		checkLogisticCompanyLoggedIn();
 		journey.setJourneyStatus(journeyStatus);
 		journeyRepository.updateJourney(journey);
+	}
+	
+	public void updateSelectedJourney(String newLocation) throws OperationNotAllowedException {
+		checkLogisticCompanyLoggedIn();
+		JourneyStatusEntry newEntry = new JourneyStatusEntry(this.getSelectedjourneyInfo().getOriginPort(), this.getSelectedjourneyInfo().getDestinationPort(), "not registered");
+		
+		if(!newLocation.isEmpty()) {
+			newEntry.setLocation(newLocation);
+		}
+		try {
+			updateJourneyInfo(this.selectedJourney, newEntry);
+		} catch (OperationNotAllowedException e) {
+			this.errorMessage = e.getMessage();
+		}
+		support.firePropertyChange("UpdatedJourney",null,null);
 	}
 	
 	public void updateClientInfo(Client client, ClientInfo clientInfo) throws OperationNotAllowedException {
@@ -332,16 +360,12 @@ public class LogisticCompanyApp {
 		
 	}
 	
-	public Client getClient() {
-		return client;
-	}
-	
 	public void addObserver(PropertyChangeListener l) {
 		support.addPropertyChangeListener(l);
 	}
 
 	public JourneyInfo getSelectedjourneyInfo() {
-		return selectedJourneyInfo;
+		return this.selectedJourneyInfo;
 	}
 	
 	public ContainerInfo getSelectedContainerInfo() {
@@ -356,6 +380,13 @@ public class LogisticCompanyApp {
 		this.selectedContainerInfo = this.selectedContainer.asContainerInfo();
 		
 		support.firePropertyChange("SelectedJourney",null,null);
+	}
+	
+	public void setSelectedClient(ClientInfo clientInfo) {
+		this.selectedClientInfo = clientInfo;
+		this.selectedClient = findClient(clientInfo);
+		
+		support.firePropertyChange("SelectedClient",null,null);
 	}
 
 	public void updateSelectedContainer(String temperature, String humidity, String airPressure) {
@@ -392,6 +423,14 @@ public class LogisticCompanyApp {
 		support.firePropertyChange("UpdatedContainer",null,null);
 	}
 	
+	public Client getSelectedClient() {
+		return selectedClient;
+	}
+	
+	public ClientInfo getSelectedClientInfo() {
+		return selectedClientInfo;
+	}
+
 	
 	
 }

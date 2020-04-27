@@ -2,6 +2,8 @@ package LogisticCompany.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
@@ -19,10 +21,11 @@ import javax.swing.event.ListSelectionListener;
 
 import LogisticCompany.App.LogisticCompanyApp;
 import LogisticCompany.domain.Client;
+import LogisticCompany.domain.Journey;
 import LogisticCompany.info.JourneyInfo;
 
 
-public class ClientFindJourneyScreen {
+public class ClientFindJourneyScreen implements PropertyChangeListener  {
 	
 	LogisticCompanyApp logisticCompanyApp;
 	Client client;
@@ -81,7 +84,8 @@ public class ClientFindJourneyScreen {
 		            	lblSearchResultDetail.setText("");
 
 		            } else {
-		            	lblSearchResultDetail.setText(new JourneyPrinter(listSearchResult.getSelectedValue()).printDetail());
+		            	logisticCompanyApp.setSelectedObjects(listSearchResult.getSelectedValue());
+		            	lblSearchResultDetail.setText(new JourneyPrinter(logisticCompanyApp).printDetail());
 		            }
 		        }
 			}
@@ -119,10 +123,17 @@ public class ClientFindJourneyScreen {
 		panelClientFindJourney.add(btnBack);
 	
 	}
-	protected void searchJourney() {
-		searchResults.clear();
-		logisticCompanyApp.searchJourney(searchField.getText())
-		          .forEach((m) -> {searchResults.addElement(m);});
+	protected void searchJourney() {		
+		
+		searchResults.clear();		
+		logisticCompanyApp.getSelectedClient().getJourneyList().stream().filter(j -> j.matchJourney(searchField.getText()))
+		.map(j -> j.asJourneyInfo())
+		.forEach((m) -> {searchResults.addElement(m);});
+		
+		
+		
+//		logisticCompanyApp.searchJourney(searchField.getText())
+//		          .forEach((m) -> {searchResults.addElement(m);});
 	}
 	public void setVisible(boolean aFlag) {
 		panelClientFindJourney.setVisible(aFlag);
@@ -133,4 +144,8 @@ public class ClientFindJourneyScreen {
 		searchResults.clear();
 	}
 	
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		
+	}
 }

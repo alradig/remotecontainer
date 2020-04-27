@@ -72,10 +72,11 @@ public class Client{
 		return email.contains(searchEmail) || name.contains(searchEmail) || refPerson.contains(searchEmail);
 	}
 	
-	public ClientInfo asClientInfo() {
+	public ClientInfo asClientInfo() { 
 //		return new ClientInfo(this.getName(), this.getEmail(), this.getRefPerson(), this.address, this.journeys, this.accessList);
 		return new ClientInfo(this);
 	}
+	
 	
 	public void updateClientInfo(ClientInfo clientInfo) {
 		this.name = clientInfo.getName();

@@ -15,7 +15,13 @@ import javax.swing.JPanel;
 
 import LogisticCompany.App.LogisticCompanyApp;
 import LogisticCompany.App.OperationNotAllowedException;
+<<<<<<< HEAD
 import LogisticCompany.domain.*;
+=======
+import LogisticCompany.domain.Address;
+import LogisticCompany.domain.Journey;
+import LogisticCompany.domain.JourneyStatusEntry;
+>>>>>>> branch 'master' of https://github.com/alradig/remotecontainer.git
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.info.ContainerInfo;
 import LogisticCompany.info.JourneyInfo;
@@ -71,7 +77,7 @@ public class MainScreen {
 		
 		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
 		
-		ClientInfo client1 = new ClientInfo("Expresso","expresso@exp.com","Nach Jicholson");
+		ClientInfo client1 = new ClientInfo("Expresso","t","Nach Jicholson");
 		Address address = new Address("The street 3","1700","Aarhus");
 		client1.setAddress(address);
 		
@@ -86,7 +92,12 @@ public class MainScreen {
 		logisticCompanyApp.registerClient(client1, "client");
 		logisticCompanyApp.registerClient(client2, "client");
 		logisticCompanyApp.registerClient(client3, "client");
+<<<<<<< HEAD
 
+=======
+		
+		
+>>>>>>> branch 'master' of https://github.com/alradig/remotecontainer.git
 		JourneyInfo journey1 = new JourneyInfo("Bananas","Copenhagen","Moscow");
 		JourneyInfo journey2 = new JourneyInfo("Chairs","London","Sydney");
 		JourneyInfo journey3 = new JourneyInfo("Tables","Johannesburg","Beijing");
@@ -108,6 +119,7 @@ public class MainScreen {
 		logisticCompanyApp.registerJourneyToClient(client3, journey5);
 		logisticCompanyApp.registerJourneyToClient(client3, journey6);
 		
+<<<<<<< HEAD
 		ContainerInfo container = new ContainerInfo("empty");
 		logisticCompanyApp.registerContainer(container);
 		logisticCompanyApp.registerContainer(container);
@@ -122,6 +134,12 @@ public class MainScreen {
 //		logisticCompanyApp.registerContainerToJourney(container, journey5);
 //		logisticCompanyApp.registerContainerToJourney(container, journey6);
 
+=======
+
+//		List <JourneyInfo>  list = logisticCompanyApp.searchJourney(journey6.getOriginPort());
+//		System.out.println(list.get(0).getCurrentJourneyStatus().getLocation());
+//		System.out.println(list.get(0).getJourneys().size());
+>>>>>>> branch 'master' of https://github.com/alradig/remotecontainer.git
 		
 //		logisticCompanyApp.registerContainer(new ContainerInfo(""));
 //		logisticCompanyApp.registerContainerToJourney(new ContainerInfo(""), journey1);
@@ -142,7 +160,7 @@ public class MainScreen {
 	 */
 	private void initialize() {
 		frame = new JFrame("Remote Container Tracking");
-		frame.setBounds(100, 100, 404, 550);
+		frame.setBounds(100, 100, 404, 650);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new CardLayout(0, 0));
 		
@@ -191,6 +209,5 @@ public class MainScreen {
 	public void addPanel(JPanel panel) {
 		frame.getContentPane().add(panel);
 	}
-
 
 }
