@@ -231,7 +231,6 @@ public class LogisticCompanyApp {
 		JourneyInfo journeyInfo = new JourneyInfo(cargo, originPort, endDestination);
 		
 		registerJourney(journeyInfo);
-		
 		registerJourneyToClient(client.asClientInfo(), journeyInfo);
 	}
 	
@@ -355,7 +354,7 @@ public class LogisticCompanyApp {
 	public void setClientPassword(ClientInfo clientInfo, String password) {
 		Client client = findClient(clientInfo);
 		client.setPassword(password);
-		
+		this.clientRepository.updateClient(client);
 	}
 	
 	public void addObserver(PropertyChangeListener l) {
@@ -375,7 +374,13 @@ public class LogisticCompanyApp {
 		this.selectedJourney = findJourney(selectedJourneyInfo);
 
 		this.selectedContainer = selectedJourney.getContainer();
-		this.selectedContainerInfo = this.selectedContainer.asContainerInfo();
+
+		if(!(this.selectedContainer == null)) {
+
+			this.selectedContainerInfo = this.selectedContainer.asContainerInfo();
+		}else {
+			this.selectedContainerInfo = null;
+		}
 		
 		support.firePropertyChange("SelectedJourney",null,null);
 	}

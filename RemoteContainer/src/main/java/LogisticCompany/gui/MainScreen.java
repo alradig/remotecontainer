@@ -55,7 +55,7 @@ public class MainScreen {
 	public MainScreen() throws Exception {
 		SQLRepository repository = new SQLRepository(false);
 		logisticCompanyApp = new LogisticCompanyApp(repository,repository,repository);
-		logisticCompanyApp.clearDatabase();
+//		logisticCompanyApp.clearDatabase();
 		
 		
 		try {
