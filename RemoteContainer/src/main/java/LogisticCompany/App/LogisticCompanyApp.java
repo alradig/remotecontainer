@@ -27,8 +27,7 @@ public class LogisticCompanyApp {
 	private JourneyRepository journeyRepository;
 	private ContainerRepository containerRepository;
 	private ContainerStatusEntry containerStatus; 
-	private JourneyStatusEntry journeyStatus; 
-	private CalenderDate calenderDate = new CalenderDate();
+	private JourneyStatusEntry journeyStatus;
 	private Client client;
 	private JourneyInfo selectedJourneyInfo;
 	private ContainerInfo selectedContainerInfo;
