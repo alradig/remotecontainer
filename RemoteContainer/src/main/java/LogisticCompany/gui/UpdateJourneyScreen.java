@@ -45,12 +45,8 @@ public class UpdateJourneyScreen {
                 "Update Journey"));
 		
 		JLabel lblComment = new JLabel("<html>Please enter the current location of the container</html>");
-		lblComment.setBounds(50, 50, 300, 50);
+		lblComment.setBounds(50, 80, 370, 50);
 		panelUpdateJourney.add(lblComment);
-		
-		JLabel lblJourney = new JLabel("New location:");
-		lblJourney.setBounds(20, 85, 120, 16);
-		panelUpdateJourney.add(lblJourney);
 		
 		updateField = new JTextField();
 		updateField.addActionListener(new ActionListener() {
@@ -58,7 +54,7 @@ public class UpdateJourneyScreen {
 	
 			}
 		});
-		updateField.setBounds(138, 85, 130, 26);
+		updateField.setBounds(138, 130, 130, 26);
 		panelUpdateJourney.add(updateField);
 		updateField.setColumns(10);
 		
@@ -70,7 +66,7 @@ public class UpdateJourneyScreen {
 
 			}
 		});
-		btnUpdate.setBounds(148, 125, 117, 29);
+		btnUpdate.setBounds(145, 200, 117, 29);
 		panelUpdateJourney.add(btnUpdate);
 		btnUpdate.getRootPane().setDefaultButton(btnUpdate);
 		
