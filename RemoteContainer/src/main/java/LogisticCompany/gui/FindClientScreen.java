@@ -29,6 +29,7 @@ public class FindClientScreen {
 	private DefaultListModel<ClientInfo> searchResults;
 	private JList<ClientInfo> listSearchResult;
 	private JLabel lblSearchResultDetail;
+	private JButton	btnUnregister;
 
 	public FindClientScreen(LogisticCompanyApp logisticCompanyApp,
 		LogisticCompanyFunctionalitiesScreen parentWindow) {
@@ -36,7 +37,14 @@ public class FindClientScreen {
 		this.parentWindow = parentWindow;
 		initialize();
 	}
-	
+	private void enableButtons() {
+		this.btnUnregister.setEnabled(true);
+
+	}
+	private void disableButtons() {
+		this.btnUnregister.setEnabled(false);
+
+	}
 	private void initialize() {
 		panelFindClient = new JPanel();
 		parentWindow.addPanel(panelFindClient);
@@ -80,6 +88,7 @@ public class FindClientScreen {
 
 		            } else {
 		            	lblSearchResultDetail.setText(new ClientPrinter(listSearchResult.getSelectedValue()).printDetail());
+		            	enableButtons();
 		            }
 		        }
 			}
@@ -104,12 +113,25 @@ public class FindClientScreen {
 			lblSearchResultDetail.setBounds(23, 19, 318, 137);
 			panelSearchResult.add(lblSearchResultDetail);
 		
+		btnUnregister = new JButton("Unregister Client");
+		btnUnregister.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				unregisterClient();
+			}
+
+		
+		});
+			
+		btnUnregister.setBounds(120, 450, 180, 29);
+		btnUnregister.setEnabled(false);
+		panelFindClient.add(btnUnregister);
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				parentWindow.setVisible(true);
+				disableButtons();
 			}
 		});
 		btnBack.setBounds(21, 28, 65, 29);
@@ -129,5 +151,9 @@ public class FindClientScreen {
 	public void clear() {
 		searchField.setText("");
 		searchResults.clear();
+	}
+	protected void unregisterClient() {
+		
+		
 	}
 }

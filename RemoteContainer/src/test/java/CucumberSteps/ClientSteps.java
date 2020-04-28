@@ -94,12 +94,10 @@ public class ClientSteps {
 		
 		
 		for (int i=0; i < 3; i++) {
-			try {
+	
 				logisticCompanyApp.registerJourneyToClient(clientInfo, journeysList.get(i));
 				logisticCompanyApp.registerContainerToJourney(containersList.get(i), journeysList.get(i));
-			} catch (OperationNotAllowedException e) {
-				this.errorMessage = e.getMessage();
-			}
+
 		}
 		
 		logisticCompanyApp.logisticCompanyLogout();

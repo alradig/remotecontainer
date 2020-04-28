@@ -122,6 +122,8 @@ public class LogisticCompanyApp {
 	public void unregisterClient(ClientInfo cc, JourneyInfo j)throws Exception {
 		Client client = findClient(cc);
 		logisticCompanyLoggedIn();
+		
+		
 		if (!isJourneyDone(j) )
 		{
 			throw new Exception("Can not unregister a client when a journey is on going");
