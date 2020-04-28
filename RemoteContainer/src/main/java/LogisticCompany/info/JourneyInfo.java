@@ -14,7 +14,7 @@ public class JourneyInfo {
 	private String location;
 	private ContainerInfo containerInfo;
 	private JourneyStatusEntry currentJourneyStatus;
-	private Container container;
+//	private Container container;
 
 	
 
@@ -31,6 +31,7 @@ public class JourneyInfo {
 		this.originPort = originPort;
 		this.destinationPort = endDestination;
 		currentJourneyStatus = new JourneyStatusEntry("not registered","not registered","not registered");
+//		container = new Container(new ContainerInfo(cargo));
 	}
 	
 	public JourneyInfo(String cargo, String originPort, String endDestination, JourneyStatusEntry currentJourneyStatus) {
@@ -40,9 +41,9 @@ public class JourneyInfo {
 		this.currentJourneyStatus = currentJourneyStatus;
 	}
 	
-	public Container getContainer() {
-		return container;
-	}
+//	public Container getContainer() {
+//		return container;
+//	}
 	
 	public JourneyStatusEntry getCurrentJourneyStatus() {
 		return currentJourneyStatus;

@@ -36,14 +36,13 @@ public class LogisticCompanyApp {
 	private Journey selectedJourney;
 	private Client selectedClient; 
 	private ClientInfo selectedClientInfo;
+	private String errorMessage;
 	
 	
 	public Journey getSelectedJourney() {
 		return selectedJourney;
 	}
 
-	private String errorMessage;
-	
 	public LogisticCompanyApp(ClientRepository clientRepository, JourneyRepository journeyRepository, ContainerRepository containerRepository ) {
 		this.containerRepository = containerRepository;
 		this.journeyRepository = journeyRepository;
@@ -58,7 +57,6 @@ public class LogisticCompanyApp {
 		journeyRepository.clearJourneyDatabase();
 		containerRepository.clearContainerDatabase();
 	}
-	
 	
 	public Client findClient(ClientInfo cc) {
 		return clientRepository.getClient(cc.getEmail());
@@ -231,7 +229,6 @@ public class LogisticCompanyApp {
 		JourneyInfo journeyInfo = new JourneyInfo(cargo, originPort, endDestination);
 		
 		registerJourney(journeyInfo);
-		
 		registerJourneyToClient(client.asClientInfo(), journeyInfo);
 	}
 	
@@ -285,7 +282,6 @@ public class LogisticCompanyApp {
 	
 	
 	public List<Container> getClientContainers(ClientInfo clientInfo) {
-//		List<Journey> journeyList = client.getJourneyList();
 		Client client = findClient(clientInfo);
 		return client.getJourneysStream().map(j -> j.getContainer()).collect(Collectors.toList());	
 	}
@@ -355,7 +351,7 @@ public class LogisticCompanyApp {
 	public void setClientPassword(ClientInfo clientInfo, String password) {
 		Client client = findClient(clientInfo);
 		client.setPassword(password);
-		
+		this.clientRepository.updateClient(client);
 	}
 	
 	public void addObserver(PropertyChangeListener l) {
@@ -375,7 +371,13 @@ public class LogisticCompanyApp {
 		this.selectedJourney = findJourney(selectedJourneyInfo);
 
 		this.selectedContainer = selectedJourney.getContainer();
-		this.selectedContainerInfo = this.selectedContainer.asContainerInfo();
+
+		if(!(this.selectedContainer == null)) {
+
+			this.selectedContainerInfo = this.selectedContainer.asContainerInfo();
+		}else {
+			this.selectedContainerInfo = null;
+		}
 		
 		support.firePropertyChange("SelectedJourney",null,null);
 	}

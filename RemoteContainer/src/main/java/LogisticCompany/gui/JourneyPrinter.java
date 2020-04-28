@@ -18,11 +18,11 @@ public class JourneyPrinter {
 	List<ContainerStatusEntry> containerStatusList;
 
 	private String location;
-	public JourneyPrinter(JourneyInfo journey) {
-		this.journey = journey;
-		this.container = journey.getContainerInfo();
-
-	}
+//	public JourneyPrinter(JourneyInfo journey) {
+//		this.journey = journey;
+//		this.container = journey.getContainerInfo();
+//
+//	}
 	
 	public JourneyPrinter(JourneyInfo journey, ContainerInfo container) {
 		this.journey = journey;
@@ -40,18 +40,13 @@ public class JourneyPrinter {
 		StringBuffer b = new StringBuffer();
 		List<ContainerStatusEntry> containerStatusList;
 		ContainerStatusEntry containerStatus;
+		String tab = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 		
-		if(container == null) {
-			containerStatusList = journey.getContainerInfo().getContainerStatusList();
-		}else {
-			containerStatusList = container.getContainerStatusList();
-		}
-		
-		if(containerStatusList.isEmpty()) {
-			containerStatus = new ContainerStatusEntry("not registered","not registered","not registered");
-		}else {
-			containerStatus = containerStatusList.get(containerStatusList.size()-1);
-		}
+//		if(container == null) {
+//			containerStatusList = journey.getContainerInfo().getContainerStatusList();
+//		}else {
+//			containerStatusList = container.getContainerStatusList();
+//		}
 		
 		if (journey.getCurrentJourneyStatus() == null) {
 			location = "not registered";
@@ -59,17 +54,27 @@ public class JourneyPrinter {
 			location = journey.getCurrentJourneyStatus().getLocation();
 		}
 		
-		String tab = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-		
 		b.append("<html>"+String.format("<b>The journey has cargo:</b>     %s<br>", journey.getCargo()));
 		b.append(String.format("<b>The journey starts at:</b>    %s<br>", journey.getOriginPort()));
 		b.append(String.format("<b>The current location:</b>    %s<br>",  location));
 		b.append(String.format("<b>The journey ends at:</b>   %s<br>" , journey.getDestinationPort()));
 		
-		b.append(String.format("<b>Container status:</b><br>"));
-		b.append(String.format("<b>%slatest temperature:</b>   %s<br>" ,tab , containerStatus.getTemperature()));
-		b.append(String.format("<b>%slatest humidity:</b>   %s<br>" ,tab , containerStatus.getAirHumidity()));
-		b.append(String.format("<b>%slatest atm pressure:</b>   %s<br></html>" ,tab , containerStatus.getAtmPressure()));
+		if(!(container == null)) {
+			containerStatusList = container.getContainerStatusList();
+			
+			if(containerStatusList.isEmpty()) {
+				containerStatus = new ContainerStatusEntry("not registered","not registered","not registered");
+			}else {
+				containerStatus = containerStatusList.get(containerStatusList.size()-1);
+			}
+			
+			b.append(String.format("<b>Container status:</b><br>"));
+			b.append(String.format("<b>%slatest temperature:</b>   %s<br>" ,tab , containerStatus.getTemperature()));
+			b.append(String.format("<b>%slatest humidity:</b>   %s<br>" ,tab , containerStatus.getAirHumidity()));
+			b.append(String.format("<b>%slatest atm pressure:</b>   %s<br></html>" ,tab , containerStatus.getAtmPressure()));
+		}else {
+			b.append(String.format("<b>Container status: </b>a container has not yet been registered for this journey<br>"));
+		}
 		
 		return b.toString();
 	}

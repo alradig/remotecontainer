@@ -20,6 +20,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import LogisticCompany.App.LogisticCompanyApp;
+import LogisticCompany.info.ClientInfo;
 import LogisticCompany.info.JourneyInfo;
 
 public class ClientViewOtherClientsScreen implements ListSelectionListener, PropertyChangeListener{
@@ -28,8 +29,8 @@ public class ClientViewOtherClientsScreen implements ListSelectionListener, Prop
 	private JPanel panelOtherClient;
 	private JTextField searchField;
 	private JButton btnUpdateJourney;
-	private DefaultListModel<JourneyInfo> searchResults;
-	private JList<JourneyInfo> listSearchResult;
+	private DefaultListModel<ClientInfo> searchResults;
+	private JList<ClientInfo> listSearchResult;
 	private JLabel lblSearchResultDetail;
 	
 	
@@ -96,7 +97,7 @@ public class ClientViewOtherClientsScreen implements ListSelectionListener, Prop
 		JButton btnSearch = new JButton("Search");
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//the same method as above needs to be implemented here.
+				searchAccessibleClients();
 			}});
 		btnSearch.setBounds(148, 68, 117, 29);
 		panelOtherClient.add(btnSearch);
@@ -141,15 +142,21 @@ public class ClientViewOtherClientsScreen implements ListSelectionListener, Prop
             	lblSearchResultDetail.setText("");
 
             } else {
-            	logisticCompanyApp.setSelectedObjects(listSearchResult.getSelectedValue());
+            	logisticCompanyApp.setSelectedClient(listSearchResult.getSelectedValue());
             	//lblSearchResultDetail.setText(new JourneyPrinter(listSearchResult.getSelectedValue(),logisticCompanyApp.getSelectedContainerInfo()).printDetail());
             }
         }
         //this.selectedClientInfo = listSearchResult.getSelectedValue();
 	}
 	
-	protected void searchClient() {
+	protected void searchAccessibleClients() {
 		searchResults.clear();
+		logisticCompanyApp.getSelectedClient().getAccessList().forEach(c -> {
+			searchResults.addElement(c.asClientInfo());
+		});
+		
+		
+	
 		//logisticCompanyApp.searchJourney(searchField.getText())
 		         // .forEach((m) -> {searchResults.addElement(m);});
 	}
