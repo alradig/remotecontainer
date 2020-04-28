@@ -37,7 +37,7 @@ public class GiveAccessScreen {
                 "Give Access to Other Clients"));
 		
 		JLabel lblComment = new JLabel("<html>Enter the name and email of the user you want to give access to your journey information.</html>");
-		lblComment.setBounds(50, 50, 300, 50);
+		lblComment.setBounds(50, 75, 300, 50);
 		panelGiveAccess.add(lblComment);
 		nameField = new JTextField();
 		
@@ -79,7 +79,7 @@ public class GiveAccessScreen {
 				}
 			}
 		});
-		btnregister.setBounds(170, 255, 74, 16);
+		btnregister.setBounds(170, 255, 74, 29);
 		panelGiveAccess.add(btnregister);
 		
 		

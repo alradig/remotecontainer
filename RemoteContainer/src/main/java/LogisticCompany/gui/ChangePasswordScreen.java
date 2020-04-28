@@ -84,7 +84,7 @@ public class ChangePasswordScreen implements PropertyChangeListener  {
 				currentPasswordField.setText("");	
 			}
 		});
-		btnregister.setBounds(170, 225, 74, 16);
+		btnregister.setBounds(155, 230, 100, 29);
 		panelChangePassword.add(btnregister);
 		
 		
