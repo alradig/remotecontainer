@@ -27,13 +27,11 @@ public class LogisticCompanyFunctionalitiesScreen  {
 
 	LogisticCompanyApp logisticCompanyApp;
 	RegisterClientScreen registerClientScreen;
-	RegisterContainerScreen registerContainerScreen;
 	FindClientScreen findClientScreen; 
 	FindJourneyScreen findJourneyScreen;
 	private LogisticCompanyLoginScreen parentWindow;
 	
 	private JButton btnRegisterClient;
-	private JButton btnContainerForJourney;
 	private JButton btnFindJourney; 
 	private JButton btnFindClient;
 	private JButton btnLogout;
@@ -70,15 +68,15 @@ public class LogisticCompanyFunctionalitiesScreen  {
 		
 		
 
-		btnContainerForJourney = new JButton("Register Container for Journey");
-		btnContainerForJourney.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				registerContainerScreen.setVisible(true);
-			}
-		});
-		btnContainerForJourney.setBounds(104, 133, 193, 29);
-		panelLogisticCompanyFunc.add(btnContainerForJourney);
+//		btnContainerForJourney = new JButton("Register Container for Journey");
+//		btnContainerForJourney.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				setVisible(false);
+//				registerContainerScreen.setVisible(true);
+//			}
+//		});
+//		btnContainerForJourney.setBounds(104, 133, 193, 29);
+//		panelLogisticCompanyFunc.add(btnContainerForJourney);
 		
 		btnFindJourney = new JButton("Find Journey");
 		btnFindJourney.addActionListener(new ActionListener() {
@@ -87,7 +85,7 @@ public class LogisticCompanyFunctionalitiesScreen  {
 				findJourneyScreen.setVisible(true);
 			}
 		});
-		btnFindJourney.setBounds(104, 173, 193, 29);
+		btnFindJourney.setBounds(104, 133, 193, 29);
 		panelLogisticCompanyFunc.add(btnFindJourney);
 		
 		btnFindClient = new JButton("Find Client");
@@ -97,7 +95,7 @@ public class LogisticCompanyFunctionalitiesScreen  {
 				findClientScreen.setVisible(true);
 			}
 		});
-		btnFindClient.setBounds(104, 213, 193, 29);
+		btnFindClient.setBounds(104, 173, 193, 29);
 		panelLogisticCompanyFunc.add(btnFindClient);
 		
 		btnLogout = new JButton("Log out");
@@ -105,7 +103,6 @@ public class LogisticCompanyFunctionalitiesScreen  {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				mainScreen.setVisible(true);
-				// logout from LogisticCompanyApp !!!!!!!!
 			}
 		});
 		btnLogout.setBounds(21, 28, 80, 40);
@@ -113,7 +110,6 @@ public class LogisticCompanyFunctionalitiesScreen  {
 		
 		
 		registerClientScreen = new RegisterClientScreen(logisticCompanyApp, this);
-		registerContainerScreen = new RegisterContainerScreen(logisticCompanyApp, this);
 		findClientScreen = new FindClientScreen(logisticCompanyApp, this);
 		findJourneyScreen = new FindJourneyScreen(logisticCompanyApp, this, frame);
 		
