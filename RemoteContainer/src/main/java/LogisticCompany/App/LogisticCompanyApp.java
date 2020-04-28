@@ -111,7 +111,7 @@ public class LogisticCompanyApp {
 		registerClient(clientInfo, password);
 	}
 	
-	public void registerContainer(ContainerInfo c) throws OperationNotAllowedException {
+	public void registerContainer(ContainerInfo c) {
 		containerRepository.addContainer(c.asContainer());
 	}
 	
@@ -213,8 +213,8 @@ public class LogisticCompanyApp {
 		clientLoggedIn = false;
 	}
 
-	public void registerContainerToJourney(ContainerInfo containerInfo, JourneyInfo journeyInfo) throws OperationNotAllowedException {
-		checkLogisticCompanyLoggedIn();
+	public void registerContainerToJourney(ContainerInfo containerInfo, JourneyInfo journeyInfo)  {
+
 		
 		Journey journeyObj = findJourney(journeyInfo);
 		Container containerObj = findContainer(containerInfo);
@@ -273,8 +273,7 @@ public class LogisticCompanyApp {
 		clientRepository.updateClient(client);
 	}
 	
-	public void updateContainerInfo(Container container, ContainerInfo containerInfo) throws OperationNotAllowedException {
-		checkLogisticCompanyLoggedIn();
+	public void updateContainerInfo(Container container, ContainerInfo containerInfo){
 		container.updateContainerInfo(containerInfo);
 		containerRepository.updateContainer(container);
 	}

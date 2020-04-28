@@ -12,6 +12,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import LogisticCompany.App.LogisticCompanyApp;
+import LogisticCompany.App.OperationNotAllowedException;
+import LogisticCompany.info.ContainerInfo;
+import LogisticCompany.info.JourneyInfo;
 
 public class RegisterJourneyScreen {
 	LogisticCompanyApp logisticCompanyApp;
@@ -75,22 +78,7 @@ public class RegisterJourneyScreen {
 		JButton btnregister = new JButton("Register");
 		btnregister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String cargo = cargoField.getText();
-				String originPort = startDestinationField.getText();
-				String destinationPort = endDestinationField.getText();
-				
-				
-				if (cargo.equals("") || originPort.equals("") || destinationPort.equals("")){
-					lblRegistrationStatus.setText("Missing information!");
-				}else {
-					logisticCompanyApp.registerJourney(cargo, originPort, destinationPort);
-					lblRegistrationStatus.setText("Journey successfully registered!");
-					
-					cargoField.setText("");
-					startDestinationField.setText("");
-					endDestinationField.setText("");
-				}
-							
+				registerJourney();		
 			}
 		});
 		btnregister.setBounds(170, 225, 74, 16);
@@ -112,5 +100,31 @@ public class RegisterJourneyScreen {
 		panelRegisterJourney.setVisible(aFlag);
 		
 	}
+	protected void registerJourney()  {
+		String cargo = cargoField.getText();
+		String originPort = startDestinationField.getText();
+		String destinationPort = endDestinationField.getText();
+		
+		
+		if (cargo.equals("") || originPort.equals("") || destinationPort.equals("")){
+			lblRegistrationStatus.setText("Missing information!");
+		}else {
+			logisticCompanyApp.registerJourney(cargo, originPort, destinationPort);			
+			JourneyInfo journeyInfo = new JourneyInfo(cargo, originPort, destinationPort);
+			ContainerInfo container = new ContainerInfo("empty");
+			logisticCompanyApp.registerContainer(container);
+			logisticCompanyApp.registerContainerToJourney(container,journeyInfo);
+			
+			lblRegistrationStatus.setText("Journey successfully registered!");
+			
+			cargoField.setText("");
+			startDestinationField.setText("");
+			endDestinationField.setText("");
+			
+			
+			
+		}
+	}
+	
 	
 }
