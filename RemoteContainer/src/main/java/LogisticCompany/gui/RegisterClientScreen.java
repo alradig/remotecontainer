@@ -53,7 +53,7 @@ public class RegisterClientScreen {
 		panelRegisterClient.add(lblRegistrationStatus);
 		
 		nameField = new JTextField();
-		nameField.setBounds(165, 100, 130, 26);
+		nameField.setBounds(170, 100, 130, 26);
 		panelRegisterClient.add(nameField);
 		nameField.setColumns(10);
 		
@@ -62,16 +62,16 @@ public class RegisterClientScreen {
 		panelRegisterClient.add(lblName);
 		
 		refPField = new JTextField();
-		refPField.setBounds(165, 140, 130, 26);
+		refPField.setBounds(170, 140, 130, 26);
 		panelRegisterClient.add(refPField);
 //		passwordField.setColumns(10);
 		
 		lblRefP = new JLabel("Reference Person:");
-		lblRefP.setBounds(50, 145, 110, 16);
+		lblRefP.setBounds(50, 145, 115, 16);
 		panelRegisterClient.add(lblRefP);
 		
 		emailField = new JTextField();
-		emailField.setBounds(165, 180, 130, 26);
+		emailField.setBounds(170, 180, 130, 26);
 		panelRegisterClient.add(emailField);
 		nameField.setColumns(10);
 		
@@ -80,7 +80,7 @@ public class RegisterClientScreen {
 		panelRegisterClient.add(lblemail);
 		
 		passwordField = new JTextField();
-		passwordField.setBounds(165, 220, 130, 26);
+		passwordField.setBounds(170, 220, 130, 26);
 		panelRegisterClient.add(passwordField);
 		passwordField.setColumns(10);
 		
@@ -89,11 +89,11 @@ public class RegisterClientScreen {
 		panelRegisterClient.add(lblPassword);
 		
 		JLabel lblAddress = new JLabel("Address");
-		lblAddress.setBounds(203, 260, 74, 16);
+		lblAddress.setBounds(208, 260, 74, 16);
 		panelRegisterClient.add(lblAddress);
 		
 		zipCodeField = new JTextField();
-		zipCodeField.setBounds(165, 290, 130, 26);
+		zipCodeField.setBounds(170, 290, 130, 26);
 		panelRegisterClient.add(zipCodeField);
 		passwordField.setColumns(10);
 		
@@ -102,7 +102,7 @@ public class RegisterClientScreen {
 		panelRegisterClient.add(lblZipCode);
 		
 		cityField = new JTextField();
-		cityField.setBounds(165, 330, 130, 26);
+		cityField.setBounds(170, 330, 130, 26);
 		panelRegisterClient.add(cityField);
 		passwordField.setColumns(10);
 		
@@ -111,7 +111,7 @@ public class RegisterClientScreen {
 		panelRegisterClient.add(lblCity);
 		
 		streetField = new JTextField();
-		streetField.setBounds(165, 370, 130, 26);
+		streetField.setBounds(170, 370, 130, 26);
 		panelRegisterClient.add(streetField);
 		passwordField.setColumns(10);
 		
@@ -152,7 +152,7 @@ public class RegisterClientScreen {
 				}
 			}
 		});
-		btnregister.setBounds(155, 435, 100, 29);
+		btnregister.setBounds(155, 450, 100, 29);
 		panelRegisterClient.add(btnregister);
 		
 				

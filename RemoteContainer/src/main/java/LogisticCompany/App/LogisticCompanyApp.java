@@ -387,7 +387,7 @@ public class LogisticCompanyApp {
 			this.selectedContainerInfo = null;
 		}
 		
-		support.firePropertyChange("SelectedJourney",null,null);
+		support.firePropertyChange("SelectedObjects",null,null);
 	}
 	
 	public void setSelectedClient(ClientInfo clientInfo) {
@@ -395,6 +395,13 @@ public class LogisticCompanyApp {
 		this.selectedClient = findClient(clientInfo);
 		
 		support.firePropertyChange("SelectedClient",null,null);
+	}
+	
+	public void setSelectedJourney(JourneyInfo selectedJourneyInfo) {
+		this.selectedJourneyInfo = selectedJourneyInfo;
+		this.selectedJourney = findJourney(selectedJourneyInfo);
+		
+		support.firePropertyChange("SelectedJourney",null,null);
 	}
 
 	public void updateSelectedContainer(String temperature, String humidity, String airPressure) {
