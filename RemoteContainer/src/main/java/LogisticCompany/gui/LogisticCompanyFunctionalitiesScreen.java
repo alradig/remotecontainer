@@ -105,7 +105,7 @@ public class LogisticCompanyFunctionalitiesScreen  {
 				mainScreen.setVisible(true);
 			}
 		});
-		btnLogout.setBounds(21, 28, 80, 40);
+		btnLogout.setBounds(21, 28, 80, 29);
 		panelLogisticCompanyFunc.add(btnLogout);
 		
 		

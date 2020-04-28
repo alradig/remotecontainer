@@ -43,7 +43,7 @@ public class RegisterJourneyScreen {
                 "Register Journey"));
 		
 		lblRegistrationStatus = new JLabel("");
-		lblRegistrationStatus.setBounds(0, 65, 300, 16);
+		lblRegistrationStatus.setBounds(53, 65, 300, 16);
 		lblRegistrationStatus.setHorizontalAlignment(SwingConstants.CENTER);
 		panelRegisterJourney.add(lblRegistrationStatus);
 		
@@ -81,7 +81,7 @@ public class RegisterJourneyScreen {
 				registerJourney();		
 			}
 		});
-		btnregister.setBounds(170, 225, 74, 16);
+		btnregister.setBounds(155, 230, 100, 29);
 		panelRegisterJourney.add(btnregister);
 		
 		JButton btnBack = new JButton("Back");
