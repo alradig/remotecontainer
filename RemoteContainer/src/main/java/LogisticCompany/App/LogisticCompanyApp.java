@@ -119,17 +119,21 @@ public class LogisticCompanyApp {
 		journeyRepository.addJourney(j.asJourney());
 	}
 	
-	public void unregisterClient(ClientInfo cc, JourneyInfo j)throws Exception {
-		Client client = findClient(cc);
+	public void unregisterClient(ClientInfo cc)throws Exception {
 		logisticCompanyLoggedIn();
 		
-		
-		if (!isJourneyDone(j) )
-		{
-			throw new Exception("Can not unregister a client when a journey is on going");
+		Client client = findClient(cc);
+
+		for (Journey journey : client.getJourneyList()) {
+			if (!isJourneyDone(journey.asJourneyInfo()) )
+			{
+				throw new Exception("Can not unregister a client when a journey is on going");
+			}	
 		}
 		clientRepository.removeClient(client);
+		
 	}
+	
 	
 	public boolean isJourneyDone(JourneyInfo j) {
 		if (j.getLocation().equals(j.getDestinationPort()))

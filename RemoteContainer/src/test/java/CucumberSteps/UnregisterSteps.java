@@ -51,13 +51,12 @@ public class UnregisterSteps {
 	@Then("the client is unregistered from the system")
 	public void the_client_is_unregistered_from_the_system() throws Exception {
 		try {
-			for (Journey journey : cl.getJourneyList()) {
-				assertFalse(logisticCompanyApp.isJourneyDone(journey.asJourneyInfo()));
-				logisticCompanyApp.unregisterClient(clientInfo, journey.asJourneyInfo());
-			}
+			logisticCompanyApp.unregisterClient(clientInfo);
+			
 		} catch (Exception e) { 
 			the_client_is_not_found();
 		}
+		
 	}
 	
 	@Then("the system sends the error {string}")
