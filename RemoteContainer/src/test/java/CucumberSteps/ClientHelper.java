@@ -36,6 +36,7 @@ public class ClientHelper {
 		}
 		
 		logisticCompanyApp.registerClient(client, "clientclient");
+
 		
 		if (!loggedIn) {
 			logisticCompanyApp.logisticCompanyLogout();

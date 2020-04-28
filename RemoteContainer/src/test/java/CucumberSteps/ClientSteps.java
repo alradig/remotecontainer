@@ -32,6 +32,7 @@ public class ClientSteps {
 	private JourneyHelper journeyHelper;
 	private ContainerHelper containerHelper;
 	private Client client;
+	private Client cc;
 	private List<Container> containersList;
 	
 	public ClientSteps(LogisticCompanyApp logisticCompanyApp, ClientHelper helper, JourneyHelper journeyHelper,ContainerHelper containerHelper) {
@@ -72,9 +73,6 @@ public class ClientSteps {
 		assertEquals(clientInfo.getAddress().getStreet(),street);
 		assertEquals(clientInfo.getAddress().getPostCode(),postcode);
 		assertEquals(clientInfo.getAddress().getCity(),city);	
-		
-		
-
 	}
 
 	
@@ -216,5 +214,15 @@ public class ClientSteps {
 	    assertEquals(message,errorMessage);
 	}
 
-	
+	@When("the client enters the current password {string} and new password {string}")
+	public void the_client_enters_the_current_password(String oldPassword, String newPassword) {
+		clientInfo = clientHelper.getClient();
+		cc = logisticCompanyApp.findClient(clientInfo);
+		logisticCompanyApp.setClientPassword(clientInfo, newPassword);
+	}
+
+	@Then("the new password {string} is assigned to the client")
+	public void the_new_password_is_assigned_to_the_client(String newPassword) {
+	    assertEquals(cc.getPassword(), newPassword);		
+	}
 }
