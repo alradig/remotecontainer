@@ -2,7 +2,6 @@ package LogisticCompany.gui;
 
 import java.util.List;
 
-import LogisticCompany.App.CalenderDate;
 import LogisticCompany.App.LogisticCompanyApp;
 import LogisticCompany.domain.ContainerStatusEntry;
 import LogisticCompany.domain.JourneyStatusEntry;
