@@ -50,10 +50,6 @@ public class ClientInfo {
 	public List<Journey> getJourneys() {
 		return journeys;
 	}
-	
-	public String getCity() {
-		return city;
-	}
 
 	public String getReference_person() {
 		return reference_person;
@@ -61,9 +57,6 @@ public class ClientInfo {
 
 	public Address getAddress() {
 		return address;
-	}
-	public String getZipCode() {
-		return address.getPostCode();
 	}
 	
 	public void setAddress(Address address) {
