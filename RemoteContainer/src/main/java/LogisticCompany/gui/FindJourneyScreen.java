@@ -55,9 +55,14 @@ public class FindJourneyScreen implements ListSelectionListener, PropertyChangeL
 		initialize();
 	}
 	
-	private void updateScreen() {
+	private void enableButtons() {
 		this.btnViewContainer.setEnabled(true);
 		btnUpdateJourney.setEnabled(true);
+
+	}
+	private void disableButtons() {
+		this.btnViewContainer.setEnabled(false);
+		btnUpdateJourney.setEnabled(false);
 	}
 	
 	private void initialize() {
@@ -121,6 +126,7 @@ public class FindJourneyScreen implements ListSelectionListener, PropertyChangeL
 				setVisible(false);
 				resetScreen();
 				parentWindow.setVisible(true);
+				disableButtons();
 			}
 		});
 		btnBack.setBounds(21, 28, 65, 29);
@@ -132,6 +138,7 @@ public class FindJourneyScreen implements ListSelectionListener, PropertyChangeL
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				updateJourneyScreen.setVisible(true);
+				disableButtons();
 			}
 		});
 		
@@ -145,6 +152,7 @@ public class FindJourneyScreen implements ListSelectionListener, PropertyChangeL
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				updateContainersScreen.setVisible(true);
+				disableButtons();
 			}
 		});
 		
@@ -180,7 +188,8 @@ public class FindJourneyScreen implements ListSelectionListener, PropertyChangeL
 
             } else {
             	logisticCompanyApp.setSelectedObjects(listSearchResult.getSelectedValue());
-            	lblSearchResultDetail.setText(new JourneyPrinter(logisticCompanyApp).printDetail());         	
+            	lblSearchResultDetail.setText(new JourneyPrinter(logisticCompanyApp).printDetail());        
+            	enableButtons();
             }
         }
 	} 
@@ -194,7 +203,7 @@ public class FindJourneyScreen implements ListSelectionListener, PropertyChangeL
 		if(evt.getPropertyName().contentEquals("UpdatedJourney")){
 			lblSearchResultDetail.setText("");
 		}
-		updateScreen();
+		enableButtons();
 	}
 	
 	public void resetScreen() {

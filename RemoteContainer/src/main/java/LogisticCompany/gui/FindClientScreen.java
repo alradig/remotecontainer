@@ -1,5 +1,7 @@
 package LogisticCompany.gui;
 
+import static org.junit.Assert.assertFalse;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,6 +19,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import LogisticCompany.App.LogisticCompanyApp;
+import LogisticCompany.domain.Client;
+import LogisticCompany.domain.Journey;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.info.JourneyInfo;
 
@@ -89,6 +93,7 @@ public class FindClientScreen {
 		            } else {
 		            	lblSearchResultDetail.setText(new ClientPrinter(listSearchResult.getSelectedValue()).printDetail());
 		            	enableButtons();
+		            	logisticCompanyApp.setSelectedClient(listSearchResult.getSelectedValue());
 		            }
 		        }
 			}
@@ -116,10 +121,13 @@ public class FindClientScreen {
 		btnUnregister = new JButton("Unregister Client");
 		btnUnregister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				unregisterClient();
-			}
+				try {
+					unregisterClient();
+				} catch (Exception e1) {
 
-		
+					e1.printStackTrace();
+				}
+			}
 		});
 			
 		btnUnregister.setBounds(120, 450, 180, 29);
@@ -132,6 +140,7 @@ public class FindClientScreen {
 				setVisible(false);
 				parentWindow.setVisible(true);
 				disableButtons();
+				resetScreen();
 			}
 		});
 		btnBack.setBounds(21, 28, 65, 29);
@@ -152,8 +161,15 @@ public class FindClientScreen {
 		searchField.setText("");
 		searchResults.clear();
 	}
-	protected void unregisterClient() {
-		
-		
+	public void resetScreen() {
+		lblSearchResultDetail.setText("");
+		lblSearchResultDetail.setText("");
+		searchField.setText("");
+		searchResults.clear();
+	}
+	protected void unregisterClient() throws Exception {
+//		Client cl = logisticCompanyApp.getSelectedClient();
+//		logisticCompanyApp.unregisterClient(cl);
+	
 	}
 }
