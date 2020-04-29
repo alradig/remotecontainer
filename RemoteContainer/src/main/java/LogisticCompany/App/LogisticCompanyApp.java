@@ -30,11 +30,6 @@ public class LogisticCompanyApp {
 	private JourneyStatusEntry journeyStatus;
 	private Client loggedInClient;
 	
-	
-	public Client getLoggedInClient() {
-		return loggedInClient;
-	}
-
 	private JourneyInfo selectedJourneyInfo;
 	private ContainerInfo selectedContainerInfo;
 	private Container selectedContainer;
@@ -43,6 +38,14 @@ public class LogisticCompanyApp {
 	private ClientInfo selectedClientInfo;
 	private String errorMessage;
 	
+
+	public void setLoggedInClient(Client loggedInClient) {
+		this.loggedInClient = loggedInClient;
+	}
+
+	public Client getLoggedInClient() {
+		return loggedInClient;
+	}
 	
 	public Journey getSelectedJourney() {
 		return selectedJourney;
