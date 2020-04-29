@@ -77,7 +77,7 @@ public class ClientLoginScreen implements PropertyChangeListener {
 		panelClientLogin.add(lblPassword);
 		
 		lblLoginStatus = new JLabel("");
-		lblLoginStatus.setBounds(0, 65, 300, 16);
+		lblLoginStatus.setBounds(30, 65, 300, 16);
 		lblLoginStatus.setHorizontalAlignment(SwingConstants.CENTER);
 		panelClientLogin.add(lblLoginStatus);
 		

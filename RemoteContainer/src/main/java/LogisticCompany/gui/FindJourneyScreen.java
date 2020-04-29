@@ -25,10 +25,12 @@ import LogisticCompany.domain.Journey;
 import LogisticCompany.domain.JourneyStatusEntry;
 import LogisticCompany.info.JourneyInfo;
 
-public class FindJourneyScreen implements ListSelectionListener, PropertyChangeListener{
+public class FindJourneyScreen implements ListSelectionListener, PropertyChangeListener {
+	
 	LogisticCompanyApp logisticCompanyApp;
 	UpdateJourneyScreen updateJourneyScreen;
 	UpdateContainersScreen updateContainersScreen;
+	ContainerTrackerScreen containerTrackerScreen; 
 	private LogisticCompanyFunctionalitiesScreen parentWindow;
 	private JPanel panelFindJourney;
 	private DefaultListModel<JourneyInfo> searchResults;
@@ -43,6 +45,7 @@ public class FindJourneyScreen implements ListSelectionListener, PropertyChangeL
 	private JButton btnUpdate;
 	private JButton btnViewContainer;
 	private JButton btnUpdateJourney;
+	private JButton btnContainerHistory;
 
 	public FindJourneyScreen(LogisticCompanyApp logisticCompanyApp,
 			LogisticCompanyFunctionalitiesScreen parentWindow, JFrame frame) {
@@ -51,18 +54,21 @@ public class FindJourneyScreen implements ListSelectionListener, PropertyChangeL
 		this.frame = frame;
 		this.updateContainersScreen = new UpdateContainersScreen(logisticCompanyApp, this);
 		this.updateJourneyScreen = new UpdateJourneyScreen(logisticCompanyApp, this);
+		this.containerTrackerScreen = new ContainerTrackerScreen(logisticCompanyApp, this);
 		logisticCompanyApp.addObserver(this);
 		initialize();
 	}
 	
 	private void enableButtons() {
 		this.btnViewContainer.setEnabled(true);
-		btnUpdateJourney.setEnabled(true);
+		this.btnUpdateJourney.setEnabled(true);
+		this.btnContainerHistory.setEnabled(true);
 
 	}
 	private void disableButtons() {
 		this.btnViewContainer.setEnabled(false);
-		btnUpdateJourney.setEnabled(false);
+		this.btnUpdateJourney.setEnabled(false);
+		this.btnContainerHistory.setEnabled(false);
 	}
 	
 	private void initialize() {
@@ -87,6 +93,7 @@ public class FindJourneyScreen implements ListSelectionListener, PropertyChangeL
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				searchJourney();
+				disableButtons();
 			}
 		});
 		btnSearch.setBounds(148, 68, 117, 29);
@@ -159,6 +166,19 @@ public class FindJourneyScreen implements ListSelectionListener, PropertyChangeL
 		btnViewContainer.setBounds(203, 450, 180, 29);
 		btnViewContainer.setEnabled(false);
 		panelFindJourney.add(btnViewContainer);
+		
+		btnContainerHistory = new JButton("Container History");
+		btnContainerHistory.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				containerTrackerScreen.setVisible(true);
+			}
+		});
+		btnContainerHistory.setBounds(203, 487, 180, 29);
+		btnContainerHistory.setEnabled(false);
+		panelFindJourney.add(btnContainerHistory);
+	
+//		containerTrackerScreen = new ContainerTrackerScreen(logisticCompanyApp, this);
 	}
 
 	protected void searchJourney() {

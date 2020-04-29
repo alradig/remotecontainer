@@ -86,7 +86,6 @@ public class UpdateContainersScreen {
 		updateAtmPressureField = new JTextField();
 		updateAtmPressureField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-	
 			}
 		});
 		updateAtmPressureField.setBounds(158, 180, 130, 26);
@@ -125,9 +124,10 @@ public class UpdateContainersScreen {
 	}
 	
 	protected void updateContainer() {
+		
 		logisticCompanyApp.updateSelectedContainer(updateTemperatureField.getText(),updateHumidityField.getText(), updateAtmPressureField.getText());
 		lblUpdateStatus.setText("Container status is successfully updated!");
-
+		
 	}
 	
 	public void setVisible(boolean aFlag) {
