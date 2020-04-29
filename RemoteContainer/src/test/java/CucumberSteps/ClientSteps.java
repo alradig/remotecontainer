@@ -129,7 +129,6 @@ public class ClientSteps {
 		ClientInfo clientInfo2 = clientsList.get(0);
 		
 		logisticCompanyApp.provideAccess(clientInfo,clientInfo2);
-		
 		logisticCompanyApp.logisticCompanyLogout();
 	}
 	
