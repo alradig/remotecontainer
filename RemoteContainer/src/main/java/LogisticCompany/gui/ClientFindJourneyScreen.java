@@ -166,4 +166,5 @@ public class ClientFindJourneyScreen implements PropertyChangeListener  {
 	public void propertyChange(PropertyChangeEvent evt) {
 		
 	}
+	
 }
