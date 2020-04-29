@@ -18,14 +18,14 @@ public class ClientInfo {
 	
 	
 
-	public ClientInfo(String name, String email, String reference_person, Address adress, List<Journey> journeys , List<Client> accessList ) {
-		this.name = name;
-		this.email = email;
-		this.reference_person = reference_person;
-		this.address = adress;
-		this.journeys =journeys;
-		this.accessList = accessList;
-	}
+//	public ClientInfo(String name, String email, String reference_person, Address adress, List<Journey> journeys , List<Client> accessList ) {
+//		this.name = name;
+//		this.email = email;
+//		this.reference_person = reference_person;
+//		this.address = adress;
+//		this.journeys =journeys;
+//		this.accessList = accessList;
+//	}
 	
 	public ClientInfo(String name, String email, String reference_person) {
 		this.name = name;
