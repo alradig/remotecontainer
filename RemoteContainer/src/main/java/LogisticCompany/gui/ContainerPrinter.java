@@ -34,22 +34,22 @@ public class ContainerPrinter {
 
 	public String printTemperatureDetail() {
 		StringBuffer b = new StringBuffer();
-		b.append("<html>"+String.format("<b></b>     %s<br>",""));
+//		b.append("<html>"+String.format("<b></b>     %s<br>",""));
 		for (int i=0; i<containerStatusList.size(); i++) {
 	        b.append(String.format(containerStatusList.get(i).getTemperature()));
 	    }		
-		b.append(String.format("<b>%s</b>   %s<br></html>", ""));
+//		b.append(String.format("<b>%s</b>   %s<br></html>", ""));
 		return b.toString();
 	}
 	
 	
 	public String printAirHumDetail() {
 		StringBuffer b = new StringBuffer();
-		b.append("<html>"+String.format("<b></b>     %s<br>",""));
+//		b.append("<html>"+String.format("<b></b>     %s<br>",""));
 		for (int i=0; i<containerStatusList.size(); i++) {
 	        b.append(String.format(containerStatusList.get(i).getAirHumidity()));
 	    }	
-		b.append(String.format("<b>%s</b>   %s<br></html>", ""));
+//		b.append(String.format("<b>%s</b>   %s<br></html>", ""));
 		return b.toString();
 	}
 	

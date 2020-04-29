@@ -19,7 +19,9 @@ public class ContainerTrackerScreen  implements PropertyChangeListener {
 	private ClientFindJourneyScreen parentWindow;
 	private JPanel panelContainerTracker;
 	private JPanel panelPressure;
-	private JLabel lblSearchResultDetail;
+	private JLabel lblPressure;
+	private JLabel lblTemp;
+	private JLabel lblHum;
 
 	public ContainerTrackerScreen(LogisticCompanyApp logisticCompanyApp, ClientFindJourneyScreen parentWindow) {
 		this.logisticCompanyApp = logisticCompanyApp;
@@ -38,7 +40,9 @@ public class ContainerTrackerScreen  implements PropertyChangeListener {
 		JButton btnShow = new JButton("Show");
 		btnShow.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				lblSearchResultDetail.setText(new ContainerPrinter(logisticCompanyApp).printPressureDetail() );
+				lblTemp.setText(new ContainerPrinter(logisticCompanyApp).printTemperatureDetail());
+				lblPressure.setText(new ContainerPrinter(logisticCompanyApp).printPressureDetail() );
+				lblHum.setText(new ContainerPrinter(logisticCompanyApp).printAirHumDetail());
 			}
 		});
 		btnShow.setBounds(148, 58, 107, 29);
@@ -51,6 +55,12 @@ public class ContainerTrackerScreen  implements PropertyChangeListener {
 		panelTemperature.setBorder(BorderFactory.createTitledBorder(
                 "Temperature"));
 		panelTemperature.setLayout(null);	
+		
+		lblTemp = new JLabel("");
+		lblTemp.setVerticalAlignment(SwingConstants.TOP);
+		lblTemp.setHorizontalAlignment(SwingConstants.LEFT);
+		lblTemp.setBounds(5, 19, 100, 137);
+		panelTemperature.add(lblTemp);
 	
 		JPanel panelHumid = new JPanel();
 		panelHumid.setBounds(150, 100, 100, 400);
@@ -58,6 +68,12 @@ public class ContainerTrackerScreen  implements PropertyChangeListener {
 		panelHumid.setBorder(BorderFactory.createTitledBorder(
                 "Humidity"));
 		panelHumid.setLayout(null);	
+		
+		lblHum = new JLabel("");
+		lblHum.setVerticalAlignment(SwingConstants.TOP);
+		lblHum.setHorizontalAlignment(SwingConstants.LEFT);
+		lblHum.setBounds(5, 19, 100, 137);
+		panelHumid.add(lblHum);
 		
 		panelPressure = new JPanel();
 		panelPressure.setBounds(275, 100, 100, 400);
@@ -67,11 +83,11 @@ public class ContainerTrackerScreen  implements PropertyChangeListener {
 		panelPressure.setLayout(null);
 		
 
-		lblSearchResultDetail = new JLabel("");
-		lblSearchResultDetail.setVerticalAlignment(SwingConstants.TOP);
-		lblSearchResultDetail.setHorizontalAlignment(SwingConstants.LEFT);
-		lblSearchResultDetail.setBounds(23, 19, 100, 137);
-		panelPressure.add(lblSearchResultDetail);
+		lblPressure = new JLabel("");
+		lblPressure.setVerticalAlignment(SwingConstants.TOP);
+		lblPressure.setHorizontalAlignment(SwingConstants.LEFT);
+		lblPressure.setBounds(5, 19, 100, 137);
+		panelPressure.add(lblPressure);
 
 			
 		JButton btnBack = new JButton("Back");
@@ -79,6 +95,10 @@ public class ContainerTrackerScreen  implements PropertyChangeListener {
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
 			parentWindow.setVisible(true);
+			lblTemp.setText("");
+			lblPressure.setText("" );
+			lblHum.setText("");
+			
 		}
 	});
 	btnBack.setBounds(21, 28, 65, 29);
