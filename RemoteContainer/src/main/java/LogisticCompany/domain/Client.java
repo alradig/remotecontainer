@@ -65,8 +65,8 @@ public class Client{
 	public Address getAddress() {
 		return address;
 	}
-	public boolean matchClient(String searchEmail) {
-		return email.contains(searchEmail) || name.contains(searchEmail) || refPerson.contains(searchEmail);
+	public boolean matchClient(String searchText) {
+		return email.toLowerCase().contains(searchText.toLowerCase()) || name.toLowerCase().contains(searchText.toLowerCase()) || refPerson.toLowerCase().contains(searchText.toLowerCase());
 	}
 	
 	public ClientInfo asClientInfo() { 
