@@ -86,7 +86,6 @@ public class UpdateContainersScreen {
 		updateAtmPressureField = new JTextField();
 		updateAtmPressureField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-	
 			}
 		});
 		updateAtmPressureField.setBounds(158, 180, 130, 26);
