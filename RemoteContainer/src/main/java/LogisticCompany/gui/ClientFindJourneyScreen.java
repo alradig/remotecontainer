@@ -124,7 +124,8 @@ public class ClientFindJourneyScreen implements ListSelectionListener, PropertyC
 		btnTracking = new JButton("Container History");
 		btnTracking.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				parentWindow.setVisible(true);
+				setVisible(false);
+				containerTrackerScreen.setVisible(true);
 			}
 		});
 		btnTracking.setBounds(120, 480, 157, 29);

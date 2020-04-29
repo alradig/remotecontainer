@@ -5,7 +5,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import LogisticCompany.App.LogisticCompanyApp;
 
@@ -14,6 +16,8 @@ public class ContainerTrackerScreen {
 	LogisticCompanyApp logisticCompanyApp;
 	private ClientFindJourneyScreen parentWindow;
 	private JPanel panelContainerTracker;
+	private JPanel panelPressure;
+	private JLabel lblSearchResultDetail;
 
 	public ContainerTrackerScreen(LogisticCompanyApp logisticCompanyApp, ClientFindJourneyScreen parentWindow) {
 		this.logisticCompanyApp = logisticCompanyApp;
@@ -29,8 +33,29 @@ public class ContainerTrackerScreen {
 		panelContainerTracker.setBorder(BorderFactory.createTitledBorder(
                 "Find Existing Journey"));
 	
-	JButton btnBack = new JButton("Back");
-	btnBack.addActionListener(new ActionListener() {
+		JPanel panelTemperature = new JPanel();
+		panelTemperature.setBounds(25, 100, 100, 400);
+		panelContainerTracker.add(panelTemperature);
+		panelTemperature.setBorder(BorderFactory.createTitledBorder(
+                "Temperature"));
+		panelTemperature.setLayout(null);	
+	
+		JPanel panelHumid = new JPanel();
+		panelHumid.setBounds(150, 100, 100, 400);
+		panelContainerTracker.add(panelHumid);
+		panelHumid.setBorder(BorderFactory.createTitledBorder(
+                "Humidity"));
+		panelHumid.setLayout(null);	
+		
+		panelPressure = new JPanel();
+		panelPressure.setBounds(275, 100, 100, 400);
+		panelContainerTracker.add(panelPressure);
+		panelPressure.setBorder(BorderFactory.createTitledBorder(
+                "Air pressure"));
+		panelPressure.setLayout(null);
+			
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
 			parentWindow.setVisible(true);
