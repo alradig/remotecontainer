@@ -38,7 +38,7 @@ public class ContainerTrackerScreen  implements PropertyChangeListener {
 		JButton btnShow = new JButton("Show");
 		btnShow.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				lblSearchResultDetail.setText(new ContainerPrinter(logisticCompanyApp).printPressureDetail() );
 			}
 		});
 		btnShow.setBounds(148, 58, 107, 29);
@@ -72,8 +72,6 @@ public class ContainerTrackerScreen  implements PropertyChangeListener {
 		lblSearchResultDetail.setHorizontalAlignment(SwingConstants.LEFT);
 		lblSearchResultDetail.setBounds(23, 19, 100, 137);
 		panelPressure.add(lblSearchResultDetail);
-		
-		lblSearchResultDetail.setText(new ContainerPrinter(logisticCompanyApp).printSl());
 
 			
 		JButton btnBack = new JButton("Back");

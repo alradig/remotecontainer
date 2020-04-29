@@ -16,17 +16,17 @@ public class ContainerPrinter {
 		System.out.println("1");
 		this.container = logisticCompanyApp.getSelectedContainerInfo();
 		
-//		if (!(container ==null)) {
-//			containerStatusList = container.getContainerStatusList();
-//			if(containerStatusList.isEmpty()) {
-//				containerStatus = new ContainerStatusEntry("not registered","not registered","not registered");
-////				containerStatusList.add(containerStatus);
-//			}
-//		}
-//		else {
-//			containerStatus = new ContainerStatusEntry("not registered","not registered","not registered");
-////			containerStatusList.add(containerStatus);
-//		}
+		if (!(container ==null)) {
+			containerStatusList = container.getContainerStatusList();
+			if(containerStatusList.isEmpty()) {
+				containerStatus = new ContainerStatusEntry("not registered","not registered","not registered");
+				containerStatusList.add(containerStatus);
+			}
+		}
+		else {
+			containerStatus = new ContainerStatusEntry("not registered","not registered","not registered");
+			containerStatusList.add(containerStatus);
+		}
 	
 	}
 	
@@ -55,11 +55,11 @@ public class ContainerPrinter {
 	
 	public String printPressureDetail() {
 		StringBuffer b = new StringBuffer();
-		b.append("<html>"+String.format("<b></b>     %s<br>",""));
+//		b.append("<html>"+String.format("<b></b>     %s<br>",""));
 		for (int i=0; i<containerStatusList.size(); i++) {
 	        b.append(String.format(containerStatusList.get(i).getAtmPressure()));
 	    }	
-		b.append(String.format("<b>%s</b>   %s<br></html>", ""));
+//		b.append(String.format("<b>%s</b>   %s<br></html>", ""));
 
 		return b.toString();
 	}
