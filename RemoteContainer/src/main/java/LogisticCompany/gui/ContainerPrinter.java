@@ -11,9 +11,8 @@ public class ContainerPrinter {
 	private ContainerInfo container;
 	List<ContainerStatusEntry> containerStatusList;
 	ContainerStatusEntry containerStatus;
-
+	
 	public ContainerPrinter(LogisticCompanyApp logisticCompanyApp) {
-		System.out.println("1");
 		this.container = logisticCompanyApp.getSelectedContainerInfo();
 		
 		if (!(container ==null)) {
@@ -34,40 +33,39 @@ public class ContainerPrinter {
 
 	public String printTemperatureDetail() {
 		StringBuffer b = new StringBuffer();
-//		b.append("<html>"+String.format("<b></b>     %s<br>",""));
+		b.append("<html>");
 		for (int i=0; i<containerStatusList.size(); i++) {
-	        b.append(String.format(containerStatusList.get(i).getTemperature()));
+	        b.append(String.format(containerStatusList.get(i).getTemperature())).append("<br>");
+	      
 	    }		
-//		b.append(String.format("<b>%s</b>   %s<br></html>", ""));
+		b.append("</html>");
 		return b.toString();
 	}
 	
 	
 	public String printAirHumDetail() {
 		StringBuffer b = new StringBuffer();
-//		b.append("<html>"+String.format("<b></b>     %s<br>",""));
+		b.append("<html>");
 		for (int i=0; i<containerStatusList.size(); i++) {
-	        b.append(String.format(containerStatusList.get(i).getAirHumidity()));
+	        b.append(String.format(containerStatusList.get(i).getAirHumidity())).append("<br>");
 	    }	
-//		b.append(String.format("<b>%s</b>   %s<br></html>", ""));
+		b.append("</html>");
 		return b.toString();
 	}
 	
 	public String printPressureDetail() {
 		StringBuffer b = new StringBuffer();
-//		b.append("<html>"+String.format("<b></b>     %s<br>",""));
+		b.append("<html>");
 		for (int i=0; i<containerStatusList.size(); i++) {
-	        b.append(String.format(containerStatusList.get(i).getAtmPressure()));
+	        b.append(containerStatusList.get(i).getAtmPressure()).append("<br>");	        
 	    }	
-//		b.append(String.format("<b>%s</b>   %s<br></html>", ""));
+		b.append("</html>");
+
+
 
 		return b.toString();
 	}
-	public String printSl() {
-//		StringBuffer b = new StringBuffer();
-//		b.append(String.format("<b>%s</b>   %s<br></html>", "test"));
-		return "t";
-	}
+
 	
 	
 }

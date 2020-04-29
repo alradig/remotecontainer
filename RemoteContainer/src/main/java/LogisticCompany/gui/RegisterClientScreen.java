@@ -123,33 +123,7 @@ public class RegisterClientScreen {
 		JButton btnregister = new JButton("Register");
 		btnregister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String name = nameField.getText();
-				String email = emailField.getText();
-				String password = passwordField.getText();
-				String zipCode = zipCodeField.getText();
-				String city = cityField.getText();
-				String street = streetField.getText();
-				String refPerson = refPField.getText();
-				
-				
-				if (name.equals("") || email.equals("") || password.equals("") || zipCode.equals("") || city.equals("") || street.equals("") || refPerson.equals("")) {
-					lblRegistrationStatus.setText("Missing information!");
-				}else {
-					try { 
-						logisticCompanyApp.registerClient(name, email, password, zipCode, city, street, refPerson);
-						lblRegistrationStatus.setText("Client is successfully registered!");
-					} catch (OperationNotAllowedException e1) {
-						e1.printStackTrace();
-					}
-					
-					nameField.setText("");
-					emailField.setText("");
-					passwordField.setText("");
-					zipCodeField.setText("");
-					cityField.setText("");
-					streetField.setText("");
-					refPField.setText("");
-				}
+				registeClient();
 			}
 		});
 		btnregister.setBounds(155, 450, 100, 29);
@@ -166,6 +140,40 @@ public class RegisterClientScreen {
 		});
 		btnBack.setBounds(21, 28, 65, 29);
 		panelRegisterClient.add(btnBack);
+	}
+	
+	protected void registeClient() {
+		String name = nameField.getText();
+		String email = emailField.getText();
+		String password = passwordField.getText();
+		String zipCode = zipCodeField.getText();
+		String city = cityField.getText();
+		String street = streetField.getText();
+		String refPerson = refPField.getText();
+		
+		
+		if (name.equals("") || email.equals("") || password.equals("") || zipCode.equals("") || city.equals("") || street.equals("") || refPerson.equals("")) {
+			lblRegistrationStatus.setText("Missing information!");
+		} else if (!email.contains("@") || !email.contains(".")) {
+			lblRegistrationStatus.setText("Email is not valid");
+		} else if (password.length() < 6 ) {
+			lblRegistrationStatus.setText("Password must be at least 6 characters");
+		} else {
+			try { 
+				logisticCompanyApp.registerClient(name, email, password, zipCode, city, street, refPerson);
+				lblRegistrationStatus.setText("Client is successfully registered!");
+			} catch (OperationNotAllowedException e1) {
+				e1.printStackTrace();
+			}
+			
+			nameField.setText("");
+			emailField.setText("");
+			passwordField.setText("");
+			zipCodeField.setText("");
+			cityField.setText("");
+			streetField.setText("");
+			refPField.setText("");
+		}
 	}
 	
 	public void setVisible(boolean aFlag) {

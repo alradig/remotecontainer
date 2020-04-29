@@ -67,10 +67,10 @@ public class JourneyPrinter {
 				containerStatus = containerStatusList.get(containerStatusList.size()-1);
 			}
 			
-			b.append(String.format("<b>Container status:</b><br>"));
-			b.append(String.format("<b>%slatest temperature:</b>   %s<br>" ,tab , containerStatus.getTemperature()));
-			b.append(String.format("<b>%slatest humidity:</b>   %s<br>" ,tab , containerStatus.getAirHumidity()));
-			b.append(String.format("<b>%slatest atm pressure:</b>   %s<br></html>" ,tab , containerStatus.getAtmPressure()));
+			b.append(String.format("<b>Current container status:</b><br>"));
+			b.append(String.format("<b>%sTemperature (\u00B0C):</b>   %s<br>" ,tab , containerStatus.getTemperature()));
+			b.append(String.format("<b>%sHumidity (%%):</b>   %s<br>" ,tab , containerStatus.getAirHumidity()));
+			b.append(String.format("<b>%sAir pressure (Atm):</b>   %s<br></html>" ,tab , containerStatus.getAtmPressure()));
 		}else {
 			b.append(String.format("<b>Container status: </b>a container has not yet been registered for this journey<br>"));
 		}
