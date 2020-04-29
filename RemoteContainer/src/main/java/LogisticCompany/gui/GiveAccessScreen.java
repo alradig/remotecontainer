@@ -76,6 +76,8 @@ public class GiveAccessScreen {
 				
 				if(submitionOk) {
 					submitStatus.setText("Access successfully granted!");
+					emailField.setText("");
+					nameField.setText("");
 				}
 			}
 		});
@@ -88,6 +90,9 @@ public class GiveAccessScreen {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				parentWindow.setVisible(true);
+				submitStatus.setText("");
+				emailField.setText("");
+				nameField.setText("");
 			}
 		});
 		btnBack.setBounds(21, 28, 65, 29);

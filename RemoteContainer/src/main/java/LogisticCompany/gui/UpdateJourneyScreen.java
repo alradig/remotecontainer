@@ -30,6 +30,7 @@ public class UpdateJourneyScreen {
 	private JourneyInfo journeyinfo;
     private JourneyStatusEntry journeyStatus;
 	private String errorMessage;
+	private JLabel lblUpdateStatus;
 
 	public UpdateJourneyScreen(LogisticCompanyApp logisticCompanyApp, FindJourneyScreen parentWindow ) {
 		this.LogisticCompanyApp = logisticCompanyApp;
@@ -69,12 +70,18 @@ public class UpdateJourneyScreen {
 		btnUpdate.setBounds(145, 200, 117, 29);
 		panelUpdateJourney.add(btnUpdate);
 		btnUpdate.getRootPane().setDefaultButton(btnUpdate);
+
+		lblUpdateStatus = new JLabel("");
+		lblUpdateStatus.setBounds(53, 65, 300, 16);
+		lblUpdateStatus.setHorizontalAlignment(SwingConstants.CENTER);
+		panelUpdateJourney.add(lblUpdateStatus);
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				parentWindow.setVisible(true);
+				lblUpdateStatus.setText("");
 			}
 		});
 		btnBack.setBounds(21, 28, 65, 29);
@@ -85,7 +92,7 @@ public class UpdateJourneyScreen {
 	protected void updateJourney() {	
 		try {
 			LogisticCompanyApp.updateSelectedJourney(updateField.getText());
-
+			lblUpdateStatus.setText("Journey is successfully updated!");
 		} catch (OperationNotAllowedException e) {
 			errorMessage = e.getMessage();
 		} 

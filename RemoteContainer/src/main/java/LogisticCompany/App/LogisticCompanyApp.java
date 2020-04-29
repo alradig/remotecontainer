@@ -82,12 +82,12 @@ public class LogisticCompanyApp {
 				.collect(Collectors.toList());
 	}
 	
-	public List<ContainerInfo> searchContainer(String cargo) {
-		return containerRepository.getAllContainersStream()
-				.filter(c -> c.matchContainer(cargo))
-				.map(c -> c.asContainerInfo())
-				.collect(Collectors.toList());
-	}
+//	public List<ContainerInfo> searchContainer(String cargo) {
+//		return containerRepository.getAllContainersStream()
+//				.filter(c -> c.matchContainer(cargo))
+//				.map(c -> c.asContainerInfo())
+//				.collect(Collectors.toList());
+//	}
 
 	public List<JourneyInfo> searchJourney(String searchText) {
 		return journeyRepository.getAllJourneysStream()
@@ -240,6 +240,10 @@ public class LogisticCompanyApp {
 		JourneyInfo journeyInfo = new JourneyInfo(cargo, originPort, endDestination);
 		
 		registerJourney(journeyInfo);
+		
+		if (loggedInClient ==null) {
+			loggedInClient = selectedClient;
+		}
 		registerJourneyToClient(loggedInClient.asClientInfo(), journeyInfo);
 	}
 	
@@ -267,7 +271,6 @@ public class LogisticCompanyApp {
 	public void updateSelectedJourney(String newLocation) throws OperationNotAllowedException {
 		checkLogisticCompanyLoggedIn();
 		JourneyStatusEntry newEntry = new JourneyStatusEntry(this.getSelectedjourneyInfo().getOriginPort(), this.getSelectedjourneyInfo().getDestinationPort(), "not registered");
-		
 		if(!newLocation.isEmpty()) {
 			newEntry.setLocation(newLocation);
 		}
@@ -342,20 +345,20 @@ public class LogisticCompanyApp {
 		return ContainersList;
 	}
 	
-	public List<Journey> collectAccessibleJourneys(ClientInfo clientInfo) {
-		Client client = findClient(clientInfo);
-		List<Journey> JourneysList = getClientJourneys(clientInfo);
-		List<Client> clientAccessList = client.getAccessList();
-		if(!clientAccessList.isEmpty()) {
-			for (Client c : clientAccessList) {
-				List<Journey> journeyList = c.getJourneyList();
-				for (Journey j : journeyList) {
-					JourneysList.add(j);
-				}
-			}
-		}		
-		return JourneysList;
-	}
+//	public List<Journey> collectAccessibleJourneys(ClientInfo clientInfo) {
+//		Client client = findClient(clientInfo);
+//		List<Journey> JourneysList = getClientJourneys(clientInfo);
+//		List<Client> clientAccessList = client.getAccessList();
+//		if(!clientAccessList.isEmpty()) {
+//			for (Client c : clientAccessList) {
+//				List<Journey> journeyList = c.getJourneyList();
+//				for (Journey j : journeyList) {
+//					JourneysList.add(j);
+//				}
+//			}
+//		}		
+//		return JourneysList;
+//	}
 		
 
 	public void setClientPassword(ClientInfo clientInfo, String password) {
@@ -380,8 +383,9 @@ public class LogisticCompanyApp {
 		this.selectedJourneyInfo = selectedJourneyInfo;
 		this.selectedJourney = findJourney(selectedJourneyInfo);
 
+		
 		this.selectedContainer = selectedJourney.getContainer();
-
+	
 		if(!(this.selectedContainer == null)) {
 
 			this.selectedContainerInfo = this.selectedContainer.asContainerInfo();
@@ -395,6 +399,7 @@ public class LogisticCompanyApp {
 	public void setSelectedClient(ClientInfo clientInfo) {
 		this.selectedClientInfo = clientInfo;
 		this.selectedClient = findClient(clientInfo);
+		this.loggedInClient = selectedClient;
 		
 		support.firePropertyChange("SelectedClient",null,null);
 	}
@@ -417,7 +422,6 @@ public class LogisticCompanyApp {
 		}else {
 			newEntry = new ContainerStatusEntry("not registered","not registered","not registered");
 		}
-		
 		
 		if(temperature != null && !temperature.isEmpty()) {
 			newEntry.setTemperature(temperature);
