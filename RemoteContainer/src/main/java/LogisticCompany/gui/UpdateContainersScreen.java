@@ -36,7 +36,7 @@ public class UpdateContainersScreen {
 	private JLabel lblTemperature;
 	private JLabel lblHumidity;
 	private JLabel lblPressure;
-	private JLabel lblRegistrationStatus;
+	private JLabel lblUpdateStatus;
 
 	public UpdateContainersScreen(LogisticCompanyApp logisticCompanyApp,
 			FindJourneyScreen parentWindow) {
@@ -106,17 +106,17 @@ public class UpdateContainersScreen {
 		panelUpdateContainer.add(btnUpdate);
 		btnUpdate.getRootPane().setDefaultButton(btnUpdate);
 
-		lblRegistrationStatus = new JLabel("");
-		lblRegistrationStatus.setBounds(53, 65, 300, 16);
-		lblRegistrationStatus.setHorizontalAlignment(SwingConstants.CENTER);
-		panelUpdateContainer.add(lblRegistrationStatus);
+		lblUpdateStatus = new JLabel("");
+		lblUpdateStatus.setBounds(53, 65, 300, 16);
+		lblUpdateStatus.setHorizontalAlignment(SwingConstants.CENTER);
+		panelUpdateContainer.add(lblUpdateStatus);
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				parentWindow.setVisible(true);
-				lblRegistrationStatus.setText("");
+				lblUpdateStatus.setText("");
 			}
 		});
 		btnBack.setBounds(21, 28, 65, 29);
@@ -126,7 +126,7 @@ public class UpdateContainersScreen {
 	
 	protected void updateContainer() {
 		logisticCompanyApp.updateSelectedContainer(updateTemperatureField.getText(),updateHumidityField.getText(), updateAtmPressureField.getText());
-		lblRegistrationStatus.setText("Container status is successfully updated!");
+		lblUpdateStatus.setText("Container status is successfully updated!");
 
 	}
 	
