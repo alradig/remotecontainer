@@ -11,7 +11,8 @@ public class ContainerPrinter {
 	private ContainerInfo container;
 	List<ContainerStatusEntry> containerStatusList;
 	ContainerStatusEntry containerStatus;
-
+	String tab = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+	
 	public ContainerPrinter(LogisticCompanyApp logisticCompanyApp) {
 		System.out.println("1");
 		this.container = logisticCompanyApp.getSelectedContainerInfo();
@@ -34,40 +35,33 @@ public class ContainerPrinter {
 
 	public String printTemperatureDetail() {
 		StringBuffer b = new StringBuffer();
-//		b.append("<html>"+String.format("<b></b>     %s<br>",""));
+
 		for (int i=0; i<containerStatusList.size(); i++) {
-	        b.append(String.format(containerStatusList.get(i).getTemperature()));
+	        b.append(String.format(containerStatusList.get(i).getTemperature(),tab));
 	    }		
-//		b.append(String.format("<b>%s</b>   %s<br></html>", ""));
+
 		return b.toString();
 	}
 	
 	
 	public String printAirHumDetail() {
 		StringBuffer b = new StringBuffer();
-//		b.append("<html>"+String.format("<b></b>     %s<br>",""));
+
 		for (int i=0; i<containerStatusList.size(); i++) {
-	        b.append(String.format(containerStatusList.get(i).getAirHumidity()));
+	        b.append(String.format(containerStatusList.get(i).getAirHumidity(),tab));
 	    }	
-//		b.append(String.format("<b>%s</b>   %s<br></html>", ""));
 		return b.toString();
 	}
 	
 	public String printPressureDetail() {
 		StringBuffer b = new StringBuffer();
-//		b.append("<html>"+String.format("<b></b>     %s<br>",""));
 		for (int i=0; i<containerStatusList.size(); i++) {
-	        b.append(String.format(containerStatusList.get(i).getAtmPressure()));
+	        b.append(String.format(containerStatusList.get(i).getAtmPressure(),tab));
 	    }	
-//		b.append(String.format("<b>%s</b>   %s<br></html>", ""));
 
 		return b.toString();
 	}
-	public String printSl() {
-//		StringBuffer b = new StringBuffer();
-//		b.append(String.format("<b>%s</b>   %s<br></html>", "test"));
-		return "t";
-	}
+
 	
 	
 }
