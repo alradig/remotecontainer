@@ -18,11 +18,11 @@ public class ContainerInfo {
 		this.containerStatusList = new ArrayList<>();
 	}
 	
-	public ContainerInfo(Container container) {
-		this.cargo = container.getCargo();
-		this.containerStatusList = container.getContainerStatusList();
-		this.id = container.getId();
-	}
+//	public ContainerInfo(Container container) {
+//		this.cargo = container.getCargo();
+//		this.containerStatusList = container.getContainerStatusList();
+//		this.id = container.getId();
+//	}
 	
 	public ContainerInfo(Container container, List<ContainerStatusEntry> containerStatusList) {
 		this.cargo = container.getCargo();
@@ -42,12 +42,12 @@ public class ContainerInfo {
 		return containerStatusList;
 	}
 	
-	public long getId() {
-		return id;
-	}
+//	public long getId() {
+//		return id;
+//	}
 	
-	public void addContainerStatus(ContainerStatusEntry newEntry) {
-		containerStatusList.add(newEntry);
-	}
+//	public void addContainerStatus(ContainerStatusEntry newEntry) {
+//		containerStatusList.add(newEntry);
+//	}
 	
 }
