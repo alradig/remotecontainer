@@ -6,7 +6,6 @@ import LogisticCompany.domain.Container;
 
 public interface ContainerRepository {
 	
-	
 	boolean contains(Container container );
 	
 	void addContainer(Container container );
