@@ -121,6 +121,8 @@ public class ClientLoginScreen implements PropertyChangeListener {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				parentWindow.setVisible(true);
+				passwordField.setText("");
+				clientEmailField.setText("");
 			}
 		});
 		btnBack.setBounds(21, 28, 65, 29);
