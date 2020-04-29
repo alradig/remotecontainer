@@ -25,7 +25,7 @@ import LogisticCompany.domain.Journey;
 import LogisticCompany.info.JourneyInfo;
 
 
-public class ClientFindJourneyScreen implements PropertyChangeListener  {
+public class ClientFindJourneyScreen implements ListSelectionListener, PropertyChangeListener  {
 	
 	LogisticCompanyApp logisticCompanyApp;
 	Client client;
@@ -37,6 +37,7 @@ public class ClientFindJourneyScreen implements PropertyChangeListener  {
 	private JTextField searchField;
 	private JLabel lblSearchResultDetail;
 	private JFrame frame;
+	private JButton btnTracking;
 	
 	public ClientFindJourneyScreen(LogisticCompanyApp logisticCompanyApp, ClientFunctionalitiesScreen parentWindow, JFrame frame) {
 		this.logisticCompanyApp = logisticCompanyApp;
@@ -44,6 +45,14 @@ public class ClientFindJourneyScreen implements PropertyChangeListener  {
 		this.frame = frame;
 		
 		initialize();
+	}
+	
+	private void enableButtons() {
+		this.btnTracking.setEnabled(true);
+
+	}
+	private void disableButtons() {
+		this.btnTracking.setEnabled(false);
 	}
 	
 	private void initialize() {
@@ -77,22 +86,8 @@ public class ClientFindJourneyScreen implements PropertyChangeListener  {
 		listSearchResult = new JList<>(searchResults);
 		listSearchResult.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listSearchResult.setSelectedIndex(0);
-		listSearchResult.addListSelectionListener(new ListSelectionListener() {
-			
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-		        if (e.getValueIsAdjusting() == false) {
-
-		            if (listSearchResult.getSelectedIndex() == -1) {
-		            	lblSearchResultDetail.setText("");
-
-		            } else {
-		            	logisticCompanyApp.setSelectedObjects(listSearchResult.getSelectedValue());
-		            	lblSearchResultDetail.setText(new JourneyPrinter(logisticCompanyApp).printDetail());
-		            }
-		        }
-			}
-		});
+		
+		listSearchResult.addListSelectionListener(this);
 		listSearchResult.setVisibleRowCount(5);
         JScrollPane listScrollPane = new JScrollPane(listSearchResult);
         
@@ -120,18 +115,20 @@ public class ClientFindJourneyScreen implements PropertyChangeListener  {
 				clear();
 				setVisible(false);
 				parentWindow.setVisible(true);
+				disableButtons();
 			}
 		});
 		btnBack.setBounds(21, 28, 65, 29);
 		panelClientFindJourney.add(btnBack);
 		
-		JButton btnTracking = new JButton("Container History");
+		btnTracking = new JButton("Container History");
 		btnTracking.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 //				parentWindow.setVisible(true);
 			}
 		});
-		btnTracking.setBounds(148, 480, 117, 29);
+		btnTracking.setBounds(120, 480, 157, 29);
+		btnTracking.setEnabled(false);
 		panelClientFindJourney.add(btnTracking);
 	
 		containerTrackerScreen = new ContainerTrackerScreen(logisticCompanyApp, this);
@@ -144,11 +141,8 @@ public class ClientFindJourneyScreen implements PropertyChangeListener  {
 		.map(j -> j.asJourneyInfo())
 		.forEach((m) -> {searchResults.addElement(m);});
 		
-		
-		
-//		logisticCompanyApp.searchJourney(searchField.getText())
-//		          .forEach((m) -> {searchResults.addElement(m);});
 	}
+	
 	public void setVisible(boolean aFlag) {
 		panelClientFindJourney.setVisible(aFlag);	
 	}
@@ -163,8 +157,26 @@ public class ClientFindJourneyScreen implements PropertyChangeListener  {
 	}
 	
 	@Override
+	public void valueChanged(ListSelectionEvent e) {
+        if (e.getValueIsAdjusting() == false) {
+
+            if (listSearchResult.getSelectedIndex() == -1) {
+            	lblSearchResultDetail.setText("");
+
+            } else {
+            	logisticCompanyApp.setSelectedObjects(listSearchResult.getSelectedValue());
+            	lblSearchResultDetail.setText(new JourneyPrinter(logisticCompanyApp).printDetail());
+            	enableButtons();
+            }
+        }
+	}
+	
+	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
-		
+//		if(evt.getPropertyName().contentEquals("UpdatedContainer")){
+//			lblSearchResultDetail.setText("");
+//		}
+//		enableButtons();
 	}
 	
 }
