@@ -101,7 +101,6 @@ public class ClientSteps {
 		}
 		
 		logisticCompanyApp.logisticCompanyLogout();
-		
 		List <ClientInfo>  list = logisticCompanyApp.searchClient(clientInfo.getEmail());
 		
 		assertEquals(list.get(0).getAddress().getCity(),clientInfo.getAddress().getCity());
