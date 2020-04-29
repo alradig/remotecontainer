@@ -393,6 +393,7 @@ public class LogisticCompanyApp {
 	public void setSelectedClient(ClientInfo clientInfo) {
 		this.selectedClientInfo = clientInfo;
 		this.selectedClient = findClient(clientInfo);
+		this.client = selectedClient;
 		
 		support.firePropertyChange("SelectedClient",null,null);
 	}
