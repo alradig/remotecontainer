@@ -141,7 +141,7 @@ public class ClientFindJourneyScreen implements ListSelectionListener, PropertyC
 		logisticCompanyApp.getSelectedClient().getJourneyList().stream().filter(j -> j.matchJourney(searchField.getText()))
 		.map(j -> j.asJourneyInfo())
 		.forEach((m) -> {searchResults.addElement(m);});
-		
+
 	}
 	
 	public void setVisible(boolean aFlag) {
