@@ -28,7 +28,13 @@ public class LogisticCompanyApp {
 	private ContainerRepository containerRepository;
 	private ContainerStatusEntry containerStatus; 
 	private JourneyStatusEntry journeyStatus;
-	private Client client;
+	private Client loggedInClient;
+	
+	
+	public Client getLoggedInClient() {
+		return loggedInClient;
+	}
+
 	private JourneyInfo selectedJourneyInfo;
 	private ContainerInfo selectedContainerInfo;
 	private Container selectedContainer;
@@ -194,21 +200,21 @@ public class LogisticCompanyApp {
 	}
 
 	public boolean clientLogin(String email, String password) throws OperationNotAllowedException{
-		this.client = findClient(new ClientInfo("",email,""));
+		this.loggedInClient = findClient(new ClientInfo("",email,""));
 		
-		if (client == null) {
+		if (loggedInClient == null) {
 			throw new OperationNotAllowedException("No client registered with the given email!");
 		}
 
-		clientLoggedIn = password.equals(client.getPassword());
+		clientLoggedIn = password.equals(loggedInClient.getPassword());
 		
 		if (clientLoggedIn == false) {
 			throw new OperationNotAllowedException("Incorrect password!");
 		}
 		
 		if (clientLoggedIn == true) {
-			this.selectedClient = this.client;
-			this.selectedClientInfo = this.client.asClientInfo();
+			this.selectedClient = this.loggedInClient;
+			this.selectedClientInfo = this.loggedInClient.asClientInfo();
 			support.firePropertyChange("SelectedClient",null,null);
 		}
 
@@ -234,7 +240,7 @@ public class LogisticCompanyApp {
 		JourneyInfo journeyInfo = new JourneyInfo(cargo, originPort, endDestination);
 		
 		registerJourney(journeyInfo);
-		registerJourneyToClient(client.asClientInfo(), journeyInfo);
+		registerJourneyToClient(loggedInClient.asClientInfo(), journeyInfo);
 	}
 	
 	public void registerJourneyToClient(ClientInfo client, JourneyInfo journey){
@@ -309,7 +315,7 @@ public class LogisticCompanyApp {
 			throw new OperationNotAllowedException("Client name and email do not match!");
 		}
 		
-		provideAccess(client.asClientInfo(),client2.asClientInfo());
+		provideAccess(loggedInClient.asClientInfo(),client2.asClientInfo());
 		return true;
 	}
 	
@@ -441,7 +447,6 @@ public class LogisticCompanyApp {
 	public ClientInfo getSelectedClientInfo() {
 		return selectedClientInfo;
 	}
-
 	
 	
 }
