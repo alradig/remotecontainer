@@ -128,7 +128,8 @@ public class ClientFindJourneyScreen implements PropertyChangeListener  {
 		JButton btnTracking = new JButton("Container History");
 		btnTracking.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				parentWindow.setVisible(true);
+				setVisible(false);
+				containerTrackerScreen.setVisible(true);
 			}
 		});
 		btnTracking.setBounds(148, 480, 117, 29);
