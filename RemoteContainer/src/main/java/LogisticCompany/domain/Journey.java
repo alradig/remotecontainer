@@ -76,7 +76,9 @@ public class Journey {
 	}
 
 	public boolean matchJourney(String searchText) {
-		return cargo.contains(searchText) || originPort.contains(searchText) || destinationPort.contains(searchText);
+		return cargo.toLowerCase().contains(searchText.toLowerCase()) || 
+				originPort.toLowerCase().contains(searchText.toLowerCase()) || 
+				destinationPort.toLowerCase().contains(searchText.toLowerCase());
 	}
 
 	public JourneyInfo asJourneyInfo() {
