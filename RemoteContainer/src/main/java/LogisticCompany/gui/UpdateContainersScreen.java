@@ -36,6 +36,7 @@ public class UpdateContainersScreen {
 	private JLabel lblTemperature;
 	private JLabel lblHumidity;
 	private JLabel lblPressure;
+	private JLabel lblRegistrationStatus;
 
 	public UpdateContainersScreen(LogisticCompanyApp logisticCompanyApp,
 			FindJourneyScreen parentWindow) {
@@ -104,12 +105,18 @@ public class UpdateContainersScreen {
 		btnUpdate.setBounds(148, 230, 117, 29);
 		panelUpdateContainer.add(btnUpdate);
 		btnUpdate.getRootPane().setDefaultButton(btnUpdate);
+
+		lblRegistrationStatus = new JLabel("");
+		lblRegistrationStatus.setBounds(53, 65, 300, 16);
+		lblRegistrationStatus.setHorizontalAlignment(SwingConstants.CENTER);
+		panelUpdateContainer.add(lblRegistrationStatus);
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				parentWindow.setVisible(true);
+				lblRegistrationStatus.setText("");
 			}
 		});
 		btnBack.setBounds(21, 28, 65, 29);
@@ -119,6 +126,8 @@ public class UpdateContainersScreen {
 	
 	protected void updateContainer() {
 		logisticCompanyApp.updateSelectedContainer(updateTemperatureField.getText(),updateHumidityField.getText(), updateAtmPressureField.getText());
+		lblRegistrationStatus.setText("Container status is successfully updated!");
+
 	}
 	
 	public void setVisible(boolean aFlag) {

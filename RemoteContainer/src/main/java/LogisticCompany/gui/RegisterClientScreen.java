@@ -161,6 +161,7 @@ public class RegisterClientScreen {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				parentWindow.setVisible(true);
+				lblRegistrationStatus.setText("");
 			}
 		});
 		btnBack.setBounds(21, 28, 65, 29);
