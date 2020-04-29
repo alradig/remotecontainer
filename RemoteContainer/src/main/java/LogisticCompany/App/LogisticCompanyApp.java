@@ -129,15 +129,18 @@ public class LogisticCompanyApp {
 		logisticCompanyLoggedIn();
 		
 		Client client = findClient(cc);
-
-		for (Journey journey : client.getJourneyList()) {
-			if (!isJourneyDone(journey.asJourneyInfo()) )
-			{
-				throw new Exception("Can not unregister a client when a journey is on going");
-			}	
-		}
-		clientRepository.removeClient(client);
+		List<Journey> clientsJourneysList = client.getJourneyList();
 		
+		if (!clientsJourneysList.isEmpty()){
+			for (Journey journey : client.getJourneyList()) {
+				if (!isJourneyDone(journey.asJourneyInfo()) )
+				{
+					throw new OperationNotAllowedException("Can not unregister a client when a journey is on going");
+				}	
+			}
+		}
+		
+		clientRepository.removeClient(client);
 	}
 	
 	

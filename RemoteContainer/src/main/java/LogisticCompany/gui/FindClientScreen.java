@@ -34,6 +34,7 @@ public class FindClientScreen {
 	private JList<ClientInfo> listSearchResult;
 	private JLabel lblSearchResultDetail;
 	private JButton	btnUnregister;
+	private JLabel lblUnregisterClientStatus;
 
 	public FindClientScreen(LogisticCompanyApp logisticCompanyApp,
 		LogisticCompanyFunctionalitiesScreen parentWindow) {
@@ -70,6 +71,7 @@ public class FindClientScreen {
 		JButton btnSearch = new JButton("Search");
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				lblUnregisterClientStatus.setText("");
 				searchClient();
 			}
 		});
@@ -91,6 +93,7 @@ public class FindClientScreen {
 		            	lblSearchResultDetail.setText("");
 
 		            } else {
+		            	lblUnregisterClientStatus.setText("");
 		            	lblSearchResultDetail.setText(new ClientPrinter(listSearchResult.getSelectedValue()).printDetail());
 		            	enableButtons();
 		            	logisticCompanyApp.setSelectedClient(listSearchResult.getSelectedValue());
@@ -112,11 +115,17 @@ public class FindClientScreen {
                 "Detail"));
 		panelSearchResult.setLayout(null);
 		
-		 lblSearchResultDetail = new JLabel("");
-			lblSearchResultDetail.setVerticalAlignment(SwingConstants.TOP);
-			lblSearchResultDetail.setHorizontalAlignment(SwingConstants.LEFT);
-			lblSearchResultDetail.setBounds(23, 19, 318, 137);
-			panelSearchResult.add(lblSearchResultDetail);
+		lblSearchResultDetail = new JLabel("");
+		lblSearchResultDetail.setVerticalAlignment(SwingConstants.TOP);
+		lblSearchResultDetail.setHorizontalAlignment(SwingConstants.LEFT);
+		lblSearchResultDetail.setBounds(23, 19, 318, 137);
+		panelSearchResult.add(lblSearchResultDetail);
+		
+		
+		lblUnregisterClientStatus = new JLabel("");
+		lblUnregisterClientStatus.setHorizontalAlignment(SwingConstants.LEFT);
+		lblUnregisterClientStatus.setBounds(80, 450, 250, 29);
+		panelFindClient.add(lblUnregisterClientStatus);
 		
 		btnUnregister = new JButton("Unregister Client");
 		btnUnregister.addActionListener(new ActionListener() {
@@ -124,13 +133,12 @@ public class FindClientScreen {
 				try {
 					unregisterClient();
 				} catch (Exception e1) {
-
-					e1.printStackTrace();
+					lblUnregisterClientStatus.setText(e1.getMessage());
 				}
 			}
 		});
 			
-		btnUnregister.setBounds(120, 450, 180, 29);
+		btnUnregister.setBounds(120, 500, 180, 29);
 		btnUnregister.setEnabled(false);
 		panelFindClient.add(btnUnregister);
 		
@@ -166,10 +174,12 @@ public class FindClientScreen {
 		lblSearchResultDetail.setText("");
 		searchField.setText("");
 		searchResults.clear();
+		lblUnregisterClientStatus.setText("");
 	}
 	protected void unregisterClient() throws Exception {
-//		Client cl = logisticCompanyApp.getSelectedClient();
-//		logisticCompanyApp.unregisterClient(cl);
-	
+		ClientInfo cl = logisticCompanyApp.getSelectedClientInfo();
+		logisticCompanyApp.unregisterClient(cl);
+		searchResults.remove(listSearchResult.getSelectedIndex());
+		lblUnregisterClientStatus.setText("Successfully unregistered the client!");
 	}
 }

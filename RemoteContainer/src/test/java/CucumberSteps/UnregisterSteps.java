@@ -32,8 +32,9 @@ public class UnregisterSteps {
 	public void the_client_is_found(){
 		try {
 			Client cl = logisticCompanyApp.findClient(clientInfo);
+			System.out.println("Entered here");
 			assertEquals(cl.getPassword(), password);
-		} catch (Exception e) { 
+		} catch (Exception e) {
 			the_client_is_not_found();
 		}
 	}
@@ -56,7 +57,6 @@ public class UnregisterSteps {
 		} catch (Exception e) { 
 			the_client_is_not_found();
 		}
-		
 	}
 	
 	@Then("the system sends the error {string}")
