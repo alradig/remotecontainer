@@ -76,12 +76,12 @@ public class LogisticCompanyApp {
 				.collect(Collectors.toList());
 	}
 	
-	public List<ContainerInfo> searchContainer(String cargo) {
-		return containerRepository.getAllContainersStream()
-				.filter(c -> c.matchContainer(cargo))
-				.map(c -> c.asContainerInfo())
-				.collect(Collectors.toList());
-	}
+//	public List<ContainerInfo> searchContainer(String cargo) {
+//		return containerRepository.getAllContainersStream()
+//				.filter(c -> c.matchContainer(cargo))
+//				.map(c -> c.asContainerInfo())
+//				.collect(Collectors.toList());
+//	}
 
 	public List<JourneyInfo> searchJourney(String searchText) {
 		return journeyRepository.getAllJourneysStream()
@@ -393,6 +393,7 @@ public class LogisticCompanyApp {
 	public void setSelectedClient(ClientInfo clientInfo) {
 		this.selectedClientInfo = clientInfo;
 		this.selectedClient = findClient(clientInfo);
+		this.client = selectedClient;
 		
 		support.firePropertyChange("SelectedClient",null,null);
 	}

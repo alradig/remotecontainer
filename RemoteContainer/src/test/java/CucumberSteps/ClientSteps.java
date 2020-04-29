@@ -101,7 +101,6 @@ public class ClientSteps {
 		}
 		
 		logisticCompanyApp.logisticCompanyLogout();
-		
 		List <ClientInfo>  list = logisticCompanyApp.searchClient(clientInfo.getEmail());
 		
 		assertEquals(list.get(0).getAddress().getCity(),clientInfo.getAddress().getCity());
@@ -129,7 +128,6 @@ public class ClientSteps {
 		ClientInfo clientInfo2 = clientsList.get(0);
 		
 		logisticCompanyApp.provideAccess(clientInfo,clientInfo2);
-		
 		logisticCompanyApp.logisticCompanyLogout();
 	}
 	
