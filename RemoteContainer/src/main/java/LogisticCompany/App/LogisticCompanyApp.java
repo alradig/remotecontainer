@@ -76,12 +76,12 @@ public class LogisticCompanyApp {
 				.collect(Collectors.toList());
 	}
 	
-	public List<ContainerInfo> searchContainer(String cargo) {
-		return containerRepository.getAllContainersStream()
-				.filter(c -> c.matchContainer(cargo))
-				.map(c -> c.asContainerInfo())
-				.collect(Collectors.toList());
-	}
+//	public List<ContainerInfo> searchContainer(String cargo) {
+//		return containerRepository.getAllContainersStream()
+//				.filter(c -> c.matchContainer(cargo))
+//				.map(c -> c.asContainerInfo())
+//				.collect(Collectors.toList());
+//	}
 
 	public List<JourneyInfo> searchJourney(String searchText) {
 		return journeyRepository.getAllJourneysStream()
