@@ -75,7 +75,8 @@ public class ClientFindJourneyScreen implements ListSelectionListener, PropertyC
 		JButton btnSearch = new JButton("Search");
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				searchJourney();
+				searchJourney();	
+				disableButtons();
 			}
 		});
 		btnSearch.setBounds(148, 68, 117, 29);

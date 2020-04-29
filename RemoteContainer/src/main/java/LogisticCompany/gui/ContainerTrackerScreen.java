@@ -32,6 +32,16 @@ public class ContainerTrackerScreen {
 		panelContainerTracker.setLayout(null);
 		panelContainerTracker.setBorder(BorderFactory.createTitledBorder(
                 "Find Existing Journey"));
+		
+		JButton btnShow = new JButton("Show");
+		btnShow.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnShow.setBounds(148, 58, 107, 29);
+		panelContainerTracker.add(btnShow);
+		btnShow.getRootPane().setDefaultButton(btnShow);
 	
 		JPanel panelTemperature = new JPanel();
 		panelTemperature.setBounds(25, 100, 100, 400);
