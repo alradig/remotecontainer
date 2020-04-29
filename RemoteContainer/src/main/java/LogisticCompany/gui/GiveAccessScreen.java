@@ -88,6 +88,7 @@ public class GiveAccessScreen {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				parentWindow.setVisible(true);
+				submitStatus.setText("");
 			}
 		});
 		btnBack.setBounds(21, 28, 65, 29);

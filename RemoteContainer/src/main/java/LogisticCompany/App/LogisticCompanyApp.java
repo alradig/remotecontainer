@@ -339,20 +339,20 @@ public class LogisticCompanyApp {
 		return ContainersList;
 	}
 	
-	public List<Journey> collectAccessibleJourneys(ClientInfo clientInfo) {
-		Client client = findClient(clientInfo);
-		List<Journey> JourneysList = getClientJourneys(clientInfo);
-		List<Client> clientAccessList = client.getAccessList();
-		if(!clientAccessList.isEmpty()) {
-			for (Client c : clientAccessList) {
-				List<Journey> journeyList = c.getJourneyList();
-				for (Journey j : journeyList) {
-					JourneysList.add(j);
-				}
-			}
-		}		
-		return JourneysList;
-	}
+//	public List<Journey> collectAccessibleJourneys(ClientInfo clientInfo) {
+//		Client client = findClient(clientInfo);
+//		List<Journey> JourneysList = getClientJourneys(clientInfo);
+//		List<Client> clientAccessList = client.getAccessList();
+//		if(!clientAccessList.isEmpty()) {
+//			for (Client c : clientAccessList) {
+//				List<Journey> journeyList = c.getJourneyList();
+//				for (Journey j : journeyList) {
+//					JourneysList.add(j);
+//				}
+//			}
+//		}		
+//		return JourneysList;
+//	}
 		
 
 	public void setClientPassword(ClientInfo clientInfo, String password) {

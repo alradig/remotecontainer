@@ -22,15 +22,14 @@ public class testAccessClient {
     public void setUp() throws OperationNotAllowedException {
     	logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
 		logisticCompanyApp.registerClient("name2", "email2", "ps2","456", "city2", "street2", "refPerson2");
+		
+		ClientInfo c1 = new ClientInfo("name1","email1","refPerson1");
+    	logisticCompanyApp.registerClient(c1 , "ps1");
+    	logisticCompanyApp.setSelectedClient(c1);
     }
 		
 	@Test
 	public void testProvideAccess() throws Exception {
-		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
-    	ClientInfo c1 = new ClientInfo("name1","email1","refPerson1");
-    	logisticCompanyApp.registerClient(c1 , "ps1");
-    	
-		logisticCompanyApp.setSelectedClient(c1);
 		assertTrue(logisticCompanyApp.provideAccess("name2", "email2"));
     }
 		
