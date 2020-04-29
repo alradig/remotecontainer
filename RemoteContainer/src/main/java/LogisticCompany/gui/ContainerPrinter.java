@@ -11,7 +11,6 @@ public class ContainerPrinter {
 	private ContainerInfo container;
 	List<ContainerStatusEntry> containerStatusList;
 	ContainerStatusEntry containerStatus;
-	String tab = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 	
 	public ContainerPrinter(LogisticCompanyApp logisticCompanyApp) {
 		System.out.println("1");
@@ -37,7 +36,8 @@ public class ContainerPrinter {
 		StringBuffer b = new StringBuffer();
 
 		for (int i=0; i<containerStatusList.size(); i++) {
-	        b.append(String.format(containerStatusList.get(i).getTemperature(),tab));
+	        b.append(String.format(containerStatusList.get(i).getTemperature()));
+	        b.append("\n");
 	    }		
 
 		return b.toString();
@@ -48,7 +48,8 @@ public class ContainerPrinter {
 		StringBuffer b = new StringBuffer();
 
 		for (int i=0; i<containerStatusList.size(); i++) {
-	        b.append(String.format(containerStatusList.get(i).getAirHumidity(),tab));
+	        b.append(String.format(containerStatusList.get(i).getAirHumidity()));
+	        b.append("\n");
 	    }	
 		return b.toString();
 	}
@@ -56,7 +57,8 @@ public class ContainerPrinter {
 	public String printPressureDetail() {
 		StringBuffer b = new StringBuffer();
 		for (int i=0; i<containerStatusList.size(); i++) {
-	        b.append(String.format(containerStatusList.get(i).getAtmPressure(),tab));
+	        b.append(String.format(containerStatusList.get(i).getAtmPressure()));
+	        b.append("\n");
 	    }	
 
 		return b.toString();
