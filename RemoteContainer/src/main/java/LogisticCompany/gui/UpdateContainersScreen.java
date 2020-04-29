@@ -52,8 +52,8 @@ public class UpdateContainersScreen {
 		panelUpdateContainer.setBorder(BorderFactory.createTitledBorder(
                 "Update Container"));
 		
-		lblTemperature = new JLabel("New temperature:");
-		lblTemperature.setBounds(40, 85, 120, 16);
+		lblTemperature = new JLabel("Temperature:");
+		lblTemperature.setBounds(40, 105, 120, 16);
 		panelUpdateContainer.add(lblTemperature);
 		
 		updateTemperatureField = new JTextField();
@@ -62,12 +62,12 @@ public class UpdateContainersScreen {
 	
 			}
 		});
-		updateTemperatureField.setBounds(158, 80, 130, 26);
+		updateTemperatureField.setBounds(158, 100, 130, 26);
 		panelUpdateContainer.add(updateTemperatureField);
 		updateTemperatureField.setColumns(10);
 		
-		lblHumidity = new JLabel("New humidity:");
-		lblHumidity.setBounds(40, 125, 120, 16);
+		lblHumidity = new JLabel("Humidity:");
+		lblHumidity.setBounds(40, 145, 120, 16);
 		panelUpdateContainer.add(lblHumidity);
 		
 		updateHumidityField.addActionListener(new ActionListener() {
@@ -75,12 +75,12 @@ public class UpdateContainersScreen {
 	
 			}
 		});
-		updateHumidityField.setBounds(158, 120, 130, 26);
+		updateHumidityField.setBounds(158, 140, 130, 26);
 		panelUpdateContainer.add(updateHumidityField);
 		updateHumidityField.setColumns(10);
 		
-		lblPressure = new JLabel("New air pressure:");
-		lblPressure.setBounds(40, 165, 120, 16);
+		lblPressure = new JLabel("Air pressure (Atm):");
+		lblPressure.setBounds(40, 185, 120, 16);
 		panelUpdateContainer.add(lblPressure);
 		
 		updateAtmPressureField = new JTextField();
@@ -89,7 +89,7 @@ public class UpdateContainersScreen {
 	
 			}
 		});
-		updateAtmPressureField.setBounds(158, 160, 130, 26);
+		updateAtmPressureField.setBounds(158, 180, 130, 26);
 		panelUpdateContainer.add(updateAtmPressureField);
 		updateAtmPressureField.setColumns(10);
 		
@@ -102,7 +102,7 @@ public class UpdateContainersScreen {
 				updateAtmPressureField.setText("");
 			}
 		});
-		btnUpdate.setBounds(148, 230, 117, 29);
+		btnUpdate.setBounds(148, 250, 117, 29);
 		panelUpdateContainer.add(btnUpdate);
 		btnUpdate.getRootPane().setDefaultButton(btnUpdate);
 

@@ -134,7 +134,9 @@ public class RegisterClientScreen {
 				
 				if (name.equals("") || email.equals("") || password.equals("") || zipCode.equals("") || city.equals("") || street.equals("") || refPerson.equals("")) {
 					lblRegistrationStatus.setText("Missing information!");
-				}else {
+				} else if (!email.contains("@") || !email.contains(".")) {
+					lblRegistrationStatus.setText("Email is not valid");
+				} else {
 					try { 
 						logisticCompanyApp.registerClient(name, email, password, zipCode, city, street, refPerson);
 						lblRegistrationStatus.setText("Client is successfully registered!");

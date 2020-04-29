@@ -116,7 +116,6 @@ public class MainScreen {
 			logisticCompanyApp.registerContainerToJourney(container, journeysList.get(i));
 		}
 		
-		logisticCompanyApp.logisticCompanyLogout();
 	}
 
 	
