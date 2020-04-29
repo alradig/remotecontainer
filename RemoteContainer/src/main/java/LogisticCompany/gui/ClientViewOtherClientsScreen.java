@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.stream.Collectors;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
@@ -23,14 +24,16 @@ import LogisticCompany.App.LogisticCompanyApp;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.info.JourneyInfo;
 
-public class ClientViewOtherClientsScreen implements ListSelectionListener, PropertyChangeListener{
+public class ClientViewOtherClientsScreen implements PropertyChangeListener{
 	LogisticCompanyApp logisticCompanyApp;
 	private ClientFunctionalitiesScreen parentWindow;
 	private JPanel panelOtherClient;
 	private JTextField searchField;
 	private JButton btnUpdateJourney;
-	private DefaultListModel<ClientInfo> searchResults;
-	private JList<ClientInfo> listSearchResult;
+	private DefaultListModel<ClientInfo> ClientSearchResults;
+	private DefaultListModel<JourneyInfo> JourneySearchResults;
+	private JList<ClientInfo> clientListSearchResult;
+	private JList<JourneyInfo> journeyListSearchResult;
 	private JLabel lblSearchResultDetail;
 	
 	
@@ -61,22 +64,40 @@ public class ClientViewOtherClientsScreen implements ListSelectionListener, Prop
 		panelOtherClient.add(searchField);
 		searchField.setColumns(10);
 		
-		
-		searchResults = new DefaultListModel<>();
-		listSearchResult = new JList<>(searchResults);
-		listSearchResult.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		listSearchResult.setSelectedIndex(0);
-		listSearchResult.addListSelectionListener(this);
-		listSearchResult.setVisibleRowCount(5);
-        JScrollPane listScrollPane = new JScrollPane(listSearchResult);
-        listScrollPane.setBounds(21, 109, 361, 149);
-        panelOtherClient.add(listScrollPane);
+		ClientSearchResults = new DefaultListModel<>();
+		clientListSearchResult = new JList<>(ClientSearchResults);
+		clientListSearchResult.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		clientListSearchResult.setSelectedIndex(0);
+		clientListSearchResult.addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				valueChangedClientList(e);
+			}
+		});
+		clientListSearchResult.setVisibleRowCount(5);
+        JScrollPane clientListScrollPane = new JScrollPane(clientListSearchResult);
+        clientListScrollPane.setBounds(21, 109, 361, 149);
+        panelOtherClient.add(clientListScrollPane);
+        
+		JourneySearchResults = new DefaultListModel<>();
+		journeyListSearchResult = new JList<>(JourneySearchResults);
+		journeyListSearchResult.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		journeyListSearchResult.setSelectedIndex(0);
+		journeyListSearchResult.addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				valueChangedJourneyList(e);
+			}
+		});
+		journeyListSearchResult.setVisibleRowCount(5);
+        JScrollPane journeyJistScrollPane = new JScrollPane(journeyListSearchResult);
+        journeyJistScrollPane.setBounds(21, 270, 361, 149);
+        panelOtherClient.add(journeyJistScrollPane);
         
         JPanel panelSearchResult = new JPanel();
-		panelSearchResult.setBounds(21, 270, 361, 175);
+		panelSearchResult.setBounds(21, 431, 361, 175);
 		panelOtherClient.add(panelSearchResult);
-		panelSearchResult.setBorder(BorderFactory.createTitledBorder(
-                "Detail"));
+		panelSearchResult.setBorder(BorderFactory.createTitledBorder("Detail"));
 		panelSearchResult.setLayout(null);
         
         lblSearchResultDetail = new JLabel("");
@@ -89,6 +110,7 @@ public class ClientViewOtherClientsScreen implements ListSelectionListener, Prop
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
+				resetScreen();
 				parentWindow.setVisible(true);
 			}});
 		btnBack.setBounds(21, 28, 65, 29);
@@ -123,9 +145,9 @@ public class ClientViewOtherClientsScreen implements ListSelectionListener, Prop
 	
 	public void resetScreen() {
 		lblSearchResultDetail.setText("");
-		lblSearchResultDetail.setText("");
 		searchField.setText("");
-		searchResults.clear();
+		ClientSearchResults.clear();
+		JourneySearchResults.clear();
 	}
 	/*
 	 * Methods to be implemented:
@@ -134,31 +156,58 @@ public class ClientViewOtherClientsScreen implements ListSelectionListener, Prop
 	public void propertyChange(PropertyChangeEvent evt) {
 		//here needs to be some specification
 	}
-	@Override
-	public void valueChanged(ListSelectionEvent e) {
+	
+	public void valueChangedJourneyList(ListSelectionEvent e) {
+        if (e.getValueIsAdjusting() == false) {
+        		
+	            if (journeyListSearchResult.getSelectedIndex() == -1) {
+	            	lblSearchResultDetail.setText("");
+	
+	            } else {
+	            	logisticCompanyApp.setSelectedJourney(journeyListSearchResult.getSelectedValue());
+	            	lblSearchResultDetail.setText(new JourneyPrinter(logisticCompanyApp).printDetail());
+	            	//lblSearchResultDetail.setText(new JourneyPrinter(listSearchResult.getSelectedValue(),logisticCompanyApp.getSelectedContainerInfo()).printDetail());
+	            }
+
+        	
+//            if (clientListSearchResult.getSelectedIndex() == -1) {
+//            	lblSearchResultDetail.setText("");
+//
+//            } else {
+//            	logisticCompanyApp.setSelectedClient(clientListSearchResult.getSelectedValue());
+//            	//lblSearchResultDetail.setText(new JourneyPrinter(listSearchResult.getSelectedValue(),logisticCompanyApp.getSelectedContainerInfo()).printDetail());
+//            }
+        }}
+	
+	
+	public void valueChangedClientList(ListSelectionEvent e) {
         if (e.getValueIsAdjusting() == false) {
 
-            if (listSearchResult.getSelectedIndex() == -1) {
-            	lblSearchResultDetail.setText("");
+	            if (clientListSearchResult.getSelectedIndex() == -1) {
+	            	lblSearchResultDetail.setText("");
+	
+	            } else {
+	            	logisticCompanyApp.setSelectedClient(clientListSearchResult.getSelectedValue());
+	            	logisticCompanyApp.getSelectedClient().getJourneyList().forEach(j -> {
+	            		JourneySearchResults.addElement(j.asJourneyInfo());
+	            	});
+	            }
 
-            } else {
-            	logisticCompanyApp.setSelectedClient(listSearchResult.getSelectedValue());
-            	//lblSearchResultDetail.setText(new JourneyPrinter(listSearchResult.getSelectedValue(),logisticCompanyApp.getSelectedContainerInfo()).printDetail());
-            }
         }
-        //this.selectedClientInfo = listSearchResult.getSelectedValue();
 	}
 	
 	protected void searchAccessibleClients() {
-		searchResults.clear();
-		logisticCompanyApp.getSelectedClient().getAccessList().forEach(c -> {
-			searchResults.addElement(c.asClientInfo());
+		ClientSearchResults.clear();
+		logisticCompanyApp.getSelectedClient().getAccessList().stream()
+		.filter(c -> c.matchClient(searchField.getText()))
+		.forEach(c -> {
+			ClientSearchResults.addElement(c.asClientInfo());
 		});
 		
-		
-	
-		//logisticCompanyApp.searchJourney(searchField.getText())
-		         // .forEach((m) -> {searchResults.addElement(m);});
+//		journeyRepository.getAllJourneysStream()
+//		.filter(j -> j.matchJourney(searchText))
+//		.map(j -> j.asJourneyInfo())
+//		.collect(Collectors.toList());
 	}
 	
 }

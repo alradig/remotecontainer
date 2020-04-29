@@ -234,6 +234,10 @@ public class LogisticCompanyApp {
 		JourneyInfo journeyInfo = new JourneyInfo(cargo, originPort, endDestination);
 		
 		registerJourney(journeyInfo);
+		
+		if (client ==null) {
+			client = selectedClient;
+		}
 		registerJourneyToClient(client.asClientInfo(), journeyInfo);
 	}
 	
@@ -261,7 +265,6 @@ public class LogisticCompanyApp {
 	public void updateSelectedJourney(String newLocation) throws OperationNotAllowedException {
 		checkLogisticCompanyLoggedIn();
 		JourneyStatusEntry newEntry = new JourneyStatusEntry(this.getSelectedjourneyInfo().getOriginPort(), this.getSelectedjourneyInfo().getDestinationPort(), "not registered");
-		
 		if(!newLocation.isEmpty()) {
 			newEntry.setLocation(newLocation);
 		}
@@ -374,8 +377,9 @@ public class LogisticCompanyApp {
 		this.selectedJourneyInfo = selectedJourneyInfo;
 		this.selectedJourney = findJourney(selectedJourneyInfo);
 
+		
 		this.selectedContainer = selectedJourney.getContainer();
-
+	
 		if(!(this.selectedContainer == null)) {
 
 			this.selectedContainerInfo = this.selectedContainer.asContainerInfo();
@@ -383,7 +387,7 @@ public class LogisticCompanyApp {
 			this.selectedContainerInfo = null;
 		}
 		
-		support.firePropertyChange("SelectedJourney",null,null);
+		support.firePropertyChange("SelectedObjects",null,null);
 	}
 	
 	public void setSelectedClient(ClientInfo clientInfo) {
@@ -391,6 +395,13 @@ public class LogisticCompanyApp {
 		this.selectedClient = findClient(clientInfo);
 		
 		support.firePropertyChange("SelectedClient",null,null);
+	}
+	
+	public void setSelectedJourney(JourneyInfo selectedJourneyInfo) {
+		this.selectedJourneyInfo = selectedJourneyInfo;
+		this.selectedJourney = findJourney(selectedJourneyInfo);
+		
+		support.firePropertyChange("SelectedJourney",null,null);
 	}
 
 	public void updateSelectedContainer(String temperature, String humidity, String airPressure) {
@@ -404,7 +415,6 @@ public class LogisticCompanyApp {
 		}else {
 			newEntry = new ContainerStatusEntry("not registered","not registered","not registered");
 		}
-		
 		
 		if(temperature != null && !temperature.isEmpty()) {
 			newEntry.setTemperature(temperature);
