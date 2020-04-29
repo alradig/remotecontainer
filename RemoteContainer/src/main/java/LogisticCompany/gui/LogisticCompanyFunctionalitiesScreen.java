@@ -103,6 +103,7 @@ public class LogisticCompanyFunctionalitiesScreen  {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				mainScreen.setVisible(true);
+				logisticCompanyApp.logisticCompanyLogout();
 			}
 		});
 		btnLogout.setBounds(21, 28, 80, 29);

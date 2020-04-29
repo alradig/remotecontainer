@@ -119,7 +119,7 @@ public class ClientFunctionalitiesScreen implements PropertyChangeListener  {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				mainScreen.setVisible(true);
-				// logout from app. 
+				logisticCompanyApp.clientLogout();
 			}
 		});
 		btnLogout.setBounds(21, 28, 80, 29);
