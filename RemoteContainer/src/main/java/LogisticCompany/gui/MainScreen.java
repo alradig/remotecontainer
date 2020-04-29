@@ -63,7 +63,6 @@ public class MainScreen {
 		} catch (OperationNotAllowedException e) {
 			
 		}
-		
 		initialize();
 	}
 
