@@ -35,6 +35,8 @@ public class ClientViewOtherClientsScreen implements PropertyChangeListener{
 	private JList<ClientInfo> clientListSearchResult;
 	private JList<JourneyInfo> journeyListSearchResult;
 	private JLabel lblSearchResultDetail;
+	private JLabel lblClientsList;
+	private JLabel lblJourneysList;
 	
 	
 	
@@ -75,7 +77,14 @@ public class ClientViewOtherClientsScreen implements PropertyChangeListener{
 			}
 		});
 		clientListSearchResult.setVisibleRowCount(5);
-        JScrollPane clientListScrollPane = new JScrollPane(clientListSearchResult);
+        
+		lblClientsList = new JLabel("Clients:");
+		lblClientsList.setVerticalAlignment(SwingConstants.TOP);
+		lblClientsList.setHorizontalAlignment(SwingConstants.LEFT);
+		lblClientsList.setBounds(21, 84, 100, 50);
+		panelOtherClient.add(lblClientsList);
+		
+		JScrollPane clientListScrollPane = new JScrollPane(clientListSearchResult);
         clientListScrollPane.setBounds(21, 109, 361, 149);
         panelOtherClient.add(clientListScrollPane);
         
@@ -90,12 +99,19 @@ public class ClientViewOtherClientsScreen implements PropertyChangeListener{
 			}
 		});
 		journeyListSearchResult.setVisibleRowCount(5);
-        JScrollPane journeyJistScrollPane = new JScrollPane(journeyListSearchResult);
-        journeyJistScrollPane.setBounds(21, 270, 361, 149);
+        
+		lblJourneysList = new JLabel("Client's journeys:");
+		lblJourneysList.setVerticalAlignment(SwingConstants.TOP);
+		lblJourneysList.setHorizontalAlignment(SwingConstants.LEFT);
+		lblJourneysList.setBounds(21, 265, 150, 100);
+		panelOtherClient.add(lblJourneysList);
+		
+		JScrollPane journeyJistScrollPane = new JScrollPane(journeyListSearchResult);
+        journeyJistScrollPane.setBounds(21, 285, 361, 149);
         panelOtherClient.add(journeyJistScrollPane);
         
         JPanel panelSearchResult = new JPanel();
-		panelSearchResult.setBounds(21, 431, 361, 175);
+		panelSearchResult.setBounds(21, 445, 361, 175);
 		panelOtherClient.add(panelSearchResult);
 		panelSearchResult.setBorder(BorderFactory.createTitledBorder("Journey Detail"));
 		panelSearchResult.setLayout(null);
@@ -121,7 +137,7 @@ public class ClientViewOtherClientsScreen implements PropertyChangeListener{
 			public void actionPerformed(ActionEvent e) {
 				searchAccessibleClients();
 			}});
-		btnSearch.setBounds(148, 68, 117, 29);
+		btnSearch.setBounds(148, 60, 117, 29);
 		panelOtherClient.add(btnSearch);
 		btnSearch.getRootPane().setDefaultButton(btnSearch);
 		

@@ -399,7 +399,7 @@ public class LogisticCompanyApp {
 	public void setSelectedClient(ClientInfo clientInfo) {
 		this.selectedClientInfo = clientInfo;
 		this.selectedClient = findClient(clientInfo);
-		this.loggedInClient = selectedClient;
+//		this.loggedInClient = selectedClient; //the loggedInClient should only change when a client logs in.
 		
 		support.firePropertyChange("SelectedClient",null,null);
 	}
