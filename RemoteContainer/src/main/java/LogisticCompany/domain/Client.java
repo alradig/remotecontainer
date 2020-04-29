@@ -20,9 +20,6 @@ public class Client{
 	private String refPerson;
 	@Embedded
 	private Address address;
-	public void setAddress(Address address) {
-		this.address = address;
-	}
 
 	@OneToMany
 	private List<Journey> journeys = new ArrayList<>();
@@ -100,6 +97,8 @@ public class Client{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+//	public void setAddress(Address address) {
+//		this.address = address;
+//	}
 	
 }
