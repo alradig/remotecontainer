@@ -112,17 +112,17 @@ public class SQLRepository implements ClientRepository, ContainerRepository , Jo
 			em.getTransaction().commit();
 		}
 
-		@Override
-		public void removeJourney(Journey journey) {
-			// TODO Auto-generated method stub
-
-		}
-		
-		@Override
-		public void removeContainer(Container container) {
-			// TODO Auto-generated method stub
-		
-		}
+//		@Override
+//		public void removeJourney(Journey journey) {
+//			// TODO Auto-generated method stub
+//
+//		
+//		
+//		@Override
+//		public void removeContainer(Container container) {
+//			// TODO Auto-generated method stub
+//		
+//		}
 		
 		@Override
 		public void removeClient(Client client) {
@@ -131,23 +131,23 @@ public class SQLRepository implements ClientRepository, ContainerRepository , Jo
 			em.getTransaction().commit();
 		}
 
-		@Override
-		public boolean contains(Container container) {
-			// TODO Auto-generated method stub
-			return false;
-		}
+//		@Override
+//		public boolean contains(Container container) {
+//			// TODO Auto-generated method stub
+//			return false;
+//		}
 		
-		@Override
-		public boolean contains(Client client) {
-			// TODO Auto-generated method stub
-			return false;
-		}
+//		@Override
+//		public boolean contains(Client client) {
+//			// TODO Auto-generated method stub
+//			return false;
+//		}
 		
-		@Override
-		public boolean contains(Journey journey) {
-			// TODO Auto-generated method stub
-			return false;
-		}
+//		@Override
+//		public boolean contains(Journey journey) {
+//			// TODO Auto-generated method stub
+//			return false;
+//		}
 
 		@Override
 		public Stream<Container> getAllContainersStream() {

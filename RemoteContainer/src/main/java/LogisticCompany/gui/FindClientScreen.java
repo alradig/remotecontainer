@@ -124,7 +124,7 @@ public class FindClientScreen {
 		
 		lblUnregisterClientStatus = new JLabel("");
 		lblUnregisterClientStatus.setHorizontalAlignment(SwingConstants.LEFT);
-		lblUnregisterClientStatus.setBounds(80, 450, 250, 29);
+		lblUnregisterClientStatus.setBounds(40, 450, 350, 29);
 		panelFindClient.add(lblUnregisterClientStatus);
 		
 		btnUnregister = new JButton("Unregister Client");
