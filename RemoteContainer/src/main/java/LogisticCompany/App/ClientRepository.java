@@ -7,7 +7,7 @@ import LogisticCompany.info.ClientInfo;
 
 public interface ClientRepository {
 	
-	boolean contains(Client client);
+//	boolean contains(Client client);
 	
 	void addClient(Client cc);
 
@@ -19,5 +19,5 @@ public interface ClientRepository {
 
 	Client getClient(String email);
 
-	void updateClient(Client client);
+	void updateClient(Client client); 
 }

@@ -25,7 +25,7 @@ public class testAccessClient {
 		
 		ClientInfo c1 = new ClientInfo("name1","email1","refPerson1");
     	logisticCompanyApp.registerClient(c1 , "ps1");
-    	logisticCompanyApp.setSelectedClient(c1);
+    	logisticCompanyApp.setLoggedInClient(c1.asClient());
     }
 		
 	@Test
