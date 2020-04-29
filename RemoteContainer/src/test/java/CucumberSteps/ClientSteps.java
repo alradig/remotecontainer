@@ -131,6 +131,20 @@ public class ClientSteps {
 		logisticCompanyApp.logisticCompanyLogout();
 	}
 	
+	@When("the logistic company unregister the client")
+	public void the_logistic_company_unregister_the_client() {
+		try {
+			logisticCompanyApp.unregisterClient(clientHelper.getClient());
+		} catch (Exception e) {
+			this.errorMessage = e.getMessage();
+		}
+	}
+	
+	@Then("the client is removed from the system")
+	public void the_client_is_removed_from_the_system() {
+		assertEquals(null,logisticCompanyApp.findClient(clientHelper.getClient()));
+	}
+	
 	@Then("the other client should be able to access the client data")
 	public void the_other_client_should_be_able_to_access_the_client_data() {
 	    ClientInfo clientInfo2 = clientHelper.getMultipleClients().get(0);

@@ -84,8 +84,6 @@ public class SearchSteps {
         journeys = logisticCompanyApp.searchJourney(searchCargo);
     }
 
- 
-
     @Then("the journey with cargo {string}, start destination {string} and end destination {string} is found")
     public void the_journey_with_cargo_start_destination_and_end_destination_is_found(String cargo, String startDestination, String endDestination) {
         assertEquals(1, journeys.size());
@@ -106,6 +104,5 @@ public class SearchSteps {
         JourneyInfo journey2 = journeys.get(1);
         assertTrue((journey1.getOriginPort().equals(startDestination1) && journey2.getOriginPort().equals(startDestination2))
                 || (journey1.getOriginPort().equals(startDestination2) && journey2.getOriginPort().equals(startDestination1)));
-    
     }
 }

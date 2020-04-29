@@ -126,8 +126,9 @@ public class SQLRepository implements ClientRepository, ContainerRepository , Jo
 		
 		@Override
 		public void removeClient(Client client) {
-			// TODO Auto-generated method stub
-			
+			em.getTransaction().begin();
+			em.remove(client);
+			em.getTransaction().commit();
 		}
 
 		@Override
