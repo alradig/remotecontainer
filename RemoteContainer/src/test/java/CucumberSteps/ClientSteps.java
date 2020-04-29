@@ -33,6 +33,8 @@ public class ClientSteps {
 	private ContainerHelper containerHelper;
 	private Client client;
 	private Client cc;
+	private JourneyInfo journeyInfo;
+	private ContainerInfo containerInfo;
 	private List<Container> containersList;
 	
 	public ClientSteps(LogisticCompanyApp logisticCompanyApp, ClientHelper helper, JourneyHelper journeyHelper,ContainerHelper containerHelper) {
@@ -134,9 +136,10 @@ public class ClientSteps {
 	@When("the logistic company unregister the client")
 	public void the_logistic_company_unregister_the_client() {
 		try {
-			logisticCompanyApp.unregisterClient(clientHelper.getClient());
+			logisticCompanyApp.unregisterClient(clientInfo);
 		} catch (Exception e) {
 			this.errorMessage = e.getMessage();
+			System.out.println(this.errorMessage);
 		}
 	}
 	
@@ -235,4 +238,27 @@ public class ClientSteps {
 	public void the_new_password_is_assigned_to_the_client(String newPassword) {
 	    assertEquals(cc.getPassword(), newPassword);		
 	}
+	
+	@Given("Client has ongoing journey")
+	public void client_has_ongoing_journey() throws Exception {
+		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
+		clientInfo = new ClientInfo("Expresso","t","Nach Jicholson");
+		logisticCompanyApp.registerClient(clientInfo, "client");
+		JourneyInfo journey1 = new JourneyInfo("Bananas","Copenhagen","Moscow");
+		logisticCompanyApp.registerJourney(journey1);
+		logisticCompanyApp.registerJourneyToClient(clientInfo, journey1);
+
+	}
+
+
+
+	@Then("the system sends the error message {string}")
+	public void the_system_sends_the_error_message(String errorM) {
+
+	   assertEquals(errorM, this.errorMessage);
+	}
+
+	
+
+	
 }

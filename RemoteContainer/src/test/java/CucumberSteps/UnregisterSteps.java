@@ -55,14 +55,17 @@ public class UnregisterSteps {
 			logisticCompanyApp.unregisterClient(clientInfo);
 			
 		} catch (Exception e) { 
-			the_client_is_not_found();
+			errorMessage = (e.getMessage());
+			
 		}
 	}
-	
 	@Then("the system sends the error {string}")
 	public void the_system_sends_the_error(String error) {
-	    assertEquals(error,errorMessage);
+		assertEquals(error,errorMessage);
+
 	}
+	
+	
 }
 
 	
