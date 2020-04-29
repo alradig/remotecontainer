@@ -119,7 +119,7 @@ public class ClientFunctionalitiesScreen implements PropertyChangeListener  {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				mainScreen.setVisible(true);
-				// logout from app. 
+				logisticCompanyApp.clientLogout();
 			}
 		});
 		btnLogout.setBounds(21, 28, 80, 29);
@@ -127,7 +127,7 @@ public class ClientFunctionalitiesScreen implements PropertyChangeListener  {
 		
 		
 		registerJourneyScreen = new RegisterJourneyScreen(logisticCompanyApp, this);
-		clientFindJourneyScreen = new ClientFindJourneyScreen(logisticCompanyApp, this);
+		clientFindJourneyScreen = new ClientFindJourneyScreen(logisticCompanyApp, this, frame);
 		clientViewOtherClientsScreen = new ClientViewOtherClientsScreen(logisticCompanyApp, this);
 		giveAccessScreen = new GiveAccessScreen(logisticCompanyApp, this);
 		changePasswordScreen = new ChangePasswordScreen(logisticCompanyApp, this);
