@@ -125,9 +125,10 @@ public class UpdateContainersScreen {
 	}
 	
 	protected void updateContainer() {
+		
 		logisticCompanyApp.updateSelectedContainer(updateTemperatureField.getText(),updateHumidityField.getText(), updateAtmPressureField.getText());
 		lblUpdateStatus.setText("Container status is successfully updated!");
-
+		
 	}
 	
 	public void setVisible(boolean aFlag) {

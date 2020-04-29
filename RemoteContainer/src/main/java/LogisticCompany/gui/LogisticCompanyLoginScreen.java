@@ -71,7 +71,7 @@ public class LogisticCompanyLoginScreen implements PropertyChangeListener  {
 		panelLogisticCompanyLogin.add(lblPassword);
 		
 		lblLoginStatus = new JLabel("");
-		lblLoginStatus.setBounds(0, 65, 300, 16);
+		lblLoginStatus.setBounds(50, 65, 300, 16);
 		lblLoginStatus.setHorizontalAlignment(SwingConstants.CENTER);
 		panelLogisticCompanyLogin.add(lblLoginStatus);
 		

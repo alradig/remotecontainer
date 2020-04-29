@@ -30,7 +30,7 @@ public class ClientFindJourneyScreen implements ListSelectionListener, PropertyC
 	LogisticCompanyApp logisticCompanyApp;
 	Client client;
 	private ClientFunctionalitiesScreen parentWindow;
-	private ContainerTrackerScreen containerTrackerScreen;
+	private ClientContainerTrackerScreen clientContainerTrackerScreen;
 	private JPanel panelClientFindJourney;
 	private DefaultListModel<JourneyInfo> searchResults;
 	private JList<JourneyInfo> listSearchResult;
@@ -126,14 +126,14 @@ public class ClientFindJourneyScreen implements ListSelectionListener, PropertyC
 		btnTracking.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				containerTrackerScreen.setVisible(true);
+				clientContainerTrackerScreen.setVisible(true);
 			}
 		});
 		btnTracking.setBounds(120, 480, 157, 29);
 		btnTracking.setEnabled(false);
 		panelClientFindJourney.add(btnTracking);
 	
-		containerTrackerScreen = new ContainerTrackerScreen(logisticCompanyApp, this);
+		clientContainerTrackerScreen = new ClientContainerTrackerScreen(logisticCompanyApp, this);
 	}
 	
 	protected void searchJourney() {		
