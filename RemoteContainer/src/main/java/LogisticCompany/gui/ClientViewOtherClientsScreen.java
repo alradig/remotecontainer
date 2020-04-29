@@ -97,7 +97,7 @@ public class ClientViewOtherClientsScreen implements PropertyChangeListener{
         JPanel panelSearchResult = new JPanel();
 		panelSearchResult.setBounds(21, 431, 361, 175);
 		panelOtherClient.add(panelSearchResult);
-		panelSearchResult.setBorder(BorderFactory.createTitledBorder("Detail"));
+		panelSearchResult.setBorder(BorderFactory.createTitledBorder("Journey Detail"));
 		panelSearchResult.setLayout(null);
         
         lblSearchResultDetail = new JLabel("");
@@ -124,17 +124,6 @@ public class ClientViewOtherClientsScreen implements PropertyChangeListener{
 		btnSearch.setBounds(148, 68, 117, 29);
 		panelOtherClient.add(btnSearch);
 		btnSearch.getRootPane().setDefaultButton(btnSearch);
-		
-		btnUpdateJourney = new JButton("Update journey");
-		btnUpdateJourney.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				//here something similar needs to be implemented: updateJourneyScreen.setVisible(true);
-			}
-		});
-		btnUpdateJourney.setBounds(20, 450, 180, 29);
-		btnUpdateJourney.setEnabled(false);
-		panelOtherClient.add(btnUpdateJourney);
 		
 		
 	}
@@ -197,17 +186,21 @@ public class ClientViewOtherClientsScreen implements PropertyChangeListener{
 	}
 	
 	protected void searchAccessibleClients() {
+		lblSearchResultDetail.setText("");
 		ClientSearchResults.clear();
-		logisticCompanyApp.getSelectedClient().getAccessList().stream()
-		.filter(c -> c.matchClient(searchField.getText()))
+		JourneySearchResults.clear();
+		
+//		logisticCompanyApp.getSelectedClient().getAccessList().stream()
+//		.filter(c -> c.matchClient(searchField.getText()))
+//		.forEach(c -> {
+//			ClientSearchResults.addElement(c.asClientInfo());
+//		});
+		
+		logisticCompanyApp.getLoggedInClient().getAccessList().stream()
+		.filter(c -> c.matchClient(searchField.getText())).collect(Collectors.toList())
 		.forEach(c -> {
 			ClientSearchResults.addElement(c.asClientInfo());
 		});
-		
-//		journeyRepository.getAllJourneysStream()
-//		.filter(j -> j.matchJourney(searchText))
-//		.map(j -> j.asJourneyInfo())
-//		.collect(Collectors.toList());
 	}
 	
 }
