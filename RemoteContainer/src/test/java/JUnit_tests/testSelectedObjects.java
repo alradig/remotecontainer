@@ -16,7 +16,7 @@ public class testSelectedObjects {
     private LogisticCompanyApp logisticCompanyApp = new LogisticCompanyApp(repository,repository,repository);
 	
     @Test
-	public void testSetSelectedJourney() {
+	public void testSetSelectedObjects() {
 		JourneyInfo j = new JourneyInfo("something", "oldPlace", "newPlace");
 		ContainerInfo container = new ContainerInfo("empty");
 
@@ -52,7 +52,15 @@ public class testSelectedObjects {
 		assertEquals(logisticCompanyApp.getSelectedClient().getRefPerson(),"referenceP");
 
     }
-	
+    @Test
+    public void testSelectedJourney() throws OperationNotAllowedException{
+    	JourneyInfo j = new JourneyInfo("something", "oldPlace", "newPlace");
+    	logisticCompanyApp.setSelectedJourney(j);
+		assertEquals(logisticCompanyApp.getSelectedjourneyInfo().getCargo(),"something");
+		assertEquals(logisticCompanyApp.getSelectedjourneyInfo().getOriginPort(),"oldPlace");
+		assertEquals(logisticCompanyApp.getSelectedjourneyInfo().getDestinationPort(),"newPlace");
+    
+    }
     
 
 }
