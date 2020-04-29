@@ -30,15 +30,18 @@ public class ClientFindJourneyScreen implements PropertyChangeListener  {
 	LogisticCompanyApp logisticCompanyApp;
 	Client client;
 	private ClientFunctionalitiesScreen parentWindow;
+	private ContainerTrackerScreen containerTrackerScreen;
 	private JPanel panelClientFindJourney;
 	private DefaultListModel<JourneyInfo> searchResults;
 	private JList<JourneyInfo> listSearchResult;
 	private JTextField searchField;
 	private JLabel lblSearchResultDetail;
+	private JFrame frame;
 	
-	public ClientFindJourneyScreen(LogisticCompanyApp logisticCompanyApp, ClientFunctionalitiesScreen parentWindow) {
+	public ClientFindJourneyScreen(LogisticCompanyApp logisticCompanyApp, ClientFunctionalitiesScreen parentWindow, JFrame frame) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
+		this.frame = frame;
 		
 		initialize();
 	}
@@ -121,8 +124,19 @@ public class ClientFindJourneyScreen implements PropertyChangeListener  {
 		});
 		btnBack.setBounds(21, 28, 65, 29);
 		panelClientFindJourney.add(btnBack);
+		
+		JButton btnTracking = new JButton("Container History");
+		btnTracking.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+//				parentWindow.setVisible(true);
+			}
+		});
+		btnTracking.setBounds(148, 480, 117, 29);
+		panelClientFindJourney.add(btnTracking);
 	
+		containerTrackerScreen = new ContainerTrackerScreen(logisticCompanyApp, this);
 	}
+	
 	protected void searchJourney() {		
 		
 		searchResults.clear();		
@@ -136,16 +150,21 @@ public class ClientFindJourneyScreen implements PropertyChangeListener  {
 //		          .forEach((m) -> {searchResults.addElement(m);});
 	}
 	public void setVisible(boolean aFlag) {
-		panelClientFindJourney.setVisible(aFlag);
-		
+		panelClientFindJourney.setVisible(aFlag);	
 	}
+	
 	public void clear() {
 		searchField.setText("");
 		searchResults.clear();
+	}
+	
+	public void addPanel(JPanel panel) {
+		frame.getContentPane().add(panel);
 	}
 	
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
 		
 	}
+	
 }
