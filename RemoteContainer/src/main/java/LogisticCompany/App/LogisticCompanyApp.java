@@ -385,12 +385,13 @@ public class LogisticCompanyApp {
 
 		
 		this.selectedContainer = selectedJourney.getContainer();
-	
+		System.out.println("22");
 		if(!(this.selectedContainer == null)) {
-
+			System.out.println("21");
 			this.selectedContainerInfo = this.selectedContainer.asContainerInfo();
 		}else {
 			this.selectedContainerInfo = null;
+			System.out.println("23");
 		}
 		
 		support.firePropertyChange("SelectedObjects",null,null);

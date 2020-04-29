@@ -2,6 +2,8 @@ package LogisticCompany.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -11,7 +13,7 @@ import javax.swing.SwingConstants;
 
 import LogisticCompany.App.LogisticCompanyApp;
 
-public class ContainerTrackerScreen {
+public class ContainerTrackerScreen  implements PropertyChangeListener {
 	
 	LogisticCompanyApp logisticCompanyApp;
 	private ClientFindJourneyScreen parentWindow;
@@ -53,6 +55,16 @@ public class ContainerTrackerScreen {
 		panelPressure.setBorder(BorderFactory.createTitledBorder(
                 "Air pressure"));
 		panelPressure.setLayout(null);
+		
+
+		lblSearchResultDetail = new JLabel("");
+		lblSearchResultDetail.setVerticalAlignment(SwingConstants.TOP);
+		lblSearchResultDetail.setHorizontalAlignment(SwingConstants.LEFT);
+		lblSearchResultDetail.setBounds(23, 19, 100, 137);
+		panelPressure.add(lblSearchResultDetail);
+		
+		lblSearchResultDetail.setText(new ContainerPrinter(logisticCompanyApp).printSl());
+
 			
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
@@ -70,4 +82,11 @@ public class ContainerTrackerScreen {
 		panelContainerTracker.setVisible(aFlag);
 		
 	}
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		
+	}
+	
+	
+	
 }
