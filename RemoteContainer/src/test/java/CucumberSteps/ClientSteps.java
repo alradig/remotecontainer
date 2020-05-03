@@ -139,7 +139,7 @@ public class ClientSteps {
 			logisticCompanyApp.unregisterClient(clientInfo);
 		} catch (Exception e) {
 			this.errorMessage = e.getMessage();
-			System.out.println(this.errorMessage);
+//			System.out.println(this.errorMessage);
 		}
 	}
 	
@@ -211,7 +211,8 @@ public class ClientSteps {
 	    Optional<ClientInfo> usr = logisticCompanyApp.getClientsStream().findFirst();
 	    assertTrue(usr.isPresent());
 	    ClientInfo c = usr.get();
-	    
+//	    System.out.println(c.getName());
+//	    System.out.println(clientInfo.getName());
 	    assertEquals(clientInfo.getName(), c.getName());
 	    assertEquals(clientInfo.getEmail(), c.getEmail());
 	    assertEquals(clientInfo.getReference_person(), c.getReference_person());
