@@ -123,7 +123,7 @@ public class ClientFunctionalitiesScreen extends Screen {
 		btnChangePassword.setBounds(95, 253, 210, 29);
 		panelClientFunc.add(btnChangePassword);
 		
-		updateClientInfo = new JButton("Update Client");
+		updateClientInfo = new JButton("Update Profile");
 		updateClientInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
