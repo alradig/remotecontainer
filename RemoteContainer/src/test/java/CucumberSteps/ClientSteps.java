@@ -197,11 +197,7 @@ public class ClientSteps {
 	    client = logisticCompanyApp.findClient(clientInfo);
 	    clientInfo.setRefPerson(newReferencePerson);
 	    
-	    try {
-			logisticCompanyApp.updateClientInfo(client, clientInfo);
-		} catch (OperationNotAllowedException e) {
-			errorMessage = e.getMessage();
-		}
+	    logisticCompanyApp.updateClientInfo(client, clientInfo);
 	}
 	
 	@Then("the client information should be updated")

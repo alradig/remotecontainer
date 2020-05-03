@@ -21,11 +21,12 @@ import LogisticCompany.info.ContainerInfo;
 import LogisticCompany.info.JourneyInfo;
 import LogisticCompany.persistence.SQLRepository;
 
-public class MainScreen {
+public class MainScreen extends Screen {
 	
-	LogisticCompanyApp logisticCompanyApp;
-	ClientLoginScreen clientLoginScreen;
-	LogisticCompanyLoginScreen logisticCompanyLoginScreen;
+	private LogisticCompanyApp logisticCompanyApp;
+	private ClientLoginScreen clientLoginScreen;
+	private LogisticCompanyLoginScreen logisticCompanyLoginScreen;
+	private ClientFunctionalitiesScreen clientFunctionalitiesScreen;
 
 	private JFrame frame;
 	private JPanel panelMenu;
@@ -154,13 +155,13 @@ public class MainScreen {
 		});
 		btnLogisticCompanyLogin.setBounds(104, 93, 193, 29);
 		panelMenu.add(btnLogisticCompanyLogin);	
-		
-		clientLoginScreen = new ClientLoginScreen(logisticCompanyApp, this, frame);
 
+		clientLoginScreen = new ClientLoginScreen(logisticCompanyApp, this, frame);
 		logisticCompanyLoginScreen = new LogisticCompanyLoginScreen(logisticCompanyApp, this, frame);
 		
 	}
 	
+	@Override
 	public void setVisible(boolean aFlag) {
 		panelMenu.setVisible(aFlag);
 	}

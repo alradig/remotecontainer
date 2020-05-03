@@ -22,33 +22,42 @@ import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-public class ClientFunctionalitiesScreen implements PropertyChangeListener  {
+public class ClientFunctionalitiesScreen extends Screen {
 	
-	LogisticCompanyApp logisticCompanyApp;
-	Client client;
-	RegisterJourneyScreen registerJourneyScreen;
-	ClientFindJourneyScreen clientFindJourneyScreen;
-	ClientViewOtherClientsScreen clientViewOtherClientsScreen;
-	GiveAccessScreen giveAccessScreen;
-	ChangePasswordScreen changePasswordScreen;	
-	private ClientLoginScreen parentWindow;
+	private LogisticCompanyApp logisticCompanyApp;
+	private Client client;
+	private Screen registerJourneyScreen;
+	private ClientFindJourneyScreen clientFindJourneyScreen;
+	private ClientViewOtherClientsScreen clientViewOtherClientsScreen;
+	private GiveAccessScreen giveAccessScreen;
+	private ChangePasswordScreen changePasswordScreen;
+	private Screen updateClientInfoScreen;
 	
+	private Screen parentWindow;
 	private JButton btnRegisterJourney;
 	private JButton btnFindJourney; 
 	private JButton btnOtherClients;
 	private JButton btnGiveAccess;
-	private JButton btnChangePassword;	
+	private JButton btnChangePassword;
 	private JButton btnLogout;
+	private JButton updateClientInfo;
 	private JPanel panelClientFunc;
 	private JFrame frame;
-	MainScreen mainScreen;
+	private Screen mainScreen;
 
 
-	public ClientFunctionalitiesScreen(LogisticCompanyApp logisticCompanyApp, ClientLoginScreen parentWindow, JFrame frame, MainScreen mainScreen) {
+	public ClientFunctionalitiesScreen(LogisticCompanyApp logisticCompanyApp, Screen parentWindow, JFrame frame, Screen mainScreen) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
 		this.mainScreen = mainScreen;
 		this.frame = frame;
+		initialize();
+	}
+	
+	public ClientFunctionalitiesScreen(LogisticCompanyApp logisticCompanyApp, Screen parentWindow, Screen mainScreen) {
+		this.logisticCompanyApp = logisticCompanyApp;
+		this.parentWindow = parentWindow;
+		this.mainScreen = mainScreen;
 		initialize();
 	}
 	
@@ -114,6 +123,16 @@ public class ClientFunctionalitiesScreen implements PropertyChangeListener  {
 		btnChangePassword.setBounds(95, 253, 210, 29);
 		panelClientFunc.add(btnChangePassword);
 		
+		updateClientInfo = new JButton("Update Client");
+		updateClientInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				updateClientInfoScreen.setVisible(true);
+			}
+		});
+		updateClientInfo.setBounds(95, 293, 210, 29);
+		panelClientFunc.add(updateClientInfo);
+		
 		btnLogout = new JButton("Log out");
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -126,24 +145,26 @@ public class ClientFunctionalitiesScreen implements PropertyChangeListener  {
 		panelClientFunc.add(btnLogout);
 		
 		
+		
+		
 		registerJourneyScreen = new RegisterJourneyScreen(logisticCompanyApp, this);
-		clientFindJourneyScreen = new ClientFindJourneyScreen(logisticCompanyApp, this, frame);
+		clientFindJourneyScreen = new ClientFindJourneyScreen(logisticCompanyApp, this);
 		clientViewOtherClientsScreen = new ClientViewOtherClientsScreen(logisticCompanyApp, this);
 		giveAccessScreen = new GiveAccessScreen(logisticCompanyApp, this);
 		changePasswordScreen = new ChangePasswordScreen(logisticCompanyApp, this);
+		updateClientInfoScreen = new UpdateClientInfoScreen(logisticCompanyApp, this);
 		
 	}
 	
+	@Override
 	public void setVisible(boolean aFlag) {
 		panelClientFunc.setVisible(aFlag);
 		
 	}
-	public void addPanel(JPanel panel) {
-		frame.getContentPane().add(panel);
-	}
 	
 	@Override
-	public void propertyChange(PropertyChangeEvent evt) {
-		
+	public void addPanel(JPanel panel) {
+//		frame.getContentPane().add(panel);
+		parentWindow.addPanel(panel);
 	}
 }

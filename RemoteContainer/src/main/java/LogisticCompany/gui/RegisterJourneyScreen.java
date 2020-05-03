@@ -16,9 +16,9 @@ import LogisticCompany.App.OperationNotAllowedException;
 import LogisticCompany.info.ContainerInfo;
 import LogisticCompany.info.JourneyInfo;
 
-public class RegisterJourneyScreen {
+public class RegisterJourneyScreen extends Screen {
 	LogisticCompanyApp logisticCompanyApp;
-	private ClientFunctionalitiesScreen parentWindow;
+	private Screen parentWindow;
 	private JPanel panelRegisterJourney;
 	
 	private JTextField cargoField;
@@ -30,7 +30,7 @@ public class RegisterJourneyScreen {
 	private JLabel lblRegistrationStatus;
 
 	
-	public RegisterJourneyScreen(LogisticCompanyApp logisticCompanyApp, ClientFunctionalitiesScreen parentWindow) {
+	public RegisterJourneyScreen(LogisticCompanyApp logisticCompanyApp, Screen parentWindow) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
 		initialize();
@@ -97,6 +97,7 @@ public class RegisterJourneyScreen {
 
 	}
 	
+	@Override
 	public void setVisible(boolean aFlag) {
 		panelRegisterJourney.setVisible(aFlag);
 		
@@ -122,9 +123,12 @@ public class RegisterJourneyScreen {
 			startDestinationField.setText("");
 			endDestinationField.setText("");
 			
-			
-			
 		}
+	}
+	
+	@Override
+	public void addPanel(JPanel panel) {
+		parentWindow.addPanel(panel);
 	}
 	
 	

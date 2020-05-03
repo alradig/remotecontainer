@@ -25,19 +25,18 @@ import LogisticCompany.domain.Journey;
 import LogisticCompany.domain.JourneyStatusEntry;
 import LogisticCompany.info.JourneyInfo;
 
-public class FindJourneyScreen implements ListSelectionListener, PropertyChangeListener {
+public class FindJourneyScreen extends Screen implements ListSelectionListener, PropertyChangeListener {
 	
-	LogisticCompanyApp logisticCompanyApp;
-	UpdateJourneyScreen updateJourneyScreen;
-	UpdateContainersScreen updateContainersScreen;
-	ContainerTrackerScreen containerTrackerScreen; 
-	private LogisticCompanyFunctionalitiesScreen parentWindow;
+	private LogisticCompanyApp logisticCompanyApp;
+	private UpdateJourneyScreen updateJourneyScreen;
+	private UpdateContainersScreen updateContainersScreen;
+	private ContainerTrackerScreen containerTrackerScreen; 
+	private Screen parentWindow;
 	private JPanel panelFindJourney;
 	private DefaultListModel<JourneyInfo> searchResults;
 	private JList<JourneyInfo> listSearchResult;
 	private JTextField searchField;
 	private JLabel lblSearchResultDetail;
-	private JFrame frame;
 	private JourneyInfo selectedjourneyInfo;
     private JourneyStatusEntry journeyStatus;
 	private String errorMessage;
@@ -47,11 +46,9 @@ public class FindJourneyScreen implements ListSelectionListener, PropertyChangeL
 	private JButton btnUpdateJourney;
 	private JButton btnContainerHistory;
 
-	public FindJourneyScreen(LogisticCompanyApp logisticCompanyApp,
-			LogisticCompanyFunctionalitiesScreen parentWindow, JFrame frame) {
+	public FindJourneyScreen(LogisticCompanyApp logisticCompanyApp, Screen parentWindow) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
-		this.frame = frame;
 		this.updateContainersScreen = new UpdateContainersScreen(logisticCompanyApp, this);
 		this.updateJourneyScreen = new UpdateJourneyScreen(logisticCompanyApp, this);
 		this.containerTrackerScreen = new ContainerTrackerScreen(logisticCompanyApp, this);
@@ -186,6 +183,8 @@ public class FindJourneyScreen implements ListSelectionListener, PropertyChangeL
 		logisticCompanyApp.searchJourney(searchField.getText())
 		          .forEach((m) -> {searchResults.addElement(m);});
 	}
+	
+	@Override
 	public void setVisible(boolean aFlag) {
 		panelFindJourney.setVisible(aFlag);
 		
@@ -195,8 +194,10 @@ public class FindJourneyScreen implements ListSelectionListener, PropertyChangeL
 		searchResults.clear();
 	}
 	
+	@Override
 	public void addPanel(JPanel panel) {
-		frame.getContentPane().add(panel);
+//		frame.getContentPane().add(panel);
+		parentWindow.addPanel(panel);
 	}
 	
 	

@@ -23,13 +23,13 @@ import LogisticCompany.App.OperationNotAllowedException;
 import LogisticCompany.domain.Client;
 
 
-public class ClientLoginScreen implements PropertyChangeListener {
+public class ClientLoginScreen extends Screen {
 	
 	PropertyChangeSupport support = new PropertyChangeSupport(this);
 	LogisticCompanyApp logisticCompanyApp;
 
 	private JPanel panelClientLogin;
-	private MainScreen parentWindow;
+	private Screen parentWindow;
 	private JTextField clientEmailField;
 	private JPasswordField passwordField;
 	private JButton btnBack;
@@ -39,20 +39,20 @@ public class ClientLoginScreen implements PropertyChangeListener {
 	private JLabel lblLoginStatus;
 	private JFrame frame;
 	private String errorMessage;
-	MainScreen mainScreen;
-	ClientFunctionalitiesScreen clientFunctionalitiesScreen;
+	private Screen mainScreen;
+	private Screen clientFunctionalitiesScreen;
 	
-	public ClientLoginScreen(LogisticCompanyApp logisticCompanyApp, MainScreen parentWindow, JFrame frame) {
+	public ClientLoginScreen(LogisticCompanyApp logisticCompanyApp, Screen parentWindow, JFrame frame) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
 		this.frame = frame;
-		this.addObserver(this);
+//		this.addObserver(this);
 		initialize();
 	}
 	
-	void addObserver(PropertyChangeListener l) {
-		support.addPropertyChangeListener(l);
-	}
+//	void addObserver(PropertyChangeListener l) {
+//		support.addPropertyChangeListener(l);
+//	}
 
 	public void initialize() {
 
@@ -127,21 +127,24 @@ public class ClientLoginScreen implements PropertyChangeListener {
 		});
 		btnBack.setBounds(21, 28, 65, 29);
 		panelClientLogin.add(btnBack);
-		clientFunctionalitiesScreen = new ClientFunctionalitiesScreen(logisticCompanyApp, this, frame, parentWindow);
+//		clientFunctionalitiesScreen = new ClientFunctionalitiesScreen(logisticCompanyApp, this, frame, parentWindow);
+		clientFunctionalitiesScreen = new ClientFunctionalitiesScreen(logisticCompanyApp, this, parentWindow);
 			
 	}
-
+	
+	@Override
 	public void setVisible(boolean aFlag) {
 		panelClientLogin.setVisible(aFlag);
 	}
 	
 	public void addPanel(JPanel panel) {
-		frame.getContentPane().add(panel);
+//		frame.getContentPane().add(panel);
+		parentWindow.addPanel(panel);
 	}
 	
-	@Override
-	public void propertyChange(PropertyChangeEvent evt) {
-		
-	}
+//	@Override
+//	public void propertyChange(PropertyChangeEvent evt) {
+//		
+//	}
 	
 }

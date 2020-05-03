@@ -22,9 +22,9 @@ import LogisticCompany.domain.Journey;
 import LogisticCompany.domain.JourneyStatusEntry;
 import LogisticCompany.info.JourneyInfo;
 
-public class UpdateContainersScreen {
-	private FindJourneyScreen parentWindow;
-	LogisticCompanyApp logisticCompanyApp;
+public class UpdateContainersScreen extends Screen{
+	private Screen parentWindow;
+	private LogisticCompanyApp logisticCompanyApp;
 	private JPanel panelUpdateContainer;
 	private JTextField updateTemperatureField;
 	private JTextField updateHumidityField = new JTextField();
@@ -38,8 +38,7 @@ public class UpdateContainersScreen {
 	private JLabel lblPressure;
 	private JLabel lblUpdateStatus;
 
-	public UpdateContainersScreen(LogisticCompanyApp logisticCompanyApp,
-			FindJourneyScreen parentWindow) {
+	public UpdateContainersScreen(LogisticCompanyApp logisticCompanyApp, Screen parentWindow) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
 		initialize();
@@ -130,9 +129,15 @@ public class UpdateContainersScreen {
 		
 	}
 	
+	@Override
 	public void setVisible(boolean aFlag) {
 		panelUpdateContainer.setVisible(aFlag);
 		
+	}
+
+	@Override
+	public void addPanel(JPanel panel) {
+		parentWindow.addPanel(panel);
 	}
 
 }

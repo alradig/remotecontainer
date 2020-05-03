@@ -24,9 +24,9 @@ import LogisticCompany.App.LogisticCompanyApp;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.info.JourneyInfo;
 
-public class ClientViewOtherClientsScreen implements PropertyChangeListener{
+public class ClientViewOtherClientsScreen extends Screen implements PropertyChangeListener{
 	LogisticCompanyApp logisticCompanyApp;
-	private ClientFunctionalitiesScreen parentWindow;
+	private Screen parentWindow;
 	private JPanel panelOtherClient;
 	private JTextField searchField;
 	private JButton btnUpdateJourney;
@@ -42,7 +42,7 @@ public class ClientViewOtherClientsScreen implements PropertyChangeListener{
 	
 
 
-	public ClientViewOtherClientsScreen(LogisticCompanyApp logisticCompanyApp, ClientFunctionalitiesScreen parentWindow) {
+	public ClientViewOtherClientsScreen(LogisticCompanyApp logisticCompanyApp, Screen parentWindow) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
 		
@@ -144,6 +144,7 @@ public class ClientViewOtherClientsScreen implements PropertyChangeListener{
 		
 	}
 	
+	@Override
 	public void setVisible(boolean aFlag) {
 		panelOtherClient.setVisible(aFlag);	
 	}
@@ -217,6 +218,11 @@ public class ClientViewOtherClientsScreen implements PropertyChangeListener{
 		.forEach(c -> {
 			ClientSearchResults.addElement(c.asClientInfo());
 		});
+	}
+
+	@Override
+	public void addPanel(JPanel panel) {
+		parentWindow.addPanel(panel);
 	}
 	
 }

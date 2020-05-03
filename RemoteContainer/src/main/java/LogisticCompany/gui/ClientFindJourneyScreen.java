@@ -25,24 +25,24 @@ import LogisticCompany.domain.Journey;
 import LogisticCompany.info.JourneyInfo;
 
 
-public class ClientFindJourneyScreen implements ListSelectionListener, PropertyChangeListener  {
+public class ClientFindJourneyScreen extends Screen implements ListSelectionListener, PropertyChangeListener  {
 	
 	LogisticCompanyApp logisticCompanyApp;
 	Client client;
-	private ClientFunctionalitiesScreen parentWindow;
-	private ClientContainerTrackerScreen clientContainerTrackerScreen;
+	private Screen parentWindow;
+	private Screen clientContainerTrackerScreen;
 	private JPanel panelClientFindJourney;
 	private DefaultListModel<JourneyInfo> searchResults;
 	private JList<JourneyInfo> listSearchResult;
 	private JTextField searchField;
 	private JLabel lblSearchResultDetail;
-	private JFrame frame;
+//	private JFrame frame;
 	private JButton btnTracking;
 	
-	public ClientFindJourneyScreen(LogisticCompanyApp logisticCompanyApp, ClientFunctionalitiesScreen parentWindow, JFrame frame) {
+	public ClientFindJourneyScreen(LogisticCompanyApp logisticCompanyApp, Screen parentWindow) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
-		this.frame = frame;
+//		this.frame = frame;
 		
 		initialize();
 	}
@@ -145,6 +145,7 @@ public class ClientFindJourneyScreen implements ListSelectionListener, PropertyC
 
 	}
 	
+	@Override
 	public void setVisible(boolean aFlag) {
 		panelClientFindJourney.setVisible(aFlag);	
 	}
@@ -154,8 +155,10 @@ public class ClientFindJourneyScreen implements ListSelectionListener, PropertyC
 		searchResults.clear();
 	}
 	
+	@Override
 	public void addPanel(JPanel panel) {
-		frame.getContentPane().add(panel);
+//		frame.getContentPane().add(panel);
+		parentWindow.addPanel(panel);
 	}
 	
 	@Override

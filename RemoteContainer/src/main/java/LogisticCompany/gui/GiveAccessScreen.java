@@ -12,9 +12,9 @@ import javax.swing.JTextField;
 
 import LogisticCompany.App.LogisticCompanyApp;
 
-public class GiveAccessScreen {
+public class GiveAccessScreen extends Screen{
 	LogisticCompanyApp logisticCompanyApp;
-	private ClientFunctionalitiesScreen parentWindow;
+	private Screen parentWindow;
 	private JPanel panelGiveAccess;
 	private JTextField nameField;
 	private JLabel lblName;
@@ -23,7 +23,7 @@ public class GiveAccessScreen {
 	private JLabel submitStatus;
 	
 
-	public GiveAccessScreen(LogisticCompanyApp logisticCompanyApp, ClientFunctionalitiesScreen parentWindow) {
+	public GiveAccessScreen(LogisticCompanyApp logisticCompanyApp, Screen parentWindow) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
 		initialize();
@@ -99,9 +99,15 @@ public class GiveAccessScreen {
 		panelGiveAccess.add(btnBack);
 	}
 	
+	@Override
 	public void setVisible(boolean aFlag) {
 		panelGiveAccess.setVisible(aFlag);
 		
+	}
+
+	@Override
+	public void addPanel(JPanel panel) {
+		parentWindow.addPanel(panel);
 	}
 	
 }

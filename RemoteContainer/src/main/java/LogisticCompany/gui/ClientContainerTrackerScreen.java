@@ -13,17 +13,17 @@ import javax.swing.SwingConstants;
 
 import LogisticCompany.App.LogisticCompanyApp;
 
-public class ClientContainerTrackerScreen  implements PropertyChangeListener {
+public class ClientContainerTrackerScreen extends Screen implements PropertyChangeListener {
 	
 	LogisticCompanyApp logisticCompanyApp;
-	private ClientFindJourneyScreen parentWindow;
+	private Screen parentWindow;
 	private JPanel panelContainerTracker;
 	private JPanel panelPressure;
 	private JLabel lblPressure;
 	private JLabel lblTemp;
 	private JLabel lblHum;
 
-	public ClientContainerTrackerScreen(LogisticCompanyApp logisticCompanyApp, ClientFindJourneyScreen parentWindow) {
+	public ClientContainerTrackerScreen(LogisticCompanyApp logisticCompanyApp, Screen parentWindow) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
 		
@@ -106,6 +106,7 @@ public class ClientContainerTrackerScreen  implements PropertyChangeListener {
 	
 	}
 	
+	@Override
 	public void setVisible(boolean aFlag) {
 		panelContainerTracker.setVisible(aFlag);
 		
@@ -113,6 +114,11 @@ public class ClientContainerTrackerScreen  implements PropertyChangeListener {
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
 		
+	}
+
+	@Override
+	public void addPanel(JPanel panel) {
+		parentWindow.addPanel(panel);
 	}
 	
 }

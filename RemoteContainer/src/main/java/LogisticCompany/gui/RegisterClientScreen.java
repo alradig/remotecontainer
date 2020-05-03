@@ -14,9 +14,9 @@ import javax.swing.SwingConstants;
 import LogisticCompany.App.LogisticCompanyApp;
 import LogisticCompany.App.OperationNotAllowedException;
 
-public class RegisterClientScreen {
+public class RegisterClientScreen extends Screen {
 	LogisticCompanyApp logisticCompanyApp;
-	private LogisticCompanyFunctionalitiesScreen parentWindow;
+	private Screen parentWindow;
 	private JPanel panelRegisterClient;
 	private JTextField nameField;
 	private JLabel lblName;
@@ -34,7 +34,7 @@ public class RegisterClientScreen {
 	private JLabel lblRefP;
 	private JLabel lblRegistrationStatus;
 
-	public RegisterClientScreen(LogisticCompanyApp logisticCompanyApp, LogisticCompanyFunctionalitiesScreen parentWindow) {
+	public RegisterClientScreen(LogisticCompanyApp logisticCompanyApp, Screen parentWindow) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
 		initialize();
@@ -175,9 +175,15 @@ public class RegisterClientScreen {
 			refPField.setText("");
 		}
 	}
-	
+	@Override
 	public void setVisible(boolean aFlag) {
 		panelRegisterClient.setVisible(aFlag);
+		
+	}
+
+	@Override
+	public void addPanel(JPanel panel) {
+		parentWindow.addPanel(panel);
 		
 	}
 	

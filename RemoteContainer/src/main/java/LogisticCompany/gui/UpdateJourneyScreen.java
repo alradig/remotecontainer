@@ -22,9 +22,9 @@ import LogisticCompany.domain.Journey;
 import LogisticCompany.domain.JourneyStatusEntry;
 import LogisticCompany.info.JourneyInfo;
 
-public class UpdateJourneyScreen {
-	private FindJourneyScreen parentWindow;
-	LogisticCompanyApp LogisticCompanyApp ;
+public class UpdateJourneyScreen extends Screen{
+	private Screen parentWindow;
+	private LogisticCompanyApp LogisticCompanyApp ;
 	private JPanel panelUpdateJourney;
 	private JTextField updateField;
 	private JourneyInfo journeyinfo;
@@ -32,7 +32,7 @@ public class UpdateJourneyScreen {
 	private String errorMessage;
 	private JLabel lblUpdateStatus;
 
-	public UpdateJourneyScreen(LogisticCompanyApp logisticCompanyApp, FindJourneyScreen parentWindow ) {
+	public UpdateJourneyScreen(LogisticCompanyApp logisticCompanyApp, Screen parentWindow ) {
 		this.LogisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
 		initialize();
@@ -97,9 +97,15 @@ public class UpdateJourneyScreen {
 			errorMessage = e.getMessage();
 		} 
 	}
-	
+	@Override
 	public void setVisible(boolean aFlag) {
 		panelUpdateJourney.setVisible(aFlag);
+		
+	}
+
+	@Override
+	public void addPanel(JPanel panel) {
+		parentWindow.addPanel(panel);
 		
 	}
 

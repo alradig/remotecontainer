@@ -22,14 +22,14 @@ import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-public class LogisticCompanyFunctionalitiesScreen  {
+public class LogisticCompanyFunctionalitiesScreen extends Screen {
 
 
-	LogisticCompanyApp logisticCompanyApp;
-	RegisterClientScreen registerClientScreen;
-	FindClientScreen findClientScreen; 
-	FindJourneyScreen findJourneyScreen;
-	private LogisticCompanyLoginScreen parentWindow;
+	private LogisticCompanyApp logisticCompanyApp;
+	private RegisterClientScreen registerClientScreen;
+	private FindClientScreen findClientScreen; 
+	private FindJourneyScreen findJourneyScreen;
+	private Screen parentWindow;
 	
 	private JButton btnRegisterClient;
 	private JButton btnFindJourney; 
@@ -37,10 +37,10 @@ public class LogisticCompanyFunctionalitiesScreen  {
 	private JButton btnLogout;
 	private JPanel panelLogisticCompanyFunc;
 	private JFrame frame;
-	MainScreen mainScreen;
+	private Screen mainScreen;
 
 
-	public LogisticCompanyFunctionalitiesScreen(LogisticCompanyApp logisticCompanyApp, LogisticCompanyLoginScreen parentWindow, JFrame frame, MainScreen mainScreen) {
+	public LogisticCompanyFunctionalitiesScreen(LogisticCompanyApp logisticCompanyApp, Screen parentWindow, JFrame frame, Screen mainScreen) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
 		this.mainScreen = mainScreen;
@@ -64,7 +64,7 @@ public class LogisticCompanyFunctionalitiesScreen  {
 			}
 		});
 		btnRegisterClient.setBounds(104, 93, 193, 29);
-		panelLogisticCompanyFunc.add(btnRegisterClient);	
+		panelLogisticCompanyFunc.add(btnRegisterClient);
 		
 		
 
@@ -112,16 +112,19 @@ public class LogisticCompanyFunctionalitiesScreen  {
 		
 		registerClientScreen = new RegisterClientScreen(logisticCompanyApp, this);
 		findClientScreen = new FindClientScreen(logisticCompanyApp, this);
-		findJourneyScreen = new FindJourneyScreen(logisticCompanyApp, this, frame);
+		findJourneyScreen = new FindJourneyScreen(logisticCompanyApp, this);
 		
 	}
 	
+	@Override
 	public void setVisible(boolean aFlag) {
 		panelLogisticCompanyFunc.setVisible(aFlag);
-		
 	}
+	
+	@Override
 	public void addPanel(JPanel panel) {
-		frame.getContentPane().add(panel);
+//		frame.getContentPane().add(panel);
+		parentWindow.addPanel(panel);
 	}
 	
 	

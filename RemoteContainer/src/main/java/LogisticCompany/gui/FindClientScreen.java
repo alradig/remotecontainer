@@ -26,19 +26,16 @@ import LogisticCompany.info.JourneyInfo;
 
 public class FindClientScreen extends Screen {
 	private LogisticCompanyApp logisticCompanyApp;
-	private LogisticCompanyFunctionalitiesScreen parentWindow;
-	private UpdateClientInfoScreen updateClientScreen;
+	private Screen parentWindow;
 	private JPanel panelFindClient;
 	private JTextField searchField;
 	private DefaultListModel<ClientInfo> searchResults;
 	private JList<ClientInfo> listSearchResult;
 	private JLabel lblSearchResultDetail;
 	private JButton	btnUnregister;
-	private JButton btnUpdateClientInfo;
 	private JLabel lblUnregisterClientStatus;
 
-	public FindClientScreen(LogisticCompanyApp logisticCompanyApp,
-		LogisticCompanyFunctionalitiesScreen parentWindow) {
+	public FindClientScreen(LogisticCompanyApp logisticCompanyApp, Screen parentWindow) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
 		initialize();
@@ -52,8 +49,6 @@ public class FindClientScreen extends Screen {
 
 	}
 	private void initialize() {
-//		updateClientScreen = new UpdateClientInfoScreen(logisticCompanyApp);
-		
 		panelFindClient = new JPanel();
 		parentWindow.addPanel(panelFindClient);
 		panelFindClient.setLayout(null);
@@ -143,17 +138,6 @@ public class FindClientScreen extends Screen {
 		btnUnregister.setEnabled(false);
 		panelFindClient.add(btnUnregister);
 		
-		btnUpdateClientInfo = new JButton("Update Client");
-		btnUpdateClientInfo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-					setVisible(false);
-					
-			}
-		});
-		btnUpdateClientInfo.setBounds(25, 500, 170, 29);
-		btnUpdateClientInfo.setEnabled(false);
-		panelFindClient.add(btnUpdateClientInfo);
-		
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -172,7 +156,7 @@ public class FindClientScreen extends Screen {
 		logisticCompanyApp.searchClient(searchField.getText())
 		          .forEach((m) -> {searchResults.addElement(m);});
 	}
-	
+	@Override
 	public void setVisible(boolean aFlag) {
 		panelFindClient.setVisible(aFlag);
 		
@@ -193,5 +177,9 @@ public class FindClientScreen extends Screen {
 		logisticCompanyApp.unregisterClient(cl);
 		searchResults.remove(listSearchResult.getSelectedIndex());
 		lblUnregisterClientStatus.setText("Successfully unregistered the client!");
+	}
+	@Override
+	public void addPanel(JPanel panel) {
+		parentWindow.addPanel(panel);
 	}
 }

@@ -289,8 +289,7 @@ public class LogisticCompanyApp {
 		support.firePropertyChange("UpdatedJourney",null,null);
 	}
 	
-	public void updateClientInfo(Client client, ClientInfo clientInfo) throws OperationNotAllowedException {
-		checkLogisticCompanyLoggedIn();
+	public void updateClientInfo(Client client, ClientInfo clientInfo){
 		client.updateClientInfo(clientInfo);
 		clientRepository.updateClient(client);
 	}
@@ -458,6 +457,40 @@ public class LogisticCompanyApp {
 	
 	public ClientInfo getSelectedClientInfo() {
 		return selectedClientInfo;
+	}
+
+	public void updateClient(String name, String refPerson, String email, String zipCode, String city, String street) {
+		if(name.isEmpty()) {
+			name = loggedInClient.getName();
+		}
+		
+		if(refPerson.isEmpty()) {
+			refPerson = loggedInClient.getRefPerson();
+		}
+		
+		if(email.isEmpty()) {
+			email = loggedInClient.getEmail();
+		}
+		
+		if(street.isEmpty()) {
+			street = loggedInClient.getAddress().getStreet();
+		}
+		
+		if(zipCode.isEmpty()) {
+			zipCode = loggedInClient.getAddress().getPostCode();
+		}
+		
+		if(city.isEmpty()) {
+			city = loggedInClient.getAddress().getCity();
+		}
+		
+		ClientInfo clientInfo = new ClientInfo(name, email, refPerson);
+		Address address = new Address(street, zipCode, city);
+		
+		clientInfo.setAddress(address);
+		
+		updateClientInfo(loggedInClient, clientInfo);
+		
 	}
 	
 	

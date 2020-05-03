@@ -26,12 +26,11 @@ import LogisticCompany.App.OperationNotAllowedException;
 
 
 
-public class LogisticCompanyLoginScreen implements PropertyChangeListener  {
+public class LogisticCompanyLoginScreen extends Screen {
 	
-	PropertyChangeSupport support = new PropertyChangeSupport(this);
 	LogisticCompanyApp logisticCompanyApp;
 	private JPanel panelLogisticCompanyLogin;
-	private MainScreen parentWindow;
+	private Screen parentWindow;
 	private JTextField passwordField;
 	private JLabel lblLoginStatus;
 	private JButton btnBack;
@@ -39,18 +38,14 @@ public class LogisticCompanyLoginScreen implements PropertyChangeListener  {
 	private JLabel lblPassword;
 	private JFrame frame;
 	private String errorMessage;
-	MainScreen mainScreen;
-	LogisticCompanyFunctionalitiesScreen logisticCompanyFunctionalitiesScreen;
+	private MainScreen mainScreen;
+	private LogisticCompanyFunctionalitiesScreen logisticCompanyFunctionalitiesScreen;
 	
-	public LogisticCompanyLoginScreen(LogisticCompanyApp logisticCompanyApp, MainScreen parentWindow, JFrame frame) {
+	public LogisticCompanyLoginScreen(LogisticCompanyApp logisticCompanyApp, Screen parentWindow, JFrame frame) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
 		this.frame = frame;
 		initialize();
-	}
-	
-	void addObserver(PropertyChangeListener l) {
-		support.addPropertyChangeListener(l);
 	}
 	
 	public void initialize() {
@@ -117,17 +112,16 @@ public class LogisticCompanyLoginScreen implements PropertyChangeListener  {
 		logisticCompanyFunctionalitiesScreen = new LogisticCompanyFunctionalitiesScreen(logisticCompanyApp, this, frame, parentWindow);
 		
 	}
-
+	
+	@Override
 	public void setVisible(boolean aFlag) {
 		panelLogisticCompanyLogin.setVisible(aFlag);	
 	}
 	
-	public void addPanel(JPanel panel) {
-		frame.getContentPane().add(panel);
-	}
-	
 	@Override
-	public void propertyChange(PropertyChangeEvent evt) {	
+	public void addPanel(JPanel panel) {
+//		frame.getContentPane().add(panel);
+		parentWindow.addPanel(panel);
 	}
 	
 }

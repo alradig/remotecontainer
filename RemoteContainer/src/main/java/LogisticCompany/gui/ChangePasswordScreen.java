@@ -18,10 +18,10 @@ import LogisticCompany.App.LogisticCompanyApp;
 import LogisticCompany.domain.Client;
 import LogisticCompany.info.ClientInfo;
 
-public class ChangePasswordScreen implements PropertyChangeListener  {
+public class ChangePasswordScreen extends Screen implements PropertyChangeListener  {
 	LogisticCompanyApp logisticCompanyApp;
 
-	private ClientFunctionalitiesScreen parentWindow;
+	private Screen parentWindow;
 	private JPanel panelChangePassword;
 	private JPasswordField currentPasswordField;
 	private JLabel lblCurrentPassword;
@@ -30,7 +30,7 @@ public class ChangePasswordScreen implements PropertyChangeListener  {
 	private JLabel lblRegistrationStatus;
 
 
-	public ChangePasswordScreen(LogisticCompanyApp logisticCompanyApp, ClientFunctionalitiesScreen parentWindow) {
+	public ChangePasswordScreen(LogisticCompanyApp logisticCompanyApp, Screen parentWindow) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
 		initialize();
@@ -100,6 +100,7 @@ public class ChangePasswordScreen implements PropertyChangeListener  {
 		panelChangePassword.add(btnBack);
 	}
 	
+	@Override
 	public void setVisible(boolean aFlag) {
 		panelChangePassword.setVisible(aFlag);
 		
@@ -107,6 +108,12 @@ public class ChangePasswordScreen implements PropertyChangeListener  {
 	
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
+		
+	}
+
+	@Override
+	public void addPanel(JPanel panel) {
+		parentWindow.addPanel(panel);
 		
 	}
 	
