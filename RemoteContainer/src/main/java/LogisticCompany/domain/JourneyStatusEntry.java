@@ -13,9 +13,9 @@ public class JourneyStatusEntry {
 		this.location = location;
 		this.destinationPort = destinationPort;
 	}
-	public JourneyStatusEntry(String location) {
-		this.location = location;
-	}
+//	public JourneyStatusEntry(String location) {
+//		this.location = location;
+//	}
 	
 	public JourneyStatusEntry() {
 

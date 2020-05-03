@@ -68,6 +68,8 @@ public class LoginLogoutSteps {
 	@Given("that a client logs out")
 	public void that_a_client_logs_out() throws Exception {
 		logisticCompanyApp.clientLogout();
+		assertFalse(logisticCompanyApp.clientLoggedIn());
+
 	}
 
 	@Given("that a client is not logged in")

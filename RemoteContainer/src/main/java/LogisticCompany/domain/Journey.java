@@ -71,9 +71,9 @@ public class Journey {
 		return cargo;
 	}
 
-	public long getId() {
-		return id;
-	}
+//	public long getId() {
+//		return id;
+//	}
 
 	public boolean matchJourney(String searchText) {
 		return cargo.toLowerCase().contains(searchText.toLowerCase()) || 
