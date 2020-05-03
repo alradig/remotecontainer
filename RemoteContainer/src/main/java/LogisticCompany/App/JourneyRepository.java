@@ -6,13 +6,13 @@ import LogisticCompany.domain.Journey;
 
 public interface JourneyRepository {
 	
-	boolean contains(Journey journey);
+//	boolean contains(Journey journey);
 	
 	void addJourney(Journey journey); 
 	
 	Stream<Journey> getAllJourneysStream();
 
-	void removeJourney(Journey journey);
+//	void removeJourney(Journey journey);
 
 	void clearJourneyDatabase();
 	

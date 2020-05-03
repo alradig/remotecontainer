@@ -34,12 +34,12 @@ public class JourneyInfo {
 //		container = new Container(new ContainerInfo(cargo));
 	}
 	
-	public JourneyInfo(String cargo, String originPort, String endDestination, JourneyStatusEntry currentJourneyStatus) {
-		this.cargo = cargo;
-		this.originPort = originPort;
-		this.destinationPort = endDestination;
-		this.currentJourneyStatus = currentJourneyStatus;
-	}
+//	public JourneyInfo(String cargo, String originPort, String endDestination, JourneyStatusEntry currentJourneyStatus) {
+//		this.cargo = cargo;
+//		this.originPort = originPort;
+//		this.destinationPort = endDestination;
+//		this.currentJourneyStatus = currentJourneyStatus;
+//	}
 	
 //	public Container getContainer() {
 //		return container;

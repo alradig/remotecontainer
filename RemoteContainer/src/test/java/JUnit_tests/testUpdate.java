@@ -35,11 +35,17 @@ public class testUpdate {
 		assertEquals(logisticCompanyApp.getSelectedContainerInfo().getContainerStatusList().get(0).getTemperature(),"1");
 		assertEquals(logisticCompanyApp.getSelectedContainerInfo().getContainerStatusList().get(0).getAirHumidity(),"2");
 		assertEquals(logisticCompanyApp.getSelectedContainerInfo().getContainerStatusList().get(0).getAtmPressure(),"3");
+		logisticCompanyApp.updateSelectedContainer("3", "2", "1");	
+		assertEquals(logisticCompanyApp.getSelectedContainerInfo().getContainerStatusList().get(1).getTemperature(),"3");
+		assertEquals(logisticCompanyApp.getSelectedContainerInfo().getContainerStatusList().get(1).getAirHumidity(),"2");
+		assertEquals(logisticCompanyApp.getSelectedContainerInfo().getContainerStatusList().get(1).getAtmPressure(),"1");
 	}
 	@Test
 	public void testUpdateSelectedJourney() throws OperationNotAllowedException {
 		logisticCompanyApp.updateSelectedJourney("newLocation");
 		assertEquals(logisticCompanyApp.getSelectedJourney().asJourneyInfo().getLocation(),"newLocation");
 	}
+	
+	
 
 }

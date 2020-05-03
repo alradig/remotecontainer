@@ -49,6 +49,8 @@ public class ContainerSteps {
 	public void there_is_an_existing_journey_and_container() throws Exception  {
 		journeyInfo = journeyHelper.registerExampleJourney();
 		containerInfo = containerHelper.registerExampleContainer();
+//		logisticCompanyApp.registerJourneyToClient(helper.getClient(), journeyInfo);
+
 //	    List <ContainerInfo>  list = logisticCompanyApp.searchContainer(containerInfo.getCargo());
 //		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
 //		containerInfo = containerHelper.getContainer();
@@ -64,7 +66,6 @@ public class ContainerSteps {
 //		catch(Exception e) {
 //			 this.errorMessage = e.getMessage();
 //		}
-//		logisticCompanyApp.registerJourneyToClient(helper.getClient(), journeyInfo);
 	}
 	
 	@When("internal temperatur of {string} degrees, air humidity of {string} percent, and atmopshere pressure of {string} Pa")

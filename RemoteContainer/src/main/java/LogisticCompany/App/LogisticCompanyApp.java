@@ -30,11 +30,6 @@ public class LogisticCompanyApp {
 	private JourneyStatusEntry journeyStatus;
 	private Client loggedInClient;
 	
-	
-	public Client getLoggedInClient() {
-		return loggedInClient;
-	}
-
 	private JourneyInfo selectedJourneyInfo;
 	private ContainerInfo selectedContainerInfo;
 	private Container selectedContainer;
@@ -43,6 +38,14 @@ public class LogisticCompanyApp {
 	private ClientInfo selectedClientInfo;
 	private String errorMessage;
 	
+
+	public void setLoggedInClient(Client loggedInClient) {
+		this.loggedInClient = loggedInClient;
+	}
+
+	public Client getLoggedInClient() {
+		return loggedInClient;
+	}
 	
 	public Journey getSelectedJourney() {
 		return selectedJourney;
@@ -257,6 +260,7 @@ public class LogisticCompanyApp {
 		
 		clientObj.addJourney(journeyObj);
 		clientRepository.updateClient(clientObj);
+		
 	}
 
 	public void addMeasurements(Container container, ContainerStatusEntry containerStatus) throws OperationNotAllowedException {
@@ -302,10 +306,10 @@ public class LogisticCompanyApp {
 		return client.getJourneysStream().map(j -> j.getContainer()).collect(Collectors.toList());	
 	}
 	
-	private List<Journey> getClientJourneys(ClientInfo clientInfo) {
-		Client client = findClient(clientInfo);
-		return client.getJourneysStream().collect(Collectors.toList());
-	}
+//	private List<Journey> getClientJourneys(ClientInfo clientInfo) {
+//		Client client = findClient(clientInfo);
+//		return client.getJourneysStream().collect(Collectors.toList());
+//	}
 
 	
 	public boolean provideAccess(String name, String email) throws  Exception{
