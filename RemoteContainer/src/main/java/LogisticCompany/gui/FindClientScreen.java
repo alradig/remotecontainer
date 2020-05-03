@@ -24,16 +24,17 @@ import LogisticCompany.domain.Journey;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.info.JourneyInfo;
 
-public class FindClientScreen {
-	
-	LogisticCompanyApp logisticCompanyApp;
+public class FindClientScreen extends Screen {
+	private LogisticCompanyApp logisticCompanyApp;
 	private LogisticCompanyFunctionalitiesScreen parentWindow;
+	private UpdateClientInfoScreen updateClientScreen;
 	private JPanel panelFindClient;
 	private JTextField searchField;
 	private DefaultListModel<ClientInfo> searchResults;
 	private JList<ClientInfo> listSearchResult;
 	private JLabel lblSearchResultDetail;
 	private JButton	btnUnregister;
+	private JButton btnUpdateClientInfo;
 	private JLabel lblUnregisterClientStatus;
 
 	public FindClientScreen(LogisticCompanyApp logisticCompanyApp,
@@ -51,6 +52,8 @@ public class FindClientScreen {
 
 	}
 	private void initialize() {
+//		updateClientScreen = new UpdateClientInfoScreen(logisticCompanyApp);
+		
 		panelFindClient = new JPanel();
 		parentWindow.addPanel(panelFindClient);
 		panelFindClient.setLayout(null);
@@ -78,7 +81,6 @@ public class FindClientScreen {
 		btnSearch.setBounds(148, 68, 117, 29);
 		panelFindClient.add(btnSearch);
 		btnSearch.getRootPane().setDefaultButton(btnSearch);
-		
 		searchResults = new DefaultListModel<>();
 		listSearchResult = new JList<>(searchResults);
 		listSearchResult.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -137,10 +139,20 @@ public class FindClientScreen {
 				}
 			}
 		});
-			
-		btnUnregister.setBounds(120, 500, 180, 29);
+		btnUnregister.setBounds(215, 500, 170, 29);
 		btnUnregister.setEnabled(false);
 		panelFindClient.add(btnUnregister);
+		
+		btnUpdateClientInfo = new JButton("Update Client");
+		btnUpdateClientInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					setVisible(false);
+					
+			}
+		});
+		btnUpdateClientInfo.setBounds(25, 500, 170, 29);
+		btnUpdateClientInfo.setEnabled(false);
+		panelFindClient.add(btnUpdateClientInfo);
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {

@@ -174,6 +174,7 @@ public class FindJourneyScreen implements ListSelectionListener, PropertyChangeL
 		searchField.setText("");
 		searchResults.clear();
 	}
+	
 	public void addPanel(JPanel panel) {
 		frame.getContentPane().add(panel);
 	}

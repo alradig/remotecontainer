@@ -160,7 +160,6 @@ public class ClientSteps {
 	    for (Journey j : clientJourneys) {
 	    	assertTrue(resultList.contains(j.getContainer()));
 	    }
-	    
 	}
 	
 	@Then("all containers registered for the client journeys is given")
