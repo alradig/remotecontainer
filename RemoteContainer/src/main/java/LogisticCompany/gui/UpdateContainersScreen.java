@@ -43,8 +43,8 @@ public class UpdateContainersScreen extends Screen{
 		this.parentWindow = parentWindow;
 		initialize();
 	}
-	
-	private void initialize() {
+	@Override
+	public void initialize() {
 		panelUpdateContainer = new JPanel();
 		parentWindow.addPanel(panelUpdateContainer);
 		panelUpdateContainer.setLayout(null);

@@ -53,7 +53,7 @@ public class ClientLoginScreen extends Screen {
 //	void addObserver(PropertyChangeListener l) {
 //		support.addPropertyChangeListener(l);
 //	}
-
+	@Override
 	public void initialize() {
 
 		panelClientLogin = new JPanel();

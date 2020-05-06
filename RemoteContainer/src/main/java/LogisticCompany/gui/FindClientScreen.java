@@ -48,7 +48,8 @@ public class FindClientScreen extends Screen {
 		this.btnUnregister.setEnabled(false);
 
 	}
-	private void initialize() {
+	@Override
+	public void initialize() {
 		panelFindClient = new JPanel();
 		parentWindow.addPanel(panelFindClient);
 		panelFindClient.setLayout(null);
