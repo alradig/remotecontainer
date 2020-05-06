@@ -7,6 +7,11 @@ import LogisticCompany.domain.Container;
 import LogisticCompany.domain.Journey;
 import LogisticCompany.domain.JourneyStatusEntry;
 
+/**
+ * This class represents a journey with port of origin, destination and the cargo
+ * each journey has a container and a journey status containing the journey's current location.
+ */
+
 public class JourneyInfo {
 	private String originPort;
 	private String destinationPort;

@@ -9,9 +9,9 @@ import javax.persistence.*;
 import LogisticCompany.App.ClientRepository;
 import LogisticCompany.info.ClientInfo;
 /**
- * This class represents a client with unique id, name, email, password and reference person.
+ * This class represents a client with unique id, name, email, password,  reference person and an address
  * The id is generated automatically 
- *
+ * Each client has list of journeys and a list of other clients that this client has access to.
  */
 @Entity
 public class Client{
