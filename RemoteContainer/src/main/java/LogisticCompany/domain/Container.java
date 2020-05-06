@@ -11,7 +11,7 @@ import LogisticCompany.info.ContainerInfo;
 /**
  * This class represents a container with unique id, the content (cargo) and each container has status list. 
  * The container status list has temperature, air humidity and air pressure measurements 
- *
+ * The id is automatically generated
  */
 @Entity
 public class Container {
