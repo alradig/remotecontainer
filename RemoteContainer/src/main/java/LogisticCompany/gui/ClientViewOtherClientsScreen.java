@@ -48,8 +48,8 @@ public class ClientViewOtherClientsScreen extends Screen implements PropertyChan
 		
 		initialize();
 	}
-	
-	private void initialize() {
+	@Override
+	public void initialize() {
 		panelOtherClient = new JPanel();
 		parentWindow.addPanel(panelOtherClient);
 		panelOtherClient.setLayout(null);
@@ -172,17 +172,8 @@ public class ClientViewOtherClientsScreen extends Screen implements PropertyChan
 	            } else {
 	            	logisticCompanyApp.setSelectedJourney(journeyListSearchResult.getSelectedValue());
 	            	lblSearchResultDetail.setText(new JourneyPrinter(logisticCompanyApp).printDetail());
-	            	//lblSearchResultDetail.setText(new JourneyPrinter(listSearchResult.getSelectedValue(),logisticCompanyApp.getSelectedContainerInfo()).printDetail());
+	            	
 	            }
-
-        	
-//            if (clientListSearchResult.getSelectedIndex() == -1) {
-//            	lblSearchResultDetail.setText("");
-//
-//            } else {
-//            	logisticCompanyApp.setSelectedClient(clientListSearchResult.getSelectedValue());
-//            	//lblSearchResultDetail.setText(new JourneyPrinter(listSearchResult.getSelectedValue(),logisticCompanyApp.getSelectedContainerInfo()).printDetail());
-//            }
         }}
 	
 	
@@ -206,13 +197,6 @@ public class ClientViewOtherClientsScreen extends Screen implements PropertyChan
 		lblSearchResultDetail.setText("");
 		ClientSearchResults.clear();
 		JourneySearchResults.clear();
-		
-//		logisticCompanyApp.getSelectedClient().getAccessList().stream()
-//		.filter(c -> c.matchClient(searchField.getText()))
-//		.forEach(c -> {
-//			ClientSearchResults.addElement(c.asClientInfo());
-//		});
-		
 		logisticCompanyApp.getLoggedInClient().getAccessList().stream()
 		.filter(c -> c.matchClient(searchField.getText())).collect(Collectors.toList())
 		.forEach(c -> {

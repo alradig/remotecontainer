@@ -35,8 +35,8 @@ public class ChangePasswordScreen extends Screen implements PropertyChangeListen
 		this.parentWindow = parentWindow;
 		initialize();
 	}
-	
-	private void initialize() {
+	@Override
+	public void initialize() {
 		panelChangePassword = new JPanel();
 		parentWindow.addPanel(panelChangePassword);
 		panelChangePassword.setLayout(null);

@@ -35,7 +35,8 @@ public class RegisterJourneyScreen extends Screen {
 		this.parentWindow = parentWindow;
 		initialize();
 	}
-	private void initialize() {
+	@Override
+	public void initialize() {
 		panelRegisterJourney = new JPanel();
 		parentWindow.addPanel(panelRegisterJourney);
 		panelRegisterJourney.setLayout(null);

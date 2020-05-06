@@ -47,7 +47,7 @@ public class LogisticCompanyLoginScreen extends Screen {
 		this.frame = frame;
 		initialize();
 	}
-	
+	@Override
 	public void initialize() {
 		
 		panelLogisticCompanyLogin = new JPanel();

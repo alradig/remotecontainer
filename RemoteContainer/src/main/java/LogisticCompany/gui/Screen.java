@@ -6,4 +6,5 @@ public abstract class Screen {
 	
 	public abstract void setVisible(boolean flag);
 	public abstract void addPanel(JPanel panel);
+	public abstract void  initialize(); 
 }

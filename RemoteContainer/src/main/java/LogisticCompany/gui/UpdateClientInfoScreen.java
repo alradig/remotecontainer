@@ -17,7 +17,6 @@ import LogisticCompany.App.OperationNotAllowedException;
 public class UpdateClientInfoScreen extends Screen{
 	LogisticCompanyApp logisticCompanyApp;
 	private Screen parentWindow;
-	
 	private JPanel panelRegisterClient;
 	private JTextField nameField;
 	private JLabel lblName;
@@ -38,8 +37,8 @@ public class UpdateClientInfoScreen extends Screen{
 		this.parentWindow = parentWindow;
 		initialize();
 	}
-	
-	private void initialize() {
+	@Override
+	public void initialize() {
 		panelRegisterClient = new JPanel();
 		parentWindow.addPanel(panelRegisterClient);
 		panelRegisterClient.setLayout(null);
