@@ -16,7 +16,11 @@ import LogisticCompany.info.ContainerInfo;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.info.JourneyInfo;
 
-
+/**
+ * This class represents the business logic associated with the Logistic Company App 
+ * application.
+ *
+ */
 public class LogisticCompanyApp {
 	
 	private PropertyChangeSupport support = new PropertyChangeSupport(this);
