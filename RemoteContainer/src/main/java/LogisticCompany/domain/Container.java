@@ -8,7 +8,11 @@ import javax.persistence.*;
 
 import LogisticCompany.info.ContainerInfo;
 
-
+/**
+ * This class represents a container with unique id, the content (cargo) and each container has status list. 
+ * The container status list has temperature, air humidity and air pressure measurements 
+ *
+ */
 @Entity
 public class Container {
 	@Id

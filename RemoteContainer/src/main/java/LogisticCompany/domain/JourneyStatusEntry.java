@@ -1,6 +1,9 @@
 package LogisticCompany.domain;
 
 import javax.persistence.*;
+/**
+ * This class represents a journey status with location status' of the journey.
+ */
 
 @Embeddable
 public class JourneyStatusEntry {

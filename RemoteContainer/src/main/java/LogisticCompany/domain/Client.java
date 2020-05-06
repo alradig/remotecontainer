@@ -8,7 +8,11 @@ import java.util.stream.Stream;
 import javax.persistence.*;
 import LogisticCompany.App.ClientRepository;
 import LogisticCompany.info.ClientInfo;
-
+/**
+ * This class represents a client with unique id, name, email, password and reference person.
+ * The id is generated automatically 
+ *
+ */
 @Entity
 public class Client{
     @GeneratedValue

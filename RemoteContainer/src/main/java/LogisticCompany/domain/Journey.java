@@ -11,7 +11,10 @@ import LogisticCompany.domain.JourneyStatusEntry;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.info.ContainerInfo;
 import LogisticCompany.info.JourneyInfo;
-
+/**
+ * This class represents a journey with port of origin, destination and the cargo
+ * each journey has a container and a journey status containing the journey's current location.
+ */
 @Entity
 public class Journey {
 	@GeneratedValue

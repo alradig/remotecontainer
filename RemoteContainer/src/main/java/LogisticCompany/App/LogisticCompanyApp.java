@@ -17,7 +17,7 @@ import LogisticCompany.info.ClientInfo;
 import LogisticCompany.info.JourneyInfo;
 
 /**
- * This class represents the business logic associated with the Logistic Company App 
+ * This class represents the business logic associated with the Logistic Company APP
  * application.
  *
  */
