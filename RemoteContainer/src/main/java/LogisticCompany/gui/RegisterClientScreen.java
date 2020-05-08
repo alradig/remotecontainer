@@ -39,8 +39,8 @@ public class RegisterClientScreen extends Screen {
 		this.parentWindow = parentWindow;
 		initialize();
 	}
-	
-	private void initialize() {
+	@Override
+	public void initialize() {
 		panelRegisterClient = new JPanel();
 		parentWindow.addPanel(panelRegisterClient);
 		panelRegisterClient.setLayout(null);

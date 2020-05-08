@@ -51,8 +51,8 @@ public class ClientFindJourneyScreen extends Screen implements ListSelectionList
 	private void disableButtons() {
 		this.btnTracking.setEnabled(false);
 	}
-	
-	private void initialize() {
+	@Override
+	public void initialize() {
 		panelClientFindJourney = new JPanel();
 		parentWindow.addPanel(panelClientFindJourney);
 		panelClientFindJourney.setLayout(null);

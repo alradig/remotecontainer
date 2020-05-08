@@ -6,26 +6,18 @@ import LogisticCompany.domain.Address;
 import LogisticCompany.domain.Client;
 import LogisticCompany.domain.Journey;
 
-
+/**
+ * This class represents a client with name, email, password, reference person and an address
+ * Each client has list of journeys and a list of other clients that this client has access to.
+ * This object is used to exchange information, therefore it contains only the necessary information 
+ */
 public class ClientInfo {
 	private String name;
 	private String email;
 	private String reference_person;
 	private Address address;
-	private String city;
 	private List<Journey> journeys;
 	private List<Client> accessList;
-	
-	
-
-//	public ClientInfo(String name, String email, String reference_person, Address adress, List<Journey> journeys , List<Client> accessList ) {
-//		this.name = name;
-//		this.email = email;
-//		this.reference_person = reference_person;
-//		this.address = adress;
-//		this.journeys =journeys;
-//		this.accessList = accessList;
-//	}
 	
 	public ClientInfo(String name, String email, String reference_person) {
 		this.name = name;

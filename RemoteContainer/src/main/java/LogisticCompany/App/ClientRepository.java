@@ -6,9 +6,7 @@ import LogisticCompany.domain.Client;
 import LogisticCompany.info.ClientInfo;
 
 public interface ClientRepository {
-	
-//	boolean contains(Client client);
-	
+
 	void addClient(Client cc);
 
 	Stream<Client> getAllClientsStream();

@@ -67,8 +67,8 @@ public class FindJourneyScreen extends Screen implements ListSelectionListener, 
 		this.btnUpdateJourney.setEnabled(false);
 		this.btnContainerHistory.setEnabled(false);
 	}
-	
-	private void initialize() {
+	@Override
+	public void initialize() {
 
 		panelFindJourney = new JPanel();
 		parentWindow.addPanel(panelFindJourney);

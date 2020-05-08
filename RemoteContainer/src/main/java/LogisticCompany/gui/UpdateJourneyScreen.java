@@ -37,8 +37,8 @@ public class UpdateJourneyScreen extends Screen{
 		this.parentWindow = parentWindow;
 		initialize();
 	}
-	
-	private void initialize() {
+	@Override
+	public void initialize() {
 		panelUpdateJourney = new JPanel();
 		parentWindow.addPanel(panelUpdateJourney);
 		panelUpdateJourney.setLayout(null);

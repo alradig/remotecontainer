@@ -39,7 +39,6 @@ public class testUpdateClientInfo {
 		logisticCompanyApp.updateClient("", "" ,"" ,"123" ,"" ,"" );
 		assertEquals(logisticCompanyApp.getLoggedInClient().getAddress().getPostCode(),"123");
 
-
 	}
 
 }

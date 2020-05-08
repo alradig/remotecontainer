@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"CucumberSteps"},{"l":"LogisticCompany.App"},{"l":"LogisticCompany.domain"},{"l":"LogisticCompany.gui"},{"l":"LogisticCompany.info"},{"l":"LogisticCompany.persistence"}]
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"LogisticCompany.App"},{"l":"LogisticCompany.domain"},{"l":"LogisticCompany.gui"},{"l":"LogisticCompany.info"},{"l":"LogisticCompany.persistence"}]

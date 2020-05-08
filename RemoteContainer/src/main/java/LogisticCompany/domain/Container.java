@@ -8,7 +8,11 @@ import javax.persistence.*;
 
 import LogisticCompany.info.ContainerInfo;
 
-
+/**
+ * This class represents a container with unique id, the content (cargo) and each container has status list. 
+ * The container status list has temperature, air humidity and air pressure measurements 
+ * The id is automatically generated
+ */
 @Entity
 public class Container {
 	@Id
@@ -34,9 +38,6 @@ public class Container {
 		return containerStatusList;
 	}
 	
-//	public void clearContainerStatusList() {
-//		containerStatusList.clear();
-//	}
 	
 	public void updateContainerStatus(ContainerStatusEntry containerStatus) {
 		containerStatusList.add(containerStatus);
@@ -58,13 +59,9 @@ public class Container {
 		return new ContainerInfo(this, this.containerStatusList);
 	}
 
-//	public boolean matchContainer(String searchCargo) {
-//		return cargo.contains(searchCargo);
-//	}
 
 	public void updateContainerInfo(ContainerInfo containerInfo) {
 		this.cargo = containerInfo.getCargo();
-//		this.containerStatusList = containerInfo.getContainerStatusList();
 	}
 	
 }

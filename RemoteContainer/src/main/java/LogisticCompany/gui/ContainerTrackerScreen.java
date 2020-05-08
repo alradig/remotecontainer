@@ -29,8 +29,8 @@ public class ContainerTrackerScreen extends Screen implements PropertyChangeList
 		
 		initialize();
 	}
-	
-	private void initialize() {
+	@Override 
+	public void initialize() {
 		panelContainerTracker = new JPanel();
 		parentWindow.addPanel(panelContainerTracker);
 		panelContainerTracker.setLayout(null);

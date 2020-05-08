@@ -8,7 +8,11 @@ import java.util.stream.Stream;
 import javax.persistence.*;
 import LogisticCompany.App.ClientRepository;
 import LogisticCompany.info.ClientInfo;
-
+/**
+ * This class represents a client with unique id, name, email, password, reference person and an address
+ * The id is generated automatically by the persistence layer
+ * Each client has list of journeys and a list of other clients that this client has access to.
+ */
 @Entity
 public class Client{
     @GeneratedValue
@@ -70,7 +74,6 @@ public class Client{
 	}
 	
 	public ClientInfo asClientInfo() { 
-//		return new ClientInfo(this.getName(), this.getEmail(), this.getRefPerson(), this.address, this.journeys, this.accessList);
 		return new ClientInfo(this);
 	}
 	
@@ -97,8 +100,5 @@ public class Client{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-//	public void setAddress(Address address) {
-//		this.address = address;
-//	}
-	
+
 }

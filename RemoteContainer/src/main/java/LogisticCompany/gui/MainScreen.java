@@ -122,7 +122,8 @@ public class MainScreen extends Screen {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	@Override
+	public void initialize() {
 		frame = new JFrame("Remote Container Tracking");
 		frame.setBounds(100, 100, 404, 650);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

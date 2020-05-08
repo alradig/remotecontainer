@@ -31,7 +31,6 @@ public class ClientFunctionalitiesScreen extends Screen {
 	private GiveAccessScreen giveAccessScreen;
 	private ChangePasswordScreen changePasswordScreen;
 	private Screen updateClientInfoScreen;
-	
 	private Screen parentWindow;
 	private JButton btnRegisterJourney;
 	private JButton btnFindJourney; 
@@ -57,8 +56,8 @@ public class ClientFunctionalitiesScreen extends Screen {
 		this.mainScreen = mainScreen;
 		initialize();
 	}
-	
-	private void initialize() {
+	@Override
+	public void initialize() {
 		
 		panelClientFunc = new JPanel();
 		parentWindow.addPanel(panelClientFunc);

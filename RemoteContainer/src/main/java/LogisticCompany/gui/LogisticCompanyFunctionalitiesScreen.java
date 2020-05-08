@@ -47,7 +47,8 @@ public class LogisticCompanyFunctionalitiesScreen extends Screen {
 		this.frame = frame;
 		initialize();
 	}
-	private void initialize() {
+	@Override
+	public void initialize() {
 		
 		panelLogisticCompanyFunc = new JPanel();
 		parentWindow.addPanel(panelLogisticCompanyFunc);
@@ -65,19 +66,6 @@ public class LogisticCompanyFunctionalitiesScreen extends Screen {
 		});
 		btnRegisterClient.setBounds(104, 93, 193, 29);
 		panelLogisticCompanyFunc.add(btnRegisterClient);
-		
-		
-
-//		btnContainerForJourney = new JButton("Register Container for Journey");
-//		btnContainerForJourney.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				setVisible(false);
-//				registerContainerScreen.setVisible(true);
-//			}
-//		});
-//		btnContainerForJourney.setBounds(104, 133, 193, 29);
-//		panelLogisticCompanyFunc.add(btnContainerForJourney);
-		
 		btnFindJourney = new JButton("Find Journey");
 		btnFindJourney.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

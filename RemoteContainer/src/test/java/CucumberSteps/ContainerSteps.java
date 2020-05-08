@@ -49,23 +49,7 @@ public class ContainerSteps {
 	public void there_is_an_existing_journey_and_container() throws Exception  {
 		journeyInfo = journeyHelper.registerExampleJourney();
 		containerInfo = containerHelper.registerExampleContainer();
-//		logisticCompanyApp.registerJourneyToClient(helper.getClient(), journeyInfo);
 
-//	    List <ContainerInfo>  list = logisticCompanyApp.searchContainer(containerInfo.getCargo());
-//		logisticCompanyApp.logisticCompanyLogin("logisticCompany123");
-//		containerInfo = containerHelper.getContainer();
-//		logisticCompanyApp.registerContainer(containerInfo);
-//		journeyInfo = helperJourney.getJourney();
-		
-//		
-//		try {
-//			logisticCompanyApp.registerJourney(journeyInfo);
-//			logisticCompanyApp.registerContainerToJourney(containerInfo, journeyInfo);
-//			
-//		}
-//		catch(Exception e) {
-//			 this.errorMessage = e.getMessage();
-//		}
 	}
 	
 	@When("internal temperatur of {string} degrees, air humidity of {string} percent, and atmopshere pressure of {string} Pa")
@@ -147,8 +131,6 @@ public class ContainerSteps {
 		Journey journey = logisticCompanyApp.findJourney(journeyInfo);
 	    assertEquals(journey.getContainer().getCargo(), journey.getCargo());
 	    
-//		List <JourneyInfo>  list = logisticCompanyApp.searchJourney(journeyInfo.getCargo());
-//		assertEquals(list.get(0).getContainers().get(0).getCargo(),journey.getCargo());
 	}
 	
 	@When("the journey is a registered journey for the client")

@@ -16,7 +16,11 @@ import LogisticCompany.info.ContainerInfo;
 import LogisticCompany.info.ClientInfo;
 import LogisticCompany.info.JourneyInfo;
 
-
+/**
+ * This class represents the business logic associated with the Logistic Company APP
+ * application.
+ * This is the facade object of the program
+ */
 public class LogisticCompanyApp {
 	
 	private PropertyChangeSupport support = new PropertyChangeSupport(this);
@@ -26,8 +30,6 @@ public class LogisticCompanyApp {
 	private ClientRepository clientRepository;
 	private JourneyRepository journeyRepository;
 	private ContainerRepository containerRepository;
-	private ContainerStatusEntry containerStatus; 
-	private JourneyStatusEntry journeyStatus;
 	private Client loggedInClient;
 	
 	private JourneyInfo selectedJourneyInfo;
@@ -85,13 +87,6 @@ public class LogisticCompanyApp {
 				.collect(Collectors.toList());
 	}
 	
-//	public List<ContainerInfo> searchContainer(String cargo) {
-//		return containerRepository.getAllContainersStream()
-//				.filter(c -> c.matchContainer(cargo))
-//				.map(c -> c.asContainerInfo())
-//				.collect(Collectors.toList());
-//	}
-
 	public List<JourneyInfo> searchJourney(String searchText) {
 		return journeyRepository.getAllJourneysStream()
 				.filter(j -> j.matchJourney(searchText))
@@ -305,11 +300,6 @@ public class LogisticCompanyApp {
 		return client.getJourneysStream().map(j -> j.getContainer()).collect(Collectors.toList());	
 	}
 	
-//	private List<Journey> getClientJourneys(ClientInfo clientInfo) {
-//		Client client = findClient(clientInfo);
-//		return client.getJourneysStream().collect(Collectors.toList());
-//	}
-
 	
 	public boolean provideAccess(String name, String email) throws  Exception{
 		ClientInfo clientInfo2 = new ClientInfo(name, email, "");
@@ -349,23 +339,7 @@ public class LogisticCompanyApp {
 			}
 		}		
 		return ContainersList;
-	}
-	
-//	public List<Journey> collectAccessibleJourneys(ClientInfo clientInfo) {
-//		Client client = findClient(clientInfo);
-//		List<Journey> JourneysList = getClientJourneys(clientInfo);
-//		List<Client> clientAccessList = client.getAccessList();
-//		if(!clientAccessList.isEmpty()) {
-//			for (Client c : clientAccessList) {
-//				List<Journey> journeyList = c.getJourneyList();
-//				for (Journey j : journeyList) {
-//					JourneysList.add(j);
-//				}
-//			}
-//		}		
-//		return JourneysList;
-//	}
-		
+	}		
 
 	public void setClientPassword(ClientInfo clientInfo, String password) {
 		Client client = findClient(clientInfo);

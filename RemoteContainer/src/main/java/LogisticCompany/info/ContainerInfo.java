@@ -5,7 +5,12 @@ import java.util.List;
 
 import LogisticCompany.domain.Container;
 import LogisticCompany.domain.ContainerStatusEntry;
-
+/**
+ * This class represents a container with unique id, the content (cargo) and each container has status list. 
+ * The container status list has temperature, air humidity and air pressure measurements 
+ * The id is automatically generated 
+ * This object is used to exchange information, therefore it contains only the necessary information 
+ */
 public class ContainerInfo {
 	
 	private long id;
@@ -18,11 +23,6 @@ public class ContainerInfo {
 		this.containerStatusList = new ArrayList<>();
 	}
 	
-//	public ContainerInfo(Container container) {
-//		this.cargo = container.getCargo();
-//		this.containerStatusList = container.getContainerStatusList();
-//		this.id = container.getId();
-//	}
 	
 	public ContainerInfo(Container container, List<ContainerStatusEntry> containerStatusList) {
 		this.cargo = container.getCargo();
@@ -42,12 +42,5 @@ public class ContainerInfo {
 		return containerStatusList;
 	}
 	
-//	public long getId() {
-//		return id;
-//	}
-	
-//	public void addContainerStatus(ContainerStatusEntry newEntry) {
-//		containerStatusList.add(newEntry);
-//	}
 	
 }

@@ -28,8 +28,8 @@ public class GiveAccessScreen extends Screen{
 		this.parentWindow = parentWindow;
 		initialize();
 	}
-	
-	private void initialize() {
+	@Override
+	public void initialize() {
 		panelGiveAccess = new JPanel();
 		parentWindow.addPanel(panelGiveAccess);
 		panelGiveAccess.setLayout(null);
