@@ -38,9 +38,6 @@ public class Container {
 		return containerStatusList;
 	}
 	
-//	public void clearContainerStatusList() {
-//		containerStatusList.clear();
-//	}
 	
 	public void updateContainerStatus(ContainerStatusEntry containerStatus) {
 		containerStatusList.add(containerStatus);
@@ -62,13 +59,9 @@ public class Container {
 		return new ContainerInfo(this, this.containerStatusList);
 	}
 
-//	public boolean matchContainer(String searchCargo) {
-//		return cargo.contains(searchCargo);
-//	}
 
 	public void updateContainerInfo(ContainerInfo containerInfo) {
 		this.cargo = containerInfo.getCargo();
-//		this.containerStatusList = containerInfo.getContainerStatusList();
 	}
 	
 }

@@ -10,6 +10,7 @@ import LogisticCompany.domain.JourneyStatusEntry;
 /**
  * This class represents a journey with port of origin, destination and the cargo
  * each journey has a container and a journey status containing the journey's current location.
+ * This object is used to exchange information, therefore it contains only the necessary information 
  */
 
 public class JourneyInfo {
@@ -19,9 +20,7 @@ public class JourneyInfo {
 	private String location;
 	private ContainerInfo containerInfo;
 	private JourneyStatusEntry currentJourneyStatus;
-//	private Container container;
 
-	
 
 	public JourneyInfo(Journey journey) {
 		this.originPort = journey.getStartDestination();
@@ -36,19 +35,7 @@ public class JourneyInfo {
 		this.originPort = originPort;
 		this.destinationPort = endDestination;
 		currentJourneyStatus = new JourneyStatusEntry("not registered","not registered","not registered");
-//		container = new Container(new ContainerInfo(cargo));
 	}
-	
-//	public JourneyInfo(String cargo, String originPort, String endDestination, JourneyStatusEntry currentJourneyStatus) {
-//		this.cargo = cargo;
-//		this.originPort = originPort;
-//		this.destinationPort = endDestination;
-//		this.currentJourneyStatus = currentJourneyStatus;
-//	}
-	
-//	public Container getContainer() {
-//		return container;
-//	}
 	
 	public JourneyStatusEntry getCurrentJourneyStatus() {
 		return currentJourneyStatus;

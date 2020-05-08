@@ -3,7 +3,7 @@ package LogisticCompany.domain;
 import javax.persistence.*;
 /**
  * This class represents a container status with temperature, Air Humidity and air Pressure measurements
- *
+ * The id is automatically generated
  */
 
 @Entity

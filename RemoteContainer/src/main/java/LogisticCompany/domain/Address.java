@@ -3,7 +3,6 @@ package LogisticCompany.domain;
 import javax.persistence.Embeddable;
 /**
  * This class represents an address with street, post code and city
- *
  */
 
 @Embeddable

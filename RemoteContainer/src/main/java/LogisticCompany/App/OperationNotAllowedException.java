@@ -1,6 +1,4 @@
 package LogisticCompany.App;
-
-
 /**
  * This class represents an exception that will be thrown when the operation is not allowed
  * for instance when the client is logged in and tries to perform an action that requires logistic company authorization 

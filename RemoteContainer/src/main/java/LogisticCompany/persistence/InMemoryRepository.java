@@ -32,22 +32,12 @@ public class InMemoryRepository implements ClientRepository, ContainerRepository
 	}
 
 
-//	@Override
-//	public boolean contains(Client client) {
-//		return clients.contains(client);
-//	}
-//	
 	@Override
 	public void clearClientDatabase() {
 		clients.clear();
 		
 	}
-	
-//	@Override
-//	public boolean contains(Container container) {
-//		// TODO Auto-generated method stub
-//		return false;
-//	}
+
 
 	@Override
 	public void removeClient(Client client) {
@@ -65,10 +55,7 @@ public class InMemoryRepository implements ClientRepository, ContainerRepository
 		return containers.stream();
 	}
 
-//	@Override
-//	public void removeContainer(Container container) {
-//		containers.remove(container);
-//	}
+
 
 	@Override
 	public void clearContainerDatabase() {
@@ -85,16 +72,6 @@ public class InMemoryRepository implements ClientRepository, ContainerRepository
 		return journeys.stream();
 	}
 
-//	@Override
-//	public void removeJourney(Journey journey) {
-//		journeys.remove(journey);
-//	}
-//	
-//	@Override
-//	public boolean contains(Journey journey) {
-//		// TODO Auto-generated method stub
-//		return false;
-//	}
 
 	@Override
 	public void clearJourneyDatabase() {
@@ -136,11 +113,6 @@ public class InMemoryRepository implements ClientRepository, ContainerRepository
 		
 	}
 
-//	@Override
-//	public boolean contains(Journey journey) {
-//		// TODO Auto-generated method stub
-//		return false;
-//	}
 
 	
 }

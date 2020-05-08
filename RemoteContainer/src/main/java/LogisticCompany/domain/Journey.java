@@ -14,6 +14,7 @@ import LogisticCompany.info.JourneyInfo;
 /**
  * This class represents a journey with port of origin, destination and the cargo
  * each journey has a container and a journey status containing the journey's current location.
+ * The id is automatically generated
  */
 @Entity
 public class Journey {
@@ -29,11 +30,6 @@ public class Journey {
 	@Embedded
 	private JourneyStatusEntry currentJourneyStatus;
 	
-//	@ElementCollection
-//	private List<String> journeyLog = new ArrayList<String>(); //Consider creating a logEntry object and having a list of it here!
-//	@OneToMany
-//	private ArrayList<JourneyStatus> journeyLogs = new ArrayList<>();
-
 	public Journey() {
 
 	}
@@ -74,10 +70,6 @@ public class Journey {
 		return cargo;
 	}
 
-//	public long getId() {
-//		return id;
-//	}
-
 	public boolean matchJourney(String searchText) {
 		return cargo.toLowerCase().contains(searchText.toLowerCase()) || 
 				originPort.toLowerCase().contains(searchText.toLowerCase()) || 
@@ -85,11 +77,6 @@ public class Journey {
 	}
 
 	public JourneyInfo asJourneyInfo() {
-//		return new JourneyInfo(this.getCargo(), this.getStartDestination(), this.getEndDestination(), this.currentJourneyStatus, this.containers);
-		
-		// This method should not change: if we need more things from this journey object,
-		// then we need to build a get function in this Journey object and call it in the JourneyInfo constructor
-		// and then pass the gotten information to the JoruneyInfo object inside its constructor!
 		return new JourneyInfo(this); 
 	}
 
