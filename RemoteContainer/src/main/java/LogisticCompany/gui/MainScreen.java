@@ -26,7 +26,7 @@ public class MainScreen extends Screen {
 	private LogisticCompanyApp logisticCompanyApp;
 	private ClientLoginScreen clientLoginScreen;
 	private LogisticCompanyLoginScreen logisticCompanyLoginScreen;
-	private ClientFunctionalitiesScreen clientFunctionalitiesScreen;
+//	private ClientFunctionalitiesScreen clientFunctionalitiesScreen;
 
 	private JFrame frame;
 	private JPanel panelMenu;

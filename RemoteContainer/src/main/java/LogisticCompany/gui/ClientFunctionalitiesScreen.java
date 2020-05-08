@@ -25,7 +25,6 @@ import javax.swing.event.ListSelectionListener;
 public class ClientFunctionalitiesScreen extends Screen {
 	
 	private LogisticCompanyApp logisticCompanyApp;
-	private Client client;
 	private Screen registerJourneyScreen;
 	private ClientFindJourneyScreen clientFindJourneyScreen;
 	private ClientViewOtherClientsScreen clientViewOtherClientsScreen;
@@ -42,7 +41,6 @@ public class ClientFunctionalitiesScreen extends Screen {
 	private JButton btnLogout;
 	private JButton updateClientInfo;
 	private JPanel panelClientFunc;
-	private JFrame frame;
 	private Screen mainScreen;
 
 
@@ -50,7 +48,6 @@ public class ClientFunctionalitiesScreen extends Screen {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
 		this.mainScreen = mainScreen;
-		this.frame = frame;
 		initialize();
 	}
 	

@@ -27,8 +27,7 @@ import LogisticCompany.info.JourneyInfo;
 
 public class ClientFindJourneyScreen extends Screen implements ListSelectionListener, PropertyChangeListener  {
 	
-	LogisticCompanyApp logisticCompanyApp;
-	Client client;
+	private LogisticCompanyApp logisticCompanyApp;
 	private Screen parentWindow;
 	private Screen clientContainerTrackerScreen;
 	private JPanel panelClientFindJourney;
@@ -36,13 +35,11 @@ public class ClientFindJourneyScreen extends Screen implements ListSelectionList
 	private JList<JourneyInfo> listSearchResult;
 	private JTextField searchField;
 	private JLabel lblSearchResultDetail;
-//	private JFrame frame;
 	private JButton btnTracking;
 	
 	public ClientFindJourneyScreen(LogisticCompanyApp logisticCompanyApp, Screen parentWindow) {
 		this.logisticCompanyApp = logisticCompanyApp;
 		this.parentWindow = parentWindow;
-//		this.frame = frame;
 		
 		initialize();
 	}
@@ -147,7 +144,7 @@ public class ClientFindJourneyScreen extends Screen implements ListSelectionList
 	
 	@Override
 	public void setVisible(boolean aFlag) {
-		panelClientFindJourney.setVisible(aFlag);	
+		panelClientFindJourney.setVisible(aFlag);
 	}
 	
 	public void clear() {
