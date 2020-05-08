@@ -25,7 +25,6 @@ public class ClientSteps {
 	
 	private LogisticCompanyApp logisticCompanyApp;
 	private ClientInfo clientInfo;
-	
 	private String errorMessage;
 	private Address address;
 	public ClientHelper clientHelper;

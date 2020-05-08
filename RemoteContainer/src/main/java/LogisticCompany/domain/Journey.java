@@ -23,9 +23,7 @@ public class Journey {
 	private String originPort;
 	private String destinationPort;
 	private String cargo;
-	
 	private Container container;
-
 	@Embedded
 	private JourneyStatusEntry currentJourneyStatus;
 	
