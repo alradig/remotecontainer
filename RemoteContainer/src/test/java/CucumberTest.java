@@ -10,5 +10,4 @@ import io.cucumber.junit.CucumberOptions;
 //		features = "src/main/resources/Client_login.feature")
 
 public class CucumberTest {
-
 }
