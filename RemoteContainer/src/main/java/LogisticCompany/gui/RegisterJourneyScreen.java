@@ -88,6 +88,7 @@ public class RegisterJourneyScreen extends Screen {
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				emptyFields();
 				setVisible(false);
 				parentWindow.setVisible(true);
 				lblRegistrationStatus.setText("");
@@ -119,12 +120,15 @@ public class RegisterJourneyScreen extends Screen {
 			logisticCompanyApp.registerContainerToJourney(container,journeyInfo);
 			
 			lblRegistrationStatus.setText("Journey successfully registered!");
-			
-			cargoField.setText("");
-			startDestinationField.setText("");
-			endDestinationField.setText("");
-			
+			emptyFields();
 		}
+		
+	}
+	
+	public void emptyFields() {
+		cargoField.setText("");
+		startDestinationField.setText("");
+		endDestinationField.setText("");
 	}
 	
 	@Override

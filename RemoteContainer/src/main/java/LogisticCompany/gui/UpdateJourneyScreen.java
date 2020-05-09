@@ -64,7 +64,6 @@ public class UpdateJourneyScreen extends Screen{
 			public void actionPerformed(ActionEvent e) {
 				updateJourney();
 				updateField.setText("");
-
 			}
 		});
 		btnUpdate.setBounds(145, 200, 117, 29);
@@ -79,6 +78,7 @@ public class UpdateJourneyScreen extends Screen{
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				updateField.setText("");
 				setVisible(false);
 				parentWindow.setVisible(true);
 				lblUpdateStatus.setText("");

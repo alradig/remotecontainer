@@ -80,8 +80,7 @@ public class ChangePasswordScreen extends Screen implements PropertyChangeListen
 					logisticCompanyApp.setClientPassword(new ClientInfo(logisticCompanyApp.getSelectedClient()), newPassword);
 					lblRegistrationStatus.setText("The password is changed!");
 				}
-				newPasswordField.setText("");
-				currentPasswordField.setText("");	
+				emptyFields();	
 			}
 		});
 		btnregister.setBounds(155, 230, 100, 29);
@@ -91,6 +90,7 @@ public class ChangePasswordScreen extends Screen implements PropertyChangeListen
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				emptyFields();
 				setVisible(false);
 				parentWindow.setVisible(true);
 				lblRegistrationStatus.setText("");
@@ -98,6 +98,11 @@ public class ChangePasswordScreen extends Screen implements PropertyChangeListen
 		});
 		btnBack.setBounds(21, 28, 65, 29);
 		panelChangePassword.add(btnBack);
+	}
+	
+	public void emptyFields() {
+		newPasswordField.setText("");
+		currentPasswordField.setText("");
 	}
 	
 	@Override
