@@ -121,6 +121,7 @@ public class UpdateClientInfoScreen extends Screen{
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				emptyFields();
 				setVisible(false);
 				parentWindow.setVisible(true);
 				lblRegistrationStatus.setText("");
@@ -144,14 +145,17 @@ public class UpdateClientInfoScreen extends Screen{
 		} else {
 			logisticCompanyApp.updateClient(name, refPerson, email, zipCode, city, street);
 			lblRegistrationStatus.setText("Client is successfully updated!");
-			
-			nameField.setText("");
-			emailField.setText("");
-			zipCodeField.setText("");
-			cityField.setText("");
-			streetField.setText("");
-			refPField.setText("");
+			emptyFields();
 		}
+	}
+	
+	public void emptyFields() {
+		nameField.setText("");
+		emailField.setText("");
+		zipCodeField.setText("");
+		cityField.setText("");
+		streetField.setText("");
+		refPField.setText("");
 	}
 	
 	@Override

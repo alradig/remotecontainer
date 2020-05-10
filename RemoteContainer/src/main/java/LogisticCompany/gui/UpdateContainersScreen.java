@@ -95,9 +95,7 @@ public class UpdateContainersScreen extends Screen{
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				updateContainer();
-				updateTemperatureField.setText("");
-				updateHumidityField.setText("");
-				updateAtmPressureField.setText("");
+				emptyFields();
 			}
 		});
 		btnUpdate.setBounds(148, 250, 117, 29);
@@ -112,6 +110,7 @@ public class UpdateContainersScreen extends Screen{
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				emptyFields();
 				setVisible(false);
 				parentWindow.setVisible(true);
 				lblUpdateStatus.setText("");
@@ -123,10 +122,14 @@ public class UpdateContainersScreen extends Screen{
 	}
 	
 	protected void updateContainer() {
-		
 		logisticCompanyApp.updateSelectedContainer(updateTemperatureField.getText(),updateHumidityField.getText(), updateAtmPressureField.getText());
 		lblUpdateStatus.setText("Container status is successfully updated!");
-		
+	}
+	
+	public void emptyFields() {
+		updateTemperatureField.setText("");
+		updateHumidityField.setText("");
+		updateAtmPressureField.setText("");
 	}
 	
 	@Override

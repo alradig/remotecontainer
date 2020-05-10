@@ -133,6 +133,7 @@ public class RegisterClientScreen extends Screen {
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				emptyFields();
 				setVisible(false);
 				parentWindow.setVisible(true);
 				lblRegistrationStatus.setText("");
@@ -166,15 +167,19 @@ public class RegisterClientScreen extends Screen {
 				e1.printStackTrace();
 			}
 			
-			nameField.setText("");
-			emailField.setText("");
-			passwordField.setText("");
-			zipCodeField.setText("");
-			cityField.setText("");
-			streetField.setText("");
-			refPField.setText("");
+			emptyFields();
 		}
 	}
+	
+	public void emptyFields() {
+		nameField.setText("");
+		emailField.setText("");
+		zipCodeField.setText("");
+		cityField.setText("");
+		streetField.setText("");
+		refPField.setText("");
+	}
+	
 	@Override
 	public void setVisible(boolean aFlag) {
 		panelRegisterClient.setVisible(aFlag);
