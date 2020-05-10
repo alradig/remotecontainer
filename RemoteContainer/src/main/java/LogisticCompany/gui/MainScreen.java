@@ -54,16 +54,16 @@ public class MainScreen extends Screen {
 	 * @throws Exception 
 	 */
 	public MainScreen() throws Exception {
-		SQLRepository repository = new SQLRepository(false);
+		SQLRepository repository = new SQLRepository(true);
 		logisticCompanyApp = new LogisticCompanyApp(repository,repository,repository);
 //		logisticCompanyApp.clearDatabase();
 		
 		
-		try {
-			createExampleData();
-		} catch (OperationNotAllowedException e) {
-			
-		}
+//		try {
+//			createExampleData();
+//		} catch (OperationNotAllowedException e) {
+//			
+//		}
 		initialize();
 	}
 
